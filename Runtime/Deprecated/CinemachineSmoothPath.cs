@@ -13,23 +13,23 @@ namespace Unity.Cinemachine
     [DisallowMultipleComponent]
     public class CinemachineSmoothPath : CinemachinePathBase
     {
-        /// <summary>If checked, then the path ends are joined to form a continuous loop</summary>
-        [Tooltip("If checked, then the path ends are joined to form a continuous loop.")]
+        /// <summary>如果勾选，路径两端将连接形成连续循环</summary>
+        [Tooltip("如果勾选，路径两端将连接形成连续循环。")]
         public bool m_Looped;
 
-        /// <summary>A waypoint along the path</summary>
+        /// <summary>路径上的一个路径点</summary>
         [Serializable] public struct Waypoint
         {
-            /// <summary>Position in path-local space</summary>
-            [Tooltip("Position in path-local space")]
+            /// <summary>路径局部空间中的位置</summary>
+            [Tooltip("路径局部空间中的位置")]
             public Vector3 position;
 
-            /// <summary>Defines the roll of the path at this waypoint.
-            /// The other orientation axes are inferred from the tangent and world up.</summary>
-            [Tooltip("Defines the roll of the path at this waypoint.  The other orientation axes are inferred from the tangent and world up.")]
+            /// <summary>定义此路径点处的路径滚转角。
+            /// 其他方向轴根据切线和世界上方向量推断。</summary>
+            [Tooltip("定义此路径点处的路径滚转角。其他方向轴根据切线和世界上方向量推断。")]
             public float roll;
 
-            /// <summary>Representation as Vector4</summary>
+            /// <summary>作为Vector4的表示</summary>
             internal Vector4 AsVector4
             {
                 get { return new Vector4(position.x, position.y, position.z, roll); }
@@ -44,10 +44,11 @@ namespace Unity.Cinemachine
             }
         }
 
-        /// <summary>The waypoints that define the path.
-        /// They will be interpolated using a bezier curve</summary>
-        [Tooltip("The waypoints that define the path.  They will be interpolated using a bezier curve.")]
+        /// <summary>定义路径的路径点。
+        /// 将使用贝塞尔曲线进行插值</summary>
+        [Tooltip("定义路径的路径点。将使用贝塞尔曲线进行插值。")]
         public Waypoint[] m_Waypoints = new Waypoint[0];
+
 
         /// <summary>The minimum value for the path position</summary>
         public override float MinPos => 0;

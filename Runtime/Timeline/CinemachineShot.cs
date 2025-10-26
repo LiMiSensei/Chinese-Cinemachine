@@ -11,12 +11,12 @@ namespace Unity.Cinemachine
     /// </summary>
     public sealed class CinemachineShot : PlayableAsset, IPropertyPreview
     {
-        /// <summary>The name to display on the track.  If empty, the CmCamera's name will be used.</summary>
-        [Tooltip("The name to display on the track.  If empty, the CmCamera's name will be used.")]
+        /// <summary>轨道上显示的名称。如果为空，将使用 CmCamera 的名称。</summary>
+        [Tooltip("轨道上显示的名称。如果为空，将使用 CmCamera 的名称。")]
         public string DisplayName;
 
-        /// <summary>The Cinemachine camera to use for this shot</summary>
-        [Tooltip("The Cinemachine camera to use for this shot")]
+        /// <summary>用于此镜头的 Cinemachine 摄像机</summary>
+        [Tooltip("用于此镜头的 Cinemachine 摄像机")]
         public ExposedReference<CinemachineVirtualCameraBase> VirtualCamera;
 
         /// <summary>PlayableAsset implementation</summary>

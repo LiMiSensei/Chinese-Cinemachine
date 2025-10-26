@@ -59,36 +59,33 @@ namespace Unity.Cinemachine
             Camera
         };
 
-        /// <summary>If the profile has the appropriate overrides, will set the base focus
-        /// distance to be the distance from the selected target to the camera.
-        /// The Focus Offset field will then modify that distance</summary>
-        [Tooltip("If the profile has the appropriate overrides, will set the base focus "
-            + "distance to be the distance from the selected target to the camera."
-            + "The Focus Offset field will then modify that distance.")]
+        /// <summary>如果配置文件具有适当的覆盖，将设置基础焦点距离为从选定目标到摄像机的距离。然后焦点偏移字段将修改该距离</summary>
+        [Tooltip("如果配置文件具有适当的覆盖，将设置基础焦点"
+            + "距离为从选定目标到摄像机的距离。"
+            + "然后焦点偏移字段将修改该距离。")]
         [FormerlySerializedAs("m_FocusTracking")]
         public FocusTrackingMode FocusTracking;
 
-        /// <summary>The target to use if Focus Tracks Target is set to Custom Target</summary>
-        [Tooltip("The target to use if Focus Tracks Target is set to Custom Target")]
+        /// <summary>如果焦点跟踪目标设置为自定义目标，则使用此目标</summary>
+        [Tooltip("如果焦点跟踪目标设置为自定义目标，则使用此目标")]
         [FormerlySerializedAs("m_FocusTarget")]
         public Transform FocusTarget;
 
-        /// <summary>Offset from target distance, to be used with Focus Tracks Target.
-        /// Offsets the sharpest point away from the focus target</summary>
-        [Tooltip("Offset from target distance, to be used with Focus Tracks Target.  "
-            + "Offsets the sharpest point away from the focus target.")]
+        /// <summary>目标距离的偏移量，与焦点跟踪目标配合使用。偏移最清晰点使其远离焦点目标位置</summary>
+        [Tooltip("目标距离的偏移量，与焦点跟踪目标配合使用。"
+            + "偏移最清晰点使其远离焦点目标位置。")]
         [FormerlySerializedAs("m_FocusOffset")]
         public float FocusOffset;
 
         /// <summary>
-        /// If Focus tracking is enabled, this will return the calculated focus distance
+        /// 如果启用了焦点跟踪，这将返回计算出的焦点距离
         /// </summary>
         public float CalculatedFocusDistance { get; private set; }
 
         /// <summary>
-        /// This profile will be applied whenever this virtual camera is live
+        /// 每当此虚拟摄像机处于活动状态时，将应用此配置文件
         /// </summary>
-        [Tooltip("This profile will be applied whenever this virtual camera is live")]
+        [Tooltip("每当此虚拟摄像机处于活动状态时，将应用此配置文件")]
         [FormerlySerializedAs("m_Profile")]
         public VolumeProfile Profile;
 

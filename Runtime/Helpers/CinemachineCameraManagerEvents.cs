@@ -11,11 +11,11 @@ namespace Unity.Cinemachine
     public class CinemachineCameraManagerEvents : CinemachineMixerEventsBase
     {
         /// <summary>
-        /// This is the CinemachineBrain emitting the events.  If null and the current
-        /// GameObject has a CinemachineBrain component, that component will be used.
+        /// 这是发出事件的CinemachineBrain组件。如果为空且当前
+        /// GameObject拥有CinemachineBrain组件，则将使用该组件。
         /// </summary>
-        [Tooltip("This is the CinemachineCameraManager emitting the events.  If null and the current "
-            + "GameObject has a CinemachineCameraManager component, that component will be used.")]
+        [Tooltip("这是发出事件的CinemachineCameraManager组件。如果为空且当前"
+            + "GameObject拥有CinemachineCameraManager组件，则将使用该组件。")]
         public CinemachineCameraManagerBase CameraManager;
 
         /// <summary>

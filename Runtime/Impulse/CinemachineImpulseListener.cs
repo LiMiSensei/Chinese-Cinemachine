@@ -16,108 +16,107 @@ namespace Unity.Cinemachine
     public class CinemachineImpulseListener : CinemachineExtension
     {
         /// <summary>
-        /// When to apply the impulse reaction.  Default is Noise.
-        /// Modify this if necessary to influence the ordering of extension effects
+        /// 何时应用脉冲反应。默认为 Noise 阶段。
+        /// 必要时修改此设置以影响扩展效果的顺序
         /// </summary>
-        [Tooltip("When to apply the impulse reaction.  Default is after the Noise stage.  "
-            + "Modify this if necessary to influence the ordering of extension effects")]
+        [Tooltip("何时应用脉冲反应。默认为 Noise 阶段之后。"
+            + "必要时修改此设置以影响扩展效果的顺序")]
         [FormerlySerializedAs("m_ApplyAfter")]
-        public CinemachineCore.Stage ApplyAfter = CinemachineCore.Stage.Aim; // legacy compatibility setting
+        public CinemachineCore.Stage ApplyAfter = CinemachineCore.Stage.Aim; // 向后兼容设置
 
         /// <summary>
-        /// Impulse events on channels not included in the mask will be ignored.
+        /// 掩码中未包含的通道上的脉冲事件将被忽略。
         /// </summary>
-        [Tooltip("Impulse events on channels not included in the mask will be ignored.")]
+        [Tooltip("掩码中未包含的通道上的脉冲事件将被忽略。")]
         [CinemachineImpulseChannelProperty]
         [FormerlySerializedAs("m_ChannelMask")]
         public int ChannelMask;
 
         /// <summary>
-        /// Gain to apply to the Impulse signal.
+        /// 应用于脉冲信号的增益。
         /// </summary>
-        [Tooltip("Gain to apply to the Impulse signal.  1 is normal strength.  "
-            + "Setting this to 0 completely mutes the signal.")]
+        [Tooltip("应用于脉冲信号的增益。1 为正常强度。"
+            + "设置为 0 将完全静音信号。")]
         [FormerlySerializedAs("m_Gain")]
         public float Gain;
 
         /// <summary>
-        /// Enable this to perform distance calculation in 2D (ignore Z).
+        /// 启用此选项以在 2D 中执行距离计算（忽略 Z 轴）。
         /// </summary>
-        [Tooltip("Enable this to perform distance calculation in 2D (ignore Z)")]
+        [Tooltip("启用此选项以在 2D 中执行距离计算（忽略 Z 轴）")]
         [FormerlySerializedAs("m_Use2DDistance")]
         public bool Use2DDistance;
 
         /// <summary>
-        /// Enable this to process all impulse signals in camera space.
+        /// 启用此选项以在摄像机空间中处理所有脉冲信号。
         /// </summary>
-        [Tooltip("Enable this to process all impulse signals in camera space")]
+        [Tooltip("启用此选项以在摄像机空间中处理所有脉冲信号")]
         [FormerlySerializedAs("m_UseCameraSpace")]
         public bool UseCameraSpace;
 
         /// <summary>
-        /// Choices for how the listener treats multiple overlapping impulse signals.
+        /// 监听器如何处理多个重叠脉冲信号的选择。
         /// </summary>
         public enum SignalCombinationModes 
         {
             /// <summary>
-            /// Combines all the active signals together, similar 
-            /// to how sound waves combine in air.
+            /// 将所有活动信号组合在一起，类似于
+            /// 声波在空气中的组合方式。
             /// </summary>
             Additive,
             /// <summary>
-            /// Considers only the signal with the largest amplitude.  
-            /// Other signals are ignored.
+            /// 仅考虑振幅最大的信号。
+            /// 其他信号将被忽略。
             /// </summary>
             UseLargest
         }
 
         /// <summary>
-        /// Specifies how the Impulse Listener combines multiple impulses active at the current point in space.
+        /// 指定脉冲监听器如何组合当前空间点上活动的多个脉冲。
         /// </summary>
-        [Tooltip("Controls how the Impulse Listener combines multiple impulses active at the "
-            + "current point in space.\n\n"
-            + "<b>Additive</b>: Combines all the active signals together, like sound waves.  "
-            + "This is the default.\n\n"
-            + "<b>Use Largest</b>: Considers only the signal with the largest amplitude; ignores "
-            + "any others.")]
+        [Tooltip("控制脉冲监听器如何组合当前空间点上活动的多个脉冲。\n\n"
+            + "<b>叠加</b>: 将所有活动信号组合在一起，就像声波一样。"
+            + "这是默认设置。\n\n"
+            + "<b>使用最大</b>: 仅考虑振幅最大的信号；忽略"
+            + "任何其他信号。")]
         public SignalCombinationModes SignalCombinationMode = SignalCombinationModes.Additive;
 
         /// <summary>
-        /// This controls the secondary reaction of the listener to the incoming impulse.
-        /// The impulse might be for example a sharp shock, and the secondary reaction could
-        /// be a vibration whose amplitude and duration is controlled by the size of the
-        /// original impulse.  This allows different listeners to respond in different ways
-        /// to the same impulse signal.
+        /// 这控制监听器对传入脉冲的次级反应。
+        /// 脉冲可能是一个剧烈的冲击，而次级反应可能是
+        /// 一个振动，其振幅和持续时间由原始脉冲的
+        /// 大小控制。这允许不同的监听器以不同的方式
+        /// 对相同的脉冲信号做出反应。
         /// </summary>
         [Serializable]
         public struct ImpulseReaction
         {
             /// <summary>
-            /// Secondary shake that will be triggered by the primary impulse
+            /// 将由主脉冲触发的次级抖动
             /// </summary>
-            [Tooltip("Secondary shake that will be triggered by the primary impulse.")]
+            [Tooltip("将由主脉冲触发的次级抖动。")]
             public NoiseSettings m_SecondaryNoise;
 
             /// <summary>
-            /// Gain to apply to the amplitudes defined in the signal source asset.
+            /// 应用于信号源资源中定义振幅的增益。
             /// </summary>
-            [Tooltip("Gain to apply to the amplitudes defined in the signal source.  "
-                + "1 is normal.  Setting this to 0 completely mutes the signal.")]
+            [Tooltip("应用于信号源中定义振幅的增益。"
+                + "1 为正常。设置为 0 将完全静音信号。")]
             [FormerlySerializedAs("m_AmplitudeGain")]
             public float AmplitudeGain;
 
-            /// <summary>
-            /// Scale factor to apply to the time axis.
+           /// <summary>
+            /// 应用于时间轴的缩放因子。
             /// </summary>
-            [Tooltip("Scale factor to apply to the time axis.  1 is normal.  "
-                + "Larger magnitudes will make the signal progress more rapidly.")]
-           [FormerlySerializedAs("m_FrequencyGain")]
-           public float FrequencyGain;
+            [Tooltip("应用于时间轴的缩放因子。1 为正常。"
+                + "较大的值将使信号进展更快。")]
+            [FormerlySerializedAs("m_FrequencyGain")]
+            public float FrequencyGain;
 
             /// <summary>
-            /// How long the secondary reaction lasts.
+            /// 次级反应的持续时间。
             /// </summary>
-            [Tooltip("How long the secondary reaction lasts.")]
+            [Tooltip("次级反应的持续时间。")]
             [FormerlySerializedAs("m_Duration")]
             public float Duration;
 

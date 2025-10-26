@@ -19,14 +19,14 @@ namespace Unity.Cinemachine.Samples
         public Transform RearLeftWheel;
         public Transform RearRightWheel;
 
-        [Header("Input Axes")]
-        [Tooltip("X Axis movement.  Value is -1..1.  Controls the turning amount")]
+        [Header("输入轴")]
+        [Tooltip("X轴移动。值为-1..1。控制转向量")]
         public InputAxis MoveX = InputAxis.DefaultMomentary;
 
-        [Tooltip("Z Axis movement.  Value is -1..1. Controls the forward acceleration")]
+        [Tooltip("Z轴移动。值为-1..1。控制前进加速度")]
         public InputAxis MoveZ = InputAxis.DefaultMomentary;
 
-        [Tooltip("Braking.  Value is 0 to 1. Controls the braking force")]
+        [Tooltip("刹车。值为0到1。控制刹车力度")]
         public InputAxis Brake = InputAxis.DefaultMomentary;
 
 

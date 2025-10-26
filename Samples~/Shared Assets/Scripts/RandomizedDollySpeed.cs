@@ -7,11 +7,11 @@ namespace Unity.Cinemachine.Samples
     [Serializable]
     public class RandomizedDollySpeed : SplineAutoDolly.ISplineAutoDolly
     {
-        [Tooltip("Minimum speed the cart can travel")]
+        [Tooltip("矿车的最低行驶速度")]
         public float MinSpeed = 2;
-        [Tooltip("Maximum speed the cart can travel")]
+        [Tooltip("矿车的最高行驶速度")]
         public float MaxSpeed = 10;
-        [Tooltip("How quickly the cart can change speed")]
+        [Tooltip("矿车改变速度的快慢程度")]
         public float Acceleration = 1;
 
         float m_Speed;

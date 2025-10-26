@@ -14,36 +14,36 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/GroupWeightManipulator.html")]
     public class GroupWeightManipulator : MonoBehaviour
     {
-        /// <summary>The weight of the group member at index 0</summary>
-        [Tooltip("The weight of the group member at index 0")]
+        /// <summary>索引 0 处群组成员的权重</summary>
+        [Tooltip("索引 0 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight0")]
         public float Weight0 = 1;
-        /// <summary>The weight of the group member at index 1</summary>
-        [Tooltip("The weight of the group member at index 1")]
+        /// <summary>索引 1 处群组成员的权重</summary>
+        [Tooltip("索引 1 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight1")]
         public float Weight1 = 1;
-        /// <summary>The weight of the group member at index 2</summary>
-        [Tooltip("The weight of the group member at index 2")]
+        /// <summary>索引 2 处群组成员的权重</summary>
+        [Tooltip("索引 2 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight2")]
         public float Weight2 = 1;
-        /// <summary>The weight of the group member at index 3</summary>
-        [Tooltip("The weight of the group member at index 3")]
+        /// <summary>索引 3 处群组成员的权重</summary>
+        [Tooltip("索引 3 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight3")]
         public float Weight3 = 1;
-        /// <summary>The weight of the group member at index 4</summary>
-        [Tooltip("The weight of the group member at index 4")]
+        /// <summary>索引 4 处群组成员的权重</summary>
+        [Tooltip("索引 4 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight4")]
         public float Weight4 = 1;
-        /// <summary>The weight of the group member at index 5</summary>
-        [Tooltip("The weight of the group member at index 5")]
+        /// <summary>索引 5 处群组成员的权重</summary>
+        [Tooltip("索引 5 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight5")]
         public float Weight5 = 1;
-        /// <summary>The weight of the group member at index 6</summary>
-        [Tooltip("The weight of the group member at index 6")]
+        /// <summary>索引 6 处群组成员的权重</summary>
+        [Tooltip("索引 6 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight6")]
         public float Weight6 = 1;
-        /// <summary>The weight of the group member at index 7</summary>
-        [Tooltip("The weight of the group member at index 7")]
+        /// <summary>索引 7 处群组成员的权重</summary>
+        [Tooltip("索引 7 处群组成员的权重")]
         [FormerlySerializedAs("m_Weight7")]
         public float Weight7 = 1;
 

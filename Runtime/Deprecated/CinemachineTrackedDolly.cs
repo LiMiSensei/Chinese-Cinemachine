@@ -14,140 +14,112 @@ namespace Unity.Cinemachine
     [CameraPipeline(CinemachineCore.Stage.Body)]
     public class CinemachineTrackedDolly : CinemachineComponentBase
     {
-        /// <summary>The path to which the camera will be constrained.  This must be non-null.</summary>
-        [Tooltip("The path to which the camera will be constrained.  This must be non-null.")]
+        /// <summary>摄像机将被约束的路径。此项必须为非空。</summary>
+        [Tooltip("摄像机将被约束的路径。此项必须为非空。")]
         public CinemachinePathBase m_Path;
 
-        /// <summary>The position along the path at which the camera will be placed.
-        /// This can be animated directly, or set automatically by the Auto-Dolly feature
-        /// to get as close as possible to the Follow target.</summary>
-        [Tooltip("The position along the path at which the camera will be placed.  "
-           + "This can be animated directly, or set automatically by the Auto-Dolly feature to "
-            + "get as close as possible to the Follow target.  The value is interpreted "
-            + "according to the Position Units setting.")]
+        /// <summary>摄像机将被放置在路径上的位置。
+        /// 可以直接动画化此值，或通过自动轨道车功能自动设置，
+        /// 以尽可能接近跟随目标。</summary>
+        [Tooltip("摄像机将被放置在路径上的位置。可以直接动画化此值，或通过自动轨道车功能自动设置，以尽可能接近跟随目标。该值将根据位置单位设置进行解释。")]
         public float m_PathPosition;
 
-        /// <summary>How to interpret the Path Position</summary>
-        [Tooltip("How to interpret Path Position.  If set to Path Units, values are as follows: "
-            + "0 represents the first waypoint on the path, 1 is the second, and so on.  Values "
-            + "in-between are points on the path in between the waypoints.  If set to Distance, "
-            + "then Path Position represents distance along the path.")]
+        /// <summary>如何解释路径位置</summary>
+        [Tooltip("如何解释路径位置。如果设置为路径单位，值如下：0代表路径上的第一个路径点，1代表第二个，依此类推。中间的值表示路径点之间的路径位置。如果设置为距离，则路径位置表示沿路径的距离。")]
         public CinemachinePathBase.PositionUnits m_PositionUnits = CinemachinePathBase.PositionUnits.PathUnits;
 
-        /// <summary>Where to put the camera realtive to the path postion.  X is perpendicular
-        /// to the path, Y is up, and Z is parallel to the path.</summary>
-        [Tooltip("Where to put the camera relative to the path position.  X is perpendicular "
-            + "to the path, Y is up, and Z is parallel to the path.  This allows the camera to "
-            + "be offset from the path itself (as if on a tripod, for example).")]
+        /// <summary>相对于路径位置放置摄像机的位置。X轴垂直于路径，Y轴向上，Z轴平行于路径。</summary>
+        [Tooltip("相对于路径位置放置摄像机的位置。X轴垂直于路径，Y轴向上，Z轴平行于路径。这允许摄像机从路径本身偏移（例如，如同在三脚架上）。")]
         public Vector3 m_PathOffset = Vector3.zero;
 
-        /// <summary>How aggressively the camera tries to maintain the offset perpendicular to the path.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the target's
-        /// x-axis offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
+        /// <summary>摄像机尝试维持垂直于路径的偏移的积极程度。
+        /// 较小的数值响应更快，能快速移动摄像机以保持目标的X轴偏移。
+        /// 较大的数值会使摄像机响应更缓慢沉重。
+        /// 在不同轴上使用不同设置可以产生广泛的摄像机行为</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain its position in a direction "
-            + "perpendicular to the path.  Small numbers are more responsive, rapidly translating "
-            + "the camera to keep the target's x-axis offset.  Larger numbers give a more heavy "
-            + "slowly responding camera. Using different settings per axis can yield a wide range "
-            + "of camera behaviors.")]
+        [Tooltip("摄像机尝试维持垂直于路径方向的偏移的积极程度。较小的数值响应更快，能快速移动摄像机以保持目标的X轴偏移。较大的数值会使摄像机响应更缓慢沉重。在不同轴上使用不同设置可以产生广泛的摄像机行为。")]
         public float m_XDamping = 0f;
 
-        /// <summary>How aggressively the camera tries to maintain the offset in the path-local up direction.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the target's
-        /// y-axis offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
+        /// <summary>摄像机尝试维持在路径局部向上方向的偏移的积极程度。
+        /// 较小的数值响应更快，能快速移动摄像机以保持目标的Y轴偏移。
+        /// 较大的数值会使摄像机响应更缓慢沉重。
+        /// 在不同轴上使用不同设置可以产生广泛的摄像机行为</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain its position in the path-local up direction.  "
-            + "Small numbers are more responsive, rapidly translating the camera to keep the target's "
-            + "y-axis offset.  Larger numbers give a more heavy slowly responding camera. Using different "
-            + "settings per axis can yield a wide range of camera behaviors.")]
+        [Tooltip("摄像机尝试维持在路径局部向上方向的偏移的积极程度。较小的数值响应更快，能快速移动摄像机以保持目标的Y轴偏移。较大的数值会使摄像机响应更缓慢沉重。在不同轴上使用不同设置可以产生广泛的摄像机行为。")]
         public float m_YDamping = 0f;
 
-        /// <summary>How aggressively the camera tries to maintain the offset parallel to the path.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the
-        /// target's z-axis offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
+        /// <summary>摄像机尝试维持平行于路径的偏移的积极程度。
+        /// 较小的数值响应更快，能快速移动摄像机以保持目标的Z轴偏移。
+        /// 较大的数值会使摄像机响应更缓慢沉重。
+        /// 在不同轴上使用不同设置可以产生广泛的摄像机行为</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain its position in a direction parallel to the path.  "
-            + "Small numbers are more responsive, rapidly translating the camera to keep the target's z-axis offset.  "
-            + "Larger numbers give a more heavy slowly responding camera. Using different settings per axis "
-            + "can yield a wide range of camera behaviors.")]
+        [Tooltip("摄像机尝试维持平行于路径方向的偏移的积极程度。较小的数值响应更快，能快速移动摄像机以保持目标的Z轴偏移。较大的数值会使摄像机响应更缓慢沉重。在不同轴上使用不同设置可以产生广泛的摄像机行为。")]
         public float m_ZDamping = 1f;
 
-        /// <summary>Different ways to set the camera's up vector</summary>
+        /// <summary>设置摄像机向上向量的不同方式</summary>
         public enum CameraUpMode
         {
-            /// <summary>Leave the camera's up vector alone.  It will be set according to the Brain's WorldUp.</summary>
+            /// <summary>保持摄像机的向上向量不变。它将根据Brain的WorldUp进行设置。</summary>
             Default,
-            /// <summary>Take the up vector from the path's up vector at the current point</summary>
+            /// <summary>从当前点的路径向上向量获取向上向量</summary>
             Path,
-            /// <summary>Take the up vector from the path's up vector at the current point, but with the roll zeroed out</summary>
+            /// <summary>从当前点的路径向上向量获取向上向量，但将滚转角归零</summary>
             PathNoRoll,
-            /// <summary>Take the up vector from the Follow target's up vector</summary>
+            /// <summary>从跟随目标的向上向量获取向上向量</summary>
             FollowTarget,
-            /// <summary>Take the up vector from the Follow target's up vector, but with the roll zeroed out</summary>
+            /// <summary>从跟随目标的向上向量获取向上向量，但将滚转角归零</summary>
             FollowTargetNoRoll,
         };
 
-        /// <summary>How to set the virtual camera's Up vector.  This will affect the screen composition.</summary>
-        [Tooltip("How to set the virtual camera's Up vector.  This will affect the screen composition, because "
-            + "the camera Aim behaviours will always try to respect the Up direction.")]
+        /// <summary>如何设置虚拟摄像机的向上向量。这将影响屏幕构图。</summary>
+        [Tooltip("如何设置虚拟摄像机的向上向量。这将影响屏幕构图，因为摄像机瞄准行为总是会尝试尊重向上方向。")]
         public CameraUpMode m_CameraUp = CameraUpMode.Default;
 
-        /// <summary>"How aggressively the camera tries to track the target rotation's X angle.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标旋转的X角度的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target rotation's X angle.  Small numbers are "
-            + "more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标旋转的X角度的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_PitchDamping = 0;
 
-        /// <summary>How aggressively the camera tries to track the target rotation's Y angle.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标旋转的Y角度的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target rotation's Y angle.  Small numbers are "
-            + "more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标旋转的Y角度的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_YawDamping = 0;
 
-        /// <summary>How aggressively the camera tries to track the target rotation's Z angle.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标旋转的Z角度的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target rotation's Z angle.  Small numbers "
-            + "are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标旋转的Z角度的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_RollDamping = 0f;
 
-        /// <summary>Controls how automatic dollying occurs</summary>
+        /// <summary>控制自动轨道车的运行方式</summary>
         [Serializable]
         public struct AutoDolly
         {
-            /// <summary>If checked, will enable automatic dolly, which chooses a path position
-            /// that is as close as possible to the Follow target.</summary>
-            [Tooltip("If checked, will enable automatic dolly, which chooses a path position that is as "
-                + "close as possible to the Follow target.  Note: this can have significant performance impact")]
+            /// <summary>如果勾选，将启用自动轨道车功能，它会选择尽可能接近跟随目标的路径位置。</summary>
+            [Tooltip("如果勾选，将启用自动轨道车功能，它会选择尽可能接近跟随目标的路径位置。注意：这可能对性能有显著影响")]
             public bool m_Enabled;
 
-            /// <summary>Offset, in current position units, from the closest point on the path to the follow target.</summary>
-            [Tooltip("Offset, in current position units, from the closest point on the path to the follow target")]
+            /// <summary>以当前位置单位表示的偏移量，从路径上最接近点到跟随目标。</summary>
+            [Tooltip("以当前位置单位表示的偏移量，从路径上最接近点到跟随目标")]
             public float m_PositionOffset;
 
-            /// <summary>Search up to this many waypoints on either side of the current position.  Use 0 for Entire path</summary>
-            [Tooltip("Search up to this many waypoints on either side of the current position.  Use 0 for Entire path.")]
+            /// <summary>在当前位置两侧搜索的路径点数量。使用0表示整个路径。</summary>
+            [Tooltip("在当前位置两侧搜索的路径点数量。使用0表示整个路径。")]
             public int m_SearchRadius;
 
-            /// <summary>We search between waypoints by dividing the segment into this many straight pieces.
-            /// The higher the number, the more accurate the result, but performance is
-            /// proportionally slower for higher numbers</summary>
+            /// <summary>我们通过将路径段分成这么多直线片段来进行路径点之间的搜索。
+            /// 数值越高，结果越精确，但性能会相应变慢。</summary>
             [FormerlySerializedAs("m_StepsPerSegment")]
-            [Tooltip("We search between waypoints by dividing the segment into this many straight pieces.  "
-                + "he higher the number, the more accurate the result, but performance is proportionally "
-                + "slower for higher numbers")]
+            [Tooltip("我们通过将路径段分成这么多直线片段来进行路径点之间的搜索。数值越高，结果越精确，但性能会相应变慢。")]
             public int m_SearchResolution;
 
-            /// <summary>Constructor with specific field values</summary>
-            /// <param name="enabled">Whether to enable automatic dolly</param>
-            /// <param name="positionOffset">Offset, in current position units, from the closest point on the path to the follow target</param>
-            /// <param name="searchRadius">Search up to this many waypoints on either side of the current position</param>
-            /// <param name="stepsPerSegment">We search between waypoints by dividing the segment into this many straight pieces</param>
+            /// <summary>使用特定字段值的构造函数</summary>
+            /// <param name="enabled">是否启用自动轨道车</param>
+            /// <param name="positionOffset">以当前位置单位表示的偏移量，从路径上最接近点到跟随目标</param>
+            /// <param name="searchRadius">在当前位置两侧搜索的路径点数量</param>
+            /// <param name="stepsPerSegment">我们通过将路径段分成这么多直线片段来进行路径点之间的搜索</param>
             public AutoDolly(bool enabled, float positionOffset, int searchRadius, int stepsPerSegment)
             {
                 m_Enabled = enabled;
@@ -157,8 +129,8 @@ namespace Unity.Cinemachine
             }
         }
 
-        /// <summary>Controls how automatic dollying occurs</summary>
-        [Tooltip("Controls how automatic dollying occurs.  A Follow target is necessary to use this feature.")]
+        /// <summary>控制自动轨道车的运行方式</summary>
+        [Tooltip("控制自动轨道车的运行方式。使用此功能需要有一个跟随目标。")]
         public AutoDolly m_AutoDolly = new AutoDolly(false, 0, 2, 5);
 
         /// <summary>True if component is enabled and has a path</summary>

@@ -17,7 +17,7 @@ namespace Unity.Cinemachine
         /// <summary>
         /// How much time it takes for the aim to catch up to the target's rotation
         /// </summary>
-        [Tooltip("How much time it takes for the aim to catch up to the target's rotation")]
+        [Tooltip("瞄准方向追上目标旋转所需的时间")] 
         [FormerlySerializedAs("m_AngularDamping")]
         [FormerlySerializedAs("m_Damping")]
         public float Damping = 0;

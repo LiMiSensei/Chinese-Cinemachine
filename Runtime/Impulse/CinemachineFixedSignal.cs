@@ -9,18 +9,18 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineImpulseFixedSignals.html")]
     public class CinemachineFixedSignal : SignalSourceAsset
     {
-        /// <summary>The raw signal shape along the X axis</summary>
-        [Tooltip("The raw signal shape along the X axis")]
+        /// <summary>沿X轴的原始信号形状</summary>
+        [Tooltip("沿X轴的原始信号形状")]
         [FormerlySerializedAs("m_XCurve")]
         public AnimationCurve XCurve;
 
-        /// <summary>The raw signal shape along the Y axis</summary>
-        [Tooltip("The raw signal shape along the Y axis")]
+        /// <summary>沿Y轴的原始信号形状</summary>
+        [Tooltip("沿Y轴的原始信号形状")]
         [FormerlySerializedAs("m_YCurve")]
         public AnimationCurve YCurve;
 
-        /// <summary>The raw signal shape along the Z axis</summary>
-        [Tooltip("The raw signal shape along the Z axis")]
+        /// <summary>沿Z轴的原始信号形状</summary>
+        [Tooltip("沿Z轴的原始信号形状")]
         [FormerlySerializedAs("m_ZCurve")]
         public AnimationCurve ZCurve;
 

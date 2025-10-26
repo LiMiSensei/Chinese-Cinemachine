@@ -13,32 +13,32 @@ namespace Unity.Cinemachine.Samples
     public class SamplesDynamicUI : MonoBehaviour
     {
         [Serializable]
-        public class Item
-        {
-            [Tooltip("Text displayed on button")]
-            public string Name = "Text";
+public class Item
+{
+    [Tooltip("按钮上显示的文本")]
+    public string Name = "Text";
 
-            [Serializable]
-            public class ToggleSettings
-            {
-                public bool Enabled;
+    [Serializable]
+    public class ToggleSettings
+    {
+        public bool Enabled;
 
-                [Tooltip("Initial value of the toggle")]
-                public bool Value;
+        [Tooltip("开关的初始值")]
+        public bool Value;
 
-                [Tooltip("Event sent when toggle button is clicked")]
-                public UnityEvent<bool> OnValueChanged = new();
-            }
+        [Tooltip("点击开关按钮时发送的事件")]
+        public UnityEvent<bool> OnValueChanged = new();
+    }
 
-            [Tooltip("Set this to true to create a toggle button")]
-            [FoldoutWithEnabledButton]
-            public ToggleSettings IsToggle = new();
+        [Tooltip("设置为true以创建开关按钮")]
+        [FoldoutWithEnabledButton]
+        public ToggleSettings IsToggle = new();
 
-            [Tooltip("Event sent when button is clicked")]
-            public UnityEvent OnClick = new();
-        }
+        [Tooltip("点击按钮时发送的事件")]
+        public UnityEvent OnClick = new();
+}
 
-        [Tooltip("The buttons to be displayed")]
+        [Tooltip("要显示的按钮")]
         public List<Item> Buttons = new();
 
         VisualElement m_Root;

@@ -12,44 +12,44 @@ namespace Unity.Cinemachine
     public class CinemachineCameraEvents : MonoBehaviour
     {
         /// <summary>
-        /// This is the object whose events are being monitored.  If null and the current
-        /// GameObject has a CinemachineVirtualCameraBase component, that component will be used.
+        /// 这是被监视事件的对象。如果为空且当前
+        /// GameObject拥有CinemachineVirtualCameraBase组件，则将使用该组件。
         /// </summary>
-        [Tooltip("This is the object whose events are being monitored.  If null and the current "
-            + "GameObject has a CinemachineVirtualCameraBase component, that component will be used.")]
+        [Tooltip("这是被监视事件的对象。如果为空且当前"
+            + "GameObject拥有CinemachineVirtualCameraBase组件，则将使用该组件。")]
         public CinemachineVirtualCameraBase EventTarget;
 
         /// <summary>
-        /// This is the object emitting the events.
-        /// If a blend is involved, it will be fired at the start of the blend.
+        /// 这是发出事件的对象。
+        /// 如果涉及混合，将在混合开始时触发。
         /// </summary>
         [Space]
-        [Tooltip("This event will fire whenever a virtual camera becomes active in the context of a mixer.  "
-            + "If a blend is involved, then the event will fire on the first frame of the blend.")]
+        [Tooltip("当虚拟摄像机在混合器上下文中变为活动状态时，此事件将触发。"
+            + "如果涉及混合，则事件将在混合的第一帧触发。")]
         public CinemachineCore.CameraEvent CameraActivatedEvent = new ();
 
         /// <summary>
-        /// This event will fire whenever a virtual stops being live.
-        /// If a blend is involved, then the event will fire after the last frame of the blend.
+        /// 当虚拟摄像机停止处于活动状态时，此事件将触发。
+        /// 如果涉及混合，则事件将在混合的最后一帧之后触发。
         /// </summary>
-        [Tooltip("This event will fire whenever a virtual stops being live.  If a blend is "
-            + "involved, then the event will fire after the last frame of the blend.")]
+        [Tooltip("当虚拟摄像机停止处于活动状态时，此事件将触发。如果涉及混合，"
+            + "则事件将在混合的最后一帧之后触发。")]
         public CinemachineCore.CameraEvent CameraDeactivatedEvent = new ();
 
         /// <summary>
-        /// This event will fire whenever a blend is created that involves this camera.
-        /// The handler can modify any settings in the blend, except the cameras themselves.
+        /// 当创建涉及此摄像机的混合时，此事件将触发。
+        /// 处理程序可以修改混合中的任何设置，但摄像机本身除外。
         /// </summary>
-        [Tooltip("This event will fire whenever a blend is created that involves this camera.  "
-            + "The handler can modify any settings in the blend, except the cameras themselves.")]
+        [Tooltip("当创建涉及此摄像机的混合时，此事件将触发。"
+            + "处理程序可以修改混合中的任何设置，但摄像机本身除外。")]
         public CinemachineCore.BlendEvent BlendCreatedEvent = new ();
 
         /// <summary>
-        /// This event will fire whenever a virtual camera finishes blending in.
-        /// It will not fire if the blend length is zero.
+        /// 当虚拟摄像机完成混合进入时，此事件将触发。
+        /// 如果混合长度为零，则不会触发。
         /// </summary>
-        [Tooltip("This event will fire whenever a virtual camera finishes blending in.  "
-            + "It will not fire if the blend length is zero.")]
+        [Tooltip("当虚拟摄像机完成混合进入时，此事件将触发。"
+            + "如果混合长度为零，则不会触发。")]
         public CinemachineCore.CameraEvent BlendFinishedEvent = new ();
 
         void OnEnable()

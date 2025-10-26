@@ -10,30 +10,33 @@ namespace Unity.Cinemachine
     [Obsolete("CinemachinePathBase has been deprecated. Use SplineContainer instead")]
     public abstract class CinemachinePathBase : MonoBehaviour
     {
-        /// <summary>Path samples per waypoint</summary>
-        [Tooltip("Path samples per waypoint.  This is used for calculating path distances.")]
+        /// <summary>每个路径点的路径采样数</summary>
+        [Tooltip("每个路径点的路径采样数。这用于计算路径距离。")]
         [Range(1, 100)]
         public int m_Resolution = 20;
 
-        /// <summary>This class holds the settings that control how the path
-        /// will appear in the editor scene view.  The path is not visible in the game view</summary>
+        /// <summary>此类包含控制路径在编辑器场景视图中显示方式的设置。
+        /// 路径在游戏视图中不可见</summary>
         [Serializable] public class Appearance
         {
-            /// <summary>The color of the path itself when it is active in the editor</summary>
-            [Tooltip("The color of the path itself when it is active in the editor")]
+            /// <summary>路径在编辑器中激活时的颜色</summary>
+            [Tooltip("路径在编辑器中激活时的颜色")]
             public Color pathColor = Color.green;
-            /// <summary>The color of the path itself when it is inactive in the editor</summary>
-            [Tooltip("The color of the path itself when it is inactive in the editor")]
+            
+            /// <summary>路径在编辑器中未激活时的颜色</summary>
+            [Tooltip("路径在编辑器中未激活时的颜色")]
             public Color inactivePathColor = Color.gray;
-            /// <summary>The width of the railroad-tracks that are drawn to represent the path</summary>
-            [Tooltip("The width of the railroad-tracks that are drawn to represent the path")]
+            
+            /// <summary>绘制用于表示路径的铁轨宽度</summary>
+            [Tooltip("绘制用于表示路径的铁轨宽度")]
             [Range(0f, 10f)]
             public float width = 0.2f;
         }
-        /// <summary>The settings that control how the path
-        /// will appear in the editor scene view.</summary>
-        [Tooltip("The settings that control how the path will appear in the editor scene view.")]
+
+        /// <summary>控制路径在编辑器场景视图中显示方式的设置。</summary>
+        [Tooltip("控制路径在编辑器场景视图中显示方式的设置。")]
         public Appearance m_Appearance = new Appearance();
+
 
         /// <summary>The minimum value for the path position</summary>
         public abstract float MinPos { get; }

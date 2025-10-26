@@ -16,46 +16,46 @@ namespace Unity.Cinemachine
     [AddComponentMenu("")] // Don't display in add component menu
     public class CinemachineVirtualCamera : CinemachineVirtualCameraBase, AxisState.IRequiresInput
     {
-        /// <summary>The object that the camera wants to look at (the Aim target).
-        /// The Aim component of the CinemachineComponent pipeline
-        /// will refer to this target and orient the vcam in accordance with rules and
-        /// settings that are provided to it.
-        /// If this is null, then the vcam's Transform orientation will be used.</summary>
-        [Tooltip("The object that the camera wants to look at (the Aim target).  "
-            + "If this is null, then the vcam's Transform orientation will define the camera's orientation.")]
+        /// <summary>摄像机想要注视的目标物体（瞄准目标）。
+        /// Cinemachine组件管道中的Aim组件
+        /// 将参照此目标，并根据提供给它的规则和设置
+        /// 来调整虚拟摄像机的方向。
+        /// 如果此值为空，则将使用虚拟摄像机的Transform方向。</summary>
+        [Tooltip("摄像机想要注视的目标物体（瞄准目标）。"
+            + "如果此值为空，则将使用虚拟摄像机的Transform方向来定义摄像机的方向。")]
         [NoSaveDuringPlay]
         [VcamTargetProperty]
         public Transform m_LookAt = null;
 
-        /// <summary>The object that the camera wants to move with (the Body target).
-        /// The Body component of the CinemachineComponent pipeline
-        /// will refer to this target and position the vcam in accordance with rules and
-        /// settings that are provided to it.
-        /// If this is null, then the vcam's Transform position will be used.</summary>
-        [Tooltip("The object that the camera wants to move with (the Body target).  "
-            + "If this is null, then the vcam's Transform position will define the camera's position.")]
+        /// <summary>摄像机想要跟随移动的目标物体（身体目标）。
+        /// Cinemachine组件管道中的Body组件
+        /// 将参照此目标，并根据提供给它的规则和设置
+        /// 来定位虚拟摄像机的位置。
+        /// 如果此值为空，则将使用虚拟摄像机的Transform位置。</summary>
+        [Tooltip("摄像机想要跟随移动的目标物体（身体目标）。"
+            + "如果此值为空，则将使用虚拟摄像机的Transform位置来定义摄像机的位置。")]
         [NoSaveDuringPlay]
         [VcamTargetProperty]
         public Transform m_Follow = null;
 
-        /// <summary>Specifies the LensSettings of this Virtual Camera.
-        /// These settings will be transferred to the Unity camera when the vcam is live.</summary>
-        [Tooltip("Specifies the lens properties of this Virtual Camera.  This generally "
-            + "mirrors the Unity Camera's lens settings, and will be used to drive the "
-            + "Unity camera when the vcam is active.")]
+        /// <summary>指定此虚拟摄像机的镜头设置。
+        /// 当虚拟摄像机处于活动状态时，这些设置将被传输到Unity摄像机。</summary>
+        [Tooltip("指定此虚拟摄像机的镜头属性。这通常"
+            + "会镜像Unity摄像机的镜头设置，并在虚拟摄像机"
+            + "激活时用于驱动Unity摄像机。")]
         [FormerlySerializedAs("m_LensAttributes")]
         public LegacyLensSettings m_Lens = LegacyLensSettings.Default;
 
-        /// <summary>Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although
-        /// not all combinations make sense.  In the case of conflicting hints, Cinemachine will
-        /// make an arbitrary choice.</summary>
-        [Tooltip("Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although "
-            + "not all combinations make sense.  In the case of conflicting hints, Cinemachine will "
-            + "make an arbitrary choice.")]
+        /// <summary>切换到此CinemachineCamera时的过渡提示。提示可以组合使用，
+        /// 但并非所有组合都有意义。在提示冲突的情况下，Cinemachine将
+        /// 做出任意选择。</summary>
+        [Tooltip("切换到此CinemachineCamera时的过渡提示。提示可以组合使用，"
+            + "但并非所有组合都有意义。在提示冲突的情况下，Cinemachine将"
+            + "做出任意选择。")]
         public CinemachineCore.BlendHints BlendHint;
 
-        /// <summary>This event fires when a transition occurs.</summary>
-        [Tooltip("This event fires when a transition occurs")]
+        /// <summary>当过渡发生时触发此事件。</summary>
+        [Tooltip("当过渡发生时触发此事件")]
         public CinemachineLegacyCameraEvents.OnCameraLiveEvent m_OnCameraLiveEvent = new();
 
         /// <summary>Inspector control - Use for hiding sections of the Inspector UI.</summary>

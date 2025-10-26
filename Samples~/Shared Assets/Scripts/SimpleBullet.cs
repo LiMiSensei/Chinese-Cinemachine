@@ -9,7 +9,7 @@ namespace Unity.Cinemachine.Samples
         public float Speed = 500;
         public float Lifespan = 3;
 
-        [Tooltip("Stretch factor in the direction of motion while flying")]
+        [Tooltip("飞行时沿运动方向的拉伸因子")]
         public float Stretch = 6;
 
         float m_Speed;

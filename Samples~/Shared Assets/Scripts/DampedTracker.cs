@@ -9,11 +9,11 @@ namespace Unity.Cinemachine.Samples
     [ExecuteAlways]
     public class DampedTracker : MonoBehaviour
     {
-        [Tooltip("The target to track")]
+        [Tooltip("要追踪的目标")]
         public Transform Target;
-        [Tooltip("How fast the GameObject moves to the target position")]
+        [Tooltip("GameObject 移动到目标位置的速度")]
         public float PositionDamping = 1;
-        [Tooltip("How fast the rotation aligns with target rotation")]
+        [Tooltip("旋转与目标旋转对齐的速度")]
         public float RotationDamping = 1;
 
         void OnEnable()

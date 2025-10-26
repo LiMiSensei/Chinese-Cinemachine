@@ -45,42 +45,42 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct EnvelopeDefinition
         {
-            /// <summary>Normalized curve defining the shape of the start of the envelope.</summary>
-            [Tooltip("Normalized curve defining the shape of the start of the envelope.  "
-                + "If blank a default curve will be used")]
+            /// <summary>定义包络线起始形状的归一化曲线。</summary>
+            [Tooltip("定义包络线起始形状的归一化曲线。"
+                + "如果为空，将使用默认曲线")]
             [FormerlySerializedAs("m_AttackShape")]
             public AnimationCurve AttackShape;
 
-            /// <summary>Normalized curve defining the shape of the end of the envelope.</summary>
-            [Tooltip("Normalized curve defining the shape of the end of the envelope.  "
-                + "If blank a default curve will be used")]
+            /// <summary>定义包络线结束形状的归一化曲线。</summary>
+            [Tooltip("定义包络线结束形状的归一化曲线。"
+                + "如果为空，将使用默认曲线")]
             [FormerlySerializedAs("m_DecayShape")]
             public AnimationCurve DecayShape;
 
-            /// <summary>Duration in seconds of the attack.  Attack curve will be scaled to fit.  Must be >= 0</summary>
-            [Tooltip("Duration in seconds of the attack.  Attack curve will be scaled to fit.  Must be >= 0.")]
+            /// <summary>起始阶段的持续时间（秒）。起始曲线将缩放以适应。必须 >= 0</summary>
+            [Tooltip("起始阶段的持续时间（秒）。起始曲线将缩放以适应。必须 >= 0。")]
             [FormerlySerializedAs("m_AttackTime")]
-            public float AttackTime; // Must be >= 0
+            public float AttackTime; // 必须 >= 0
 
-            /// <summary>Duration in seconds of the central fully-scaled part of the envelope.  Must be >= 0.</summary>
-            [Tooltip("Duration in seconds of the central fully-scaled part of the envelope.  Must be >= 0.")]
+            /// <summary>包络线中央完全缩放部分的持续时间（秒）。必须 >= 0。</summary>
+            [Tooltip("包络线中央完全缩放部分的持续时间（秒）。必须 >= 0。")]
             [FormerlySerializedAs("m_SustainTime")]
-            public float SustainTime; // Must be >= 0
+            public float SustainTime; // 必须 >= 0
 
-            /// <summary>Duration in seconds of the decay.  Decay curve will be scaled to fit.  Must be >= 0.</summary>
-            [Tooltip("Duration in seconds of the decay.  Decay curve will be scaled to fit.  Must be >= 0.")]
+            /// <summary>衰减阶段的持续时间（秒）。衰减曲线将缩放以适应。必须 >= 0。</summary>
+            [Tooltip("衰减阶段的持续时间（秒）。衰减曲线将缩放以适应。必须 >= 0。")]
             [FormerlySerializedAs("m_DecayTime")]
-            public float DecayTime; // Must be >= 0
+            public float DecayTime; // 必须 >= 0
 
-            /// <summary>If checked, signal amplitude scaling will also be applied to the time
-            /// envelope of the signal.  Bigger signals will last longer</summary>
-            [Tooltip("If checked, signal amplitude scaling will also be applied to the time "
-                + "envelope of the signal.  Stronger signals will last longer.")]
+            /// <summary>如果勾选，信号振幅缩放也将应用于信号的
+            /// 时间包络线。更大的信号将持续更长时间</summary>
+            [Tooltip("如果勾选，信号振幅缩放也将应用于信号的"
+                + "时间包络线。更强的信号将持续更长时间。")]
             [FormerlySerializedAs("m_ScaleWithImpact")]
             public bool ScaleWithImpact;
 
-            /// <summary>If true, then duration is infinite.</summary>
-            [Tooltip("If true, then duration is infinite.")]
+            /// <summary>如果为true，则持续时间为无限。</summary>
+            [Tooltip("如果为true，则持续时间为无限。")]
             [FormerlySerializedAs("m_HoldForever")]
             public bool HoldForever;
 

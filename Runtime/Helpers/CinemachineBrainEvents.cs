@@ -11,16 +11,16 @@ namespace Unity.Cinemachine
     public class CinemachineBrainEvents : CinemachineMixerEventsBase
     {
         /// <summary>
-        /// This is the CinemachineBrain emitting the events.  If null and the current
-        /// GameObject has a CinemachineBrain component, that component will be used.
+        /// 这是发出事件的CinemachineBrain组件。如果为空且当前
+        /// GameObject拥有CinemachineBrain组件，则将使用该组件。
         /// </summary>
-        [Tooltip("This is the CinemachineBrain emitting the events.  If null and the current "
-            + "GameObject has a CinemachineBrain component, that component will be used.")]
+        [Tooltip("这是发出事件的CinemachineBrain组件。如果为空且当前"
+            + "GameObject拥有CinemachineBrain组件，则将使用该组件。")]
         public CinemachineBrain Brain;
 
-        /// <summary>This event will fire after the brain updates its Camera.
-        /// This evenet will only fire if this component is attached to a CinemachineBrain.</summary>
-        [Tooltip("This event will fire after the brain updates its Camera.")]
+        /// <summary>此事件将在brain更新其摄像机后触发。
+        /// 只有在此组件附加到CinemachineBrain上时，此事件才会触发。</summary>
+        [Tooltip("此事件将在brain更新其摄像机后触发。")]
         public CinemachineCore.BrainEvent BrainUpdatedEvent = new ();
 
         /// <summary>

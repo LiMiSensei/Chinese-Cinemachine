@@ -6,13 +6,12 @@ namespace Unity.Cinemachine.Samples
     [RequireComponent(typeof(CinemachineTargetGroup))]
     public class ReduceGroupWeightWhenBelowFloor : MonoBehaviour
     {
-        [Tooltip("The platform from which LoseSightAtRange is calculated")]
+        [Tooltip("计算 LoseSightAtRange 的基准平台")]
         public Transform Floor;
 
-        [Tooltip("The weight of a transform in the target group is 1 when above the Floor. When a transform is " +
-            "below the Floor, then its weight decreases based on the distance between the transform and the " +
-            "Floor and it reaches 0 at LoseSightAtRange. If you set this value to 0, then the transform is removed " +
-            "instantly when below the Floor.")]
+        [Tooltip("当变换位于地板上方时，其在目标组中的权重为1。当变换位于地板下方时，" +
+            "其权重会根据变换与地板之间的距离逐渐降低，并在 LoseSightAtRange 处降至0。" +
+            "如果将此值设置为0，则当变换位于地板下方时会立即被移除。")]
         [Range(0, 30)]
         public float LoseSightAtRange = 20;
 

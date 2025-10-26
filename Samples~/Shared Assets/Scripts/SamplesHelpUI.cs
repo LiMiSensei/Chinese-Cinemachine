@@ -16,7 +16,7 @@ namespace Unity.Cinemachine.Samples
         [TextArea(minLines: 10, maxLines: 50)]
         public string HelpText;
 
-        [Tooltip("Event sent when the help window is dismissed")]
+        [Tooltip("当帮助窗口被关闭时发送的事件")]
         public UnityEvent OnHelpDismissed = new ();
 
         VisualElement m_HelpBox;

@@ -9,46 +9,46 @@ namespace Unity.Cinemachine
     public abstract class CinemachineMixerEventsBase : MonoBehaviour
     {
         /// <summary>
-        /// This event will fire whenever a virtual camera goes live.
-        /// If a blend is involved, it will be fired at the start of the blend.
+        /// 当虚拟摄像机变为活动状态时，此事件将触发。
+        /// 如果涉及混合，将在混合开始时触发。
         /// </summary>
         [Space]
-        [Tooltip("This event will fire whenever a virtual camera goes live.  If a blend is "
-            + "involved, then the event will fire on the first frame of the blend.")]
+        [Tooltip("当虚拟摄像机变为活动状态时，此事件将触发。如果涉及混合，"
+            + "则事件将在混合的第一帧触发。")]
         public CinemachineCore.CameraEvent CameraActivatedEvent = new ();
 
         /// <summary>
-        /// This event will fire whenever a virtual stops being live.
-        /// If a blend is involved, then the event will fire after the last frame of the blend.
+        /// 当虚拟摄像机停止处于活动状态时，此事件将触发。
+        /// 如果涉及混合，则事件将在混合的最后一帧之后触发。
         /// </summary>
-        [Tooltip("This event will fire whenever a virtual stops being live.  If a blend is "
-            + "involved, then the event will fire after the last frame of the blend.")]
+        [Tooltip("当虚拟摄像机停止处于活动状态时，此事件将触发。如果涉及混合，"
+            + "则事件将在混合的最后一帧之后触发。")]
         public CinemachineCore.CameraEvent CameraDeactivatedEvent = new ();
 
         /// <summary>
-        /// This event will fire whenever a blend is created in the root frame of this Brain.
-        /// The handler can modify any settings in the blend, except the cameras themselves.
-        /// Note: timeline tracks will not generate these events.
+        /// 当在此Brain的根帧中创建混合时，此事件将触发。
+        /// 处理程序可以修改混合中的任何设置，但摄像机本身除外。
+        /// 注意：时间轴轨道不会生成这些事件。
         /// </summary>
-        [Tooltip("This event will fire whenever a blend is created in the root frame of this Brain.  "
-            + "The handler can modify any settings in the blend, except the cameras themselves.  "
-            + "Note: timeline tracks will not generate these events.")]
+        [Tooltip("当在此Brain的根帧中创建混合时，此事件将触发。"
+            + "处理程序可以修改混合中的任何设置，但摄像机本身除外。"
+            + "注意：时间轴轨道不会生成这些事件。")]
         public CinemachineCore.BlendEvent BlendCreatedEvent = new ();
 
         /// <summary>
-        /// This event will fire whenever a virtual camera finishes blending in.
-        /// It will not fire if the blend length is zero.
+        /// 当虚拟摄像机完成混合进入时，此事件将触发。
+        /// 如果混合长度为零，则不会触发。
         /// </summary>
-        [Tooltip("This event will fire whenever a virtual camera finishes blending in.  "
-            + "It will not fire if the blend length is zero.")]
+        [Tooltip("当虚拟摄像机完成混合进入时，此事件将触发。"
+            + "如果混合长度为零，则不会触发。")]
         public CinemachineCore.CameraEvent BlendFinishedEvent = new ();
 
         /// <summary>
-        /// This event is fired when there is a camera cut.  A camera cut is a camera
-        /// activation with a zero-length blend.
+        /// 当发生摄像机剪切时触发此事件。摄像机剪切是指
+        /// 具有零长度混合的摄像机激活。
         /// </summary>
-        [Tooltip("This event is fired when there is a camera cut.  A camera cut is a camera "
-            + "activation with a zero-length blend.")]
+        [Tooltip("当发生摄像机剪切时触发此事件。摄像机剪切是指"
+            + "具有零长度混合的摄像机激活。")]
         public CinemachineCore.CameraEvent CameraCutEvent = new ();
 
         /// <summary>

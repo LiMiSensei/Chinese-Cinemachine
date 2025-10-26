@@ -21,47 +21,47 @@ namespace Unity.Cinemachine
         Vector3 m_ImpulsePosLastFrame;
         Quaternion m_ImpulseRotLastFrame;
 
-        /// <summary>
-        /// Impulse events on channels not included in the mask will be ignored.
-        /// </summary>
-        [Tooltip("Impulse events on channels not included in the mask will be ignored.")]
-        [CinemachineImpulseChannelProperty]
-        [FormerlySerializedAs("m_ChannelMask")]
-        public int ChannelMask;
+/// <summary>
+/// 掩码中未包含的通道上的脉冲事件将被忽略。
+/// </summary>
+[Tooltip("掩码中未包含的通道上的脉冲事件将被忽略。")]
+[CinemachineImpulseChannelProperty]
+[FormerlySerializedAs("m_ChannelMask")]
+public int ChannelMask;
 
         /// <summary>
-        /// Gain to apply to the Impulse signal.
+        /// 应用于脉冲信号的增益。
         /// </summary>
-        [Tooltip("Gain to apply to the Impulse signal.  1 is normal strength.  Setting this to 0 completely mutes the signal.")]
+        [Tooltip("应用于脉冲信号的增益。1 为正常强度。设置为 0 将完全静音信号。")]
         [FormerlySerializedAs("m_Gain")]
         public float Gain;
 
         /// <summary>
-        /// Enable this to perform distance calculation in 2D (ignore Z).
+        /// 启用此选项以在 2D 中执行距离计算（忽略 Z 轴）。
         /// </summary>
-        [Tooltip("Enable this to perform distance calculation in 2D (ignore Z)")]
+        [Tooltip("启用此选项以在 2D 中执行距离计算（忽略 Z 轴）")]
         [FormerlySerializedAs("m_Use2DDistance")]
         public bool Use2DDistance;
 
         /// <summary>
-        /// Enable this to process all impulse signals in camera space.
+        /// 启用此选项以在本地空间中处理所有脉冲信号。
         /// </summary>
-        [Tooltip("Enable this to process all impulse signals in camera space")]
+        [Tooltip("启用此选项以在本地空间中处理所有脉冲信号")]
         [FormerlySerializedAs("m_UseLocalSpace")]
         public bool UseLocalSpace;
 
         /// <summary>
-        /// This controls the secondary reaction of the listener to the incoming impulse.
-        /// The impulse might be for example a sharp shock, and the secondary reaction could
-        /// be a vibration whose amplitude and duration is controlled by the size of the
-        /// original impulse.  This allows different listeners to respond in different ways
-        /// to the same impulse signal.
+        /// 这控制监听器对传入脉冲的次级反应。
+        /// 脉冲可能是一个剧烈的冲击，而次级反应可能是
+        /// 一个振动，其振幅和持续时间由原始脉冲的
+        /// 大小控制。这允许不同的监听器以不同的方式
+        /// 对相同的脉冲信号做出反应。
         /// </summary>
-        [Tooltip("This controls the secondary reaction of the listener to the incoming impulse.  "
-            + "The impulse might be for example a sharp shock, and the secondary reaction could "
-            + "be a vibration whose amplitude and duration is controlled by the size of the "
-            + "original impulse.  This allows different listeners to respond in different ways "
-            + "to the same impulse signal.")]
+        [Tooltip("这控制监听器对传入脉冲的次级反应。"
+            + "脉冲可能是一个剧烈的冲击，而次级反应可能是"
+            + "一个振动，其振幅和持续时间由原始脉冲的"
+            + "大小控制。这允许不同的监听器以不同的方式"
+            + "对相同的脉冲信号做出反应。")]
         [FormerlySerializedAs("m_ReactionSettings")]
         public CinemachineImpulseListener.ImpulseReaction ReactionSettings;
 

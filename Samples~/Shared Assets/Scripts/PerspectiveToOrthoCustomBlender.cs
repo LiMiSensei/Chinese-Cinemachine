@@ -20,11 +20,10 @@ namespace Unity.Cinemachine.Samples
     [ExecuteAlways]
     public class PerspectiveToOrthoCustomBlender : MonoBehaviour, CinemachineBlend.IBlender
     {
-        [Tooltip("Minimum distance at which to place the perspective camera which will mimic the orthographic one.  \n"
-            + "Changing this distance may affect the feel of the blend: a large distance will produce a better approximation "
-            + "of the ortho camera, but will also make the FOV change happen more quickly at the start of the blend.  \n"
-            + "Keep this distance as small as you can tolerate, to avoid precision errors which can be present at "
-            + "large camera distances.")]
+        [Tooltip("放置透视摄像机以模拟正交摄像机的最小距离。\n"
+        + "更改此距离可能会影响混合效果：较大的距离能更好地近似"
+        + "正交摄像机，但也会使FOV变化在混合开始时更快发生。\n"
+        + "尽量保持此距离较小，以避免在较大摄像机距离时可能出现的精度错误。")]
         public float FakeOrthoCameraDistance = 100;
 
         void OnEnable() => CinemachineCore.GetCustomBlender += GetCustomBlender;

@@ -9,26 +9,26 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public class ExpandingAimReticle : MonoBehaviour
     {
-        [Tooltip("Maximum radius of the aim reticle, when aiming is inaccurate. ")]
+        [Tooltip("瞄准不准确时准星的最大半径。")]
         [Vector2AsRange]
         public Vector2 RadiusRange;
 
-        [Tooltip("The time is takes for the aim reticle to adjust, when inaccurate.")]
+        [Tooltip("瞄准不准确时准星调整所需的时间。")]
         [Range(0, 1f)]
         public float BlendTime;
 
-        [Tooltip("Top piece of the aim reticle.")]
+        [Tooltip("准星的上部部件。")]
         public Image Top;
-        [Tooltip("Bottom piece of the aim reticle.")]
+        [Tooltip("准星的下部部件。")]
         public Image Bottom;
-        [Tooltip("Left piece of the aim reticle.")]
+        [Tooltip("准星的左部部件。")]
         public Image Left;
-        [Tooltip("Right piece of the aim reticle.")]
+        [Tooltip("准星的右部部件。")]
         public Image Right;
 
-        [Tooltip("This 2D object will be positioned in the game view over the raycast hit point, if any, "
-            + "or will remain in the center of the screen if no hit point is detected.  "
-            + "May be null, in which case no on-screen indicator will appear.")]
+        [Tooltip("此2D对象将在游戏视图中定位在射线投射命中点上方（如果有），"
+            + "如果未检测到命中点，则保持在屏幕中心。"
+            + "如果为空，则不会显示屏幕指示器。")]
         public RectTransform AimTargetReticle;
 
         float m_BlendVelocity;

@@ -16,32 +16,33 @@ namespace Unity.Cinemachine
         /// <summary>A waypoint along the path</summary>
         [Serializable] public struct Waypoint
         {
-            /// <summary>Position in path-local space</summary>
-            [Tooltip("Position in path-local space")]
+            /// <summary>路径局部空间中的位置</summary>
+            [Tooltip("路径局部空间中的位置")]
             public Vector3 position;
 
-            /// <summary>Offset from the position, which defines the tangent of the curve at the waypoint.
-            /// The length of the tangent encodes the strength of the bezier handle.
-            /// The same handle is used symmetrically on both sides of the waypoint, to ensure smoothness.</summary>
-            [Tooltip("Offset from the position, which defines the tangent of the curve at the waypoint.  "
-                + "The length of the tangent encodes the strength of the bezier handle.  The same handle "
-                + "is used symmetrically on both sides of the waypoint, to ensure smoothness.")]
+            /// <summary>从位置开始的偏移，定义了路径点处曲线的切线。
+            /// 切线的长度编码了贝塞尔手柄的强度。
+            /// 相同的手柄在路径点的两侧对称使用，以确保平滑性。</summary>
+            [Tooltip("从位置开始的偏移，定义了路径点处曲线的切线。"
+                + "切线的长度编码了贝塞尔手柄的强度。相同的手柄"
+                + "在路径点的两侧对称使用，以确保平滑性。")]
             public Vector3 tangent;
 
-            /// <summary>Defines the roll of the path at this waypoint.
-            /// The other orientation axes are inferred from the tangent and world up.</summary>
-            [Tooltip("Defines the roll of the path at this waypoint.  The other orientation axes are inferred from the tangent and world up.")]
+            /// <summary>定义路径在此路径点处的滚转角度。
+            /// 其他方向轴从切线和世界上方向量推断得出。</summary>
+            [Tooltip("定义路径在此路径点处的滚转角度。其他方向轴从切线和世界上方向量推断得出。")]
             public float roll;
-        }
+            }
 
-        /// <summary>If checked, then the path ends are joined to form a continuous loop</summary>
-        [Tooltip("If checked, then the path ends are joined to form a continuous loop.")]
-        public bool m_Looped;
+            /// <summary>如果勾选，则路径两端会连接形成连续循环</summary>
+            [Tooltip("如果勾选，则路径两端会连接形成连续循环。")]
+            public bool m_Looped;
 
-        /// <summary>The waypoints that define the path.
-        /// They will be interpolated using a bezier curve</summary>
-        [Tooltip("The waypoints that define the path.  They will be interpolated using a bezier curve.")]
-        public Waypoint[] m_Waypoints = new Waypoint[0];
+            /// <summary>定义路径的路径点。
+            /// 它们将使用贝塞尔曲线进行插值</summary>
+            [Tooltip("定义路径的路径点。它们将使用贝塞尔曲线进行插值。")]
+            public Waypoint[] m_Waypoints = new Waypoint[0];
+
 
         /// <summary>The minimum value for the path position</summary>
         public override float MinPos => 0;

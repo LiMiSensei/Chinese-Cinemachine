@@ -14,79 +14,64 @@ namespace Unity.Cinemachine
     [CameraPipeline(CinemachineCore.Stage.Body)]
     public class CinemachineTransposer : CinemachineComponentBase
     {
-        /// <summary>The coordinate space to use when interpreting the offset from the target</summary>
-        [Tooltip("The coordinate space to use when interpreting the offset from the target.  This is also "
-            + "used to set the camera's Up vector, which will be maintained when aiming the camera.")]
+        /// <summary>解释目标偏移时使用的坐标系</summary>
+        [Tooltip("解释目标偏移时使用的坐标系。这也用于设置摄像机的向上向量，该向量在瞄准摄像机时将保持不变。")]
         public BindingMode m_BindingMode = BindingMode.LockToTargetWithWorldUp;
 
-        /// <summary>The distance which the transposer will attempt to maintain from the transposer subject</summary>
-        [Tooltip("The distance vector that the transposer will attempt to maintain from the Follow target")]
+        /// <summary>摄像机位置器将尝试保持与跟随目标的距离向量</summary>
+        [Tooltip("摄像机位置器将尝试保持与跟随目标的距离向量")]
         public Vector3 m_FollowOffset = Vector3.back * 10f;
 
-        /// <summary>How aggressively the camera tries to maintain the offset in the X-axis.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the target's
-        /// x-axis offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
+        /// <summary>摄像机尝试维持X轴偏移的积极程度。
+        /// 较小的数值响应更快，能快速移动摄像机以保持目标的X轴偏移。
+        /// 较大的数值会使摄像机响应更缓慢沉重。
+        /// 在不同轴上使用不同设置可以产生广泛的摄像机行为</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain the offset in the X-axis.  Small numbers "
-            + "are more responsive, rapidly translating the camera to keep the target's x-axis offset.  "
-            + "Larger numbers give a more heavy slowly responding camera. Using different settings per "
-            + "axis can yield a wide range of camera behaviors.")]
+        [Tooltip("摄像机尝试维持X轴偏移的积极程度。较小的数值响应更快，能快速移动摄像机以保持目标的X轴偏移。较大的数值会使摄像机响应更缓慢沉重。在不同轴上使用不同设置可以产生广泛的摄像机行为。")]
         public float m_XDamping = 1f;
 
-        /// <summary>How aggressively the camera tries to maintain the offset in the Y-axis.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the target's
-        /// y-axis offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
+        /// <summary>摄像机尝试维持Y轴偏移的积极程度。
+        /// 较小的数值响应更快，能快速移动摄像机以保持目标的Y轴偏移。
+        /// 较大的数值会使摄像机响应更缓慢沉重。
+        /// 在不同轴上使用不同设置可以产生广泛的摄像机行为</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain the offset in the Y-axis.  Small numbers "
-            + "are more responsive, rapidly translating the camera to keep the target's y-axis offset.  "
-            + "Larger numbers give a more heavy slowly responding camera. Using different settings per "
-            + "axis can yield a wide range of camera behaviors.")]
+        [Tooltip("摄像机尝试维持Y轴偏移的积极程度。较小的数值响应更快，能快速移动摄像机以保持目标的Y轴偏移。较大的数值会使摄像机响应更缓慢沉重。在不同轴上使用不同设置可以产生广泛的摄像机行为。")]
         public float m_YDamping = 1f;
 
-        /// <summary>How aggressively the camera tries to maintain the offset in the Z-axis.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the
-        /// target's z-axis offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
+        /// <summary>摄像机尝试维持Z轴偏移的积极程度。
+        /// 较小的数值响应更快，能快速移动摄像机以保持目标的Z轴偏移。
+        /// 较大的数值会使摄像机响应更缓慢沉重。
+        /// 在不同轴上使用不同设置可以产生广泛的摄像机行为</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain the offset in the Z-axis.  "
-            + "Small numbers are more responsive, rapidly translating the camera to keep the "
-            + "target's z-axis offset.  Larger numbers give a more heavy slowly responding camera. "
-            + "Using different settings per axis can yield a wide range of camera behaviors.")]
+        [Tooltip("摄像机尝试维持Z轴偏移的积极程度。较小的数值响应更快，能快速移动摄像机以保持目标的Z轴偏移。较大的数值会使摄像机响应更缓慢沉重。在不同轴上使用不同设置可以产生广泛的摄像机行为。")]
         public float m_ZDamping = 1f;
 
-        /// <summary>How to calculate the angular damping for the target orientation.
-        /// Use Quaternion if you expect the target to take on very steep pitches, which would
-        /// be subject to gimbal lock if Eulers are used.</summary>
+        /// <summary>如何计算目标方向的角阻尼。
+        /// 如果预期目标会有非常陡峭的俯仰角度（使用欧拉角可能导致万向节锁问题），请使用四元数。</summary>
         public AngularDampingMode m_AngularDampingMode = AngularDampingMode.Euler;
 
-        /// <summary>How aggressively the camera tries to track the target rotation's X angle.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标旋转的X角度（俯仰）的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target rotation's X angle.  "
-            + "Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标旋转的X角度（俯仰）的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_PitchDamping = 0;
 
-        /// <summary>How aggressively the camera tries to track the target rotation's Y angle.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标旋转的Y角度（偏航）的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target rotation's Y angle.  "
-            + "Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标旋转的Y角度（偏航）的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_YawDamping = 0;
 
-        /// <summary>How aggressively the camera tries to track the target rotation's Z angle.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标旋转的Z角度（滚转）的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target rotation's Z angle.  "
-            + "Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标旋转的Z角度（滚转）的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_RollDamping = 0f;
 
-        /// <summary>How aggressively the camera tries to track the target's orientation.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>摄像机尝试跟踪目标方向的积极程度。
+        /// 较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target's orientation.  "
-            + "Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("摄像机尝试跟踪目标方向的积极程度。较小的数值响应更快。较大的数值会使摄像机响应更缓慢沉重。")]
         public float m_AngularDamping = 0f;
 
         /// <summary>

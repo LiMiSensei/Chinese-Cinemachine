@@ -27,183 +27,182 @@ namespace Unity.Cinemachine
         /// Impulse events generated here will appear on the channels included in the mask.
         /// </summary>
         [CinemachineImpulseChannelProperty]
-        [Tooltip("Impulse events generated here will appear on the channels included in the mask.")]
+        [Tooltip("此处生成的脉冲事件将出现在掩码包含的通道上。")]
         [FormerlySerializedAs("m_ImpulseChannel")]
         public int ImpulseChannel = 1;
 
-        /// <summary>Supported predefined shapes for the impulses.</summary>
+        /// <summary>支持的预定义脉冲形状。</summary>
         public enum ImpulseShapes
         {
-            /// <summary>Custom shape</summary>
+            /// <summary>自定义形状</summary>
             Custom,
-            /// <summary>A shape suitable for a recaol, for example from a gunshot.</summary>
+            /// <summary>适用于后坐力的形状，例如枪击。</summary>
             Recoil,
-            /// <summary>A shape suitable for a bump.</summary>
+            /// <summary>适用于碰撞的形状。</summary>
             Bump,
-            /// <summary>A shape suitable for an explosion.</summary>
+            /// <summary>适用于爆炸的形状。</summary>
             Explosion,
-            /// <summary>A shape suitable for a longish rumble.</summary>
+            /// <summary>适用于较长震动的形状。</summary>
             Rumble
         };
 
-        /// <summary>The shape of the impact signal.</summary>
-        [Tooltip("Shape of the impact signal")]
+        /// <summary>碰撞信号的形状。</summary>
+        [Tooltip("碰撞信号的形状")]
         [FormerlySerializedAs("m_ImpulseShape")]
         public ImpulseShapes ImpulseShape;
 
         /// <summary>
-        /// A user-defined impulse shape, used only if m_ImpulseShape is Custom.
-        /// Defines the signal that will be generated.  X axis must go from 0...1,
-        /// and Y axis is the scale that will be applied to the impact velocity.
+        /// 用户定义的脉冲形状，仅在 m_ImpulseShape 为 Custom 时使用。
+        /// 定义将生成的信号。X 轴必须从 0...1，
+        /// Y 轴是将应用于碰撞速度的缩放比例。
         /// </summary>
-        [Tooltip("Defines the custom shape of the impact signal that will be generated.")]
+        [Tooltip("定义将生成的碰撞信号的自定义形状。")]
         [FormerlySerializedAs("m_CustomImpulseShape")]
         public AnimationCurve CustomImpulseShape = new AnimationCurve();
 
         /// <summary>
-        /// The time during which the impact signal will occur.
-        /// The signal shape will be stretched to fill that time.
+        /// 碰撞信号将持续的时间。
+        /// 信号形状将被拉伸以填充该时间。
         /// </summary>
-        [Tooltip("The time during which the impact signal will occur.  "
-            + "The signal shape will be stretched to fill that time.")]
+        [Tooltip("碰撞信号将持续的时间。"
+            + "信号形状将被拉伸以填充该时间。")]
         [FormerlySerializedAs("m_ImpulseDuration")]
         public float ImpulseDuration = 0.2f;
 
         /// <summary>
-        /// This enum represents the various ways an impulse can travel through space
+        /// 此枚举表示脉冲在空间中传播的各种方式
         /// </summary>
         public enum ImpulseTypes
         {
-            /// <summary>The impulse is felt equally everywhere in space, at the same time</summary>
+            /// <summary>脉冲在空间中各处同时均匀感受</summary>
             Uniform,
-            /// <summary>The impulse is felt only within a specified radius, and its strength
-            /// weakens for listeners that are farther away</summary>
+            /// <summary>脉冲仅在指定半径内感受，其强度
+            /// 随监听者距离增加而减弱</summary>
             Dissipating,
             /// <summary>
-            /// The impulse is felt only within a specified radius, and its strength
-            /// weakens for listeners that are farther away.  Also, the impulse travels outwardly
-            /// from the impact point, at a specified velocity, similar to a sound wave.
+            /// 脉冲仅在指定半径内感受，其强度
+            /// 随监听者距离增加而减弱。此外，脉冲从
+            /// 碰撞点向外传播，以指定速度，类似于声波。
             /// </summary>
             Propagating,
             /// <summary>
-            /// Back-compatibility mode for older projects.  It's recommended to use
-            /// one of the other impulse types, if possible.
+            /// 用于旧项目的向后兼容模式。建议使用
+            /// 其他脉冲类型（如果可能）。
             /// </summary>
             Legacy
         }
 
         /// <summary>
-        /// How the impulse travels through space and time.
+        /// 脉冲如何在空间和时间中传播。
         /// </summary>
-        [Tooltip("How the impulse travels through space and time.")]
+        [Tooltip("脉冲如何在空间和时间中传播。")]
         [FormerlySerializedAs("m_ImpulseType")]
-        public ImpulseTypes ImpulseType = ImpulseTypes.Legacy;    // Back-compatibility mode by default
+        public ImpulseTypes ImpulseType = ImpulseTypes.Legacy;    // 默认使用向后兼容模式
 
         /// <summary>
-        /// This defines how the widely signal will spread within the effect radius before
-        /// dissipating with distance from the impact point
+        /// 这定义了信号在效应半径内传播的范围，
+        /// 然后随距离碰撞点的距离而消散
         /// </summary>
-        [Tooltip("This defines how the widely signal will spread within the effect radius before "
-            + "dissipating with distance from the impact point")]
+        [Tooltip("这定义了信号在效应半径内传播的范围，"
+            + "然后随距离碰撞点的距离而消散")]
         [Range(0,1)]
         [FormerlySerializedAs("m_DissipationRate")]
         public float DissipationRate;
 
         /// <summary>
-        /// Legacy mode only: Defines the signal that will be generated.
+        /// 仅限旧模式：定义将生成的信号。
         /// </summary>
-        [Header("Signal Shape")]
-        [Tooltip("Legacy mode only: Defines the signal that will be generated.")]
+        [Header("信号形状")]
+        [Tooltip("仅限旧模式：定义将生成的信号。")]
         [CinemachineEmbeddedAssetProperty(true)]
         [FormerlySerializedAs("m_RawSignal")]
         public SignalSourceAsset RawSignal = null;
 
         /// <summary>
-        /// Legacy mode only: Gain to apply to the amplitudes defined in the signal source asset.
+        /// 仅限旧模式：应用于信号源资源中定义振幅的增益。
         /// </summary>
-        [Tooltip("Legacy mode only: Gain to apply to the amplitudes defined in the signal source.  "
-            + "1 is normal.  Setting this to 0 completely mutes the signal.")]
+        [Tooltip("仅限旧模式：应用于信号源中定义振幅的增益。"
+            + "1 为正常。设置为 0 将完全静音信号。")]
         [FormerlySerializedAs("m_AmplitudeGain")]
         public float AmplitudeGain = 1f;
 
         /// <summary>
-        /// Legacy mode only: Scale factor to apply to the time axis.
+        /// 仅限旧模式：应用于时间轴的缩放因子。
         /// </summary>
-        [Tooltip("Legacy mode only: Scale factor to apply to the time axis.  1 is normal.  "
-            + "Larger magnitudes will make the signal progress more rapidly.")]
+        [Tooltip("仅限旧模式：应用于时间轴的缩放因子。1 为正常。"
+            + "较大的值将使信号进展更快。")]
         [FormerlySerializedAs("m_FrequencyGain")]
         public float FrequencyGain = 1f;
 
-        /// <summary>Legacy mode only: How to fit the signal into the envelope time</summary>
+        /// <summary>仅限旧模式：如何将信号拟合到包络时间中</summary>
         public enum RepeatModes
         {
-            /// <summary>Time-stretch the signal to fit the envelope</summary>
+            /// <summary>时间拉伸信号以适合包络</summary>
             Stretch,
-            /// <summary>Loop the signal in time to fill the envelope</summary>
+            /// <summary>循环信号以填充包络</summary>
             Loop
         }
-        /// <summary>Legacy mode only: How to fit the signal into the envelope time</summary>
-        [Tooltip("Legacy mode only: How to fit the signal into the envelope time")]
+        /// <summary>仅限旧模式：如何将信号拟合到包络时间中</summary>
+        [Tooltip("仅限旧模式：如何将信号拟合到包络时间中")]
         [FormerlySerializedAs("m_RepeatMode")]
         public RepeatModes RepeatMode = RepeatModes.Stretch;
 
-        /// <summary>Legacy mode only: Randomize the signal start time</summary>
-        [Tooltip("Legacy mode only: Randomize the signal start time")]
+        /// <summary>仅限旧模式：随机化信号开始时间</summary>
+        [Tooltip("仅限旧模式：随机化信号开始时间")]
         [FormerlySerializedAs("m_Randomize")]
         public bool Randomize = true;
 
         /// <summary>
-        /// Legacy mode only: This defines the time-envelope of the signal.
-        /// The raw signal will be time-scaled to fit in the envelope.
+        /// 仅限旧模式：这定义了信号的时间包络。
+        /// 原始信号将按时间缩放以适合包络。
         /// </summary>
-        [Tooltip("Legacy mode only: This defines the time-envelope of the signal.  "
-            + "The raw signal will be time-scaled to fit in the envelope.")]
+        [Tooltip("仅限旧模式：这定义了信号的时间包络。"
+            + "原始信号将按时间缩放以适合包络。")]
         [FormerlySerializedAs("m_TimeEnvelope")]
         public CinemachineImpulseManager.EnvelopeDefinition TimeEnvelope
             = CinemachineImpulseManager.EnvelopeDefinition.Default;
 
         /// <summary>
-        /// Legacy mode only: The signal will have full amplitude in this radius surrounding the impact point.
-        /// Beyond that it will dissipate with distance.
+        /// 仅限旧模式：信号在碰撞点周围此半径内具有完整振幅。
+        /// 超出此范围将随距离消散。
         /// </summary>
-        [Header("Spatial Range")]
-        [Tooltip("Legacy mode only: The signal will have full amplitude in this radius surrounding "
-            + "the impact point.  Beyond that it will dissipate with distance.")]
+        [Header("空间范围")]
+        [Tooltip("仅限旧模式：信号在碰撞点周围此半径内具有完整振幅。"
+            + "超出此范围将随距离消散。")]
         [FormerlySerializedAs("m_ImpactRadius")]
         public float ImpactRadius = 100;
 
-        /// <summary>Legacy mode only: How the signal direction behaves as the listener moves
-        /// away from the origin.</summary>
-        [Tooltip("Legacy mode only: How the signal direction behaves as the listener moves away from the origin.")]
+        /// <summary>仅限旧模式：当监听者从原点移动时信号方向的行为方式。</summary>
+        [Tooltip("仅限旧模式：当监听者从原点移动时信号方向的行为方式。")]
         [FormerlySerializedAs("m_DirectionMode")]
         public CinemachineImpulseManager.ImpulseEvent.DirectionModes DirectionMode
             = CinemachineImpulseManager.ImpulseEvent.DirectionModes.Fixed;
 
         /// <summary>
-        /// Legacy mode only: This defines how the signal will dissipate with distance beyond the impact radius.
+        /// 仅限旧模式：这定义了信号如何在碰撞半径之外随距离消散。
         /// </summary>
-        [Tooltip("Legacy mode only: This defines how the signal will dissipate with distance beyond the impact radius.")]
+        [Tooltip("仅限旧模式：这定义了信号如何在碰撞半径之外随距离消散。")]
         [FormerlySerializedAs("m_DissipationMode")]
         public CinemachineImpulseManager.ImpulseEvent.DissipationModes DissipationMode
             = CinemachineImpulseManager.ImpulseEvent.DissipationModes.ExponentialDecay;
 
         /// <summary>
-        /// The signal will have no effect outside this radius surrounding the impact point.
+        /// 信号在碰撞点周围此半径之外没有效果。
         /// </summary>
-        [Tooltip("The signal will have no effect outside this radius surrounding the impact point.")]
+        [Tooltip("信号在碰撞点周围此半径之外没有效果。")]
         [FormerlySerializedAs("m_DissipationDistance")]
         public float DissipationDistance = 100;
 
         /// <summary>
-        /// The speed (m/s) at which the impulse propagates through space.  High speeds
-        /// allow listeners to react instantaneously, while slower speeds allow listeners in the
-        /// scene to react as if to a wave spreading from the source.
+        /// 脉冲在空间中传播的速度（米/秒）。高速
+        /// 允许监听者瞬时反应，而较慢的速度允许场景中的
+        /// 监听者像对从源扩散的波一样反应。
         /// </summary>
-        [Tooltip("The speed (m/s) at which the impulse propagates through space.  High speeds "
-            + "allow listeners to react instantaneously, while slower speeds allow listeners in the "
-            + "scene to react as if to a wave spreading from the source.")]
+        [Tooltip("脉冲在空间中传播的速度（米/秒）。高速"
+            + "允许监听者瞬时反应，而较慢的速度允许场景中的"
+            + "监听者像对从源扩散的波一样反应。")]
         [FormerlySerializedAs("m_PropagationSpeed")]
-        public float PropagationSpeed = 343;  // speed of sound
+        public float PropagationSpeed = 343;  // 声速
 
 
         /// <summary>Call this from your behaviour's OnValidate to validate the fields here</summary>

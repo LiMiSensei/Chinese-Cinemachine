@@ -89,7 +89,6 @@ namespace Unity.Cinemachine
         [Tooltip("如果调整正交尺寸，将不会将其设置高于此值。")]
         public float m_MaximumOrthoSize = 5000;
 
-        public float m_MaximumOrthoSize = 5000;
 
         private void OnValidate()
         {

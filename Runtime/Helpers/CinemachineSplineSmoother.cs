@@ -23,9 +23,9 @@ namespace Unity.Cinemachine
     public class CinemachineSplineSmoother : MonoBehaviour
     {
         /// <summary>
-        /// If checked, the spline will be automatically smoothed whenever it is modified.
+        /// 如果勾选，样条线在修改时将自动平滑。
         /// </summary>
-        [Tooltip("If checked, the spline will be automatically smoothed whenever it is modified (editor only).")]
+        [Tooltip("如果勾选，样条线在修改时将自动平滑（仅在编辑器中有效）。")]
         public bool AutoSmooth = true;
 
 #if UNITY_EDITOR

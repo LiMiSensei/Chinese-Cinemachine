@@ -10,29 +10,29 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public class FlyAround : MonoBehaviour, Unity.Cinemachine.IInputAxisOwner
     {
-        [Tooltip("Speed when moving")]
+        [Tooltip("移动时的速度")]
         public float Speed = 10;
 
-        [Tooltip("Speed multiplier when sprinting")]
+        [Tooltip("冲刺时的速度倍增器")]
         public float SprintMultiplier = 4;
 
-        [Header("Input Axes")]
-        [Tooltip("X Axis movement.  Value is -1..1.  Controls the sideways movement")]
+        [Header("输入轴")]
+        [Tooltip("X轴移动。值为-1..1。控制横向移动")]
         public InputAxis Sideways = InputAxis.DefaultMomentary;
 
-        [Tooltip("Y Axis movement.  Value is -1..1.  Controls the vertical movement")]
+        [Tooltip("Y轴移动。值为-1..1。控制垂直移动")]
         public InputAxis UpDown = InputAxis.DefaultMomentary;
 
-        [Tooltip("Z Axis movement.  Value is -1..1. Controls the forward movement")]
+        [Tooltip("Z轴移动。值为-1..1。控制前后移动")]
         public InputAxis Forward = InputAxis.DefaultMomentary;
 
-        [Tooltip("Horizontal rotation.  Value is -1..1.")]
+        [Tooltip("水平旋转。值为-1..1。")]
         public InputAxis Pan = DefaultPan;
 
-        [Tooltip("Vertical rotation.  Value is -1..1.")]
+        [Tooltip("垂直旋转。值为-1..1。")]
         public InputAxis Tilt = DefaultTilt;
 
-        [Tooltip("Sprint movement.  Value is 0 or 1. If 1, then is sprinting")]
+        [Tooltip("冲刺移动。值为0或1。如果为1，则处于冲刺状态")]
         public InputAxis Sprint = InputAxis.DefaultMomentary;
 
         static InputAxis DefaultPan => new ()

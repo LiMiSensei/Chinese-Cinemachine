@@ -43,34 +43,33 @@ namespace Unity.Cinemachine
             ScreenCenter
         };
 
-        /// <summary>The camera's focus distance will be set to the distance from the camera to
-        /// the selected target.  The Focus Offset field will then modify that distance.</summary>
-        [Tooltip("The camera's focus distance will be set to the distance from the camera to "
-            + "the selected target.  The Focus Offset field will then modify that distance.")]
+        /// <summary>摄像机的焦点距离将设置为摄像机到选定目标的距离。然后焦点偏移字段将修改该距离。</summary>
+        [Tooltip("摄像机的焦点距离将设置为摄像机到选定目标的距离。"
+            + "然后焦点偏移字段将修改该距离。")]
         public FocusTrackingMode FocusTarget;
 
-        /// <summary>The target to use if Focus Target is set to Custom Target</summary>
-        [Tooltip("The target to use if Focus Target is set to Custom Target")]
+        /// <summary>如果焦点目标设置为自定义目标，则使用此目标</summary>
+        [Tooltip("如果焦点目标设置为自定义目标，则使用此目标")]
         public Transform CustomTarget;
 
-        /// <summary>Offsets the sharpest point away in depth from the focus target location</summary>
-        [Tooltip("Offsets the sharpest point away in depth from the focus target location.")]
+        /// <summary>在深度方向上偏移最清晰点，使其远离焦点目标位置</summary>
+        [Tooltip("在深度方向上偏移最清晰点，使其远离焦点目标位置。")]
         public float FocusDepthOffset;
 
         /// <summary>
-        /// Set this to make the focus adjust gradually to the desired setting.  The
-        /// value corresponds approximately to the time the focus will take to adjust to the new value.
+        /// 设置此项可使焦点逐渐调整到所需设置。
+        /// 该值大致对应于焦点调整到新值所需的时间。
         /// </summary>
-        [Tooltip("The value corresponds approximately to the time the focus will take to adjust to the new value.")]
+        [Tooltip("该值大致对应于焦点调整到新值所需的时间。")]
         public float Damping;
 
-#if CINEMACHINE_HDRP
+        #if CINEMACHINE_HDRP
         /// <summary>
-        /// Radius of the AutoFocus sensor in the center of the screen.  A value of 1 would fill the screen.
-        /// It's recommended to keep this quite small.  Default value is 0.02.
+        /// 屏幕中央自动对焦传感器的半径。值为1将填满整个屏幕。
+        /// 建议保持此值较小。默认值为0.02。
         /// </summary>
-        [Tooltip("Radius of the AutoFocus sensor in the center of the screen.  A value of 1 would fill the screen.  "
-            + "It's recommended to keep this quite small.  Default value is 0.02")]
+        [Tooltip("屏幕中央自动对焦传感器的半径。值为1将填满整个屏幕。"
+            + "建议保持此值较小。默认值为0.02")]
         [Range(0, 0.1f)]
         public float AutoDetectionRadius;
 

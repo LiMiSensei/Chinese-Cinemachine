@@ -8,14 +8,14 @@ namespace Unity.Cinemachine.Samples
     [ExecuteAlways]
     public class LookAtTarget : MonoBehaviour
     {
-        [Tooltip("Target to look at.")]
+        [Tooltip("要注视的目标。")]
         public Transform Target;
 
-        [Tooltip("Lock rotation along the x axis to the initial value.")]
+        [Tooltip("将 X 轴旋转锁定为初始值。")]
         public bool LockRotationX;
-        [Tooltip("Lock rotation along the y axis to the initial value.")]
+        [Tooltip("将 Y 轴旋转锁定为初始值。")]
         public bool LockRotationY;
-        [Tooltip("Lock rotation along the z axis to the initial value.")]
+        [Tooltip("将 Z 轴旋转锁定为初始值。")]
         public bool LockRotationZ;
 
         Vector3 m_Rotation;

@@ -8,10 +8,10 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public class AimTargetManager : MonoBehaviour
     {
-        [Tooltip("This canvas will be enabled when there is a 3rdPersoAim camera active")]
+        [Tooltip("当有第三人称瞄准摄像机激活时，此画布将启用")]
         public Canvas ReticleCanvas;
 
-        [Tooltip("If non-null, this target will pe positioned on the screen over the actual aim target")]
+        [Tooltip("如果非空，此目标将被定位在屏幕上实际瞄准目标的上方")]
         public RectTransform AimTargetIndicator;
 
         bool m_HaveAimTarget;

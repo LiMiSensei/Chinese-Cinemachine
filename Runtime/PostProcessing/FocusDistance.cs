@@ -13,31 +13,28 @@ namespace Unity.Cinemachine
             internal const string _FocusDistanceOutput = "_FocusDistanceOutput";
             internal const string FocusDistanceKeyword = "FOCUS_DISTANCE";
         }
-
-        [Tooltip("Stickier auto focus is more stable (less switching back and forth as tiny "
-            + "grass blades cross the camera), but requires looking at a bigger uniform-ish area to switch focus to it.")]
+        [Tooltip("更粘性的自动对焦更稳定（当微小草叶穿过摄像机时减少来回切换），但需要观察更大的均匀区域才能切换焦点。")]
         [Range(0, 1)]
         public float Stickiness = 0.4f;
 
-        [Tooltip("Radius of the FocusDistance sensor in the center of the screen.  A value of 1 would fill the screen.  "
-            + "It's recommended to keep this quite small.  Default value is 0.02")]
+        [Tooltip("屏幕中央焦点距离传感器的半径。值为1将填满整个屏幕。建议保持此值较小。默认值为0.02")]
         [Range(0, 1)]
         public float KernelRadius = 0.02f;
 
-        [Tooltip("Depth tolerance for inclusion in the same depth bucket.  Effectively the depth resolution.")]
+        [Tooltip("包含在同一深度桶中的深度容差。实际上是深度分辨率。")]
         [Range(0, 1)]
         public float DepthTolerance = 0.02f;
 
-        [Tooltip("Position on the screen of the depth sensor.  (0, 0) is screen center.")]
+        [Tooltip("深度传感器在屏幕上的位置。(0, 0) 是屏幕中心。")]
         public Vector2 ScreenPosition;
 
-        [Tooltip("Must be the FocusDistance compute shader.")]
+        [Tooltip("必须是FocusDistance计算着色器。")]
         public ComputeShader ComputeShader;
 
-        [Tooltip("The camera whose depth buffer will be checked.")]
+        [Tooltip("将检查其深度缓冲区的摄像机。")]
         public Camera Camera;
 
-        [Tooltip("If true, then the focus distance will be pushed to the camera's focusDistance field.")]
+        [Tooltip("如果为true，则焦点距离将被推送到摄像机的focusDistance字段。")]
         public bool PushToCamera = true;
 
         /// <summary>Initialize this with the current focus distance, to be used as a default value</summary>

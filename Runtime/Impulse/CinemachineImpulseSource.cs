@@ -29,10 +29,9 @@ namespace Unity.Cinemachine
         /// specified overrides.  Overrides can be specified by calling the appropriate
         /// GenerateImpulse method in the API.
         /// </summary>
-        [Header("Default Invocation")]
-        [Tooltip("The default direction and force of the Impulse Signal in the absense "
-            + "of any specified overrides.  Overrides can be specified by calling the appropriate "
-                + "GenerateImpulse method in the API.")]
+        [Header("默认调用")]
+        [Tooltip("在没有指定任何覆盖的情况下，脉冲信号的默认方向和力。"
+            + "可以通过调用API中适当的GenerateImpulse方法来指定覆盖。")]
         [FormerlySerializedAs("m_DefaultVelocity")]
         public Vector3 DefaultVelocity = Vector3.down;
 

@@ -39,26 +39,27 @@ namespace Unity.Cinemachine
         /// </summary>
         public RecenterTargetMode m_RecenterTarget = RecenterTargetMode.None;
 
-        /// <summary>The Vertical axis.  Value is -90..90. Controls the vertical orientation</summary>
-        [Tooltip("The Vertical axis.  Value is -90..90. Controls the vertical orientation")]
+        /// <summary>垂直轴。值为-90到90。控制垂直方向</summary>
+        [Tooltip("垂直轴。值为-90到90。控制垂直方向")]
         public AxisState m_VerticalAxis = new AxisState(-70, 70, false, false, 300f, 0.1f, 0.1f, "Mouse Y", true);
 
-        /// <summary>Controls how automatic recentering of the Vertical axis is accomplished</summary>
-        [Tooltip("Controls how automatic recentering of the Vertical axis is accomplished")]
+        /// <summary>控制垂直轴自动重新居中的实现方式</summary>
+        [Tooltip("控制垂直轴自动重新居中的实现方式")]
         public AxisState.Recentering m_VerticalRecentering = new AxisState.Recentering(false, 1, 2);
 
-        /// <summary>The Horizontal axis.  Value is -180..180.  Controls the horizontal orientation</summary>
-        [Tooltip("The Horizontal axis.  Value is -180..180.  Controls the horizontal orientation")]
+        /// <summary>水平轴。值为-180到180。控制水平方向</summary>
+        [Tooltip("水平轴。值为-180到180。控制水平方向")]
         public AxisState m_HorizontalAxis = new AxisState(-180, 180, true, false, 300f, 0.1f, 0.1f, "Mouse X", false);
 
-        /// <summary>Controls how automatic recentering of the Horizontal axis is accomplished</summary>
-        [Tooltip("Controls how automatic recentering of the Horizontal axis is accomplished")]
+        /// <summary>控制水平轴自动重新居中的实现方式</summary>
+        [Tooltip("控制水平轴自动重新居中的实现方式")]
         public AxisState.Recentering m_HorizontalRecentering = new AxisState.Recentering(false, 1, 2);
 
-        /// <summary>Obsolete - no longer used</summary>
+        /// <summary>已过时 - 不再使用</summary>
         [HideInInspector]
-        [Tooltip("Obsolete - no longer used")]
+        [Tooltip("已过时 - 不再使用")]
         public bool m_ApplyBeforeBody;
+
 
         Quaternion m_PreviousCameraRotation;
 

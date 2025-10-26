@@ -25,31 +25,31 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineCollisionImpulseSource.html")]
     public class CinemachineCollisionImpulseSource : CinemachineImpulseSource
     {
-        /// <summary>Only collisions with objects on these layers will generate Impulse events.</summary>
-        [Header("Trigger Object Filter")]
-        [Tooltip("Only collisions with objects on these layers will generate Impulse events")]
+        /// <summary>只有与这些层上的对象的碰撞才会生成脉冲事件。</summary>
+        [Header("触发器对象过滤器")]
+        [Tooltip("只有与这些层上的对象的碰撞才会生成脉冲事件")]
         [FormerlySerializedAs("m_LayerMask")]
         public LayerMask LayerMask = 1;
 
-        /// <summary>No Impulse events will be generated for collisions with objects having these tags</summary>
+        /// <summary>与具有这些标签的对象的碰撞不会生成脉冲事件</summary>
         [TagField]
-        [Tooltip("No Impulse events will be generated for collisions with objects having these tags")]
+        [Tooltip("与具有这些标签的对象的碰撞不会生成脉冲事件")]
         [FormerlySerializedAs("m_IgnoreTag")]
         public string IgnoreTag = string.Empty;
 
-        /// <summary>If checked, signal direction will be affected by the direction of impact</summary>
-        [Header("How To Generate The Impulse")]
-        [Tooltip("If checked, signal direction will be affected by the direction of impact")]
+        /// <summary>如果勾选，信号方向将受碰撞方向影响</summary>
+        [Header("如何生成脉冲")]
+        [Tooltip("如果勾选，信号方向将受碰撞方向影响")]
         [FormerlySerializedAs("m_UseImpactDirection")]
         public bool UseImpactDirection = false;
 
-        /// <summary>If checked, signal amplitude will be multiplied by the mass of the impacting object</summary>
-        [Tooltip("If checked, signal amplitude will be multiplied by the mass of the impacting object")]
+        /// <summary>如果勾选，信号振幅将乘以碰撞物体的质量</summary>
+        [Tooltip("如果勾选，信号振幅将乘以碰撞物体的质量")]
         [FormerlySerializedAs("m_ScaleImpactWithMass")]
         public bool ScaleImpactWithMass = false;
 
-        /// <summary>If checked, signal amplitude will be multiplied by the speed of the impacting object</summary>
-        [Tooltip("If checked, signal amplitude will be multiplied by the speed of the impacting object")]
+        /// <summary>如果勾选，信号振幅将乘以碰撞物体的速度</summary>
+        [Tooltip("如果勾选，信号振幅将乘以碰撞物体的速度")]
         [FormerlySerializedAs("m_ScaleImpactWithSpeed")]
         public bool ScaleImpactWithSpeed = false;
 

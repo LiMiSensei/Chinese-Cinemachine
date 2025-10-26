@@ -25,39 +25,36 @@ namespace Unity.Cinemachine
     {
 #if CINEMACHINE_UNITY_INPUTSYSTEM
         /// <summary>
-        /// Leave this at -1 for single-player games.
-        /// For multi-player games, set this to be the player index, and the actions will
-        /// be read from that player's controls
+        /// 对于单人游戏，保持此值为-1。
+        /// 对于多人游戏，将其设置为玩家索引，操作将从该玩家的控制中读取
         /// </summary>
-        [Tooltip("Leave this at -1 for single-player games.  "
-            + "For multi-player games, set this to be the player index, and the actions will "
-            + "be read from that player's controls")]
+        [Tooltip("对于单人游戏，保持此值为-1。"
+            + "对于多人游戏，将其设置为玩家索引，操作将从该玩家的控制中读取")]
         public int PlayerIndex = -1;
 
-        /// <summary>If set, Input Actions will be auto-enabled at start</summary>
-        [Tooltip("If set, Input Actions will be auto-enabled at start")]
+        /// <summary>如果设置为true，输入操作将在开始时自动启用</summary>
+        [Tooltip("如果设置为true，输入操作将在开始时自动启用")]
         public bool AutoEnableInputs = true;
 #endif
         /// <summary>
-        /// This is a mechanism to allow the inspector to set up default values
-        /// when the component is reset.
+        /// 这是一种机制，允许检查器在组件重置时设置默认值
         /// </summary>
-        /// <param name="axis">The information of the input axis.</param>
-        /// <param name="controller">Reference to the controller to change.</param>
+        /// <param name="axis">输入轴的信息</param>
+        /// <param name="controller">要更改的控制器的引用</param>
         internal delegate void SetControlDefaultsForAxis(
             in IInputAxisOwner.AxisDescriptor axis, ref Controller controller);
         internal static SetControlDefaultsForAxis SetControlDefaults;
 
 #if CINEMACHINE_UNITY_INPUTSYSTEM
         /// <summary>
-        /// CinemachineInputAxisController.Reader can only handle float or Vector2 InputAction types.
-        /// To handle other types you can install a handler to read InputActions of a different type.
+        /// CinemachineInputAxisController.Reader 只能处理 float 或 Vector2 类型的 InputAction。
+        /// 要处理其他类型，您可以安装一个处理程序来读取不同类型的 InputAction
         /// </summary>
-        /// <param name="action">The action to read</param>
-        /// <param name="hint">The axis hint of the action.</param>
-        /// <param name="context">The owner object, can be used for logging diagnostics</param>
-        /// <param name="defaultReadValue">The default reader to call if you don't handle the type</param>
-        /// <returns>The value of the control</returns>
+        /// <param name="action">要读取的操作</param>
+        /// <param name="hint">操作的轴提示</param>
+        /// <param name="context">所有者对象，可用于记录诊断信息</param>
+        /// <param name="defaultReadValue">如果您不处理该类型，要调用的默认读取器</param>
+        /// <returns>控件的值</returns>
         public Reader.ControlValueReader ReadControlValueOverride;
 
         /// <inheritdoc />
@@ -70,78 +67,77 @@ namespace Unity.Cinemachine
 #endif
 
         /// <summary>
-        /// Creates default controllers for an axis.
-        /// Override this if the default axis controllers do not fit your axes.
+        /// 为轴创建默认控制器。
+        /// 如果默认轴控制器不适合您的轴，请重写此方法
         /// </summary>
-        /// <param name="axis">Description of the axis whose default controller needs to be set.</param>
-        /// <param name="controller">Controller to drive the axis.</param>
+        /// <param name="axis">需要设置默认控制器的轴的描述</param>
+        /// <param name="controller">驱动轴的控制器</param>
         protected override void InitializeControllerDefaultsForAxis(
             in IInputAxisOwner.AxisDescriptor axis, Controller controller)
         {
             SetControlDefaults?.Invoke(axis, ref controller);
         }
 
-        //TODO Support fixed update as well. Input system has a setting to update inputs only during fixed update.
-        //TODO This won't work accuratly if this setting is enabled.
+        //TODO 同时支持固定更新。输入系统有一个设置，仅在固定更新期间更新输入。
+        //TODO 如果启用此设置，这将无法准确工作
         void Update()
         {
             if (Application.isPlaying)
                 UpdateControllers();
         }
 
-        /// <summary>Read an input value from legacy input or from and Input Action</summary>
+        /// <summary>从旧版输入系统或输入操作中读取输入值</summary>
         [Serializable]
         public sealed class Reader : IInputAxisReader
         {
 #if CINEMACHINE_UNITY_INPUTSYSTEM
-            /// <summary>Action mapping for the Input package (if used).</summary>
-            [Tooltip("Action mapping for the Input package.")]
+            /// <summary>Input包使用的操作映射（如果使用）</summary>
+            [Tooltip("Input包使用的操作映射")]
             public InputActionReference InputAction;
 
-            /// <summary>The input value is multiplied by this amount prior to processing.
-            /// Controls the input power.  Set it to a negative value to invert the input</summary>
-            [Tooltip("The input value is multiplied by this amount prior to processing.  "
-                + "Controls the input power.  Set it to a negative value to invert the input")]
+            /// <summary>输入值在处理前会乘以这个量。
+            /// 控制输入力度。设置为负值可以反转输入</summary>
+            [Tooltip("输入值在处理前会乘以这个量。"
+                + "控制输入力度。设置为负值可以反转输入")]
             public float Gain = 1;
 
-            /// <summary>The actual action, resolved for player</summary>
+            /// <summary>为玩家解析的实际操作</summary>
             [NonSerialized] internal InputAction m_CachedAction;
 
             /// <summary>
-            /// CinemachineInputAxisController.Reader can only handle float or Vector2 InputAction types.
-            /// To handle other types you can install a handler to read InputActions of a different type.
+            /// CinemachineInputAxisController.Reader 只能处理 float 或 Vector2 类型的 InputAction。
+            /// 要处理其他类型，您可以安装一个处理程序来读取不同类型的 InputAction
             /// </summary>
-            /// <param name="action">The action to read</param>
-            /// <param name="hint">The axis hint of the action.</param>
-            /// <param name="context">The owner object, can be used for logging diagnostics</param>
-            /// <param name="defaultReader">The default reader to call if you don't handle the type</param>
-            /// <returns>The value of the control</returns>
+            /// <param name="action">要读取的操作</param>
+            /// <param name="hint">操作的轴提示</param>
+            /// <param name="context">所有者对象，可用于记录诊断信息</param>
+            /// <param name="defaultReader">如果您不处理该类型，要调用的默认读取器</param>
+            /// <returns>控件的值</returns>
             public delegate float ControlValueReader(
                 InputAction action, IInputAxisOwner.AxisDescriptor.Hints hint, UnityEngine.Object context,
                 ControlValueReader defaultReader);
 #endif
 
 #if ENABLE_LEGACY_INPUT_MANAGER
-            /// <summary>Axis name for the Legacy Input system (if used).
-            /// CinemachineCore.GetInputAxis() will be called with this name.</summary>
+            /// <summary>旧版输入系统的轴名称（如果使用）。
+            /// 将使用此名称调用 CinemachineCore.GetInputAxis()</summary>
             [InputAxisNameProperty]
-            [Tooltip("Axis name for the Legacy Input system (if used).  "
-                + "This value will be used to control the axis.")]
+            [Tooltip("旧版输入系统的轴名称（如果使用）。"
+                + "此值将用于控制轴")]
             public string LegacyInput;
 
-            /// <summary>The LegacyInput value is multiplied by this amount prior to processing.
-            /// Controls the input power.  Set it to a negative value to invert the input</summary>
-            [Tooltip("The LegacyInput value is multiplied by this amount prior to processing.  "
-                + "Controls the input power.  Set it to a negative value to invert the input")]
+            /// <summary>LegacyInput值在处理前会乘以这个量。
+            /// 控制输入力度。设置为负值可以反转输入</summary>
+            [Tooltip("LegacyInput值在处理前会乘以这个量。"
+                + "控制输入力度。设置为负值可以反转输入")]
             public float LegacyGain = 1;
 #endif
 
-            /// <summary>Enable this if the input value is inherently dependent on frame time.
-            /// For example, mouse deltas will naturally be bigger for longer frames, so
-            /// should not normally be scaled by deltaTime.</summary>
-            [Tooltip("Enable this if the input value is inherently dependent on frame time.  "
-                + "For example, mouse deltas will naturally be bigger for longer frames, so "
-                + "in this case the default deltaTime scaling should be canceled.")]
+            /// <summary>如果输入值固有地依赖于帧时间，则启用此选项。
+            /// 例如，鼠标增量对于较长的帧自然更大，因此通常不应按deltaTime进行缩放</summary>
+            [Tooltip("如果输入值固有地依赖于帧时间，则启用此选项。"
+                + "例如，鼠标增量对于较长的帧自然更大，因此"
+                + "在这种情况下应取消默认的deltaTime缩放")]
             public bool CancelDeltaTime = false;
 
             /// <inheritdoc />

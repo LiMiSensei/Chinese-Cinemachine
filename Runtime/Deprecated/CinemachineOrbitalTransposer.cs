@@ -172,57 +172,55 @@ namespace Unity.Cinemachine
                 /// </summary>
                 WorldForward,
             }
-            /// <summary>The method by which the 'default heading' is calculated if
-            /// recentering to target heading is enabled</summary>
+            /// <summary>如果启用了朝向目标重新居中功能，计算"默认朝向"的方法</summary>
             [FormerlySerializedAs("m_HeadingDefinition")]
-            [Tooltip("How 'forward' is defined.  The camera will be placed by default behind the target.  "
-                + "PositionDelta will consider 'forward' to be the direction in which the target is moving.")]
+            [Tooltip("如何定义'前方'。相机默认会放置在目标后方。"
+                + "PositionDelta 会将'前方'视为目标移动的方向。")]
             public HeadingDefinition m_Definition;
 
-            /// <summary>Size of the velocity sampling window for target heading filter.
-            /// Used only if deriving heading from target's movement</summary>
+            /// <summary>目标朝向过滤器的速度采样窗口大小。
+            /// 仅在从目标移动推导朝向时使用</summary>
             [Range(0, 10)]
-            [Tooltip("Size of the velocity sampling window for target heading filter.  This filters out "
-                + "irregularities in the target's movement.  Used only if deriving heading from target's "
-                + "movement (PositionDelta or Velocity)")]
+            [Tooltip("目标朝向过滤器的速度采样窗口大小。这可以过滤掉"
+                + "目标移动中的不规则性。仅在从目标的移动推导朝向时"
+                + "（PositionDelta 或 Velocity）使用")]
             public int m_VelocityFilterStrength;
 
-            /// <summary>Additional Y rotation applied to the target heading.
-            /// When this value is 0, the camera will be placed behind the target</summary>
+            /// <summary>应用于目标朝向的额外Y轴旋转。
+            /// 当此值为0时，相机将放置在目标后方</summary>
             [Range(-180f, 180f)]
             [FormerlySerializedAs("m_HeadingBias")]
-            [Tooltip("Where the camera is placed when the X-axis value is zero.  This is a rotation in "
-                + "degrees around the Y axis.  When this value is 0, the camera will be placed behind "
-                + "the target.  Nonzero offsets will rotate the zero position around the target.")]
+            [Tooltip("当X轴值为零时相机放置的位置。这是围绕Y轴的旋转角度"
+                + "（以度为单位）。当此值为0时，相机将放置在目标后方。"
+                + "非零偏移将使零位置围绕目标旋转。")]
             public float m_Bias;
 
-            /// <summary>Constructor</summary>
-            /// <param name="def">The heading definition</param>
-            /// <param name="filterStrength">The strength of the heading filter</param>
-            /// <param name="bias">The heading bias</param>
+            /// <summary>构造函数</summary>
+            /// <param name="def">朝向定义</param>
+            /// <param name="filterStrength">朝向过滤强度</param>
+            /// <param name="bias">朝向偏移</param>
             public Heading(HeadingDefinition def, int filterStrength, float bias)
             {
                 m_Definition = def;
                 m_VelocityFilterStrength = filterStrength;
                 m_Bias = bias;
             }
-        };
+            };
 
-        /// <summary>The definition of Forward.  Camera will follow behind.</summary>
-        [Space]
-        [Tooltip("The definition of Forward.  Camera will follow behind.")]
-        public Heading m_Heading = new Heading(Heading.HeadingDefinition.TargetForward, 4, 0);
+            /// <summary>前方的定义。相机会跟随在后方。</summary>
+            [Space]
+            [Tooltip("前方的定义。相机会跟随在后方。")]
+            public Heading m_Heading = new Heading(Heading.HeadingDefinition.TargetForward, 4, 0);
 
-        /// <summary>Parameters that control Automating Heading Recentering</summary>
-        [Tooltip("Automatic heading recentering.  The settings here defines how the camera "
-            + "will reposition itself in the absence of player input.")]
-        public AxisState.Recentering m_RecenterToTargetHeading = new AxisState.Recentering(true, 1, 2);
+            /// <summary>控制自动朝向重新居中的参数</summary>
+            [Tooltip("自动朝向重新居中。这里的设置定义了在缺少玩家输入时"
+                + "相机如何重新定位自身。")]
+            public AxisState.Recentering m_RecenterToTargetHeading = new AxisState.Recentering(true, 1, 2);
 
-        /// <summary>Axis representing the current heading.  Value is in degrees
-        /// and represents a rotation about the up vector</summary>
-        [Tooltip("Heading Control.  The settings here control the behaviour of the camera "
-            + "in response to the player's input.")]
-        public AxisState m_XAxis = new AxisState(-180, 180, true, false, 300f, 0.1f, 0.1f, "Mouse X", true);
+            /// <summary>表示当前朝向的轴。值以度为单位，
+            /// 表示围绕上向量的旋转</summary>
+            [Tooltip("朝向控制。这里的设置控制相机对玩家输入的响应行为。")]
+            public AxisState m_XAxis = new AxisState(-180, 180, true, false, 300f, 0.1f, 0.1f, "Mouse X", true);
 
         /// <summary>
         /// Helper object that tracks the Follow target, with damping

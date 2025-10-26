@@ -24,21 +24,21 @@ namespace Unity.Cinemachine.Samples
     {
         public enum CouplingMode { Coupled, CoupledWhenMoving, Decoupled }
 
-        [Tooltip("How the player's rotation is coupled to the camera's rotation.  Three modes are available:\n"
-            + "<b>Coupled</b>: The player rotates with the camera.  Sideways movement will result in strafing.\n"
-            + "<b>Coupled When Moving</b>: Camera can rotate freely around the player when the player is stationary, "
-                + "but the player will rotate to face camera forward when it starts moving.\n"
-            + "<b>Decoupled</b>: The player's rotation is independent of the camera's rotation.")]
+        [Tooltip("玩家旋转与摄像机旋转的耦合方式。提供三种模式：\n"
+        + "<b>耦合</b>：玩家随摄像机旋转。横向移动将导致侧向移动。\n"
+        + "<b>移动时耦合</b>：玩家静止时摄像机可自由环绕玩家旋转，"
+            + "但玩家开始移动时会旋转到面向摄像机前方。\n"
+        + "<b>解耦</b>：玩家的旋转独立于摄像机的旋转。")]
         public CouplingMode PlayerRotation;
 
-        [Tooltip("How fast the player rotates to face the camera direction when the player starts moving.  "
-            + "Only used when Player Rotation is Coupled When Moving.")]
+        [Tooltip("玩家开始移动时旋转到面向摄像机方向的速度。"
+            + "仅在玩家旋转模式为“移动时耦合”时使用。")]
         public float RotationDamping = 0.2f;
 
-        [Tooltip("Horizontal Rotation.  Value is in degrees, with 0 being centered.")]
+        [Tooltip("水平视角旋转。值为角度，0 表示居中。")]
         public InputAxis HorizontalLook = new () { Range = new Vector2(-180, 180), Wrap = true, Recentering = InputAxis.RecenteringSettings.Default };
 
-        [Tooltip("Vertical Rotation.  Value is in degrees, with 0 being centered.")]
+        [Tooltip("垂直视角旋转。值为角度，0 表示居中。")]
         public InputAxis VerticalLook = new () { Range = new Vector2(-70, 70), Recentering = InputAxis.RecenteringSettings.Default };
 
         SimplePlayerControllerBase m_Controller;

@@ -13,20 +13,20 @@ namespace Unity.Cinemachine
     [AddComponentMenu("")] // Don't display in add component menu
     public class CinemachineTouchInputMapper : MonoBehaviour
     {
-        /// <summary>Sensitivity multiplier for x-axis</summary>
-        [Tooltip("Sensitivity multiplier for x-axis")]
+        /// <summary>X轴灵敏度乘数</summary>
+        [Tooltip("X轴灵敏度乘数")]
         public float TouchSensitivityX = 10f;
 
-        /// <summary>Sensitivity multiplier for y-axis</summary>
-        [Tooltip("Sensitivity multiplier for y-axis")]
+        /// <summary>Y轴灵敏度乘数</summary>
+        [Tooltip("Y轴灵敏度乘数")]
         public float TouchSensitivityY = 10f;
 
-        /// <summary>Input channel to spoof for X axis</summary>
-        [Tooltip("Input channel to spoof for X axis")]
+        /// <summary>X轴模拟输入的输入通道</summary>
+        [Tooltip("X轴模拟输入的输入通道")]
         public string TouchXInputMapTo = "Mouse X";
 
-        /// <summary>Input channel to spoof for Y axis</summary>
-        [Tooltip("Input channel to spoof for Y axis")]
+        /// <summary>Y轴模拟输入的输入通道</summary>
+        [Tooltip("Y轴模拟输入的输入通道")]
         public string TouchYInputMapTo = "Mouse Y";
 
         void Start()
