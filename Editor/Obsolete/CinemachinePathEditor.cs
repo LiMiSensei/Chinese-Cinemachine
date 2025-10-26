@@ -337,7 +337,7 @@ namespace Unity.Cinemachine.Editor
                 GUIStyle style = new GUIStyle();
                 style.normal.textColor = Color.black;
                 style.alignment = TextAnchor.MiddleCenter;
-                GUILayout.Label(new GUIContent(i.ToString(), "Waypoint " + i), style);
+                GUILayout.Label(new GUIContent(i.ToString(), "路标 " + i), style);
                 GUILayout.EndArea();
                 Handles.EndGUI();
             }

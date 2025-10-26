@@ -25,7 +25,7 @@ namespace Unity.Cinemachine.Samples
         public float FallingSpeedThreshold = 0.1f;
 
         // The cameras in these fields must be GameObject children of the manager camera.
-        [Header("State Cameras")]
+        [Header("状态相机")]
         [ChildCameraProperty] public CinemachineVirtualCameraBase RightCamera;
         [ChildCameraProperty] public CinemachineVirtualCameraBase LeftCamera;
         [ChildCameraProperty] public CinemachineVirtualCameraBase FallingRightCamera;

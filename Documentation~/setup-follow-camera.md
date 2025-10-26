@@ -1,35 +1,38 @@
-# Follow and frame a character
+# 跟随角色并为其构图
 
-Create and set up a Cinemachine Camera that automatically follows and frames a character.
+创建并设置一台可自动跟随角色并为角色构图的 Cinemachine 相机。
 
-> [!NOTE]
-> Your Scene must include a GameObject you can target to follow it with the Cinemachine Camera.
+> [!注意]
+> 你的场景中必须包含一个可作为目标的游戏对象（GameObject），以便 Cinemachine 相机跟随它。
 
-## Add a "Follow" Cinemachine Camera
 
-1. In the Unity menu, select **GameObject** > **Cinemachine** > **Targeted Cameras** > **Follow Camera**.
+## 添加“跟随”型 Cinemachine 相机
 
-   Unity adds a new GameObject with:
-   * A [Cinemachine Camera](CinemachineCamera.md) component,
-   * A [Cinemachine Follow](CinemachineFollow.md) component handling the Cinemachine Camera behavior for **Position Control**, and
-   * A [Cinemachine Rotation Composer](CinemachineRotationComposer.md) component handling the Cinemachine Camera behavior for **Rotation Control**.
+1. 在 Unity 菜单中，选择 **游戏对象（GameObject）> Cinemachine > 目标相机（Targeted Cameras）> 跟随相机（Follow Camera）**。
 
-2. [Verify](setup-cinemachine-environment.md#verify-the-cinemachine-brain-presence) that the Unity Camera includes a [Cinemachine Brain](CinemachineBrain.md) component.
+   Unity 会添加一个新的游戏对象，该对象包含：
+   * 一个 [Cinemachine 相机组件](CinemachineCamera.md)，
+   * 一个 [Cinemachine 跟随组件](CinemachineFollow.md)（负责处理 Cinemachine 相机的“位置控制（Position Control）”行为），
+   * 一个 [Cinemachine 旋转构图器组件](CinemachineRotationComposer.md)（负责处理 Cinemachine 相机的“旋转控制（Rotation Control）”行为）。
 
-3. In the Inspector, in the **Cinemachine Camera** component, set the **Tracking Target** property to specify the GameObject to follow and look at.
+2. [确认](setup-cinemachine-environment.md#verify-the-cinemachine-brain-presence) Unity 相机已包含 [Cinemachine 控制器组件](CinemachineBrain.md)。
 
-   The CinemachineCamera automatically positions the Unity camera relative to this GameObject at all times, and rotates the camera to look at the GameObject, even as you move it in the Scene.
+3. 在检视面板（Inspector）的 **Cinemachine 相机（Cinemachine Camera）** 组件中，设置 **跟踪目标（Tracking Target）** 属性，指定需要跟随和瞄准的游戏对象。
 
-> [!NOTE]
-> If you invoked th **Follow Camera** menu item by right-clicking on the GameObject that you want to follow, the "Tracking Target" of the new camera will automatically be populated with the object on which you right-clicked.
+   此后，无论该游戏对象在场景中如何移动，Cinemachine 相机都会自动调整 Unity 相机相对于该对象的位置，并旋转相机以瞄准该对象。
 
-## Adjust the Cinemachine Camera behavior
 
-1. Use the Inspector to access the [Cinemachine Camera component](CinemachineCamera.md) properties for further configuration.
+> [!注意]
+> 如果你在想要跟随的游戏对象上右键点击，然后通过弹出菜单调用 **跟随相机（Follow Camera）** 选项，新相机的“跟踪目标（Tracking Target）”会自动填充为你右键点击的那个对象。
 
-2. Adjust the properties such as:
-   * The follow offset
-   * The follow damping
-   * The screen composition, and
-   * The damping used when re-aiming the camera
-   * The Lens settings
+
+## 调整 Cinemachine 相机的行为
+
+1. 通过检视面板（Inspector）访问 [Cinemachine 相机组件](CinemachineCamera.md) 的属性，进行进一步配置。
+
+2. 调整以下属性（示例）：
+   * 跟随偏移（follow offset）
+   * 跟随阻尼（follow damping）
+   * 屏幕构图（screen composition）
+   * 相机重新瞄准时的阻尼（damping used when re-aiming the camera）
+   * 镜头设置（Lens settings）

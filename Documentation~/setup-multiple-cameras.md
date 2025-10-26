@@ -1,52 +1,57 @@
-# Set up multiple Cinemachine Cameras and transitions
+# 设置多台 Cinemachine 相机与过渡效果
 
-Set up a Cinemachine environment with multiple Cinemachine Cameras and manage [camera control and transitions](concept-camera-control-transitions.md):
+搭建包含多台 Cinemachine 相机的 Cinemachine 环境，并管理[相机控制与过渡效果](concept-camera-control-transitions.md)，步骤如下：
 
-* Create multiple Cinemachine Cameras with different properties,
-* Manage Cinemachine Camera transitions in the Cinemachine Brain, and
-* Test the Live camera activation mechanism and transitions in Play mode.
-
-> [!NOTE]
-> Your Scene must include only one Unity Camera – a GameObject with a [Camera](https://docs.unity3d.com/Manual/class-Camera.html) component.
-
-## Add Cinemachine Cameras
-
-1. In the Scene view, [navigate the Scene](https://docs.unity3d.com/Manual/SceneViewNavigation.html) to get the point of view you want to frame with one Cinemachine Camera.
-
-2. In the Unity menu, select **GameObject** > **Cinemachine** > **Cinemachine Camera**.
-
-   Unity adds a new GameObject with a [Cinemachine Camera](CinemachineCamera.md) component and a Transform that matches the latest position and orientation of the Scene view camera.
-
-   At this point, you can also [verify](setup-cinemachine-environment.md#verify-the-cinemachine-brain-presence) that the Unity Camera includes a [Cinemachine Brain](CinemachineBrain.md) component.
-
-3. Continue to navigate the Scene and create a few additional Cinemachine Cameras the same way but with different positions and rotations.
-
-4. Name the Cinemachine Cameras in a way you can easily identify them in the future.
-
-## Manage transitions between Cinemachine Cameras
-
-1. In the Hierarchy, select your Unity Camera – the GameObject that includes the Camera component.
-
-2. In the Inspector, in the [Cinemachine Brain](CinemachineBrain.md) component:
-   * Select a **Default Blend** to use between all Cinemachine Cameras, OR
-   * Create and target an asset that defines **Custom Blends** to use between specific pairs of Cinemachine Cameras.
-
-## Test the transitions in Play mode
-
-1. Enter [Play mode](https://docs.unity3d.com/Manual/GameView.html).
-
-2. Change the [active status](https://docs.unity3d.com/Manual/class-GameObject.html) of each Cinemachine Camera GameObject in turn to see how they blend between each other according to the way you've set up the Cinemachine Brain.
-
-3. Exit Play mode.
+* 创建多台具有不同属性的 Cinemachine 相机，
+* 在 Cinemachine 控制器（Cinemachine Brain）中管理 Cinemachine 相机的过渡效果，
+* 在播放模式（Play mode）下测试激活相机（Live Camera）的触发机制与过渡效果。
 
 
-## Next steps
+> [!注意]
+> 你的场景中必须只包含一个 Unity 相机——即带有 [Camera 组件](https://docs.unity3d.com/Manual/class-Camera.html) 的游戏对象（GameObject）。
 
-Here are potential tasks you might want to do now:
 
-* [Create a Cinemachine Camera with procedural behavior: example for a camera that follows a character](setup-procedural-behavior.md).
-* [Manage a choreographed sequence of Cinemachine Camera shots with Timeline](setup-timeline.md).
+## 添加 Cinemachine 相机
 
-## Additional resources
+1. 在场景视图（Scene view）中，通过 [场景导航操作](https://docs.unity3d.com/Manual/SceneViewNavigation.html) 调整到你希望用某一台 Cinemachine 相机构图的视角。
 
-* [Preview and author a Cinemachine Camera in first person](preview-and-author-in-first-person.md)
+2. 在 Unity 菜单中，选择 **游戏对象（GameObject）> Cinemachine > Cinemachine 相机（Cinemachine Camera）**。
+
+   Unity 会添加一个新的游戏对象，该对象包含一个 [Cinemachine 相机组件](CinemachineCamera.md)，以及一个与场景视图相机最新位置和朝向匹配的变换组件（Transform）。
+
+   此时，你还可以通过[之前的方法](setup-cinemachine-environment.md#verify-the-cinemachine-brain-presence)确认 Unity 相机已包含 [Cinemachine 控制器组件](CinemachineBrain.md)。
+
+3. 继续导航场景，并以相同方式创建更多台 Cinemachine 相机，且为每台相机设置不同的位置和旋转角度。
+
+4. 为每台 Cinemachine 相机命名，以便后续能轻松识别它们。
+
+
+## 管理 Cinemachine 相机之间的过渡效果
+
+1. 在层级窗口（Hierarchy）中，选中你的 Unity 相机——即带有 Camera 组件的游戏对象。
+
+2. 在检视面板（Inspector）的 [Cinemachine 控制器组件](CinemachineBrain.md) 中，进行以下任一操作：
+   * 选择一个**默认混合过渡（Default Blend）**，用于所有 Cinemachine 相机之间的过渡，或者
+   * 创建并指定一个定义了**自定义混合过渡（Custom Blends）** 的资源，用于特定成对 Cinemachine 相机之间的过渡。
+
+
+## 在播放模式下测试过渡效果
+
+1. 进入 [播放模式](https://docs.unity3d.com/Manual/GameView.html)。
+
+2. 依次更改每台 Cinemachine 相机游戏对象的 [激活状态](https://docs.unity3d.com/Manual/class-GameObject.html)，观察它们是否会按照你在 Cinemachine 控制器中的设置，在彼此之间进行混合过渡。
+
+3. 退出播放模式。
+
+
+## 后续步骤
+
+以下是你接下来可能需要执行的操作：
+
+* [创建带有程序化行为的 Cinemachine 相机：例如跟随角色的相机](setup-procedural-behavior.md)。
+* [使用时间线（Timeline）管理 Cinemachine 相机镜头的编排序列](setup-timeline.md)。
+
+
+## 其他资源
+
+* [以第一人称视角预览和制作 Cinemachine 相机](preview-and-author-in-first-person.md)

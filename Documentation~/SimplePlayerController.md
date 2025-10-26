@@ -1,189 +1,196 @@
-# Simple Player Controller
+# 简易玩家控制器（Simple Player Controller）
 
-Cinemachine's Simple Player Controller is a suite of scripts that can be combined and configured to create character controllers which can be used in different contexts to implement several types of character movement. All of these scripts are provided as educational sample code, and the expectation is that you use them as a starting point, modifying and customizing them to suit your needs.
+Cinemachine 的简易玩家控制器是一套脚本集合，可通过组合和配置来创建角色控制器，用于不同场景以实现多种角色移动类型。这些脚本均作为教学示例代码提供，旨在为你提供一个起点，你可以根据自身需求对其进行修改和定制。
 
-The Simple Player Controller can work with Unity's [Character Controller](https://docs.unity3d.com/ScriptReference/CharacterController.html) behaviour or without it, according to your requirements.  When the Character controller is present, character movement and grounded state are delegated to the Character Controller.  Otherwise, the Simple Player Controller manages its own position and does a raycast to locate the ground.
+根据需求，简易玩家控制器既可以与 Unity 的 [角色控制器（Character Controller）](https://docs.unity3d.com/ScriptReference/CharacterController.html) 行为配合使用，也可以独立工作。当存在角色控制器时，角色移动和地面状态将由角色控制器处理；否则，简易玩家控制器会自行管理位置，并通过射线检测（raycast）确定地面位置。
 
-The Simple Player Controller provides Idle, Walk, Sprint, and Jump functionality.
+简易玩家控制器提供了待机（Idle）、行走（Walk）、冲刺（Sprint）和跳跃（Jump）功能。
 
-The player's forward can be locked to the camera's forward (strafe mode), or it can be independent (free look mode); it can also be a combination of the two (locked when moving).  Gravity's direction is locked to the world's up, or it can follow the player's local up, enabling the player to walk on walls and ceilings.
-
-## User Input
-
-User input can be in one of three modes:
-
- - **Camera Space:** forward motion is in the camera's forward direction,
- - **World Space:** forward motion is in the world's forward direction,
- - **Player Space:** forward motion is in the player's forward direction.
-
-User input is configured using the same mechanism that is used for CinemachineCameras: InputAxis members and [CinemachineInputAxisController](CinemachineInputAxisController.md) behaviours.  This is done to ensure that the controller remains agnostic about the input implementation.  It works for Unity's Input package as well as Unity's legacy input manager, and can be adapted for third-party input managers.  This is the only dependency on Cinemachine.  Apart from that, the Simple Character Controller is a standalone solution.
-
-## Strafe Mode
-
-The controller can be in strafe mode or not, and the state of this mode can be changed dynamically.  In strafe mode, the player does not turn to face the direction of motion, but instead can move sideways or backwards.  Otherwise, the player turns to face its direction of motion.
-
-## Support for ThirdPersonFollow
-
-By default, SimplePlayerController does not have knowledge or control of the camera: that is left to Cinemachine.  However, Cinemachine's [ThirdPersonFollow](CinemachineThirdPersonFollow.md) component delegates control of the camera's viewing angle to the object being followed.  To support this case, you can add a Player Aiming Core child GameObject to the player, and give it a SimplePlayerAimController behaviour which works in conjunction with the SImplePlayerController and controls the camera's viewing angle and aim direction.
+玩家的前进方向可以锁定为相机的前进方向（横移模式），也可以独立于相机（自由视角模式），还可以是两者的结合（移动时锁定）。重力方向可以锁定为世界坐标系的上方向，也可以跟随玩家的局部上方向，从而允许玩家在墙壁和天花板上行走。
 
 
-## Architecture
+## 用户输入（User Input）
 
-Apart from user input, the controller has no dependency on Cinemachine.  It doesn't care how the cameras are implemented.  It only needs to know from which camera to extract the input frame (i.e. to know what "forward" means).  For that, it just uses `Camera.main` (or an override `Camera` object that you may provide).
+用户输入可分为以下三种模式：
 
-The Simple Player Controller is a suite of behaviours, each responsible for a specific element of the character's movement.  You can mix and match these behaviours to create the character controller that you need.  The behaviours are detailed below.
+- **相机空间（Camera Space）**：前进方向为相机的前进方向
+- **世界空间（World Space）**：前进方向为世界坐标系的前进方向
+- **玩家空间（Player Space）**：前进方向为玩家自身的前进方向
+
+用户输入的配置方式与 Cinemachine 相机相同：通过 InputAxis 成员和 [Cinemachine 输入轴控制器（CinemachineInputAxisController）](CinemachineInputAxisController.md) 行为实现。这样做是为了确保控制器与输入实现方式无关，既适用于 Unity 的 Input 包和旧版输入管理器，也可适配第三方输入管理器。这是其与 Cinemachine 唯一的依赖关系，除此之外，简易角色控制器是一个独立的解决方案。
+
+
+## 横移模式（Strafe Mode）
+
+控制器可以处于横移模式或非横移模式，且该模式状态可动态切换。在横移模式下，玩家不会转向移动方向，而是可以向侧面或后方移动；否则，玩家会转向自身的移动方向。
+
+
+## 支持第三人称跟随（Support for ThirdPersonFollow）
+
+默认情况下，简易玩家控制器（SimplePlayerController）不了解也不控制相机，相机相关功能由 Cinemachine 负责。但 Cinemachine 的 [第三人称跟随（ThirdPersonFollow）](CinemachineThirdPersonFollow.md) 组件会将相机视角的控制权委托给被跟随的对象。为支持这种情况，你可以向玩家添加一个“玩家瞄准核心（Player Aiming Core）”子游戏对象，并为其添加简易玩家瞄准控制器（SimplePlayerAimController）行为，该行为会与简易玩家控制器配合工作，控制相机视角和瞄准方向。
+
+
+## 架构（Architecture）
+
+除用户输入外，该控制器与 Cinemachine 无其他依赖关系，也不关心相机的实现方式。它只需知道从哪个相机提取输入坐标系（即明确“前进方向”的定义），为此，它仅使用 `Camera.main`（或你可能提供的替代 `Camera` 对象）。
+
+简易玩家控制器是一套行为组件的集合，每个组件负责角色移动的特定部分。你可以通过混合搭配这些行为来创建所需的角色控制器。下面详细介绍这些行为：
+
 
 ### SimplePlayerControllerBase
 
-This is the base class for SimplePlayerController and SimplePlayerController2D.  You can also use it as a base class for your custom controllers.  It provides the following services and settings:
+这是 SimplePlayerController 和 SimplePlayerController2D 的基类，你也可以将其用作自定义控制器的基类。它提供以下服务和设置：
 
-**Services:**
- - 2D motion axes (MoveX and MoveZ)
- - Jump button
- - Sprint button
- - API for strafe mode
+**服务（Services）**：
+- 2D 运动轴（MoveX 和 MoveZ）
+- 跳跃按钮（Jump button）
+- 冲刺按钮（Sprint button）
+- 横移模式的 API
 
-**Actions:**
- - PreUpdate - invoked at the beginning of `Update()`
- - PostUpdate - invoked at the end of `Update()`
- - StartJump - invoked when the player starts jumping
- - EndJump - invoked when the player stops jumping
+**动作（Actions）**：
+- PreUpdate - 在 `Update()` 开始时调用
+- PostUpdate - 在 `Update()` 结束时调用
+- StartJump - 在玩家开始跳跃时调用
+- EndJump - 在玩家结束跳跃时调用
 
-**Events:**
- - Landed - invoked when the player lands on the ground
+**事件（Events）**：
+- Landed - 在玩家着陆时调用
 
-**Settings:**
+**设置（Settings）**：
 
-| Setting | Description |
+| 设置 | 说明 |
 | :--- | :--- |
-| **Speed** | Ground speed when walking. |
-| **Sprint Speed** | Ground speed when sprinting. |
-| **Jump Speed** | Initial vertical speed when jumping.  Gravity will gradually reduce this speed until it becomes negative and the player starts falling.|
-| **Sprint Jump Speed** | Same as Jump Speed, but the value may be different, to implement a stronger jump. |
+| **移动速度（Speed）** | 行走时的地面移动速度。 |
+| **冲刺速度（Sprint Speed）** | 冲刺时的地面移动速度。 |
+| **跳跃速度（Jump Speed）** | 跳跃时的初始垂直速度。重力会逐渐减小该速度，直到速度变为负值，玩家开始下落。 |
+| **冲刺跳跃速度（Sprint Jump Speed）** | 与跳跃速度类似，但数值可以不同，用于实现更强的跳跃效果。 |
+
 
 ### SimplePlayerController
 
-Building on top of SimplePlayerControllerBase, this is the 3D character controller.  It pushes the character around and makes it jump, but does not manage any animation.  For that, add a SimplePlayerAnimator component (or a custom variant of it).
+基于 SimplePlayerControllerBase，这是 3D 角色控制器。它控制角色移动和跳跃，但不管理任何动画。若需动画功能，可添加简易玩家动画器（SimplePlayerAnimator）组件（或其自定义变体）。
 
-SimplePlayerController provides the following services and settings:
+SimplePlayerController 提供以下服务和设置：
+- 阻尼（应用于玩家的速度和旋转）
+- 横移模式（Strafe Mode）
+- 重力（Gravity）
+- 输入坐标系（用于解析输入的参考坐标系：相机、世界或玩家）
+- 地面检测（使用射线检测或委托给角色控制器）
+- 相机替代（仅用于确定输入坐标系的相机）
 
-- Damping (applied to the player's velocity, and to the player's rotation)
-- Strafe Mode
-- Gravity
-- Input Frames (which reference frame is used fo interpreting input: Camera, World, or Player)
-- Ground Detection (using raycasts, or delegating to Character Controller)
-- Camera Override (camera is used only for determining the input frame)
+该行为应附加到玩家游戏对象的根节点，它会移动游戏对象的变换（transform）。如果游戏对象还具有 Unity 角色控制器（Character Controller）组件，简易玩家控制器会将地面状态和移动委托给该组件；如果没有，简易玩家控制器会自行管理移动，并通过射线检测判断地面状态。
 
-This behaviour should be attached to the player GameObject's root.  It moves the GameObject's transform.  If the GameObject also has a Unity Character Controller component, the Simple Player Controller delegates grounded state and movement to it.  If the GameObject does not have a Character Controller, the Simple Player Controller manages its own movement and does raycasts to test for grounded state.
+简易玩家控制器会在所选参考坐标系的上下文中尽力解析用户输入，通常效果良好。但在相机模式下，玩家可能会从相对于相机直立的状态过渡到倒置状态，此时输入解析可能会出现不连续。简易玩家控制器有一种专门的技术来解决这种不连续性（你可以在代码中看到），但仅在这种特定情况下使用。
 
-Simple Player Controller does its best to interpret User input in the context of the selected reference frame.  Generally, this works well, but in Camera mode, the player may potentially transition from being upright relative to the camera to being inverted.  When this happens, there can be a discontinuity in the interpretation of the input.  The Simple Player Controller has an ad-hoc technique of resolving this discontinuity (you can see this in the code), but it is only used in this very specific situation.
+**附加设置（Additional Settings）**：
 
-**Additional Settings:**
-
-| Setting | | Description |
+| 设置 | 子项 | 说明 |
 | :--- | :--- | :--- |
-| **Damping** |  | Transition duration (in seconds) when the player changes velocity or rotation. |
-| **Strafe** |  | Makes the player strafe when moving sideways, otherwise it turns to face the direction of motion. |
-| **Input Forward** |  | Reference frame for the input controls. |
-| | _Camera_ | Input forward is camera forward direction. |
-| | _Player_ | Input forward is Player's forward direction. |
-| | _World_ | Input forward is World forward direction. |
-| **Up Mode** |  | Up direction for computing motion. |
-| | _Player_ | Move in the Player's local XZ plane. |
-| | _World_ | Move in global XZ plane. |
-| **Camera Override** | | If non-null, take the input frame from this camera instead of Camera.main. Useful for split-screen games. |
-| **Ground Layers** |  | Layers to include in ground detection via Raycasts. |
-| **Gravity** |  | Force of gravity in the down direction (m/s^2). |
+| **阻尼（Damping）** |  | 玩家改变速度或旋转时的过渡持续时间（以秒为单位）。 |
+| **横移（Strafe）** |  | 使玩家在侧向移动时横移，否则玩家会转向移动方向。 |
+| **输入前进方向（Input Forward）** |  | 输入控制的参考坐标系。 |
+|  | _相机（Camera）_ | 输入前进方向为相机的前进方向。 |
+|  | _玩家（Player）_ | 输入前进方向为玩家自身的前进方向。 |
+|  | _世界（World）_ | 输入前进方向为世界坐标系的前进方向。 |
+| **上方向模式（Up Mode）** |  | 用于计算运动的上方向。 |
+|  | _玩家（Player）_ | 在玩家的局部 XZ 平面内移动。 |
+|  | _世界（World）_ | 在全局 XZ 平面内移动。 |
+| **相机替代（Camera Override）** |  | 若非空，则从该相机获取输入坐标系，而非 `Camera.main`。适用于分屏游戏。 |
+| **地面层（Ground Layers）** |  | 通过射线检测进行地面检测时包含的层。 |
+| **重力（Gravity）** |  | 向下方向的重力大小（米/秒²）。 |
+
 
 ### SimplePlayerController2D
 
-This is a very basic 2D implementation of SimplePlayerControllerBase.  It requires a [Rigidbody2D](https://docs.unity3d.com/ScriptReference/Rigidbody2D.html) component to be placed on the player GameObject.  Because it works with a Rigidbody2D, motion control is implemented in the `FixedUpdate()` method.  Ground detection only works if the player has a small trigger collider under its feet.
+这是 SimplePlayerControllerBase 的一个非常基础的 2D 实现。它要求玩家游戏对象上有 [Rigidbody2D](https://docs.unity3d.com/ScriptReference/Rigidbody2D.html) 组件。由于它与 Rigidbody2D 配合工作，运动控制在 `FixedUpdate()` 方法中实现。仅当玩家脚部有一个小的触发碰撞器（trigger collider）时，地面检测才能生效。
 
-**Additional Settings:**
+**附加设置（Additional Settings）**：
 
-| Setting | Description |
+| 设置 | 说明 |
 | :--- | :--- |
-| **Player Geometry** | Reference to the child object that holds the player's visible geometry.  It is rotated to face the direction of motion |
-| **Motion Control While In Air** | Makes possible to influence the direction of motion while the character is in the air.  Otherwise, the more realistic rule that the feet must be touching the ground applies |
+| **玩家几何（Player Geometry）** | 指向持有玩家可见几何的子对象的引用。该对象会旋转以面向移动方向。 |
+| **空中运动控制（Motion Control While In Air）** | 允许在角色在空中时影响运动方向；否则，适用更符合现实的规则（必须脚触地面才能控制）。 |
+
 
 ### SimplePlayerAnimator
 
-This is a behaviour whose job it is to drive animation based on the player's motion.  It is a sample implementation that you can modify or replace with your own.  As shipped, it is hardcoded to work specifically with the sample `CameronSimpleController` Animation controller, which is set up with states that the SimplePlayerAnimator knows about.  You can modify the SimplePlayerAnimator to work with your own animation controller.
+该行为的作用是根据玩家的运动驱动动画。它是一个示例实现，你可以对其进行修改或替换为自己的实现。默认情况下，它硬编码为与示例 `CameronSimpleController` 动画控制器配合工作，该控制器已设置简易玩家动画器已知的状态。你可以修改简易玩家动画器以适配自己的动画控制器。
 
-SimplePlayerAnimator works with or without a SimplePlayerControllerBase alongside.  Without one, it monitors the transform's position and drives the animation accordingly.  You can see it used like this in some of the sample scenes, such as RunningRace or ClearShot.  In this mode, is it unable to detect the player's grounded state, so it always assumes that the player is grounded.
+简易玩家动画器可以与 SimplePlayerControllerBase 配合使用，也可以独立使用。独立使用时，它会监控变换组件的位置并相应地驱动动画。在一些示例场景（如 RunningRace 或 ClearShot）中可以看到这种用法，在这种模式下，它无法检测玩家的地面状态，因此始终假设玩家在地面上。
 
-When a SimplePlayerControllerBase is detected, the SimplePlayerAnimator installs callbacks and expects to be driven by the SimplePlayerControllerBase using the STartJump, EndJump, and PostUpdate callbacks.
+当检测到 SimplePlayerControllerBase 时，简易玩家动画器会安装回调，并期望由 SimplePlayerControllerBase 通过 StartJump、EndJump 和 PostUpdate 回调来驱动。
 
-The animation clip speeds can be controlled using the following settings.  Out of the box, they are tuned to work with the provided sample animations, in such a way as to ensure that the feet don't slide on the ground when the player is moving.  Remember: these tunings are specifically for the provided sample animations.  If you replace them, you should re-tune the values with appropriate settings.
+动画片段的速度可以通过以下设置控制。默认情况下，这些设置已针对提供的示例动画进行了调整，以确保玩家移动时脚部不会在地面上滑动。请注意：这些调整专门针对提供的示例动画，若替换动画，应重新调整这些值。
 
-**Tuning Settings:**
+**调整设置（Tuning Settings）**：
 
-| Setting | Description |
+| 设置 | 说明 |
 | :--- | :--- |
-| **Normal Walk Speed** | Tune this to the animation in the model: feet should not slide when walking at this speed. |
-| **Normal Sprint Speed** | Tune this to the animation in the model: feet should not slide when sprinting at this speed. |
-| **Max Sprint Scale** | Never speed up the sprint animation more than this, to avoid absurdly fast movement. |
-| **Jump Animation Scale** | Scale factor for the overall speed of the jump animation. |
+| **正常行走速度（Normal Walk Speed）** | 根据模型中的动画调整此值：以该速度行走时，脚部不应滑动。 |
+| **正常冲刺速度（Normal Sprint Speed）** | 根据模型中的动画调整此值：以该速度冲刺时，脚部不应滑动。 |
+| **最大冲刺缩放（Max Sprint Scale）** | 冲刺动画的速度不应超过此值，以避免不合理的快速移动。 |
+| **跳跃动画缩放（Jump Animation Scale）** | 跳跃动画整体速度的缩放因子。 |
+
 
 ### SimplePlayerAimController
 
-This is a behaviour that works in conjunction with the SimplePlayerController to control the rotation of an invisible child object of the player.  It is intended to be used with Cinemachine's ThirdPersonFollow component, and the child object to be used as the CinemachineCamera's Tracking Target.  When used this way, the SimplePlayerAimController controls the camera's viewing angle based on the user's input.
+该行为与简易玩家控制器配合工作，控制玩家的一个不可见子对象的旋转。它旨在与 Cinemachine 的第三人称跟随（ThirdPersonFollow）组件配合使用，且该子对象用作 Cinemachine 相机的跟踪目标（Tracking Target）。在这种情况下，简易玩家瞄准控制器会根据用户输入控制相机视角。
 
-This component expects to be in a child object (the _Aiming Core_) of a player that has a SimplePlayerController behaviour.  It works intimately with that component.  The purpose of the Aiming Core is to decouple the camera rotation from the player rotation.  Camera rotation is determined by the rotation of the Aiming Core GameObject, and this behaviour provides input axes for controlling it.
+该组件应位于具有简易玩家控制器（SimplePlayerController）行为的玩家的子对象（“瞄准核心”）上，并与其紧密配合。瞄准核心的目的是将相机旋转与玩家旋转解耦：相机旋转由瞄准核心游戏对象的旋转决定，而该行为提供用于控制旋转的输入轴。
 
-When the Aiming Core is used as the target for a CinemachineCamera with a ThirdPersonFollow component, the camera looks along the core's forward axis, and pivots around the core's origin.  The Aiming Core is also used to define the origin and direction of player shooting, if player has that ability.  To implement player shooting, add a SimplePlayerShoot behaviour to the Aiming Core GameObject.
+当瞄准核心用作带有第三人称跟随组件的 Cinemachine 相机的目标时，相机会沿核心的前进轴观察，并围绕核心的原点旋转。若玩家具备射击能力，瞄准核心还用于定义玩家射击的原点和方向。要实现玩家射击功能，可向瞄准核心游戏对象添加简易玩家射击（SimplePlayerShoot）行为。
 
-The ThirdPersonWithAimMode sample scene shows an example of how to set this up.
+“带瞄准模式的第三人称（ThirdPersonWithAimMode）”示例场景展示了其设置方法。
 
-**Settings:**
+**设置（Settings）**：
 
-| Setting | | Description |
+| 设置 | 子项 | 说明 |
 | :--- | :--- | :--- |
-| **Player Rotation** |  | How the player's rotation is coupled to the camera's rotation. |
-| | _Coupled_ | The player rotates with the camera.  Sideways movement results in strafing. |
-| | _Coupled When Moving_ | The camera can rotate freely around the player when the player is stationary, but the player rotates to face camera forward when it starts moving. |
-| | _Decoupled_ | The player's rotation is independent from the camera's rotation. |
-| **Rotation Damping** |  | How fast the player rotates to face the camera direction when the player starts moving.  Only used when Player Rotation is Coupled When Moving. |
-| **Horizontal Look** | | Horizontal Rotation input axis.  Value is in degrees, with 0 being centered. |
-| **Vertical Look** |  | Vertical Rotation input axis.  Value is in degrees, with 0 being centered. |
+| **玩家旋转（Player Rotation）** |  | 玩家旋转与相机旋转的耦合方式。 |
+|  | _耦合（Coupled）_ | 玩家随相机旋转，侧向移动会导致横移。 |
+|  | _移动时耦合（Coupled When Moving）_ | 玩家静止时，相机可围绕玩家自由旋转；但玩家开始移动时，会转向相机前进方向。 |
+|  | _解耦（Decoupled）_ | 玩家旋转独立于相机旋转。 |
+| **旋转阻尼（Rotation Damping）** |  | 当玩家开始移动时，旋转至面向相机方向的速度。仅在玩家旋转模式为“移动时耦合”时使用。 |
+| **水平视角（Horizontal Look）** |  | 水平旋转输入轴。值以度为单位，0 为居中。 |
+| **垂直视角（Vertical Look）** |  | 垂直旋转输入轴。值以度为单位，0 为居中。 |
+
 
 ### SimplePlayerShoot
 
-This component manages player shooting.  It is expected to be on the player object, or on a child SimplePlayerAimController object of the player.
+该组件管理玩家射击功能，应位于玩家对象上，或玩家的子对象简易玩家瞄准控制器（SimplePlayerAimController）上。
 
-If an AimTargetManager is specified, then the behaviour aims at that target.  Otherwise, the behaviour aims in the forward direction of the player object, or of the SimplePlayerAimController object if it exists and is not decoupled from the player rotation.
+如果指定了瞄准目标管理器（AimTargetManager），则该行为会瞄准该目标；否则，会沿玩家对象的前进方向瞄准，或如果存在简易玩家瞄准控制器且未与玩家旋转解耦，则沿其前进方向瞄准。
 
-**Settings:**
+**设置（Settings）**：
 
-| Setting | Description |
+| 设置 | 说明 |
 | :--- | :--- |
-| **Bullet Prefab** | The bullet prefab to instantiate when firing. |
-| **Max Bullets Per Sec** | Maximum bullets to fire per second. |
-| **Fire** | Boolean Input Axis for firing.  Value is 0 (not firing) or 1 (firing). |
-| **AimTarget Manager** | Target to Aim towards. If null, the aim is defined by the forward vector of this GameObject. |
-| **Fire Event** | Event that's triggered when firing. |
+| **子弹预制体（Bullet Prefab）** | 射击时实例化的子弹预制体。 |
+| **每秒最大子弹数（Max Bullets Per Sec）** | 每秒最大射击子弹数。 |
+| **射击（Fire）** | 用于射击的布尔输入轴。值为 0（未射击）或 1（正在射击）。 |
+| **瞄准目标管理器（AimTarget Manager）** | 要瞄准的目标。若为空，则瞄准方向由该游戏对象的前进向量定义。 |
+| **射击事件（Fire Event）** | 射击时触发的事件。 |
 
 
 ### SimplePlayerOnSurface
 
-This behaviour keeps a player upright on surfaces.  It can be used to make the player walk on walls and ceilings or on the surfaces of arbitrary meshes.  It rotates the player so that its Up direction matches the surface normal where it is standing.  This script assumes that the pivot point of the player is at the bottom.
+该行为使玩家在表面上保持直立，可用于实现玩家在墙壁、天花板或任意网格表面上行走的效果。它会旋转玩家，使其上方向与所在表面的法线方向一致。此脚本假设玩家的 pivot 点在底部。
 
-The _FreeLook on Spherical Surface_ sample scene shows an example of use of this behaviour.
+“球面自由视角（FreeLook on Spherical Surface）”示例场景展示了该行为的使用方法。
 
-Raycasts are used to detect walkable surfaces.
+它通过射线检测来识别可行走表面。
 
-When using this component, SimpleSplayerController's Up Mode should be set to _Player_, and it should not have a Character Controller component, as that does not play nicely with nonstandard Up directions.
+使用该组件时，简易玩家控制器（SimplePlayerController）的上方向模式（Up Mode）应设置为“玩家（Player）”，且不应有角色控制器（Character Controller）组件，因为角色控制器与非标准上方向兼容性不佳。
 
-Also, when CinemachineCameras are being used to track the character, the [CinemachineBrain](CinemachineBrain.md)'s World Up Override setting should be set to the Player, so that the Camera's Up matches the Player's Up.
+此外，当使用 Cinemachine 相机跟踪角色时，[Cinemachine 控制器（CinemachineBrain）](CinemachineBrain.md) 的“世界上方向替代（World Up Override）”设置应设为玩家，以使相机的上方向与玩家的上方向一致。
 
-**Settings:**
+**设置（Settings）**：
 
-| Setting | Description |
+| 设置 | 说明 |
 | :--- | :--- |
-| **Rotation Damping** | How fast the player rotates to match the surface normal. |
-| **Ground Layers** | Layers to consider as ground. |
-| **Max Raycast Distance** | How far to raycast when checking for ground. |
-| **Player Height** | The approximate height of the player.  Used to compute where raycasts begin. |
-| **Free Fall Recovery** | Makes the player fall towards the nearest surface when in free fall. |
-| **Surface Changed** | This event is fired when the player moves from one surface to another.  If the surfaces are moving, then this is a good opportunity to reparent the player. |
-
+| **旋转阻尼（Rotation Damping）** | 玩家旋转以匹配表面法线的速度。 |
+| **地面层（Ground Layers）** | 视为地面的层。 |
+| **最大射线检测距离（Max Raycast Distance）** | 检测地面时射线的最大距离。 |
+| **玩家高度（Player Height）** | 玩家的大致高度，用于计算射线检测的起点。 |
+| **自由下落恢复（Free Fall Recovery）** | 使玩家在自由下落时向最近的表面下落。 |
+| **表面改变（Surface Changed）** | 当玩家从一个表面移动到另一个表面时触发此事件。如果表面在移动，这是重新设置玩家父对象的好时机。 |

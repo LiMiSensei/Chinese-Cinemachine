@@ -1,10 +1,10 @@
-# Use convenient tools and shortcuts
+# 使用便捷工具和快捷键
 
-Use UI tools and helpers to target the proper Cinemachine elements to set up according to your needs and ease your Cinemachine environment configuration experience.
+使用 UI 工具和辅助功能来定位合适的 Cinemachine 元素，以便根据需求进行设置，并简化 Cinemachine 环境的配置流程。
 
-| Feature | Description |
+| 功能 | 说明 |
 | :--- | :--- |
-| [Pre-built cameras](ui-ref-pre-built-cameras.md) | Use menu shortcuts to create pre-built Cinemachine Cameras that target specific use cases. |
-| [Scene handles](handles.md) | Use a set of 3D controls to manipulate CinemachineCamera parameters visually in the Scene view. |
-| [Preview and author a Cinemachine Camera in first person](preview-and-author-in-first-person.md) | Browse through all your Cinemachine Cameras and quickly preview their shot compositions. Adjust the shot composition of a Cinemachine Camera directly from the Scene view. |
-| [Save in Play mode](CinemachineSavingDuringPlay.md) | Allow the Unity Editor to save the Cinemachine parameter changes you make in Play mode. |
+| [预构建相机](ui-ref-pre-built-cameras.md) | 使用菜单快捷键创建针对特定使用场景的预构建 Cinemachine 相机。 |
+| [场景控制柄](handles.md) | 使用一组 3D 控件在场景视图中直观地操作 Cinemachine 相机参数。 |
+| [以第一人称视角预览和制作 Cinemachine 相机](preview-and-author-in-first-person.md) | 浏览所有 Cinemachine 相机并快速预览其镜头构图。直接从场景视图调整 Cinemachine 相机的镜头构图。 |
+| [播放模式下保存](CinemachineSavingDuringPlay.md) | 允许 Unity 编辑器保存你在播放模式下对 Cinemachine 参数所做的更改。 |

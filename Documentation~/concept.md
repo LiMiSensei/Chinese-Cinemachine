@@ -1,10 +1,10 @@
-# Discover Cinemachine concepts
+# 探索 Cinemachine 概念
 
-Learn about the Cinemachine base elements and core functionality.
+了解 Cinemachine 的基础元素与核心功能。
 
-| Section | Description |
+| 章节（Section） | 说明（Description） |
 | :--- | :--- |
-| [Cinemachine essential elements](concept-essential-elements.md) | What are the essential elements that to make a functional Cinemachine environment: Unity Camera, Cinemachine Brain, and Cinemachine Cameras.  |
-| [Camera control and transitions](concept-camera-control-transitions.md) | What are the conditions and mechanisms that make Cinemachine Cameras take turns controlling the Unity Camera and transition between each other by blend or cut. |
-| [Procedural motion](concept-procedural-motion.md) | How procedural behaviors and extensions can make a Cinemachine Camera dynamically move, shake, track targets, compose its own shots, respond to user inputs, move along a predefined path, react to external impulse signals, produce post-processing effects, and more. |
-| [Cinemachine and Timeline](concept-timeline.md) | How Cinemachine Cameras work with [Timeline](https://docs.unity3d.com/Packages/com.unity.timeline@latest) when you need to produce a predictable shot sequence with choreographed cameras. |
+| [Cinemachine 核心元素](concept-essential-elements.md) | 构建可正常运行的 Cinemachine 环境所需的核心元素包括哪些：Unity 相机（Unity Camera）、Cinemachine 控制器（Cinemachine Brain）以及 Cinemachine 相机（Cinemachine Cameras）。 |
+| [相机控制与过渡](concept-camera-control-transitions.md) | 使 Cinemachine 相机轮流控制 Unity 相机，并通过混合（blend）或切换（cut）实现相互过渡的条件与机制包括哪些。 |
+| [程序化运动](concept-procedural-motion.md) | 如何通过程序化行为与扩展，让 Cinemachine 相机实现动态移动、抖动、跟踪目标、自动构图、响应用户输入、沿预设路径移动、对外部脉冲信号做出反应、产生后期处理效果等功能。 |
+| [Cinemachine 与时间线](concept-timeline.md) | 当需要制作具有编排相机的可预测镜头序列时，Cinemachine 相机如何与 [时间线（Timeline）](https://docs.unity3d.com/Packages/com.unity.timeline@latest) 配合使用。 |

@@ -1,16 +1,21 @@
-# Cinemachine Spline Smoother
+# Cinemachine 样条线平滑器（Cinemachine Spline Smoother）
 
-This behaviour can be attached to a GameObject with a SplineContainer.  It proivdes a function to apply smoothing to the spline.  Smoothing auto-adjusts the knot settings to maintain second-order smoothness of the spline, making it suitable for camera paths.
+此行为可附加到带有“样条线容器（SplineContainer）”的游戏对象上，提供对样条线应用平滑处理的功能。平滑处理会自动调整节点（knot）设置，以维持样条线的二阶平滑度，使其适用于相机路径。
 
-When this behaviour is present while editing the spline, it will automatically adjust the knot tangents to maintain smoothness.  Do not adjust the knot tangents manually; they will be overwritten by the smoother.
+在编辑样条线时，若该行为已附加到游戏对象上，它会自动调整节点切线（knot tangents）以保持平滑效果。请勿手动调整节点切线，否则切线设置会被平滑器覆盖。
 
-At runtime, this behaviour does nothing.
-
-### Properties
-
-| Property | Description |
-| --- | --- | --- |
-| __Auto Smooth__ | If checked, the spline will be automatically smoothed whenever it is modified. |
-| __Smooth Spline Now__ | Invokes the spline smoothing function to adjust the knot tangents. |
+在运行时（runtime），此行为不执行任何操作。
 
 
+### 属性（Properties）
+
+| 属性 | 说明 |
+| --- | --- |
+| **自动平滑（Auto Smooth）** | 若勾选，每当样条线被修改时，都会自动对其进行平滑处理。 |
+| **立即平滑样条线（Smooth Spline Now）** | 调用样条线平滑函数，用于调整节点切线。 |
+
+
+### 术语补充说明
+- **SplineContainer（样条线容器）**：存储样条线数据（如节点、切线、曲率等）的组件，是样条线相关行为的基础依赖。
+- **second-order smoothness（二阶平滑度）**：指样条线不仅在节点处“连续”（一阶平滑），且节点处的曲率变化也“连续”（二阶导数连续），可避免相机沿路径移动时出现突兀的转向或抖动。
+- **knot tangents（节点切线）**：样条线节点处控制曲线弯曲方向和程度的向量，是决定样条线平滑度的关键参数。

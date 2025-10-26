@@ -45,9 +45,9 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>
-        /// When enabled, roll eases into and out of the data point values.  Otherwise, interpolation is linear.
+        /// 启用时，滚动角度会平滑地过渡到数据点值。否则，插值为线性。
         /// </summary>
-        [Tooltip("When enabled, roll eases into and out of the data point values.  Otherwise, interpolation is linear.")]
+        [Tooltip("启用时，滚动角度会平滑地过渡到数据点值。否则，插值为线性。")]
         public bool Easing = true;
 
         /// <summary>

@@ -60,7 +60,7 @@ namespace Unity.Cinemachine
         /// </summary>
         public RecenterTargetModes RecenterTarget = RecenterTargetModes.AxisCenter;
 
-        [Header("Help：这是Cinemachine Camera-程序化组件-Rotation Composer-6 手动操控镜头\n用于分离控制水平与垂直旋转，输入驱动与脚本控制，旋转范围限制,平滑与阻尼效果,与目标跟踪的配合")]
+        [Header("Help：程序化组件-Rotation Composer-6 手动操控镜头\n用于分离控制水平与垂直旋转，输入驱动与脚本控制，旋转范围限制,平滑与阻尼效果,与目标跟踪的配合")]
         [Space(30)]
         /// <summary>Axis representing the current horizontal rotation.  Value is in degrees
         /// and represents a rotation about the up vector</summary>

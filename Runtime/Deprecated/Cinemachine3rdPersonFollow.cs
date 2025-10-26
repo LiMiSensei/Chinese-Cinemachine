@@ -19,78 +19,78 @@ namespace Unity.Cinemachine
         , CinemachineFreeLookModifier.IModifiablePositionDamping
         , CinemachineFreeLookModifier.IModifiableDistance
     {
-        /// <summary>How responsively the camera tracks the target.  Each axis (camera-local)
-        /// can have its own setting.  Value is the approximate time it takes the camera
-        /// to catch up to the target's new position.  Smaller values give a more rigid
-        /// effect, larger values give a squishier one.</summary>
-        [Tooltip("How responsively the camera tracks the target.  Each axis (camera-local) "
-           + "can have its own setting.  Value is the approximate time it takes the camera "
-           + "to catch up to the target's new position.  Smaller values give a more "
-           + "rigid effect, larger values give a squishier one")]
+        /// <summary>摄像机跟踪目标的响应程度。每个轴（摄像机局部空间）
+        /// 都可以有自己的设置。数值是摄像机跟上目标新位置
+        /// 所需的大致时间。较小的值会产生更刚性的
+        /// 效果，较大的值会产生更柔软的效果。</summary>
+        [Tooltip("摄像机跟踪目标的响应程度。每个轴（摄像机局部空间）"
+        + "都可以有自己的设置。数值是摄像机跟上目标新位置"
+        + "所需的大致时间。较小的值会产生更"
+        + "刚性的效果，较大的值会产生更柔软的效果")]
         public Vector3 Damping;
 
-        /// <summary>Position of the shoulder pivot relative to the Follow target origin.
-        /// This offset is in target-local space.</summary>
-        [Header("Rig")]
-        [Tooltip("Position of the shoulder pivot relative to the Follow target origin.  "
-            + "This offset is in target-local space")]
+        /// <summary>肩部枢轴相对于跟随目标原点的位置。
+        /// 这个偏移量在目标局部空间中。</summary>
+        [Header("支架设置")]
+        [Tooltip("肩部枢轴相对于跟随目标原点的位置。"
+            + "这个偏移量在目标局部空间中")]
         public Vector3 ShoulderOffset;
 
-        /// <summary>Vertical offset of the hand in relation to the shoulder.
-        /// Arm length will affect the follow target's screen position
-        /// when the camera rotates vertically.</summary>
-        [Tooltip("Vertical offset of the hand in relation to the shoulder.  "
-            + "Arm length will affect the follow target's screen position when "
-            + "the camera rotates vertically")]
+        /// <summary>手部相对于肩部的垂直偏移量。
+        /// 手臂长度会影响摄像机垂直旋转时
+        /// 跟随目标的屏幕位置。</summary>
+        [Tooltip("手部相对于肩部的垂直偏移量。"
+            + "手臂长度会影响摄像机垂直旋转时"
+            + "跟随目标的屏幕位置")]
         public float VerticalArmLength;
 
-        /// <summary>Specifies which shoulder (left, right, or in-between) the camera is on.</summary>
-        [Tooltip("Specifies which shoulder (left, right, or in-between) the camera is on")]
+        /// <summary>指定摄像机位于哪个肩部（左、右或中间）。</summary>
+        [Tooltip("指定摄像机位于哪个肩部（左、右或中间）")]
         [Range(0, 1)]
         public float CameraSide;
 
-        /// <summary>How far behind the hand the camera will be placed.</summary>
-        [Tooltip("How far behind the hand the camera will be placed")]
+        /// <summary>摄像机会被放置在手臂后方多远的距离。</summary>
+        [Tooltip("摄像机会被放置在手臂后方多远的距离")]
         public float CameraDistance;
 
-#if CINEMACHINE_PHYSICS
-        /// <summary>Camera will avoid obstacles on these layers.</summary>
-        [Header("Obstacles")]
-        [Tooltip("Camera will avoid obstacles on these layers")]
+        #if CINEMACHINE_PHYSICS
+        /// <summary>摄像机会避开这些层上的障碍物。</summary>
+        [Header("障碍物设置")]
+        [Tooltip("摄像机会避开这些层上的障碍物")]
         public LayerMask CameraCollisionFilter;
 
         /// <summary>
-        /// Obstacles with this tag will be ignored.  It is a good idea
-        /// to set this field to the target's tag
+        /// 具有此标签的障碍物将被忽略。将此字段
+        /// 设置为目标的标签是个好主意
         /// </summary>
         [TagField]
-        [Tooltip("Obstacles with this tag will be ignored.  "
-            + "It is a good idea to set this field to the target's tag")]
+        [Tooltip("具有此标签的障碍物将被忽略。"
+            + "将此字段设置为目标的标签是个好主意")]
         public string IgnoreTag = string.Empty;
 
         /// <summary>
-        /// Specifies how close the camera can get to obstacles
+        /// 指定摄像机可以靠近障碍物的距离
         /// </summary>
-        [Tooltip("Specifies how close the camera can get to obstacles")]
+        [Tooltip("指定摄像机可以靠近障碍物的距离")]
         [Range(0, 1)]
         public float CameraRadius;
 
         /// <summary>
-        /// How gradually the camera moves to correct for occlusions.
-        /// Higher numbers will move the camera more gradually.
+        /// 摄像机移动以校正遮挡的渐变程度。
+        /// 数值越高，摄像机移动越平缓。
         /// </summary>
         [Range(0, 10)]
-        [Tooltip("How gradually the camera moves to correct for occlusions.  " +
-            "Higher numbers will move the camera more gradually.")]
+        [Tooltip("摄像机移动以校正遮挡的渐变程度。" +
+            "数值越高，摄像机移动越平缓。")]
         public float DampingIntoCollision;
 
         /// <summary>
-        /// How gradually the camera returns to its normal position after having been corrected by the built-in
-        /// collision resolution system. Higher numbers will move the camera more gradually back to normal.
+        /// 在被内置碰撞解决系统校正后，摄像机返回正常位置的渐变程度。
+        /// 数值越高，摄像机返回正常位置越平缓。
         /// </summary>
         [Range(0, 10)]
-        [Tooltip("How gradually the camera returns to its normal position after having been corrected by the built-in " +
-            "collision resolution system.  Higher numbers will move the camera more gradually back to normal.")]
+        [Tooltip("在被内置碰撞解决系统校正后，摄像机返回正常位置的渐变程度。" +
+            "数值越高，摄像机返回正常位置越平缓。")]
         public float DampingFromCollision;
 #endif
 

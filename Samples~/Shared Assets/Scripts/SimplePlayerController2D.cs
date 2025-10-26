@@ -14,12 +14,12 @@ namespace Unity.Cinemachine.Samples
     [RequireComponent(typeof(Rigidbody2D))]
     public class SimplePlayerController2D : SimplePlayerControllerBase
     {
-        [Tooltip("Reference to the child object that holds the player's visible geometry.  "
-            + "'It is rotated to face the direction of motion")]
+       [Tooltip("引用包含玩家可见几何体的子对象。"
+        + "它会旋转以面向移动方向")]
         public Transform PlayerGeometry;
 
-        [Tooltip("Makes possible to influence the direction of motion while the character is "
-            + "in the air.  Otherwise, the more realistic rule that the feet must be touching the ground applies.")]
+        [Tooltip("允许在角色处于空中时影响移动方向。"
+            + "否则将应用更真实的规则：脚必须接触地面才能改变方向")]
         public bool MotionControlWhileInAir;
 
         bool m_IsSprinting;

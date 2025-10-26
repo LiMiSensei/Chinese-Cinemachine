@@ -22,7 +22,7 @@ namespace Unity.Cinemachine
     public class CinemachineRotationComposer : CinemachineComponentBase,
         CinemachineFreeLookModifier.IModifiableComposition
     {
-        [Header("Help：这是Cinemachine Camera-程序化组件-Rotation Composer-4 旋转逻辑\n用于屏幕空间内的旋转跟踪，响应灵敏度调节，旋转范围限制,死区,缓入缓出与过渡效果")]
+        [Header("Help：程序化组件-Rotation Composer-4 旋转逻辑\n用于屏幕空间内的旋转跟踪，响应灵敏度调节，旋转范围限制,死区,缓入缓出与过渡效果")]
         [Space(30)]
         /// <summary>Settings for screen-space composition</summary>
         [Header("构图")]

@@ -26,52 +26,55 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineStateDrivenCamera.html")]
     public class CinemachineStateDrivenCamera : CinemachineCameraManagerBase
     {
-        /// <summary>The state machine whose state changes will drive this camera's choice of active child</summary>
-        [Space]
-        [Tooltip("The state machine whose state changes will drive this camera's choice of active child")]
-        [NoSaveDuringPlay]
-        [FormerlySerializedAs("m_AnimatedTarget")]
-        public Animator AnimatedTarget;
+        /// <summary>状态机，其状态变化将驱动此相机选择活动子相机</summary>
+[Space]
+[Tooltip("状态机，其状态变化将驱动此相机选择活动子相机")]
+[NoSaveDuringPlay]
+[FormerlySerializedAs("m_AnimatedTarget")]
+public Animator AnimatedTarget;
 
-        /// <summary>Which layer in the target FSM to observe</summary>
-        [Tooltip("Which layer in the target state machine to observe")]
-        [NoSaveDuringPlay]
-        [FormerlySerializedAs("m_LayerIndex")]
-        public int LayerIndex;
+/// <summary>要观察的目标状态机中的哪个层</summary>
+[Tooltip("要观察的目标状态机中的哪个层")]
+[NoSaveDuringPlay]
+[FormerlySerializedAs("m_LayerIndex")]
+public int LayerIndex;
 
-        /// <summary>This represents a single instruction to the StateDrivenCamera.  It associates
-        /// an state from the state machine with a child Virtual Camera, and also holds
-        /// activation tuning parameters.</summary>
-        [Serializable]
-        public struct Instruction
-        {
-            /// <summary>The full hash of the animation state</summary>
-            [Tooltip("The full hash of the animation state")]
-            [FormerlySerializedAs("m_FullHash")]
-            public int FullHash;
-            /// <summary>The virtual camera to activate when the animation state becomes active</summary>
-            [Tooltip("The virtual camera to activate when the animation state becomes active")]
-            [FormerlySerializedAs("m_VirtualCamera")]
-            [ChildCameraProperty]
-            public CinemachineVirtualCameraBase Camera;
-            /// <summary>How long to wait (in seconds) before activating the camera.
-            /// This filters out very short state durations</summary>
-            [Tooltip("How long to wait (in seconds) before activating the camera. "
-                + "This filters out very short state durations")]
-            [FormerlySerializedAs("m_ActivateAfter")]
-            public float ActivateAfter;
-            /// <summary>The minimum length of time (in seconds) to keep a camera active</summary>
-            [Tooltip("The minimum length of time (in seconds) to keep a camera active")]
-            [FormerlySerializedAs("m_MinDuration")]
-            public float MinDuration;
-        };
+/// <summary>这表示对状态驱动相机的单条指令。它将状态机中的一个状态与子虚拟相机关联起来，
+/// 并包含激活调优参数。</summary>
+[Serializable]
+public struct Instruction
+{
+    /// <summary>动画状态的完整哈希值</summary>
+    [Tooltip("动画状态的完整哈希值")]
+    [FormerlySerializedAs("m_FullHash")]
+    public int FullHash;
+    
+    /// <summary>当动画状态激活时要激活的虚拟相机</summary>
+    [Tooltip("当动画状态激活时要激活的虚拟相机")]
+    [FormerlySerializedAs("m_VirtualCamera")]
+    [ChildCameraProperty]
+    public CinemachineVirtualCameraBase Camera;
+    
+    /// <summary>激活相机前要等待的时间（以秒为单位）。
+    /// 这可以过滤掉非常短的状态持续时间</summary>
+    [Tooltip("激活相机前要等待的时间（以秒为单位）。"
+        + "这可以过滤掉非常短的状态持续时间")]
+    [FormerlySerializedAs("m_ActivateAfter")]
+    public float ActivateAfter;
+    
+    /// <summary>保持相机活动的最小时间长度（以秒为单位）</summary>
+    [Tooltip("保持相机活动的最小时间长度（以秒为单位）")]
+    [FormerlySerializedAs("m_MinDuration")]
+    public float MinDuration;
+    };
 
-        /// <summary>The set of instructions associating virtual cameras with states.
-        /// These instructions are used to choose the live child at any given moment</summary>
-        [Tooltip("The set of instructions associating cameras with states.  "
-        + "These instructions are used to choose the live child at any given moment")]
-        [FormerlySerializedAs("m_Instructions")]
-        public Instruction[] Instructions;
+    /// <summary>将虚拟相机与状态关联的指令集。
+    /// 这些指令用于在任何给定时刻选择活动子相机</summary>
+    [Tooltip("将相机与状态关联的指令集。"
+        + "这些指令用于在任何给定时刻选择活动子相机")]
+    [FormerlySerializedAs("m_Instructions")]
+    public Instruction[] Instructions;
+
 
         /// <summary>Internal API for the Inspector editor.  This implements nested states.</summary>
         [Serializable]

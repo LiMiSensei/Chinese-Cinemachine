@@ -5,7 +5,7 @@ namespace Unity.Cinemachine.Samples
 {
     public class ThirdPersonFollowCameraSideSwapper : MonoBehaviour
     {
-        [Tooltip("How long the shoulder swap will take")]
+        [Tooltip("肩部切换的持续时间")]
         public float Damping;
 
         List<CinemachineThirdPersonFollow> m_ThirdPersonFollows = new();

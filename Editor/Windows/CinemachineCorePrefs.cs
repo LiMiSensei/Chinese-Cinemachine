@@ -83,20 +83,20 @@ namespace Unity.Cinemachine.Editor
 
                 EditorGUILayout.BeginHorizontal();
                 ActiveGizmoColour.Value = EditorGUILayout.ColorField(k_CoreActiveGizmosColour, ActiveGizmoColour.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     ActiveGizmoColour.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 InactiveGizmoColour.Value = EditorGUILayout.ColorField(k_CoreInactiveGizmosColour, InactiveGizmoColour.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     InactiveGizmoColour.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUI.BeginChangeCheck();
                 BoundaryObjectGizmoColour.Value = EditorGUILayout.ColorField(k_CoreBoundaryObjectGizmosColour, BoundaryObjectGizmoColour.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     BoundaryObjectGizmoColour.Reset();
                 EditorGUILayout.EndHorizontal();
 

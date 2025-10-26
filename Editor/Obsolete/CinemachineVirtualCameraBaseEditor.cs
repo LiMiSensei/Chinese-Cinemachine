@@ -46,7 +46,7 @@ namespace Unity.Cinemachine.Editor
                 List<Type> exts = new ();
                 List<string> names = new ();
                 exts.Add(null);
-                names.Add("(select)");
+                names.Add("（请选择）");
                 var allExtensions = ReflectionHelpers.GetTypesDerivedFrom(typeof(CinemachineExtension),
                         (t) => !t.IsAbstract && t.GetCustomAttribute<ObsoleteAttribute>() == null);
                 foreach (Type t in allExtensions)
@@ -170,7 +170,7 @@ namespace Unity.Cinemachine.Editor
         protected void DrawExtensionsWidgetInInspector()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Extensions", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("扩展", EditorStyles.boldLabel);
             Rect rect = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight);
             rect = EditorGUI.PrefixLabel(rect, s_AddExtensionLabel);
 

@@ -21,16 +21,16 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public class SimplePlayerAnimator : MonoBehaviour
     {
-        [Tooltip("Tune this to the animation in the model: feet should not slide when walking at this speed")]
+        [Tooltip("根据模型动画调整此值：以此速度行走时脚部不应滑动")]
         public float NormalWalkSpeed = 1.7f;
 
-        [Tooltip("Tune this to the animation in the model: feet should not slide when sprinting at this speed")]
+        [Tooltip("根据模型动画调整此值：以此速度冲刺时脚部不应滑动")]
         public float NormalSprintSpeed = 5;
 
-        [Tooltip("Never speed up the sprint animation more than this, to avoid absurdly fast movement")]
+        [Tooltip("冲刺动画的最大加速倍数，避免出现不合理的快速移动")]
         public float MaxSprintScale = 1.4f;
 
-        [Tooltip("Scale factor for the overall speed of the jump animation")]
+        [Tooltip("跳跃动画整体速度的缩放系数")]
         public float JumpAnimationScale = 0.65f;
 
         SimplePlayerControllerBase m_Controller;

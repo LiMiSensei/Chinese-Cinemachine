@@ -1,29 +1,27 @@
-# Cinemachine Spline Dolly LookAt Targets
+# Cinemachine 样条线移动器看向目标（Cinemachine Spline Dolly LookAt Targets）
 
-![Spline Dolly LookAt Targets Inspector](images/SplineDollyLookAtTargetsInspector.png)
+![样条线移动器看向目标检视面板](images/SplineDollyLookAtTargetsInspector.png)
 
-This CinemachineCamera __Rotation Control__ behaviour lets you assign LookAt targets to points on a spline, so that as the camera arrives at the position on the spline, it looks at the specified place.
+此 Cinemachine 相机（CinemachineCamera）的**旋转控制（Rotation Control）** 行为，允许你为样条线（Spline）上的特定点分配“看向目标（LookAt Target）”——这样，当相机移动到样条线上的对应位置时，就会朝向预设的目标方向。
 
-It's useful for creating curated dolly shots with specified aim targets along the way.  This behaviour eliminates the need to provide rotation animations for the camera that are synchronized with the spline position animation.  LookAt points are anchored to specific spline positions, and because they specify a LookAt target point, the appropriate rotation angles get computed dynamically.  As a result, the rotation animation is more robust and less likely to break if the spline is modified.
+该行为适用于创建“定制化移动镜头（curated dolly shots）”，即在镜头沿路径移动的过程中，可预设多个瞄准目标。使用此行为后，无需再为相机制作与样条线位置动画同步的旋转动画：“看向点（LookAt Point）”会锚定在样条线的特定位置上，且由于这些点明确了相机的瞄准目标，相应的旋转角度会被动态计算出来。因此，即便样条线后续被修改，旋转动画也更稳定，不易出现异常。
 
-To use this behaviour, select it in the Rotation Control section of the CinemachineCamera inspector, or just add it manually to a CinemachineCamera.  Note that a CinemachineSplineDolly behaviour is required in the Position Control section of the CinemachineCamera.  Then, add Data Points to the array.
-
-### Scene View Tool
-
-When the LookAtDataOnSpline is selected in the inspector, a Scene View tool is provided to position the LookAt targets along the spline.  The tool lets you add, remove, and reposition LookAt targets.
-
-![Spline Dolly LookAt Targets Tool](images/CinemachineSplineDollyLookAtTargetsTool.png)
+若要使用此行为，可在 Cinemachine 相机检视面板的“旋转控制（Rotation Control）”区域中选择它，或直接手动添加到 Cinemachine 相机上。请注意，Cinemachine 相机的“位置控制（Position Control）”区域必须已添加 **Cinemachine 样条线移动器（CinemachineSplineDolly）** 行为。之后，在该行为的数组中添加“数据点（Data Points）”即可。
 
 
-### Properties
+### 场景视图工具（Scene View Tool）
+当在检视面板中选中“样条线上看向数据（LookAtDataOnSpline）”行为时，会提供一个场景视图工具，用于在样条线上定位“看向目标”。通过该工具，你可以添加、删除“看向目标”，也可以调整其位置。
 
-| Property | Field | Description |
+![样条线移动器看向目标工具](images/CinemachineSplineDollyLookAtTargetsTool.png)
+
+
+### 属性（Properties）
+
+| 属性 | 字段 | 说明 |
 | --- | --- | --- |
-| __Index Unit__ |  | Defines how to interpret the _Index_ field for each data point.  _Knot_ is the recommended value because it remains robust if the spline points change. |
-| __Data Points__ |  | The list of LookAt target on the spline.  As the camera approaches these positions on the spline, the camera will look at the corresponding targets. |
-| | _Index_ | The position on the Spline where the camera should look at the supplied point.  The value is interpreted according to the _Index Unit_ setting. |
-| | _Look At_ | The target object to look at.  It may be None, in which case the Offset will specify a point in world space. |
-| | _Offset_ | The offset (in local coords) from the LookAt target's origin.  If LookAt target is None, this will specify a world-space point. |
-| | _Easing_ | Controls how to ease in and out of this target.  A value of 0 will linearly interpolate between LookAt points, while a value of 1 will slow down and briefly pause the rotation to look at the target. |
-
-
+| **索引单位（Index Unit）** |  | 定义如何解读每个数据点的“索引（Index）”字段。推荐选择“节点（Knot）”模式，因为即便样条线上的点发生变化，此模式下的索引仍能保持稳定。 |
+| **数据点（Data Points）** |  | 样条线上“看向目标”的列表。当相机移动到样条线上的这些位置附近时，会朝向对应的目标。 |
+| | **索引（Index）** | 样条线上相机应朝向对应目标的位置。该数值的解读方式由“索引单位（Index Unit）”设置决定。 |
+| | **看向目标（Look At）** | 相机要瞄准的目标对象。可设为“无（None）”，此时“偏移量（Offset）”字段将指定世界空间中的一个点。 |
+| | **偏移量（Offset）** | 相对于“看向目标”原点的偏移量（以局部坐标为单位）。若“看向目标（Look At）”设为“无（None）”，则此偏移量表示世界空间中的一个点。 |
+| | **缓动（Easing）** | 控制相机朝向该目标时的缓动过渡效果。值为 0 时，相机在不同“看向点”之间会以线性插值方式过渡；值为 1 时，相机旋转速度会减慢，并会短暂暂停以瞄准该目标。 |

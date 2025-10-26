@@ -1,55 +1,57 @@
-# Cinemachine State-Driven Camera
+# Cinemachine 状态驱动相机（Cinemachine State-Driven Camera）
 
-The __Cinemachine State-Driven Camera__ component allows you to associate CinemachineCameras with animation states.  When the state becomes active, the associated CinemachineCamera will also activate.  This allows you to define specific camera settings and behaviours for specific anmation states.  For example, you could have one camera for the Walk state, another for the Run state.  The state-Driven camera will blend between those cameras when the animation target changes states.
+**Cinemachine 状态驱动相机**组件允许你将 Cinemachine 相机（CinemachineCamera）与动画状态相关联。当某个状态激活时，与其关联的 Cinemachine 相机也会随之激活。这使你能够为特定的动画状态定义专属的相机设置和行为。例如，你可以为“行走（Walk）”状态设置一个相机，为“奔跑（Run）”状态设置另一个相机。当动画目标切换状态时，状态驱动相机会在这些相机之间进行混合过渡。
 
-![State-Driven camera with three child CinemachineCameras (red)](images/CinemachineStateDrivenChildren.png)
+![带有三个子级 Cinemachine 相机（红色）的状态驱动相机](images/CinemachineStateDrivenChildren.png)
 
-The animation target for a State-Driven Camera is a GameObject with an [Animator](https://docs.unity3d.com/Manual/class-Animator.html) component controlled by an [Animator Controller](https://docs.unity3d.com/Manual/class-AnimatorController.html).
+状态驱动相机的动画目标是一个带有[动画器（Animator）](https://docs.unity3d.com/Manual/class-Animator.html)组件的游戏对象，该组件由[动画控制器（Animator Controller）](https://docs.unity3d.com/Manual/class-AnimatorController.html)控制。
 
-Assign normal __Tracking Targets__ to each child CinemachineCamera. If a child CinemachineCamera has no __Tracking Target__, the State-Driven camera can provide its own as a fallback.
+为每个子级 Cinemachine 相机指定常规的**跟踪目标（Tracking Targets）**。如果某个子级 Cinemachine 相机没有设置**跟踪目标**，状态驱动相机可以提供自己的目标作为备用。
 
-State-Driven Camera has a list that assigns child CinemachineCameras to animation states. You can define default and custom blends between the State-Driven children.  You don't need to define cameras for all the states.  If you define a camera for the default state, it will be used for any state that doesn't have a specific camera defined.
+状态驱动相机包含一个列表，用于将子级 Cinemachine 相机分配给不同的动画状态。你可以定义子级相机之间的默认混合和自定义混合。无需为所有状态都定义相机：如果为默认状态定义了相机，那么该相机将用于所有未指定专属相机的状态。
 
-If multiple cameras are defined for any given state, the State-Driven camera will choose the one with the highest priority.  If multiple cameras for the same state have the same priority, the State-Driven camera will choose the one that appears earliest in the list.
+如果为某个状态定义了多个相机，状态驱动相机会选择优先级最高的那个；如果同一状态的多个相机优先级相同，则选择列表中出现位置最早的那个。
 
-In the Inspector, the State-Driven camera lists its CinemachineCamera children. Use this list to add and delete child CinemachineCameras, and assign priorities.
+在检视面板中，状态驱动相机会列出其所有子级 Cinemachine 相机。你可以通过该列表添加或删除子级 Cinemachine 相机，并分配优先级。
 
-![Properties for Cinemachine State-Driven camera](images/CinemachineStateDrivenCamera.png)
+![Cinemachine 状态驱动相机的属性](images/CinemachineStateDrivenCamera.png)
 
-To create a State-Driven camera:
 
-1. Set up the animation target GameObject to [control it with an Animator Controller](https://docs.unity3d.com/Manual/AnimatorControllers.html).
+创建状态驱动相机的步骤：
 
-2. In the Unity menu, choose __GameObject > Cinemachine > State-Driven Camera__.<br/>A new State-Driven camera appears in the hierarchy with a new child CinemachineCamera.
+1. 配置动画目标游戏对象，使其由[动画控制器控制](https://docs.unity3d.com/Manual/AnimatorControllers.html)。
 
-3. In the [Inspector](https://docs.unity3d.com/Manual/UsingTheInspector.html), assign the animation target you created in step 1 to the Animated Target property.
+2. 在 Unity 菜单中，选择**游戏对象（GameObject）> Cinemachine > 状态驱动相机（State-Driven Camera）**。<br/>层级窗口中会出现一个新的状态驱动相机，且该相机下会自动创建一个子级 Cinemachine 相机。
 
-4. If needed, add more child CinemachineCameras either by clicking + in CinemachineCamera Children or dragging and dropping existing CinemachineCameras in the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) window.
+3. 在[检视面板（Inspector）](https://docs.unity3d.com/Manual/UsingTheInspector.html)中，将步骤 1 中创建的动画目标分配给“动画目标（Animated Target）”属性。
 
-5. Use the __State__ to assign child CinemachineCameras to the animation states.
+4. 如有需要，可通过点击“Cinemachine 相机子级（CinemachineCamera Children）”中的“+”按钮，或在[层级窗口（Hierarchy）](https://docs.unity3d.com/Manual/Hierarchy.html)中拖放已有的 Cinemachine 相机，来添加更多子级 Cinemachine 相机。
 
-## Properties:
+5. 使用**状态（State）** 选项，将子级 Cinemachine 相机分配给对应的动画状态。
 
-| **Property:** || **Function:** |
+
+## 属性（Properties）：
+
+| **属性** || **功能** |
 |:---|:---|:---|
-| __Solo__ || Toggles whether or not the CinemachineCamera is temporarily live. Use this property to get immediate visual feedback in the [Game view](https://docs.unity3d.com/Manual/GameView.html) to adjust the CinemachineCamera. |
-| __Game View Guides__ || Toggles the visibility of compositional guides in the Game view. These guides are available when Tracking Target specifies a GameObject and the CinemachineCamera has a screen-composition behavior, such as Position Composer or Rotation Composer. This setting is shared by all CinemachineCameras. |
-| __Save During Play__ || Check to [apply the changes while in Play mode](CinemachineSavingDuringPlay.md).  Use this feature to fine-tune a CinemachineCamera without having to remember which properties to copy and paste. This setting is shared by all CinemachineCameras. |
-| __Custom Output__ || This setting controls how the output of this CinemachineCamera is used by the CinemachineBrain.  Enable this to use Priorities or custom CM output channels. |
-|| _Channel_ | This controls which CinemachineBrain will be driven by this camera.  It is needed when there are multiple CinemachineBrains in the scene (for example, when implementing split-screen). |
-|| _Priority_ | This is used to control which of several active CinemachineCameras should be live, when not controlled by Timeline. By default, priority is 0.  Use this to specify a custom priority value. A higher value indicates a higher priority. Negative values are also allowed. Cinemachine Brain chooses the next live CinemachineCamera from all CinemachineCameras that are activated and have the same or higher priority as the current live CinemachineCamera. This property has no effect when using a CinemachineCamera with Timeline. |
-| __Standby Update__ || Controls how often the Cinemachine Camera is updated when the Cinemachine Camera is not Live. Use this property to tune for performance. |
-|  | _Never_ | Only update if the Cinemachine Camera is Live. Don't set this value if you're using the Cinemachine Camera in shot evaluation context. |
-|  | _Always_ | Update the Cinemachine Camera every frame, even when it is not Live. |
-|  | _Round Robin_ | Update the Cinemachine Camera occasionally, at a frequency that depends on how many other Cinemachine Cameras are in Standby. |
-| __Default Target__ || If enabled, this target will be used as fallback if child CinemachineCameras don't specify a Tracking Target of their own |
-| __Show Debug Text__ || If enabled, the current state information will be displayed in the Game View. |
-| __Animated Target__ || The GameObject that contains the Animator Controller. The State-Drive camera reacts to the animation state changes from this GameObject. |
-| __Layer__ || The animation layer to observe in the Animated Target. |
-| __Default Blend__ || The blend which is used if you don’t explicitly define a blend between two CinemachineCameras. |
-| __Custom Blends__ || The asset which contains custom settings for specific child blends. |
-| __State__ || The state to which the CinemachineCamera will be mapped. |
-| __Camera__ || The CinemachineCamera to activate for this state. |
-| __Wait__ || The delay to activate the CinemachineCamera (in seconds) once this state is entered. For example, the animation target moves from an active Walk state, to a Jog state, to a Run state. If the Jog Wait time is set to four seconds, the Walk CinemachineCamera remains active for those four seconds even though the Jog state is now active. If the Jog state duration is less than the Wait time before the animation target passes into another state, the Jog CinemachineCamera will not activate and is bypassed. |
-| __Min__ || The minimum length of time (in seconds) the CinemachineCamera must remain active once it is activated. For example, the animation target enters the Run state from the Jog state. It has spent five seconds in the Jog state before moving to the Run state. The Jog Min is set to 12 seconds. This means that the Jog CinemachineCamera remains the active camera for an additional seven seconds even though the animation target is in the Run state. |
-| __CinemachineCamera Children__ || The list of CinemachineCameras that are children of the State-Driven camera. |
+| **单独激活（Solo）** || 切换该 Cinemachine 相机是否暂时处于激活状态。使用此属性可在[游戏视图（Game view）](https://docs.unity3d.com/Manual/GameView.html)中获得即时视觉反馈，以便调整相机设置。 |
+| **游戏视图辅助线（Game View Guides）** || 切换游戏视图中构图辅助线的可见性。当“跟踪目标（Tracking Target）”指定了某个游戏对象，且该 Cinemachine 相机具有屏幕构图行为（如位置构图器或旋转构图器）时，这些辅助线会生效。此设置对所有 Cinemachine 相机通用。 |
+| **运行时保存（Save During Play）** || 勾选后，可[在运行模式下应用修改](CinemachineSavingDuringPlay.md)。使用此功能可微调 Cinemachine 相机，无需记住需要复制粘贴哪些属性。此设置对所有 Cinemachine 相机通用。 |
+| **自定义输出（Custom Output）** || 此设置控制 Cinemachine 控制器（CinemachineBrain）如何使用该 Cinemachine 相机的输出。启用后可使用优先级（Priorities）或自定义 Cinemachine 输出通道。 |
+|| **通道（Channel）** | 控制哪个 Cinemachine 控制器会被该相机驱动。当场景中有多个 Cinemachine 控制器时（例如实现分屏效果时），需要设置此属性。 |
+|| **优先级（Priority）** | 当不受时间线控制时，用于控制多个激活的 Cinemachine 相机中哪个应处于激活状态。默认优先级为 0，可通过此属性指定自定义优先级值——值越高，优先级越高，也允许使用负值。Cinemachine 控制器会从所有已激活且优先级等于或高于当前激活相机的 Cinemachine 相机中，选择下一个激活的相机。此属性在时间线中使用 Cinemachine 相机时无效。 |
+| **待机更新（Standby Update）** || 控制当 Cinemachine 相机未处于激活状态时的更新频率。可通过此属性优化性能。 |
+|  | **从不（Never）** | 仅当 Cinemachine 相机处于激活状态时才更新。如果要在镜头评估场景中使用该相机，不要设置此值。 |
+|  | **始终（Always）** | 即使 Cinemachine 相机未处于激活状态，也每帧更新。 |
+|  | **轮询（Round Robin）** | 偶尔更新 Cinemachine 相机，更新频率取决于处于待机状态的其他 Cinemachine 相机数量。 |
+| **默认目标（Default Target）** || 若启用，当子级 Cinemachine 相机未指定自己的“跟踪目标”时，将使用此目标作为备用。 |
+| **显示调试文本（Show Debug Text）** || 若启用，当前状态信息将显示在游戏视图中。 |
+| **动画目标（Animated Target）** || 包含动画控制器（Animator Controller）的游戏对象。状态驱动相机会对该游戏对象的动画状态变化做出响应。 |
+| **图层（Layer）** || 要观察的“动画目标（Animated Target）”中的动画图层。 |
+| **默认混合（Default Blend）** || 如果未为两个 Cinemachine 相机之间明确定义混合方式，则使用此默认混合。 |
+| **自定义混合（Custom Blends）** || 包含特定子级相机之间混合的自定义设置的资源。 |
+| **状态（State）** || Cinemachine 相机将要映射到的动画状态。 |
+| **相机（Camera）** || 为此状态激活的 Cinemachine 相机。 |
+| **等待（Wait）** || 进入该状态后，延迟激活 Cinemachine 相机的时间（以秒为单位）。例如，动画目标从激活的“行走（Walk）”状态切换到“慢跑（Jog）”状态，再切换到“奔跑（Run）”状态。如果“慢跑（Jog）”状态的“等待（Wait）”时间设为 4 秒，那么即使“慢跑（Jog）”状态已激活，“行走（Walk）”对应的 Cinemachine 相机仍会保持激活 4 秒。如果在“等待（Wait）”时间结束前，动画目标就切换到了其他状态，且“慢跑（Jog）”状态的持续时间短于“等待（Wait）”时间，那么“慢跑（Jog）”对应的 Cinemachine 相机将不会激活，直接被跳过。 |
+| **最小时长（Min）** || 一旦激活，Cinemachine 相机必须保持激活状态的最短时间（以秒为单位）。例如，动画目标从“慢跑（Jog）”状态进入“奔跑（Run）”状态，且在切换到“奔跑（Run）”状态前，已在“慢跑（Jog）”状态停留了 5 秒。如果“慢跑（Jog）”状态的“最小时长（Min）”设为 12 秒，那么即使动画目标已处于“奔跑（Run）”状态，“慢跑（Jog）”对应的 Cinemachine 相机仍会保持激活状态 7 秒（补足 12 秒）。 |
+| **Cinemachine 相机子级（CinemachineCamera Children）** || 状态驱动相机的所有子级 Cinemachine 相机列表。 |

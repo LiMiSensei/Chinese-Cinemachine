@@ -1,12 +1,12 @@
-# Create a Third Person Camera
+# 创建第三人称相机（Third Person Camera）
 
-While it is possible - and often appropriate - to make a Third Person camera using a [FreeLook Camera](FreeLookCameras.md), there are cases where that doesn't give you all the control you need.  For example, when you want to have an over-the-shoulder offset, or precise aiming control (in a shooter, for instance) and want to keep that control while blending to an aiming camera, it can be difficult to maintain the desired precision with the FreeLook.
+虽然可以（且在很多情况下适合）使用[自由视角相机（FreeLook Camera）](FreeLookCameras.md)制作第三人称相机，但在某些场景下，这种方式无法提供所需的全部控制权。例如，当你希望实现肩后偏移视角，或需要精确的瞄准控制（如在射击游戏中），并且希望在切换到瞄准相机的过程中保持这种控制时，使用自由视角相机往往难以维持预期的精度。
 
-To address this problem, Cinemachine provides the [Third Person Follow](CinemachineThirdPersonFollow.md) behaviour.  The paradigm for using this behaviour is not the same as with the FreeLook.  Specifically, the ThirdPersonCamera is rigidly attached to the Tracking target, and to aim the camera, you must rotate the target itself.  The camera's forward direction will always match the Target's forward direction, even though the camera is offset a little from the target, as specified in the rig settings.
+为解决这一问题，Cinemachine 提供了[第三人称跟随（Third Person Follow）](CinemachineThirdPersonFollow.md)行为。该行为的使用模式与自由视角相机不同：具体而言，第三人称相机（ThirdPersonCamera）会牢牢绑定到跟踪目标（Tracking Target）上；若要调整相机瞄准方向，必须旋转目标本身。无论相机是否按照装备设置（rig settings）相对于目标有轻微偏移，相机的前进方向始终与目标的前进方向保持一致。
 
-This means that aim control is not built into the camera, it must be provided by the target.  Often, the target will be an invisible child object of the player, thus decoupling player aim from player model rotation.  See these Cinemachine samples for examples of how this might be implemented:
+这意味着相机本身不内置瞄准控制功能，该功能必须由目标提供。通常，这个目标会是玩家的一个不可见子对象，从而将玩家的瞄准方向与玩家模型的旋转解耦。关于如何实现这一机制，可参考以下 Cinemachine 示例：
 
- - ThirdPersonWithAimMode
- - ThirdPersonWithRoadieRun
+- 带瞄准模式的第三人称（ThirdPersonWithAimMode）
+- 带跟拍跑的第三人称（ThirdPersonWithRoadieRun）
 
-These samples make use of the [Third Person Aim extension](CinemachineThirdPersonAim.md) which uses raycasts to determine what the camera is aiming at, and ensures that this point is locked to screen center, even if there is procedural noise active on the camera.
+这些示例使用了[第三人称瞄准扩展（Third Person Aim extension）](CinemachineThirdPersonAim.md)，该扩展通过射线检测（raycasts）确定相机的瞄准对象，并确保即使相机启用了程序化噪声（procedural noise），瞄准点也能锁定在屏幕中心。

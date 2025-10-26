@@ -14,20 +14,17 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineExternalCamera.html")]
     public class CinemachineExternalCamera : CinemachineVirtualCameraBase
     {
-        /// <summary>Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although
-        /// not all combinations make sense.  In the case of conflicting hints, Cinemachine will
-        /// make an arbitrary choice.</summary>
-        [Tooltip("Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although "
-            + "not all combinations make sense.  In the case of conflicting hints, Cinemachine will "
-            + "make an arbitrary choice.")]
+        /// <summary>与此CinemachineCamera之间转场的提示。提示可以组合，尽管并非所有组合都有意义。在提示冲突的情况下，Cinemachine将做出任意选择。</summary>
+        [Tooltip("与此CinemachineCamera之间转场的提示。提示可以组合，尽管"
+            + "并非所有组合都有意义。在提示冲突的情况下，Cinemachine将"
+            + "做出任意选择。")]
         [FormerlySerializedAs("m_PositionBlending")]
         [FormerlySerializedAs("m_BlendHint")]
         public CinemachineCore.BlendHints BlendHint = 0;
 
-        /// <summary>The object that the camera is looking at.  Setting this may improve the
-        /// quality of the blends to and from this camera</summary>
-        [Tooltip("The object that the camera is looking at.  Setting this may improve the "
-            + "quality of the blends to and from this camera")]
+        /// <summary>相机正在观察的对象。设置此值可能会改善与此相机之间转场的质量</summary>
+        [Tooltip("相机正在观察的对象。设置此值可能会改善"
+            + "与此相机之间转场的质量")]
         [NoSaveDuringPlay]
         [FormerlySerializedAs("m_LookAt")]
         public Transform LookAtTarget = null;

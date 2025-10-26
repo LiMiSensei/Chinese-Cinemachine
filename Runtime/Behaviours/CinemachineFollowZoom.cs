@@ -16,24 +16,21 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineFollowZoom.html")]
     public class CinemachineFollowZoom : CinemachineExtension
     {
-        /// <summary>The shot width to maintain, in world units, at target distance.
-        /// FOV will be adjusted as far as possible to maintain this width at the
-        /// target distance from the camera.</summary>
-        [Tooltip("The shot width to maintain, in world units, at target distance.")]
+        /// <summary>在目标距离处要维持的镜头宽度（世界单位）。将尽可能调整FOV以在相机目标距离处维持此宽度。</summary>
+        [Tooltip("在目标距离处要维持的镜头宽度（世界单位）。")]
         [FormerlySerializedAs("m_Width")]
         public float Width = 2f;
 
-        /// <summary>Increase this value to soften the aggressiveness of the follow-zoom.
-        /// Small numbers are more responsive, larger numbers give a more heavy slowly responding camera. </summary>
+        /// <summary>增加此值可软化跟随变焦的激进程度。数值越小响应越灵敏，数值越大相机响应越缓慢沉重。</summary>
         [Range(0f, 20f)]
-        [Tooltip("Increase this value to soften the aggressiveness of the follow-zoom.  "
-            + "Small numbers are more responsive, larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("增加此值可软化跟随变焦的激进程度。"
+            + "数值越小响应越灵敏，数值越大相机响应越缓慢沉重。")]
         [FormerlySerializedAs("m_Damping")]
         public float Damping = 1f;
 
-        /// <summary>Range for the FOV that this behaviour will generate.</summary>
+        /// <summary>此行为将生成的FOV范围。</summary>
         [MinMaxRangeSlider(1f, 179f)]
-        [Tooltip("Range for the FOV that this behaviour will generate.")]
+        [Tooltip("此行为将生成的FOV范围。")]
         public Vector2 FovRange = new (3f, 60f);
 
         void Reset()

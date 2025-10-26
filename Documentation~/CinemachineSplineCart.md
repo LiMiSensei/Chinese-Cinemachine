@@ -1,21 +1,21 @@
-# Cinemachine Spline Cart
+# Cinemachine 样条轨道小车（Cinemachine Spline Cart）
+**Cinemachine 样条轨道小车**是一款组件，可将其所在游戏对象的变换（transform）约束到**样条线（Spline）** 上。可使用它让游戏对象沿路径动画移动，或作为 Cinemachine 相机（CinemachineCamera）的跟踪目标。
 
-__Cinemachine Spline Cart__ is a component that constrains the transform of its GameObject to a __Spline__ . Use it to animate a GameObject along a path, or as a tracking target for CinemachineCamera.
 
-## Properties:
+## 属性（Properties）：
 
-| **Property:** || **Function:** |
-|:---|:---|:---
-| __Spline__ || The spline to follow. |
-| __Update Method__ || When to move the cart when speed is non-zero. Use __Update__ or __LateUpdate__ for normal updating and use __Fixed Update__ for updates in sync with the Physics module. |
-| __Position Units__ || The unit of measure for __Position__.  |
-| | _Knot_ | Use knots along the spline. The value 0 represents the first knot on the spline, 1 is the second knot, and so on. Non-integer values represent points in between the knots |
-| | _Distance_ | Distance along the spline, in normal distance units. 0 is the beginning of the spline. |
-| | _Normalized_ | The value 0 represents the beginning of the spline, 1 is the end of the spline. |
-| __Speed__ || Move the cart with this speed. The value is interpreted according to __Position Units__. |
-| __Position__ || The position along the spline at which to place the cart. This can be animated directly or, if the speed is non-zero, will be updated automatically at a time specified by the __Update Method__. The value is interpreted according to __Position Units__. |
-| __Automatic Dolly__ || Controls whether automatic motion along the spline occurs. |
-| __Method__ || Controls how automatic dollying occurs. You can implement your own extensions to this by writing a custom SplineAutoDolly.ISplineAutoDolly class. |
-| | _None_ | No automatic dollying occurs. You must control the CinemachineCamera's position on the spline by setting PathPosition. |
-| | _Fixed Speed_ | Camera travels along the path at a fixed speed, which you can set. |
-| | _Nearest Point To Target_ | Positions the camera at the point on the spline that is closest to the Tracking Target's position. A Tracking Target is required in the CinemachineCamera. You can also specify an offset from the closest point, to tune the camera's position. |
+| **属性** || **功能** |
+|:---|:---|:---|
+| **样条线（Spline）** || 小车要跟随的样条线。 |
+| **更新方式（Update Method）** || 当速度非零时，小车的移动更新时机。常规更新可使用 **Update（更新）** 或 **LateUpdate（延迟更新）**；若需与物理模块同步更新，可使用 **Fixed Update（固定更新）**。 |
+| **位置单位（Position Units）** || “位置（Position）”属性所使用的计量单位。  |
+| | **节点（Knot）** | 以样条线上的节点为单位。值为 0 表示样条线的第一个节点，值为 1 表示第二个节点，以此类推；非整数值表示节点之间的点。 |
+| | **距离（Distance）** | 以常规距离单位（如米、单位长度等）表示的沿样条线距离，值为 0 表示样条线的起点。 |
+| | **归一化（Normalized）** | 值为 0 表示样条线的起点，值为 1 表示样条线的终点（即无论样条线实际长度如何，均将其整体长度视为 1 个单位）。 |
+| **速度（Speed）** || 小车以该速度移动，数值的解读方式与“位置单位（Position Units）”的设置一致。 |
+| **位置（Position）** || 小车在样条线上的放置位置。可直接为该属性制作动画；若速度非零，其值将根据“更新方式（Update Method）”的设定，在指定时机自动更新。数值的解读方式与“位置单位（Position Units）”的设置一致。 |
+| **自动移动（Automatic Dolly）** || 控制是否启用沿样条线的自动移动功能。 |
+| **方式（Method）** || 控制自动移动的实现方式。可通过编写自定义的 SplineAutoDolly.ISplineAutoDolly 类，为此功能扩展自定义逻辑。 |
+| | **无（None）** | 不启用自动移动。需通过设置“路径位置（PathPosition）”属性，手动控制 Cinemachine 相机在样条线上的位置。 |
+| | **固定速度（Fixed Speed）** | 相机以设定的固定速度沿路径移动。 |
+| | **到目标的最近点（Nearest Point To Target）** | 将相机定位到样条线上与“跟踪目标（Tracking Target）”位置最近的点。此模式要求 Cinemachine 相机必须设置跟踪目标；也可指定与最近点的偏移量，用于微调相机位置。 |

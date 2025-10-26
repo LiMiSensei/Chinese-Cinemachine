@@ -1,62 +1,61 @@
-# Control and customize blends
+# 控制和自定义混合过渡（Control and Customize Blends）
 
-Cinemachine offers a number of ways to control how one camera blends to another when the active camera changes.
+当活跃相机发生切换时，Cinemachine 提供了多种方式来控制相机间的混合过渡效果。
 
-* The easiest and most common ways involve setting up assets to define rules about how to blend between specific cameras or families of cameras. 
+* 最简单且最常用的方式是通过创建资源，定义特定相机或相机组之间的混合过渡规则。
+* 对于高阶用户，可根据游戏事件或其他动态条件来控制混合过渡风格，甚至自定义混合过渡算法，但这些技术需要编写一些自定义代码。
 
-* For more advanced users, it's possible to drive blend styles based on game events or other dynamic criteria, and even to customize the blend algorithm itself, but these techniques require some custom coding.
 
-## Default blend
+## 默认混合过渡（Default Blend）
+最基础的策略是在 [Cinemachine 控制器（Cinemachine Brain）](CinemachineBrain.md) 中设置**默认混合过渡（Default Blend）**。对于所有未被更具体的设置和规则覆盖的混合过渡，Cinemachine 都会使用此混合过渡设置。
 
-The most basic strategy is to set up a **Default Blend** in the [Cinemachine Brain](CinemachineBrain.md). Cinemachine uses this blend setting for all blends that are not covered by more specific settings and rules.
+**默认混合过渡**不仅存在于 Cinemachine 控制器中，也存在于可控制一组子相机并实现子相机间混合过渡的 Cinemachine 管理类相机中，例如 [清晰视角相机（Clear Shot Camera）](CinemachineClearShot.md) 和 [状态驱动相机（State-Driven Camera）](CinemachineStateDrivenCamera.md)。
 
-**Default Blend** is available in the Cinemachine Brain, and in Cinemachine Manager Cameras which themselves control and blend between a set of child cameras, such as [Clear Shot Camera](CinemachineClearShot.md) and [State-Driven Camera](CinemachineStateDrivenCamera.md).
 
-## Custom blends with Blender Settings asset
+## 使用混合器设置资源（Blender Settings Asset）实现自定义混合过渡
+所有包含**默认混合过渡（Default Blend）** 属性的 Cinemachine 组件，均同时包含一个**自定义混合过渡（Custom Blends）** 设置，该设置关联着一个 [混合器设置资源（Blender Settings Asset）](CinemachineBlending.md)。
 
-All Cinemachine components that have a **Default Blend** property also have a **Custom Blends** setting which holds a [Blender Settings asset](CinemachineBlending.md).
+混合器设置资源包含一个混合过渡设置列表，当具有特定名称的相机之间进行混合过渡时，会应用列表中的对应设置。通过该资源，你可以为不同相机间的混合过渡设置混合曲线（blend curves）和混合时长（blend durations），从而精确控制单个相机与其他相机的混合效果。
 
-A Blender Settings asset contains a list of blend settings to apply when blending between cameras with specific names. With this asset, you can control how individual cameras blend to other cameras by setting their blend curves and blend durations.
+对于未在**混合器设置（Blender Settings）** 规则中列出的相机，其混合过渡会回退到**默认混合过渡（Default Blend）**。
 
-Any blends with cameras that are not listed in the **Blender Settings** rules fall back to the **Default Blend**.
 
-## Timeline shot overlapping
+## 时间线镜头重叠（Timeline Shot Overlapping）
+通过在时间线的 [Cinemachine 轨道（Cinemachine Track）](concept-timeline.md) 上[重叠放置 Cinemachine 镜头片段](setup-timeline.md)，时间线会直接控制混合过渡效果。这类混合过渡不受“默认混合过渡（Default Blend）”和“使用混合器设置资源的自定义混合过渡”等其他混合控制设置的影响。
 
-Timeline explicitly controls blends that you make by [overlapping Cinemachine Shots](setup-timeline.md) on the Timeline's [Cinemachine Track](concept-timeline.md). These blends are not affected by the other blend control settings like **Default Blend** and **Custom Blends** with Blender Settings assets.
+混合过渡时长由片段的重叠范围决定，你可以通过 Cinemachine 镜头片段中指定的缓动曲线（默认是“淡入-淡出”曲线）来控制混合曲线。
 
-The blend duration is determined by the overlap size, and you can control the blend curve with the easing curves specified in the Cinemachine Shot (which by default are ease-in-ease-out).
+> [!注意]
+> 只有当 Cinemachine 镜头片段重叠时，才能获得这种精确控制。如果使用 [时间线中的激活轨道（Activation Tracks）](https://docs.unity3d.com/Packages/com.unity.timeline@latest/index.html?subfolder=/manual/insp-trk-act.html) 来激活和停用 Cinemachine 相机，那么这类混合过渡始终会应用标准混合控制设置（即“默认混合过渡”和“使用混合器设置资源的自定义混合过渡”）。
 
-> [!NOTE]
-> This precise control is obtained only when overlapping Cinemachine Shots. If you use [Activation Tracks in Timeline](https://docs.unity3d.com/Packages/com.unity.timeline@latest/index.html?subfolder=/manual/insp-trk-act.html) to activate and deactivate Cinemachine Cameras, then the standard blending controls (**Default Blend** and **Custom Blends** with Blender Settings asset) always apply for those blends.
 
-## Blend Hints
+## 混合过渡提示（Blend Hints）
+每个 [Cinemachine 相机（Cinemachine Camera）](CinemachineCamera.md) 都有一个**混合过渡提示（Blend Hint）** 属性，该属性会影响当前相机与其他相机的混合过渡方式。它不控制过渡时机，而是影响过渡算法，因此与上述其他控制方式相互独立。
 
-Each [Cinemachine Camera](CinemachineCamera.md) has a **Blend Hint** property. This influences the way that the camera is blended with other cameras. It doesn't control the timing, but rather the algorithm, so it's orthogonal to the other controls mentioned above. 
+你在该属性中设置的提示，会影响 Cinemachine 对相机位置和旋转的插值计算方式：例如，可控制是否考虑“看向目标（LookAt Target）”，也可控制混合过渡是基于活跃状态下移动的相机，还是基于过渡开始时对即将退出的相机所做的快照。
 
-The hints you set there can affect the way Cinemachine interpolates the camera position and rotation. You can control whether the LookAt target is taken into account. You can also control whether the blend is from a live moving camera or based on a snapshot of the outgoing camera taken at the start of the blend.
 
-## `CinemachineCore.GetBlendOverride`
+## `CinemachineCore.GetBlendOverride` 委托
+每当 Cinemachine 创建混合过渡时，都会调用 `CinemachineCore.GetBlendOverride` 委托。这使你有机会根据任意动态条件，覆盖该混合过渡的设置。
 
-Every time Cinemachine creates a blend, a `CinemachineCore.GetBlendOverride` delegate is called giving you a chance to override the settings of that blend based on arbitrary dynamic criteria.
+如果你为该委托注册了处理函数，该函数可以检查游戏上下文（如当前游戏状态、角色行为等），并决定是保留混合过渡的原始设置，还是覆盖混合过渡风格、混合时长或混合算法等参数。
 
-If you install a handler for this delegate, then your handler can check things like game context and decide either to allow the blend to remain as-is, or to override such things as blend style, blend duration, or blend algorithm.
+这是一种高阶技术，需要通过编写脚本来实现事件处理函数。
 
-This is an advanced technique and requires scripting to implement the event handler.
+> [!注意]
+> 对于通过时间线镜头片段重叠创建的混合过渡，不会调用此委托。因为时间线对混合过渡的控制被设计为“精确可控”，且这种控制无法被覆盖。
 
-> [!NOTE]
-> This delegate is NOT called for blends created by overlapping Timeline Shots. There is an expectation that Timeline precisely controls the blending, and this cannot be overridden.
 
-## `CinemachineCore.GetCustomBlender`
+## `CinemachineCore.GetCustomBlender` 委托
+最高阶的控制方式是直接自定义混合过渡算法本身。Cinemachine 拥有一套复杂的相机状态插值算法（`CameraState.Lerp()`），该算法会在考虑混合过渡提示和“看向目标（LookAt Target）”屏幕位置的同时，对相机的位置、旋转、镜头设置及其他属性进行插值计算。
 
-The most advanced level of control is to customize the blend algorithm itself. Cinemachine has a sophisticated algorithm for lerping camera states (`CameraState.Lerp()`), which interpolates position, rotation, lens settings, and other attributes while taking into account blend hints and the screen position of the lookAt target.
+默认情况下，这些属性的插值速率相同，因此位置、旋转和镜头参数会同步变化。但在某些场景下，你可能需要特殊效果——例如让旋转先完成、让位置沿特定路径移动，或实现其他 Cinemachine 原生不支持的需求。
 
-These things are all lerped at the same rate, so position, rotation, and lens all change together. You may have a situation where you want the rotation to happen first, or the position to follow a path, or some other requirement that Cinemachine doesn't handle natively.
+此时，你可以创建一个自定义混合器（custom blender），使其实现 `CinemachineBlend.IBlender` 接口。通过挂钩（hook）`CinemachineCore.GetCustomBlender` 委托，你可以将该自定义混合器提供给 Cinemachine。无论混合过渡是如何创建的（即使是通过时间线创建），Cinemachine 都会在创建混合过渡时调用此委托。你可以检查待混合的相机及其他任意状态，然后决定提供自定义混合器，或返回 null 以使用默认混合器。
 
-In this case, you can author a custom blender, which implements the `CinemachineBlend.IBlender` interface. You can provide Cinemachine with this blender by hooking into the `CinemachineCore.GetCustomBlender` delegate. Cinemachine calls this delegate whenever a blend is created, even from Timeline. You can check the cameras to be blended and whatever other state you like, and either provide a custom blender or return null for the default one.
+Cinemachine 提供了两个 [示例场景](samples-tutorials.md)——`Early LookAt Custom Blend`（提前看向目标的自定义混合）和 `Perspective To Ortho Custom Blend`（透视到正交的自定义混合），用于演示该技术的实现。使用此功能需要具备一定的编码能力。
 
-Cinemachine comes with two [sample scenes](samples-tutorials.md), `Early LookAt Custom Blend` and `Perspective To Ortho Custom Blend`, which illustrate this technique. Coding profficiency is required.
 
-## Additional resources
-
-* [Camera control and transitions](concept-camera-control-transitions.md)
-* [Cinemachine and Timeline](concept-timeline.md)
+## 其他资源（Additional Resources）
+* [相机控制与过渡](concept-camera-control-transitions.md)
+* [Cinemachine 与时间线](concept-timeline.md)

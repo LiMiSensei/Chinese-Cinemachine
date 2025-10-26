@@ -32,8 +32,8 @@ namespace Unity.Cinemachine
             [FormerlySerializedAs("m_Blend")]
             public CinemachineBlendDefinition Blend;
         }
-        /// <summary>The array containing explicitly defined blends between two Virtual Cameras</summary>
-        [Tooltip("The array containing explicitly defined blends between two Virtual Cameras")]
+        /// <summary>包含两个虚拟相机之间明确定义的混合的数组</summary>
+        [Tooltip("包含两个虚拟相机之间明确定义的混合的数组")]
         [FormerlySerializedAs("m_CustomBlends")]
         public CustomBlend[] CustomBlends = null;
 

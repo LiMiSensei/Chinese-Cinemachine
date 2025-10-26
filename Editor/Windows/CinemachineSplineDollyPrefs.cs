@@ -33,19 +33,19 @@ namespace Unity.Cinemachine.Editor
 
                 EditorGUILayout.BeginHorizontal();
                 SplineRollColor.Value = EditorGUILayout.ColorField(k_SplineRollColorGUIContent, SplineRollColor.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     SplineRollColor.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 SplineWidth.Value = Mathf.Max(0.01f, EditorGUILayout.FloatField(k_SplineWidthGUIContent, SplineWidth.Value));
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     SplineWidth.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 SplineResolution.Value = Mathf.Clamp(EditorGUILayout.IntField(k_SplineResolutionGUIContent, SplineResolution.Value), 3, 100);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     SplineResolution.Reset();
                 EditorGUILayout.EndHorizontal();
 

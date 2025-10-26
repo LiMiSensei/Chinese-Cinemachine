@@ -15,19 +15,19 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     class SimplePlayerShoot : MonoBehaviour, Unity.Cinemachine.IInputAxisOwner
     {
-        [Tooltip("The bullet prefab to instantiate when firing")]
+        [Tooltip("射击时实例化的子弹预制体")]
         public GameObject BulletPrefab;
 
-        [Tooltip("Maximum bullets per second")]
+        [Tooltip("每秒最大子弹发射数量")]
         public float MaxBulletsPerSec = 10;
 
-        [Tooltip("Input Axis for firing.  Value is 0 or 1")]
+        [Tooltip("射击输入轴。值为0或1")]
         public InputAxis Fire = InputAxis.DefaultMomentary;
 
-        [Tooltip("Target to Aim towards. If null, the aim is defined by the forward vector of this gameObject.")]
+        [Tooltip("瞄准目标。如果为空，则由此GameObject的前向向量定义瞄准方向")]
         public AimTargetManager AimTargetManager;
 
-        [Tooltip("Event that's triggered when firing.")]
+        [Tooltip("射击时触发的事件")]
         public UnityEvent FireEvent;
 
         float m_LastFireTime;

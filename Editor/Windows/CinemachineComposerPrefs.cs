@@ -38,31 +38,31 @@ namespace Unity.Cinemachine.Editor
 
                 EditorGUILayout.BeginHorizontal();
                 OverlayOpacity.Value = EditorGUILayout.Slider(k_ComposerOverlayOpacity, OverlayOpacity.Value, 0f, 1f);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     OverlayOpacity.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 HardBoundsOverlayColour.Value = EditorGUILayout.ColorField(k_ComposerHardBoundsOverlay, HardBoundsOverlayColour.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     HardBoundsOverlayColour.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 SoftBoundsOverlayColour.Value = EditorGUILayout.ColorField(k_ComposerSoftBoundsOverlay, SoftBoundsOverlayColour.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     SoftBoundsOverlayColour.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 TargetColour.Value = EditorGUILayout.ColorField(k_ComposerTargetOverlay, TargetColour.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     TargetColour.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 TargetSize.Value = EditorGUILayout.FloatField(k_ComposerTargetOverlayPixels, TargetSize.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     TargetSize.Reset();
                 EditorGUILayout.EndHorizontal();
 

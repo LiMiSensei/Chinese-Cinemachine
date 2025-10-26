@@ -1,22 +1,20 @@
-# Constrain a camera to a path
+# 将相机约束到路径上
 
-Use a [Spline](https://docs.unity3d.com/Packages/com.unity.splines@latest) to constrain the movement of a camera along a predefined and customizable path.
+使用 [样条线（Spline）](https://docs.unity3d.com/Packages/com.unity.splines@latest) 可将相机的移动约束在预设且可自定义的路径上。
 
-A Spline path is a path formed by a Spline in a scene. Use a Spline to specify a fixed course to position or animate a CinemachineCamera. Use the [Spline Dolly](CinemachineSplineDolly.md) behaviour to make your CinemachineCamera follow a Spline path.
+样条线路径是由场景中的样条线形成的路径。通过样条线可指定固定路线，用于定位 Cinemachine 相机（CinemachineCamera）或为其制作动画。借助 [样条线移动器（Spline Dolly）](CinemachineSplineDolly.md) 行为，能让你的 Cinemachine 相机沿样条线路径移动。
 
-![Editing a dolly path in the Scene view](images/CinemachinePathScene.png)
+![在场景视图中编辑移动路径](images/CinemachinePathScene.png)
 
-To create a Cinemachine Camera with a dolly path:
 
-1. In the Unity menu, choose __GameObject > Cinemachine > Dolly Camera with Spline__.
-A new Cinemachine Camera and spline appear in the [Hierarchy]([https://docs.unity3d.com/Manual/Hierarchy.html](https://docs.unity3d.com/Manual/Hierarchy.html)).
+## 创建带有移动路径的 Cinemachine 相机
+1. 在 Unity 菜单中，选择 **游戏对象（GameObject）> Cinemachine > 带样条线的移动相机（Dolly Camera with Spline）**。<br/>[层级窗口（Hierarchy）](https://docs.unity3d.com/Manual/Hierarchy.html) 中会出现一个新的 Cinemachine 相机和一条样条线。
+2. 在 [层级窗口](https://docs.unity3d.com/Manual/Hierarchy.html) 中，选中新创建的移动样条线游戏对象（dolly spline GameObject）。
+3. 在 [检视面板（Inspector）](https://docs.unity3d.com/Manual/UsingTheInspector.html) 或场景视图（Scene View）中，添加并调整路径点（waypoints）。
 
-2. In the [Hierarchy]([https://docs.unity3d.com/Manual/Hierarchy.html](https://docs.unity3d.com/Manual/Hierarchy.html)) window, select the new dolly spline GameObject.
 
-3. In the [Inspector]([https://docs.unity3d.com/Manual/UsingTheInspector.html](https://docs.unity3d.com/Manual/UsingTheInspector.html)) or in the Scene View, add and adjust waypoints.
+任意 Unity 样条线都可作为 Cinemachine 中的路径使用：只需将其拖放到 [样条线移动器](CinemachineSplineDolly.md) 的“样条线（Spline）”属性字段中，Cinemachine 相机就会立即被约束到该样条线上。
 
-Any Unity spline can be used as a path in Cinemachine.  Just drag it into the [Spline Dolly](CinemachineSplineDolly.md) Spline property field, and immediately the CinemachineCamera will be confined to the spline.
+默认情况下，Unity 样条线不包含旋转数据。相机的旋转角度会由样条线上任意点的切线方向，结合世界上方向向量（world Up vector）推导得出。若要添加围绕切线方向的旋转，可使用 [Cinemachine 样条线侧滚（Cinemachine Spline Roll）](CinemachineSplineRoll.md) 行为——通过该行为，你可以为样条线上的任意点指定侧滚（Roll）值。侧滚值用于控制相机围绕样条线对应点切线方向的旋转，让你能更精准地控制相机的最终旋转角度。
 
-By default, Unity Splines contain no rotation data. Camera rotation will be inferred from the spline tangent at any point, combined with the world Up vector. To add rotation about the tangent, you can use the [Cinemachine Spline Roll](CinemachineSplineRoll.md) behaviour. This allows you to specify Roll values for any point along the spline. Roll values are used to rotate the camera about the spline tangent at that point, giving you more control over the camera's final rotation.
-
-If a Cinemachine Spline Roll behaviour is added to the spline, all cameras and dolly carts that use the spline will see it. Alternatively, you can add the Cinemachine Spline Roll behaviour to the Cinemachine Camera itself, in which case the roll will only apply to it.
+若将 Cinemachine 样条线侧滚行为添加到样条线本身，所有使用该样条线的相机和移动小车（dolly cart）都会应用此侧滚效果；此外，你也可以将该行为直接添加到 Cinemachine 相机上，此时侧滚效果仅对该相机生效。

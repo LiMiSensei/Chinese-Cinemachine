@@ -84,7 +84,7 @@ namespace Unity.Cinemachine.Editor
         }
 
         /// <summary>The array containing Preset definitions for nonphysical cameras</summary>
-        [Tooltip("The array containing Preset definitions, for nonphysical cameras")]
+        [Tooltip("用于非物理相机的包含预设定义的数组")]
         public List<Preset> Presets = new();
 
         /// <summary>Get the index of the preset that matches the lens settings</summary>

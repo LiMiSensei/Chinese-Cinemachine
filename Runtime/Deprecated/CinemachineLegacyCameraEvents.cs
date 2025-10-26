@@ -21,8 +21,8 @@ namespace Unity.Cinemachine
         [Serializable]
         public class OnCameraLiveEvent : UnityEvent<ICinemachineCamera, ICinemachineCamera> {}
 
-        /// <summary>This event fires when the CinemachineCamera goes Live</summary>
-        [Tooltip("This event fires when the CinemachineCamera goes Live")]
+        /// <summary>当CinemachineCamera变为活动状态时触发此事件</summary>
+        [Tooltip("当CinemachineCamera变为活动状态时触发此事件")]
         public OnCameraLiveEvent OnCameraLive = new ();
 
         CinemachineVirtualCameraBase m_Vcam;

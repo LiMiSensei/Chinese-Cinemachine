@@ -22,20 +22,20 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public class SimplePlayerOnSurface : MonoBehaviour
     {
-        [Tooltip("How fast the player rotates to match the surface normal")]
+        [Tooltip("玩家旋转以匹配表面法线的速度")]
         public float RotationDamping = 0.2f;
-        [Tooltip("What layers to consider as ground")]
+        [Tooltip("被视为地面的层")]
         public LayerMask GroundLayers = 1;
-        [Tooltip("How far to raycast when checking for ground")]
+        [Tooltip("检测地面时的射线投射距离")]
         public float MaxRaycastDistance = 5;
-        [Tooltip("The approximate height of the player.  Used to compute where raycasts begin")]
+        [Tooltip("玩家的近似高度。用于计算射线投射的起始位置")]
         public float PlayerHeight = 1;
 
-        [Tooltip("If enabled, then player will fall towards the nearest surface when in free fall")]
+        [Tooltip("如果启用，玩家在自由落体时将向最近的表面下落")]
         public bool FreeFallRecovery;
 
-        [Header("Events")]
-        [Tooltip("This event is sent when the player moves from one surface to another.")]
+        [Header("事件")]
+        [Tooltip("当玩家从一个表面移动到另一个表面时发送此事件")]
         public UnityEvent<Collider> SurfaceChanged = new ();
 
         Vector3 m_PreviousGroundPoint;

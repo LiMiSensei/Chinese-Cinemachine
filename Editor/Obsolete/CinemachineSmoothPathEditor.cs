@@ -60,7 +60,7 @@ namespace Unity.Cinemachine.Editor
             DrawRemainingPropertiesInInspector();
 
             // Path length
-            EditorGUILayout.LabelField("Path Length", Target.PathLength.ToString());
+            EditorGUILayout.LabelField("路径长度", Target.PathLength.ToString());
 
             // Waypoints
             EditorGUI.BeginChangeCheck();

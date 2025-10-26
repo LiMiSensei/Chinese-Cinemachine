@@ -22,13 +22,13 @@ namespace Unity.Cinemachine.Editor
 
                 EditorGUILayout.BeginHorizontal();
                 CameraSphereColor.Value = EditorGUILayout.ColorField("Camera Sphere Color", CameraSphereColor.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     CameraSphereColor.Reset();
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 CameraPathColor.Value = EditorGUILayout.ColorField("Camera Path Color", CameraPathColor.Value);
-                if (GUILayout.Button("Reset"))
+                if (GUILayout.Button("重置"))
                     CameraPathColor.Reset();
                 EditorGUILayout.EndHorizontal();
 

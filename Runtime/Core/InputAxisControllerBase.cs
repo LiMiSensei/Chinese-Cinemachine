@@ -296,7 +296,7 @@ namespace Unity.Cinemachine
             public DefaultInputAxisDriver Driver;
         }
 
-        [Header("Driven Axes")]
+        [Header("驱动轴")]
         [InputAxisControllerManager]
         [SerializeField, NoSaveDuringPlay] internal InputAxisControllerManager<T> m_ControllerManager = new ();
 

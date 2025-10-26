@@ -17,26 +17,25 @@ namespace Unity.Cinemachine
     public class CinemachineInputProvider : MonoBehaviour, AxisState.IInputAxisProvider
     {
         /// <summary>
-        /// Leave this at -1 for single-player games.
-        /// For multi-player games, set this to be the player index, and the actions will
-        /// be read from that player's controls
+        /// 对于单玩家游戏，请保持此值为-1。
+        /// 对于多玩家游戏，将其设置为玩家索引，动作将从该玩家的控件读取
         /// </summary>
-        [Tooltip("Leave this at -1 for single-player games.  "
-            + "For multi-player games, set this to be the player index, and the actions will "
-            + "be read from that player's controls")]
+        [Tooltip("对于单玩家游戏，请保持此值为-1。"
+            + "对于多玩家游戏，将其设置为玩家索引，动作将从该玩家的控件读取")]
         public int PlayerIndex = -1;
 
-        /// <summary>If set, Input Actions will be auto-enabled at start</summary>
-        [Tooltip("If set, Input Actions will be auto-enabled at start")]
+        /// <summary>如果设置，输入动作将在启动时自动启用</summary>
+        [Tooltip("如果设置，输入动作将在启动时自动启用")]
         public bool AutoEnableInputs = true;
 
-        /// <summary>Vector2 action for XY movement</summary>
-        [Tooltip("Vector2 action for XY movement")]
+        /// <summary>用于XY移动的Vector2动作</summary>
+        [Tooltip("用于XY移动的Vector2动作")]
         public InputActionReference XYAxis;
 
-        /// <summary>Float action for Z movement</summary>
-        [Tooltip("Float action for Z movement")]
+        /// <summary>用于Z移动的Float动作</summary>
+        [Tooltip("用于Z移动的Float动作")]
         public InputActionReference ZAxis;
+
 
         /// <summary>
         /// Implementation of AxisState.IInputAxisProvider.GetAxisValue().

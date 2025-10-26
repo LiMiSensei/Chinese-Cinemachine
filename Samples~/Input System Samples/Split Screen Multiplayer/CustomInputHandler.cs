@@ -9,7 +9,7 @@ namespace Unity.Cinemachine.Samples
     // be on the same GameObject, or specified in the PlayerInput field.
     class CustomInputHandler : InputAxisControllerBase<CustomInputHandler.Reader>
     {
-        [Header("Input Source Override")]
+        [Header("输入源覆盖")]
         public PlayerInput PlayerInput;
 
         void Awake()

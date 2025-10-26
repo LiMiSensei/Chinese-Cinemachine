@@ -425,7 +425,7 @@ namespace Unity.Cinemachine.Editor
                     {
                         var fixedPrefabContents = PrefabUtility.LoadPrefabContents(srcFolder + prefab.Name);
                         if (PrefabUtility.SaveAsPrefabAsset(fixedPrefabContents, brokenPrefab) == null)
-                            Debug.Log($"Error saving {brokenPrefab}");
+                            Debug.Log($"保存错误 {brokenPrefab}");
                         PrefabUtility.UnloadPrefabContents(fixedPrefabContents);
                         didSomething = true;
                     }

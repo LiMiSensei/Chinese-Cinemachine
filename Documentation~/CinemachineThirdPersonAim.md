@@ -1,25 +1,27 @@
-# Cinemachine Third Person Aim Extension
+# Cinemachine 第三人称瞄准扩展（Cinemachine Third Person Aim Extension）
 
-This extension is a complement to the [ThirdPersonFollow component](CinemachineThirdPersonFollow.md) in the Cinemachine Camera.  Its purpose is to detect the object that the camera is aiming at.
+此扩展是 Cinemachine 相机中 [第三人称跟随组件（ThirdPersonFollow component）](CinemachineThirdPersonFollow.md) 的补充组件，其用途是检测相机正瞄准的对象。
 
-To accomplish this, the extension projects a ray from the camera's position along its forward axis, to detect the first object that intersects with that ray. The intersection point is then placed in the CinemachineCamera's `state.ReferenceLookAt`. That is the point that the camera will be considered to be looking at for algorithms that need to know it (for example, blending).
+为实现这一功能，该扩展会从相机位置沿其前向轴投射一条射线，检测与该射线相交的第一个对象。随后，相交点会被赋值到 Cinemachine 相机的 `state.ReferenceLookAt` 属性中。对于需要知晓相机“瞄准点”的算法（例如混合过渡算法）而言，此相交点将被视为相机的瞄准目标。
 
-Additionally, if **Noise Cancellation** is enabled, you can use this extension to stabilize the target at the screen center, even when the camera has handheld noise enabled. Rotational noise is canceled out, but if the camera has positional noise (and a non-zero noise offset), that is preserved, and the aim corrected to maintain target stability on the screen.
+此外，若启用了**噪声抵消（Noise Cancellation）** 功能，即使相机启用了手持噪声效果，也可通过此扩展将目标稳定在屏幕中心。旋转噪声会被抵消，但如果相机存在位置噪声（且噪声偏移量非零），该位置噪声会被保留，同时系统会修正瞄准方向，以确保目标在屏幕上保持稳定。
 
-> [!NOTE]
-> The _ThirdPersonWithAimMode_ [sample scene](samples-tutorials.md) gives an example of use of this extension.
+> [!注意]
+> **第三人称带瞄准模式（ThirdPersonWithAimMode）** [示例场景（sample scene）](samples-tutorials.md) 提供了此扩展的使用示例。
 
-## Properties:
 
-| **Property:** | **Function:** |
+## 属性（Properties）：
+
+| **属性** | **功能** |
 |:---|:---|
-| __Aim Collision Filter__ | Objects on these layers will be detected. |
-| __Ignore Tag__ | Objects with this tag are ignored. It's a good idea to set this field to the target's tag.  |
-| __Aim Distance__ | How far to project the object detection ray.  |
-| __Noise Cancellation__ | When this is enabled, the aim target will be stabilized on the screen when handheld noise is present on the camera.  This will only work if the Pivot Offset in the Noise component is nonzero.  |
+| **瞄准碰撞筛选器（Aim Collision Filter）** | 仅检测这些图层（Layer）上的对象。 |
+| **忽略标签（Ignore Tag）** | 带有此标签（Tag）的对象会被忽略。建议将此字段设置为目标对象的标签。 |
+| **瞄准距离（Aim Distance）** | 对象检测射线的投射距离。 |
+| **噪声抵消（Noise Cancellation）** | 启用后，当相机存在手持噪声效果时，瞄准目标会在屏幕上保持稳定。此功能仅在噪声组件（Noise component）中的“轴心偏移（Pivot Offset）”非零时生效。 |
 
-## Parallax issues
 
-Since there is generally an offset between the player firing origin (where the bullets come from) and the camera position, if the player were to fire a shot along its forward axis (which in the third person rig is always parallel to the camera's forward axis), then it would always miss the target by exactly that offset.  For most third-person scenarios, the appropriate thing to do is to just _ignore the discrepancy_ and pretend that the camera's target _is_ what the player is aiming at, and just fire towards that point.
+## 视差问题（Parallax issues）
 
-In some situations, however, there might be an object that obstructs the player's view of the target but not the camera's.  In those cases, if the player were to fire it would hit that other object and not the camera's target.  Cinemachine checks for this condition and calculates the actual point that the player would hit if it were to fire. That point is available in the API (`CinemachineThirdPersonAim.AimTarget`).
+通常情况下，玩家发射原点（子弹发射的位置）与相机位置之间存在偏移。若玩家沿自身前向轴（在第三人称装备中，该轴始终与相机前向轴平行）发射子弹，子弹会因上述偏移而始终无法命中目标。在大多数第三人称场景中，合理的处理方式是**忽略这种偏差**，默认相机瞄准的目标就是玩家的瞄准目标，并直接向该目标点发射即可。
+
+但在某些情况下，可能存在某个对象遮挡了玩家对目标的视线，却未遮挡相机对目标的视线。这种情况下，玩家发射的子弹会击中该遮挡对象，而非相机瞄准的目标。Cinemachine 会检测这种情况，并计算出玩家实际发射时会命中的点。该命中点可通过 API（`CinemachineThirdPersonAim.AimTarget`）获取。

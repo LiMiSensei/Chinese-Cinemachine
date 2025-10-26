@@ -1,47 +1,48 @@
-# Post Processing Extension
+# 后处理扩展（Post Processing Extension）
 
-Use the Cinemachine Post Processing [extension](concept-procedural-motion.md#extensions) to attach a Postprocessing V2 profile to a CinemachineCamera.
+使用 Cinemachine 后处理[扩展](concept-procedural-motion.md#extensions)，可将 Postprocessing V2 配置文件附加到 Cinemachine 相机（CinemachineCamera）上。
 
-**Note 1**: Unity recommends using Postprocessing V2 instead of Postprocessing V1.
+**注意 1**：Unity 推荐使用 Postprocessing V2 而非 Postprocessing V1。
 
-**Note 2**: With HDRP and URP 7 and up, The PostProcessing package is deprecated, and is implemented natively by HDRP and URP.  In that case, please see the __CinemachineVolumeSettings__ extension.
+**注意 2**：在 HDRP 和 URP 7 及更高版本中，PostProcessing 包已被弃用，其功能由 HDRP 和 URP 原生实现。这种情况下，请参阅 **CinemachineVolumeSettings** 扩展。
 
-The Cinemachine Post Processing extension holds a Post-Processing Profile asset to apply to a CinemachineCamera when it is activated. If the camera is blending with another CinemachineCamera, then the blend weight is applied to the Post Process effects also.
-
-Before attaching post processing profiles to CinemachineCameras, you first need to set up your project to use post processing.
-
-To set up a project to use Post Processing V2 with Cinemachine:
-
-1. [Install](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html) the Postprocessing V2 package.
-
-2. Select your Unity camera with Cinemachine Brain in the [Scene](https://docs.unity3d.com/Manual/UsingTheSceneView.html) view.
-
-3. [Add the component](https://docs.unity3d.com/Manual/UsingComponents.html) named __Post-Process Layer__.  This will enable Post Process profiles to affect the Camera.
-
-To add a Post Process profile to a CinemachineCamera
-
-4. Select your CinemachineCamera in the [Scene](https://docs.unity3d.com/Manual/UsingTheSceneView.html) view or [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) window.
-
-5. In the [Inspector](https://docs.unity3d.com/Manual/UsingTheInspector.html), choose __Add Extension > CinemachinePostProcessing__, then configre the Profile asset to have the effects you want when this CinemachineCamera is live.
+Cinemachine 后处理扩展包含一个后处理配置文件（Post-Processing Profile）资源，当 Cinemachine 相机激活时，该配置文件会应用于相机。若该相机正在与另一台 Cinemachine 相机进行混合过渡，混合权重也会应用到后处理效果上。
 
 
-> [!NOTE]
-> In some cases, particularly when blending to and from empty profiles, you might get a sudden change or pop in the effects.  If this happens, the best solution is to avoid blending to and from empty profiles by adding effects with default settings.  If this is not practical, then you can add `CINEMACHINE_TRANSPARENT_POST_PROCESSING_BLENDS` to your project's scripting defines.  However, this has the side effect of making postprocessing blends more transparent in their center, possibly revealing global effects behind them.
+在将后处理配置文件附加到 Cinemachine 相机之前，需要先设置项目以支持后处理功能。
 
-## Properties:
+为 Cinemachine 配置使用 Post Processing V2 的项目步骤：
 
-| **Property:** || **Function:** |
+1. [安装](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html) Postprocessing V2 包。
+
+2. 在[场景视图（Scene view）](https://docs.unity3d.com/Manual/UsingTheSceneView.html)中，选中带有 Cinemachine 控制器（Cinemachine Brain）的 Unity 相机。
+
+3. [添加组件](https://docs.unity3d.com/Manual/UsingComponents.html) **Post-Process Layer**（后处理层）。这将使后处理配置文件能够对相机产生影响。
+
+
+为 Cinemachine 相机添加后处理配置文件的步骤：
+
+4. 在[场景视图（Scene view）](https://docs.unity3d.com/Manual/UsingTheSceneView.html)或[层级窗口（Hierarchy）](https://docs.unity3d.com/Manual/Hierarchy.html)中，选中你的 Cinemachine 相机。
+
+5. 在[检视面板（Inspector）](https://docs.unity3d.com/Manual/UsingTheInspector.html)中，选择 **Add Extension > CinemachinePostProcessing**（添加扩展 > Cinemachine 后处理），然后配置该配置文件资源，使其包含你希望该 Cinemachine 相机激活时应用的效果。
+
+
+> [!注意]
+> 在某些情况下，尤其是在与空配置文件进行混合过渡时，效果可能会突然变化或出现跳变。若出现这种情况，最佳解决方案是通过添加具有默认设置的效果，避免与空配置文件进行混合过渡。如果不可行，你可以在项目的脚本定义中添加 `CINEMACHINE_TRANSPARENT_POST_PROCESSING_BLENDS`。但这样做的副作用是，后处理混合过渡的中心会更透明，可能会显示出其背后的全局效果。
+
+
+## 属性（Properties）：
+
+| **属性** || **功能** |
 |:---||:---|
-| __Profile__ || The Post-Processing profile to activate when this CinemachineCamera is live. |
-| __Focus Tracks Target__ || This is obsolete, please use __Focus Tracking__. |
-| __Focus Tracking__ || If the profile has the appropriate overrides, will set the base focus distance to be the distance from the selected target to the camera. The __Focus Offset__ field will then modify that distance. |
-|| _None_ | No focus tracking. |
-|| _Look At Target_ | Focus offset is relative to the LookAt target. |
-|| _Follow Target_ | Focus offset is relative to the Follow target. |
-|| _Custom Target_ | Focus offset is relative to the Custom target. |
-|| _Camera_ | Focus offset is relative to the camera |
-| __Focus Target__ || The target to use if __Focus Tracks Target__ is set to _Custom Target_.|
-| __Focus Offset__ || Used when __Focus Tracking__ is not _None_.  Offsets the sharpest point away from the location of the focus target. |
-| __Weight__ || The weight of the dynamic volume that will be created, when the camera is fully blended in.  This will blend to and from 0 along with the camera.|
-
-
+| **配置文件（Profile）** || 当该 Cinemachine 相机激活时，要应用的后处理配置文件。 |
+| **焦点跟踪目标（Focus Tracks Target）** || 此属性已过时，请使用 **焦点跟踪（Focus Tracking）**。 |
+| **焦点跟踪（Focus Tracking）** || 若配置文件有相应的覆盖设置，会将基础对焦距离设为所选目标到相机的距离。**焦点偏移（Focus Offset）** 字段会进一步调整该距离。 |
+|| **无（None）** | 不进行焦点跟踪。 |
+|| **看向目标（Look At Target）** | 焦点偏移相对于“看向目标（LookAt target）”。 |
+|| **跟随目标（Follow Target）** | 焦点偏移相对于“跟随目标（Follow target）”。 |
+|| **自定义目标（Custom Target）** | 焦点偏移相对于“自定义目标（Custom target）”。 |
+|| **相机（Camera）** | 焦点偏移相对于相机。 |
+| **焦点目标（Focus Target）** || 当 **焦点跟踪（Focus Tracks Target）** 设为“自定义目标（Custom Target）”时，所使用的目标。 |
+| **焦点偏移（Focus Offset）** || 当 **焦点跟踪（Focus Tracking）** 未设为“无（None）”时使用。用于调整离焦目标位置的最清晰点距离。 |
+| **权重（Weight）** || 当相机完全混合到位时，将创建的动态体积的权重。该权重会随相机的混合过渡在 0 和设定值之间变化。 |

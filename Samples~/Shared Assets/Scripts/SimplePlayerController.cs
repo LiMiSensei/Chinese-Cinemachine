@@ -30,13 +30,13 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public abstract class SimplePlayerControllerBase : MonoBehaviour, Unity.Cinemachine.IInputAxisOwner
     {
-        [Tooltip("Ground speed when walking")]
+        [Tooltip("行走时的地面速度")]
         public float Speed = 1f;
-        [Tooltip("Ground speed when sprinting")]
+        [Tooltip("冲刺时的地面速度")]
         public float SprintSpeed = 4;
-        [Tooltip("Initial vertical speed when jumping")]
+        [Tooltip("跳跃时的初始垂直速度")]
         public float JumpSpeed = 4;
-        [Tooltip("Initial vertical speed when sprint-jumping")]
+        [Tooltip("冲刺跳跃时的初始垂直速度")]
         public float SprintJumpSpeed = 6;
 
         public Action PreUpdate;
@@ -44,21 +44,21 @@ namespace Unity.Cinemachine.Samples
         public Action StartJump;
         public Action EndJump;
 
-        [Header("Input Axes")]
-        [Tooltip("X Axis movement.  Value is -1..1.  Controls the sideways movement")]
+        [Header("输入轴")]
+        [Tooltip("X轴移动。值为-1..1。控制横向移动")]
         public InputAxis MoveX = InputAxis.DefaultMomentary;
 
-        [Tooltip("Z Axis movement.  Value is -1..1. Controls the forward movement")]
+        [Tooltip("Z轴移动。值为-1..1。控制前后移动")]
         public InputAxis MoveZ = InputAxis.DefaultMomentary;
 
-        [Tooltip("Jump movement.  Value is 0 or 1. Controls the vertical movement")]
+        [Tooltip("跳跃动作。值为0或1。控制垂直移动")]
         public InputAxis Jump = InputAxis.DefaultMomentary;
 
-        [Tooltip("Sprint movement.  Value is 0 or 1. If 1, then is sprinting")]
+        [Tooltip("冲刺动作。值为0或1。如果为1，则处于冲刺状态")]
         public InputAxis Sprint = InputAxis.DefaultMomentary;
 
-        [Header("Events")]
-        [Tooltip("This event is sent when the player lands after a jump.")]
+        [Header("事件")]
+        [Tooltip("玩家跳跃后落地时发送此事件。")]
         public UnityEvent Landed = new ();
 
         /// Report the available input axes to the input axis controller.
@@ -111,33 +111,33 @@ namespace Unity.Cinemachine.Samples
     /// </summary>
     public class SimplePlayerController : SimplePlayerControllerBase, ITeleportable
     {
-        [Tooltip("Transition duration (in seconds) when the player changes velocity or rotation.")]
+        [Tooltip("玩家改变速度或旋转时的过渡持续时间（秒）")]
         public float Damping = 0.5f;
 
-        [Tooltip("Makes the player strafe when moving sideways, otherwise it turns to face the direction of motion.")]
+        [Tooltip("当横向移动时让玩家侧向移动，否则会转向面对移动方向")]
         public bool Strafe = false;
 
         public enum ForwardModes { Camera, Player, World };
         public enum UpModes { Player, World };
 
-        [Tooltip("Reference frame for the input controls:\n"
-            + "<b>Camera</b>: Input forward is camera forward direction.\n"
-            + "<b>Player</b>: Input forward is Player's forward direction.\n"
-            + "<b>World</b>: Input forward is World forward direction.")]
+        [Tooltip("输入控制的参考坐标系：\n"
+            + "<b>摄像机</b>：前进输入是摄像机的前方向。\n"
+            + "<b>玩家</b>：前进输入是玩家的前方向。\n"
+            + "<b>世界</b>：前进输入是世界的前方向。")]
         public ForwardModes InputForward = ForwardModes.Camera;
 
-        [Tooltip("Up direction for computing motion:\n"
-            + "<b>Player</b>: Move in the Player's local XZ plane.\n"
-            + "<b>World</b>: Move in global XZ plane.")]
+        [Tooltip("计算运动的向上方向：\n"
+            + "<b>玩家</b>：在玩家的局部XZ平面内移动。\n"
+            + "<b>世界</b>：在全局XZ平面内移动。")]
         public UpModes UpMode = UpModes.World;
 
-        [Tooltip("If non-null, take the input frame from this camera instead of Camera.main. Useful for split-screen games.")]
+        [Tooltip("如果非空，从此摄像机获取输入参考坐标系而不是Camera.main。适用于分屏游戏。")]
         public Camera CameraOverride;
 
-        [Tooltip("Layers to include in ground detection via Raycasts.")]
+        [Tooltip("通过射线检测包含在地面检测中的层。")]
         public LayerMask GroundLayers = 1;
 
-        [Tooltip("Force of gravity in the down direction (m/s^2)")]
+        [Tooltip("向下方向的重力大小（米/秒^2）")]
         public float Gravity = 10;
 
         const float kDelayBeforeInferringJump = 0.3f;

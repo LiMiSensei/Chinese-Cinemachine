@@ -51,8 +51,8 @@ namespace Unity.Cinemachine.Editor
                 if (notUpgradable != null)
                 {
                     notUpgradable.name = go.name + k_UnupgradableTag;
-                    Debug.LogWarning("Upgrader: " + go.name + " may not have been fully upgraded " +
-                        "automatically.  A reference copy of the original was saved to " + notUpgradable.name);
+                    Debug.LogWarning("升级器：" + go.name + " 可能未能完全自动升级。" +
+                                    "原始对象的参考副本已保存至 " + notUpgradable.name);
                 }
             }
             catch (Exception e)
@@ -297,7 +297,7 @@ namespace Unity.Cinemachine.Editor
             {
                 m_CurrentSceneOrPrefab = m_PrefabManager.GetPrefabAssetPath(p);
 #if DEBUG_HELPERS
-                Debug.Log("Upgrading prefab asset: " + m_CurrentSceneOrPrefab);
+                Debug.Log("正在升级预制资源：" + m_CurrentSceneOrPrefab);
 #endif
                 try
                 {
