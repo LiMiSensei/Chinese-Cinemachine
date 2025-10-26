@@ -1,12 +1,16 @@
-# Hard Look At
+# 强制看向目标（Hard Look At）
 
-This CinemachineCamera __Rotation Control__ behaviour rotates the camera to keep the __Look At__ target in the center of the camera's frame.  Optionally, an offset can be specified in order to look at a point that is offset from the LookAt target's origin.
-This is useful for looking at a character's head, or some other point of interest.
+此 Cinemachine 相机的**旋转控制（Rotation Control）** 行为会通过旋转相机，使“看向目标（Look At Target）”始终保持在相机画面的中心。此外，还可选择性地设置一个偏移量，让相机看向偏离“看向目标”原点的某个点。
+该功能适用于聚焦角色头部或其他感兴趣的特定点。
 
-### Properties
 
-| Property | Description |
+### 属性（Properties）
+
+| 属性 | 说明 |
 | --- | --- |
-| __Look At Offset__ | Offset from the LookAt target's origin, in target's local space.  The camera will look at this point. |
+| **看向偏移（Look At Offset）** | 在“看向目标”的局部空间中，相对于目标原点的偏移量。相机将朝向此偏移点进行瞄准。 |
 
 
+### 术语说明（游戏开发场景适配）
+- **Hard Look At**：强制看向目标，指相机旋转完全以“看向目标”为基准，确保目标始终处于画面中心，无额外构图偏移（区别于“柔性看向”可能允许目标在画面内有一定活动范围）；
+- **local space**：局部空间，即以“看向目标”自身为坐标原点的坐标系（而非世界坐标系），偏移量在此空间中设置可确保偏移方向始终与目标朝向一致（例如设置 Y 轴正方向偏移可始终指向目标上方）。

@@ -1,9 +1,16 @@
-# Hard Lock to Target
+# 硬锁定到目标（Hard Lock to Target）
 
-This CinemachineCamera __Position Control__ behavior uses the same position at the __Tracking Target__. In other words, the target acts as a mounting point for the CinemachineCamera.
+此 Cinemachine 相机的**位置控制（Position Control）** 行为会与**跟踪目标（Tracking Target）** 保持完全相同的位置。换句话说，目标会充当 Cinemachine 相机的“挂载点”，相机位置完全随目标位置同步变化。
 
-### Properties
 
-| Property | Description |
+### 属性（Properties）
+
+| 属性 | 说明 |
 | --- | --- |
-| __Damping__ | Adds lag to the camera's responsiveness.  Value is the approximate time to catch up, in seconds. |
+| **阻尼（Damping）** | 为相机的响应添加延迟效果。数值代表相机大致需要多长时间（以秒为单位）才能跟上目标的位置变化。 |
+
+
+### 术语说明（游戏开发场景适配）
+- **Hard Lock**：硬锁定，指相机与目标在位置上完全绑定、无偏移的同步关系，区别于“软跟随”（可能存在延迟或偏移）；
+- **mounting point**：挂载点，此处比喻相机像“挂载”在目标上一样，位置完全由目标决定；
+- **lag**：延迟（此处指相机响应目标位置变化时的滞后效果，通过“阻尼”参数控制，数值越大，延迟越明显，画面越平稳但响应越慢）。

@@ -1,57 +1,60 @@
-# Cinemachine Impulse Source
+# Cinemachine 冲击源（Cinemachine Impulse Source）
 
-Use the **Cinemachine Impulse Source** component to generate impulses on events that are not collisions or Collider triggers. This is a generic Impulse Source that exposes a family of `GenerateImpulse()` API methods. These methods generate impulses at the specified locations and with the specified velocities and strengths. Call these methods directly from your game logic, or use them with [UnityEvents](https://docs.unity3d.com/Manual/UnityEvents.html).
+使用 **Cinemachine 冲击源** 组件，可在非碰撞或非碰撞体触发事件时生成冲击信号。这是一种通用的冲击源，提供了一系列 `GenerateImpulse()` API 方法。这些方法能在指定位置、以指定速度和强度生成冲击信号。你可以直接从游戏逻辑中调用这些方法，也可以将它们与 [Unity 事件（UnityEvents）](https://docs.unity3d.com/Manual/UnityEvents.html) 配合使用。
 
-> [!TIP]
-> You can use the script for this component as an example to reference when creating your own custom impulse-generating classes.
+> [!提示]
+> 你可以参考此组件的脚本，作为创建自定义冲击生成类时的示例。
 
-To add a Cinemachine Impulse Source to your Scene:
 
-1. Select the GameObject that you want to trigger camera shake, navigate to its Inspector, and click the **Add Component** button.
+为场景添加 Cinemachine 冲击源的步骤：
 
-2. Go to **Scripts > Cinemachine**, and select **Cinemachine Impulse Source**.
+1. 选中要触发相机抖动的游戏对象，在其检视面板中点击 **Add Component** 按钮。
+2. 依次选择 **Scripts > Cinemachine**，然后选中 **Cinemachine Impulse Source**。
 
-By default, an Impulse Source affects every [Impulse Listener](CinemachineImpulseListener.md) in range, but you can apply [channel filtering](CinemachineImpulseFiltering.md#ChannelFiltering) to make Impulse Sources affect some Impulse Listeners and not others.
 
-## Properties
+默认情况下，一个冲击源会影响范围内的所有 [冲击监听器（Impulse Listener）](CinemachineImpulseListener.md)，但你可以通过 [通道过滤（channel filtering）](CinemachineImpulseFiltering.md#ChannelFiltering) 设置，让冲击源只影响特定的冲击监听器。
 
-The properties in the Cinemachine Impulse Source Inspector window are divided into the following sections.
 
-- [Impulse Channel](#ImpulseChannel)
-- [Impulse Type](#ImpulseType)
-- [Impulse Shape](#ImpulseShape)
+## 属性
+
+Cinemachine 冲击源检视面板中的属性分为以下几个部分：
+
+- [冲击通道（Impulse Channel）](#ImpulseChannel)
+- [冲击类型（Impulse Type）](#ImpulseType)
+- [冲击形状（Impulse Shape）](#ImpulseShape)
+
 
 <a name="ImpulseChannel"></a>
+### 冲击通道（Impulse Channel）
 
-### Impulse Channel
+冲击监听器会根据通道过滤冲击信号，以控制它们对哪些冲击源做出反应。通道的作用类似相机图层（Camera Layers），但二者是不同的概念。以下属性用于控制冲击源广播冲击信号的通道。详情请参阅 [过滤（Filtering）](CinemachineImpulseFiltering.md) 文档。
 
-Impulse Listeners filter impulses based on channels to control which Impulse Sources they react to. Channels work like Camera Layers, but are distinct from them. These properties control the channels that the Impulse Source broadcasts impulse signals on. For details, see documentation on [Filtering](CinemachineImpulseFiltering.md).
-
-| Property | Function |
+| 属性 | 功能 |
 | :--- | :--- |
-| **Impulse Channel** | Choose one or more channels from the drop-down.<br /><br />Click **Edit** to modify existing channels or add new ones. |
+| **冲击通道（Impulse Channel）** | 从下拉菜单中选择一个或多个通道。<br /><br />点击 **Edit** 可修改现有通道或添加新通道。 |
 
 
 <a name="ImpulseType"></a>
-### Impulse Type
+### 冲击类型（Impulse Type）
 
- You can choose the level of complexity, depending on your needs. Changing the Impulse Type brings up range, dissipation, and propagation speed controls, as appropriate.
+你可以根据需求选择不同复杂程度的类型。更改冲击类型后，会显示相应的范围、衰减和传播速度控制选项。
 
-| Property | Function |
+| 属性 | 功能 |
 | :--- | :--- |
-| **Impulse Type** | You can choose from the following Impulse types:<ul> <li>**Uniform**: The impulse travels with infinite speed, and will be heard at the same time and in the same way by all listeners, no matter where they are in space.</li> <li>**Dissipating**: The strength of the impulse decreases as the distance from the source increases. Listeners that are farther away will feel a weaker signal than listeners that are closer.</li> <li>**Propagating**: In addition to being dissipating, the impulse signal travels with finite speed outward from the source.  Listeners that are farther away will feel the impulse at a later time than listeners that are close.</li> <li>**Legacy**: This mode exists to support projects made with earlier versions of Impulse, and has a more complex way of defining the impulse signal. We recommend using one of the other settings.</li> </ul> |
-| **Dissipation Distance** | This setting defines the distance over which the impulse dissipates. Beyond this distance, the impulse will not be felt. |
-| **Propagation Speed** | This defines, in m/s, how quickly the impulse signal propagates outwards through space from its origin. The default value, 343, is the speed of sound. |
-| **Dissipation Rate** | This defines how quickly the dissipation occurs over the dissipation distance. As shown in the image below, expanding the curve shows a graph illustrating the signal strength across the dissipation radius. The origin is in the center of the X axis. Moving the slider adjusts the blue picture.<br /><br />![Dissipation Rate setting example. The slider changes the shape of the blue curve.](images/DissipationRate.png) |
+| **冲击类型（Impulse Type）** | 可选择以下冲击类型：<ul> <li>**均匀（Uniform）**：冲击以无限速度传播，所有监听器无论在空间中处于什么位置，都会同时以相同方式接收到冲击。</li> <li>**衰减（Dissipating）**：冲击强度随与源的距离增加而减弱。距离较远的监听器感受到的信号比近处的弱。</li> <li>**传播（Propagating）**：除了具有衰减特性外，冲击信号从源向外以有限速度传播。距离较远的监听器会比近处的监听器晚感受到冲击。</li> <li>**旧版（Legacy）**：此模式用于兼容使用早期版本冲击系统的项目，其定义冲击信号的方式更复杂。建议使用其他设置。</li> </ul> |
+| **衰减距离（Dissipation Distance）** | 定义冲击衰减的距离范围。超过此距离后，将不会感受到冲击。 |
+| **传播速度（Propagation Speed）** | 定义冲击信号从原点向外在空间中传播的速度（单位：米/秒）。默认值 343 为声速。 |
+| **衰减率（Dissipation Rate）** | 定义在衰减距离内冲击衰减的速度。如下图所示，展开曲线可看到一个图表，展示了在衰减半径范围内的信号强度。X 轴中心为原点。拖动滑块可调整蓝色曲线的形状。<br /><br>![衰减率设置示例：滑块改变蓝色曲线的形状](images/DissipationRate.png) |
+
 
 <a name="ImpulseShape"></a>
-### Impulse Shape
+### 冲击形状（Impulse Shape）
 
-This defines the curve that specifies the shape of the signal, and the time over which the curve is emitted.
+定义指定信号形状的曲线，以及曲线的发射时长。
 
-| Property | Function |
+| 属性 | 功能 |
 | :--- | :--- |
-| **Predefined Impulse Shape** | You can choose from one of the following predefined Shapes: **Recoil**, **Bump**, **Explosion**, or **Rumble**.<br /><br>**s (seconds)** field: Sets the duration of the impulse. Opening up the property shows you a picture of the impulse:<br /><br>![Example: the impulse shape when you select "Bump".](images/ImpulsePicture.png) |
-| **Custom Impulse Shape** | You can draw your own custom impulse shape (animation curve). Select **Custom** from the drop-down menu and click on the green icon to pop up an editor as shown below.<br /><br>![Example of custom impulse shape.](images/ImpulseShapeCustom.png) |
-| **Default Velocity** | Specifies the direction in space that the impulse will have by default. |
-| **Test with Force** | Allows you to **invoke** the default impulse from the inspector (when playing) with the specified force multiplier, to see what it looks like. |
+| **预设冲击形状（Predefined Impulse Shape）** | 可从以下预设形状中选择：**后坐力（Recoil）**、**撞击（Bump）**、**爆炸（Explosion）** 或 **震动（Rumble）**。<br /><br>**s（秒）** 字段：设置冲击的持续时间。展开该属性可查看冲击的波形图：<br /><br>![示例：选择“撞击（Bump）”时的冲击形状](images/ImpulsePicture.png) |
+| **自定义冲击形状（Custom Impulse Shape）** | 可绘制自己的自定义冲击形状（动画曲线）。从下拉菜单中选择 **Custom**，然后点击绿色图标弹出如下编辑器。<br /><br>![自定义冲击形状示例](images/ImpulseShapeCustom.png) |
+| **默认速度（Default Velocity）** | 指定冲击默认的空间方向。 |
+| **用力量测试（Test with Force）** | 允许在检视面板中（运行时）以指定的力量倍数触发默认冲击，以查看效果。 |

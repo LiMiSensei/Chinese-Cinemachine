@@ -1,45 +1,48 @@
-# Cinemachine Input Axis Controller
+# Cinemachine 输入轴控制器（Cinemachine Input Axis Controller）
 
-Cinemachine cameras don't directly process user input. Instead, they expose axes that are meant to be _driven_, either by script, animation, or by user input. As much as possible Cinemachine remains agnostic about where the input is coming from. This way, it can be compatible with Unity's Input package, Unity's legacy input manager, or other third-party input systems.
+Cinemachine 相机不直接处理用户输入。相反，它们会暴露一些轴，这些轴可由脚本、动画或用户输入来**驱动**。Cinemachine 尽可能不限制输入的来源，这样它就能与 Unity 的 Input 包、Unity 的旧版输入管理器或其他第三方输入系统兼容。
 
-Included with Cinemachine is the CinemachineInputAxisController component. When you add it to a CinemachineCamera, it auto-detects any axes that can be driven by user input and exposes settings to allow you to control those axis values.
+Cinemachine 中包含了 CinemachineInputAxisController 组件。当你将其添加到 Cinemachine 相机时，它会自动检测所有可由用户输入驱动的轴，并暴露相关设置，让你能够控制这些轴的值。
 
-It is compatible with both Unity's Input Package and Unity's legacy input manager. You can also use it as a template for writing your own custom input handlers.
+该组件兼容 Unity 的 Input 包和旧版输入管理器。你也可以将其作为模板，编写自己的自定义输入处理器。
 
-The Input Axis Controller not only maps inputs to the exposed axes, it also provides settings for each axis to tune the responsiveness with accel/decel and gain.
+输入轴控制器不仅能将输入映射到暴露的轴上，还为每个轴提供了设置，可通过加速度/减速度和增益来调整响应性。
 
-If you like, you can also use CinemachineInputAxisController with your own scripts to drive input axes, for example in scripts that implement player motion. See the Cinemachine Sample scenes for examples of this.
+你也可以根据需要，将 CinemachineInputAxisController 与自己的脚本结合使用来驱动输入轴，例如在实现玩家移动的脚本中。有关示例，请参见 Cinemachine 的示例场景。
 
-## Usage
 
-This component makes it easy to control a `CinemachineCamera` in a single player environment with a mouse and keyboard or a controller.
+## 用法（Usage）
 
-## Properties:
+此组件可轻松在单人环境中通过鼠标、键盘或控制器控制 `CinemachineCamera`。
 
-| **Property:** | **Function:** |
+
+## 属性（Properties）：
+
+| **属性** | **功能** |
 |:---|:---|
-| __Player Index__ | Which player's input controls to query. Leave this at the default value of -1 for single-player games. Otherwise, this should be the index of the player in the `UnityEngine.Input.InputUser.all` list. This setting only appears if Unity's Input package is installed. |
-| __Auto Enable Inputs__ | If Unity's Input package is installed, this option is available. It will automatically enable any mapped input actions at startup |
-| __Scan Recursively__ | If set, a recursive search for IInputAxisOwners behaviours will be performed.  Otherwise, only behaviours attached directly to this GameObject will be considered, and child objects will be ignored. |
-| __Suppress Input While Blending__ | If set and if this component is attached to a CinemachineCamera, input will not be processed while the camera is participating in a blend. |
-| __Ignore Time Scale__ | If set, then input will be processed using unscaled deltaTime, and not scaled deltaTime.  This allows input to continue even when the timescale is set to 0. |
-| __Enabled__ | The controller will drive the input axis while this value is true.  If false, the axis will not be driven by the controller. |
-| __Legacy Input__ | If the legacy input manager is being used, the Input Axis Name to query is specified here. |
-| __Legacy Gain__ | If the legacy input manager is being used, the input value read will be multiplied by this amount. |
-| __Input Action__ | If the Unity Input package is being used, the Input Action reference to drive the axis is set here. |
-| __Gain__ | If the Unity Input package is being used, the input value read is multiplied by this amount. |
-| __Input Value__ | The input value read during this frame |
-| __Accel Time__ | The time it takes for the input value to accelerate to a larger value |
-| __Decel Time__ | The time it takes for the input value to decelerate to a smaller value |
-| __Cancel Delta Time__ | This will cancel the built-in deltaTime compensation done by the input axis.  Enable this if the input value is inherently dependent on frame time.  For example, mouse deltas will naturally be bigger for longer frames, so in this case the default deltaTime scaling should be canceled. |
+| **玩家索引（Player Index）** | 要查询的玩家输入控制。单人游戏保持默认值 -1 即可。否则，此处应填写该玩家在 `UnityEngine.Input.InputUser.all` 列表中的索引。此设置仅在安装了 Unity 的 Input 包时显示。 |
+| **自动启用输入（Auto Enable Inputs）** | 如果安装了 Unity 的 Input 包，则会显示此选项。它会在启动时自动启用所有映射的输入动作。 |
+| **递归扫描（Scan Recursively）** | 若启用，将递归搜索 IInputAxisOwners 行为；否则，仅考虑直接附加到此游戏对象的行为，忽略子对象。 |
+| **混合时抑制输入（Suppress Input While Blending）** | 若启用且此组件附加到 Cinemachine 相机，则相机参与混合时不会处理输入。 |
+| **忽略时间缩放（Ignore Time Scale）** | 若启用，输入处理将使用未缩放的 deltaTime，而非缩放后的 deltaTime。这使得即使时间缩放设置为 0，输入也能继续响应。 |
+| **启用（Enabled）** | 当此值为 true 时，控制器将驱动输入轴；若为 false，输入轴将不会被控制器驱动。 |
+| **旧版输入（Legacy Input）** | 如果使用旧版输入管理器，此处指定要查询的输入轴名称。 |
+| **旧版增益（Legacy Gain）** | 如果使用旧版输入管理器，读取的输入值将乘以该数值。 |
+| **输入动作（Input Action）** | 如果使用 Unity Input 包，此处设置用于驱动轴的输入动作引用。 |
+| **增益（Gain）** | 如果使用 Unity Input 包，读取的输入值将乘以该数值。 |
+| **输入值（Input Value）** | 本帧读取的输入值。 |
+| **加速时间（Accel Time）** | 输入值加速到更大值所需的时间。 |
+| **减速时间（Decel Time）** | 输入值减速到更小值所需的时间。 |
+| **取消 deltaTime 补偿（Cancel Delta Time）** | 这将取消输入轴内置的 deltaTime 补偿。如果输入值本身依赖于帧时间，请启用此选项。例如，鼠标增量在较长的帧中自然会更大，这种情况下应取消默认的 deltaTime 缩放。 |
 
-## Creating your own Input Axis Controller
 
-The default implementation of `CinemachineInputAxisController` can process input sources from the Input package and from Unity's legacy input system.
+## 创建自定义输入轴控制器（Creating your own Input Axis Controller）
 
-For more complex scenarios (such as for a mobile device control), you can extend this default functionality and create your own Input Axis Controller using a script.
+`CinemachineInputAxisController` 的默认实现可处理来自 Input 包和 Unity 旧版输入系统的输入源。
 
-The following example shows how to use a custom Input Controller script to control a Camera with a slider for a mobile device. The sample code can be used as a template and is easily modified to be used with other objects.
+对于更复杂的场景（如移动设备控制），你可以扩展此默认功能，通过脚本创建自己的输入轴控制器。
+
+以下示例展示了如何使用自定义输入控制器脚本，通过滑块控制移动设备上的相机。该示例代码可作为模板，且易于修改以用于其他对象。
 
 ```cs
 using UnityEngine;
@@ -48,7 +51,7 @@ using System;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-//The component that you will add to your CinemachineCamera.
+// 你将添加到 Cinemachine 相机的组件
 public class SliderInputController : InputAxisControllerBase<SliderInputController.SliderReader>
 {
     void Update()
@@ -74,4 +77,4 @@ public class SliderInputController : InputAxisControllerBase<SliderInputControll
 }
 ```
 
-For more information, see the [Input System Components](InputSystemComponents.md) documentation if you need to setup a local multiplayer input with the Input System package.
+如需了解更多信息，若你需要使用 Input System 包设置本地多人输入，请参见 [输入系统组件（Input System Components）](InputSystemComponents.md) 文档。

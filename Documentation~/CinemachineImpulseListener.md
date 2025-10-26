@@ -1,41 +1,50 @@
-# Cinemachine Impulse Listener
+# Cinemachine 冲击监听器（Cinemachine Impulse Listener）
 
-Impulse signals and [sources](CinemachineImpulseSourceOverview.md) don’t do anything on their own. An **Impulse Listener** is a Cinemachine extension that allows a CinemachineCamera to “hear” impulse vibration signals and react to them.
+冲击信号和[冲击源（sources）](CinemachineImpulseSourceOverview.md)本身不会产生任何效果。**冲击监听器**是一款 Cinemachine 扩展组件，它能让 Cinemachine 相机“感知”到冲击振动信号并做出反应。
 
-Default implementations shipped with Cinemachine respond by applying the received signal directly to the listener’s transform position, causing it to shake along with the signal. Additionally, it’s possible to specify a secondary response - usually a randomized vibration along all positions and rotation axes - to give character to the listener’s movement. It’s as if the listener were supported on springs and then kicked by the impulse signal. In addition to the thrust given by the kick itself, there will be randomized shaking due to the springs.
+Cinemachine 内置的默认实现会将接收到的信号直接应用于监听器的变换位置，使其随信号产生抖动。此外，还可以指定次级响应——通常是沿所有位置和旋转轴的随机振动——为监听器的运动赋予独特特性。这就好比监听器被安装在弹簧上，然后被冲击信号“踢”了一下：除了“踢击”本身产生的推力，弹簧还会带来随机抖动。
 
-When you add an **Impulse Listener** extension to a CinemachineCamera, it makes the camera shake in response to the signals emitted from Impulse Sources. In the simplest case, the Impulse Listener applies the signal verbatim to the camera’s Transform, causing it to shake.
+当你为 Cinemachine 相机添加**冲击监听器**扩展后，相机会对冲击源发出的信号做出抖动响应。在最简单的情况下，冲击监听器会将信号直接应用于相机的变换（Transform），使其产生抖动。
 
-In the image below, the figure’s feet are Impulse Sources. When they collide with the floor (A) they generate impulses. The camera is an Impulse Listener and reacts to the impulses by shaking (B), which shakes the resulting image in the Game view (C).
+下图中，角色的脚部是冲击源。当脚部与地面碰撞时（A），会生成冲击信号。相机作为冲击监听器，会对信号做出抖动反应（B），进而导致游戏视图（Game view）中的画面抖动（C）。
 
-![Left: In the Scene view, the running figure generates an impulse and the camera receives it. Right: In the Game view, the camera shakes.](images/ImpulseOverview.png)
+![左图：场景视图中，奔跑的角色生成冲击信号，相机接收信号；右图：游戏视图中，相机产生抖动效果](images/ImpulseOverview.png)
 
-To add an Impulse Listener to a Cinemachine CinemachineCamera:
 
-1. Select the CinemachineCamera, navigate to the Inspector window and expand the **CinemachineCamera** script.
+为 Cinemachine 相机添加冲击监听器的步骤：
 
-2. Go to **Extensions > Add Extension**, and select **CinemachineImpulseListener**.
+1. 选中 Cinemachine 相机，在检视面板（Inspector）中展开 **CinemachineCamera** 脚本。
+2. 进入 **Extensions > Add Extension**，选择 **CinemachineImpulseListener**。
 
-![The Cinemachine Impulse Listener component and its properties in the Inspector.](images/ImpulseListener.png)
+![检视面板中的 Cinemachine 冲击监听器组件及其属性](images/ImpulseListener.png)
 
-In the real world, some cameras are mounted less rigidly than others, and tend to shake more as a result. The Impulse Listener’s **Gain** property emulates this behavior by amplifying or attenuating impulse vibration signals. Higher values cause the camera to shake more.
 
-> [!TIP]
-> You can create your own Impulse Listener to interpret vibration signals any way you like.
+在现实世界中，有些相机的安装不够稳固，因此更容易产生抖动。冲击监听器的**增益（Gain）** 属性通过放大或减弱冲击振动信号来模拟这种现象：数值越高，相机抖动越剧烈。
 
-> [!TIP]
-> To add impulse listening capabilities to GameObjects that are not CinemachineCameras, you can use the __CinemachineExternalImpulseListener__ behaviour.
+> [!提示]
+> 你可以创建自定义冲击监听器，按任意方式解析振动信号。
 
-By default, an Impulse Listener reacts to every Impulse Source in range, but you can apply [channel filtering](CinemachineImpulseFiltering.md#ChannelFiltering) to make a Listener respond to some Sources and ignore others.
+> [!提示]
+> 若要为非 Cinemachine 相机的游戏对象添加冲击监听功能，可使用 **CinemachineExternalImpulseListener** 行为组件。
 
-## Properties:
 
-| Property | Function |
+默认情况下，冲击监听器会对范围内所有冲击源做出反应，但你可以通过[通道过滤（channel filtering）](CinemachineImpulseFiltering.md#ChannelFiltering)设置，让监听器只响应特定冲击源，忽略其他冲击源。
+
+
+## 属性（Properties）：
+
+| 属性 | 功能 |
 | :--- | :--- |
-| **Apply After** | Obstacles with this tag will be ignored. It is recommended to set this field to the target's tag. |
-| **Channel Mask** | Specifies the Impulse channels to react to. For details, see [Filtering with channels](CinemachineImpulseFiltering.md#ChannelFiltering). |
-| **Gain** | This is how much the received impulse signal will be magnified by for the purposes of reacting. It’s a simple multiplier applied to the incoming signal. The default value is 1.|
-| **Use 2D Distance** | Enable this setting to ignore the z axis when calculating camera distance from the Impulse Source. Use this property for 2D games. |
-| **Use Camera Space** | Interprets the impulse signal in camera space as opposed to world space.  So if the impulse Y axis is vibrating, then the listener will move up and down on its local Y axis. |
-| **Signal Combination Mode** | Controls how the Impulse Listener combines multiple impulses active at the current point in space. The options are: <ul> <li>**Additive**: Combines all the active signals together, like sound waves. This is the default.</li> <li>**Use Largest**: Considers only the signal with the largest amplitude; ignores any others.</li> </ul> |
-| **Reaction Settings** | Lets you set a secondary noise that gets triggered by the impulse signal. Choose the noise setting and tune it with the amplitude and frequency gain. Duration sets the fade-out time for the secondary noise. Time is approximate. This will scale automatically with stronger impulses.<br /><br />The listener combines the original impulse signal and the reaction and applies it to the object it’s on. This could be a camera, a vcam, or any other object. Custom listeners can easily be authored to apply the signal in nonstandard ways (for example, convert Z motion to FOV). |
+| **应用顺序（Apply After）** | 指定冲击监听器在相机位置计算流程中的应用时机（例如在防碰撞或去遮挡处理之前/之后）。 |
+| **通道遮罩（Channel Mask）** | 指定需要响应的冲击通道。详情请参阅[通道过滤（Filtering with channels）](CinemachineImpulseFiltering.md#ChannelFiltering)。 |
+| **增益（Gain）** | 接收的冲击信号在反应时的放大倍数，是一个应用于输入信号的简单乘数，默认值为 1。 |
+| **使用 2D 距离（Use 2D Distance）** | 启用后，计算相机与冲击源的距离时会忽略 Z 轴。此属性适用于 2D 游戏。 |
+| **使用相机空间（Use Camera Space）** | 在相机局部空间而非世界空间中解析冲击信号。例如，若冲击信号的 Y 轴发生振动，监听器会沿自身局部 Y 轴上下移动。 |
+| **信号组合模式（Signal Combination Mode）** | 控制冲击监听器如何组合空间中当前活跃的多个冲击信号，选项包括：<ul> <li>**叠加（Additive）**：将所有活跃信号叠加组合（类似声波），这是默认设置。</li> <li>**取最大（Use Largest）**：仅考虑振幅最大的信号，忽略其他信号。</li> </ul> |
+| **响应设置（Reaction Settings）** | 允许你设置由冲击信号触发的次级噪声。选择噪声设置，并通过振幅和频率增益进行调整。“持续时间（Duration）”设置次级噪声的淡出时间（近似值），且会随冲击强度自动缩放。<br /><br />监听器会将原始冲击信号与次级响应组合，并应用于其所附加的对象（可以是相机、虚拟相机或其他任何对象）。通过自定义监听器，可实现非标准的信号应用方式（例如将 Z 轴运动转换为视野（FOV）变化）。 |
+
+
+### 术语补充说明
+- **transform position**：变换位置，指游戏对象在 3D/2D 空间中的位置信息（由 Transform 组件控制）；
+- **amplitude**：振幅，此处指冲击信号的强度大小，振幅越大，抖动越剧烈；
+- **fade-out time**：淡出时间，指信号强度从峰值逐渐减弱至零的持续时间，用于实现平滑的抖动结束效果。

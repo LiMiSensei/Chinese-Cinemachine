@@ -1,31 +1,31 @@
-# Cinemachine Auto Focus
+# Cinemachine 自动对焦
 
-This CinemachineCamera extension drives the Camera's focusDistance property.  It can be used to lock focus onto a specific object, or (in HDRP) to auto-detect what is in front of the camera and focus on that.
+这个 Cinemachine 相机扩展用于控制相机的 focusDistance（对焦距离）属性。它可用于将焦点锁定在特定对象上，或者（在 HDRP 中）自动检测相机前方的物体并对其对焦。
 
-FocusDistance is only relevant for physical cameras, and appropriate processing must be installed for it to have any visible effect.
+对焦距离仅与物理相机相关，并且必须启用相应的处理才能使其产生可见效果。
 
-As of this writing, only HDRP provides out-of-the-box handling to process the Camera's focusDistance.  In HDRP:
-1. Create an active Volume containing a Depth Of Field override.
-1. In the DepthOfField override, activate Focus Mode and set it to Physical Camera.
-1. In the DepthOfField override, activate Focus Distance Mode and set to Camera.
+截至本文撰写时，只有 HDRP 提供了开箱即用的处理方式来处理相机的对焦距离。在 HDRP 中：
+1. 创建一个包含景深（Depth Of Field）覆盖的激活体积（Volume）。
+1. 在景深覆盖中，启用对焦模式（Focus Mode）并将其设置为物理相机（Physical Camera）。
+1. 在景深覆盖中，启用对焦距离模式（Focus Distance Mode）并设置为相机（Camera）。
 
-With these settings, the focus distance set by Cinemachine Auto Focus will have a visible effect while the camera is within the Volume.
+通过这些设置，当相机处于该体积范围内时，Cinemachine 自动对焦所设置的对焦距离将产生可见效果。
 
-![Example Auto Vocus Volume](images/CinemachineAutoVocusVolume.png)
+![自动对焦体积示例](images/CinemachineAutoVocusVolume.png)
 
 
-## Properties:
+## 属性：
 
-| **Property:** || **Function:** |
+| **属性：** || **功能：** |
 |:---|:---|:---|
-| __FocusTarget__ || The camera's focus distance will be set to the distance from camera to the selected target.  The Focus Offset field will then modify that distance.  |
-| | _None_ | Focus tracking is disabled. |
-| | _LookAtTarget_ | Focus offset is relative to the LookAt target. |
-| | _FollowTarget_ | Focus offset is relative to the Follow target. |
-| | _CustomTarget_ | Focus offset is relative to the Custom target set in the _CustomTarget_ field. |
-| | _Camera_ | Focus offset is relative to the camera.  Use this setting to directly set the focus distance using _FocusDepthOffset_. |
-| | _ScreenCenter_ | HDRP only: Focus will be on whatever is located in the depth buffer at the center of the screen. |
-| __Custom Target__ || The target to use if Focus Target is set to _CustomTarget_.  |
-| __Focus Depth Offset__ || Offsets the sharpest point away in depth from the focus target location.  |
-| __Damping__ || The value corresponds approximately to the time the focus will take to adjust to the new value.  |
-| __Auto Detection Radius__ || HDRP-only: Radius of the AutoFocus sensor in the center of the screen, used when _Focus Target_ is set to _ScreenCenter_.  A value of 1 would fill the screen.  It's recommended to keep this quite small.  Default value is 0.02.  |
+| __对焦目标（FocusTarget）__ || 相机的对焦距离将设置为相机到所选目标的距离。对焦偏移（Focus Offset）字段会进一步调整该距离。 |
+| | _无（None）_ | 对焦跟踪已禁用。 |
+| | _看向目标（LookAtTarget）_ | 对焦偏移相对于 LookAt 目标。 |
+| | _跟随目标（FollowTarget）_ | 对焦偏移相对于 Follow 目标。 |
+| | _自定义目标（CustomTarget）_ | 对焦偏移相对于“自定义目标（CustomTarget）”字段中设置的自定义目标。 |
+| | _相机（Camera）_ | 对焦偏移相对于相机。使用此设置可通过“对焦深度偏移（FocusDepthOffset）”直接设置对焦距离。 |
+| | _屏幕中心（ScreenCenter）_ | 仅 HDRP 可用：焦点将位于屏幕中心深度缓冲区中的任何物体上。 |
+| __自定义目标（Custom Target）__ || 当“对焦目标”设置为“自定义目标（CustomTarget）”时使用的目标。 |
+| __对焦深度偏移（Focus Depth Offset）__ || 从对焦目标位置沿深度方向偏移最清晰点。 |
+| __阻尼（Damping）__ || 该值大致对应对焦调整到新值所需的时间。 |
+| __自动检测半径（Auto Detection Radius）__ || 仅 HDRP 可用：当“对焦目标”设置为“屏幕中心（ScreenCenter）”时，屏幕中心自动对焦传感器的半径。值为 1 时将覆盖整个屏幕。建议将此值设置得较小。默认值为 0.02。 |

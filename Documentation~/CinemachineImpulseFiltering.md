@@ -1,69 +1,71 @@
-# Filtering impulses
+# 冲击信号过滤（Filtering impulses）
 
-Filtering lets you fine-tune how and when an Impulse Source generates impulses. Cinemachine Impulse allows two types of filtering:
+通过过滤功能，你可以精确调整冲击源（Impulse Source）生成冲击信号的方式和时机。Cinemachine 冲击系统支持两种过滤类型：
 
-- Use channel filtering to set things up so that an Impulse Listener reacts to certain Impulse Sources and ignores others. See [Filtering with channels](#ChannelFiltering) below for details.
+- 使用**通道过滤**，可设置冲击监听器（Impulse Listener）对特定冲击源做出反应，而忽略其他冲击源。详情见下文[通道过滤](#ChannelFiltering)。
+- 结合**碰撞冲击源（Collision Impulse Source）** 使用**触发对象过滤**，可设置仅特定游戏对象能触发冲击信号。详情见下文[通过图层和标签过滤](#TriggerObjectFiltering)。
 
-- Use Trigger Object Filtering with Collision Impulse Sources to set things up so that only certain GameObjects trigger an impulse. See [Filtering with layers and tags](#TriggerObjectFiltering) for details.
 
 <a name="ChannelFiltering"></a>
-## Filtering with channels
+## 通道过滤（Filtering with channels）
 
-By default, every Impulse Listener reacts to every Impulse Source within range. Channels allow you to more precisely control which Impulse Sources an Impulse Listener reacts to. To set up channel filtering, you need to do three things:
+默认情况下，每个冲击监听器会对范围内所有冲击源的信号做出反应。通过通道（Channels），你可以更精确地控制冲击监听器对哪些冲击源做出响应。设置通道过滤需完成以下三步：
 
-- Set up your channels
-- Set your Impulse Sources to broadcast on one or more channels
-- Set your Impulse Listeners to listen to one or more channels
+1. 配置通道
+2. 设置冲击源在一个或多个通道上广播信号
+3. 设置冲击监听器监听一个或多个通道
 
-When an Impulse Listener is listening to specific channels, it only reacts to Impulse Sources that broadcast on those channels.
+当冲击监听器监听特定通道时，它只会对在这些通道上广播信号的冲击源做出反应。
 
-### Adding channels
 
-The **CinemachineImpulseChannels** script creates channels in your Scene. It has one channel by default, and you can add as many new channels as you need, up to a maximum of 31.
+### 添加通道（Adding channels）
 
-To add new channels:
+**CinemachineImpulseChannels** 脚本用于在场景中创建通道。默认包含一个通道，你可以根据需要添加更多通道（最多 31 个）。
 
-1. Inspect the **CinemachineImpulseChannels** (**Impulse Channel > Edit**) script by doing one of the following:
+添加新通道的步骤：
 
-    - In the Cinemachine Impulse Listener inspector, navigate to the **Channel Mask** drop-down and click the **Edit** button next to it.
+1. 通过以下任一方式打开 **CinemachineImpulseChannels** 脚本的检视面板（**冲击通道 > 编辑**）：
+   - 在 Cinemachine 冲击监听器的检视面板中，找到 **通道遮罩（Channel Mask）** 下拉菜单，点击旁边的 **编辑（Edit）** 按钮。
+   - 在 Cinemachine 冲击源或碰撞冲击源的检视面板中，找到 **冲击通道（Impulse Channel）** 下拉菜单，点击旁边的 **编辑（Edit）** 按钮。
 
-    - In the Cinemachine Impulse Source or Cinemachine Collision Impulse Source inspector, navigate to the **Impulse Channel** drop-down and click the **Edit** button next to it.
+2. 展开 **冲击通道（Impulse Channels）** 属性组，将 **大小（Size）** 属性设为所需的通道数量。每个通道会显示为一个新条目。
 
-2. Expand the **Impulse Channels** property group and set the **Size** property to the number of channels you want. A new entry appears for each channel.
+3. 为重命名新通道。
 
-3. Rename your new channels.
+   ![检视面板中的 Cinemachine Impulse Channels 脚本属性，包含多个已添加的通道](images/InspectorImpulseChannelsScript.png)
 
-    ![The Cinemachine Impulse Channels script properties in the Inspector, with several channels added.](images/InspectorImpulseChannelsScript.png)
+   通道添加后，会立即显示在检视面板的通道下拉菜单中。
 
-    Channels are available from the channel drop-down in the Inspector as soon as you add them.
 
-### Setting listen / broadcast channels
+### 设置监听/广播通道（Setting listen / broadcast channels）
 
-After setting up your channels, you need to define how your Impulse Listeners and Impulse Sources use them.
+配置好通道后，需定义冲击监听器和冲击源如何使用这些通道：
 
-- Inspect each Impulse Listener, and choose the channels you want it to listen to from the **Channel Mask** drop-down.
+- 检查每个冲击监听器，从 **通道遮罩（Channel Mask）** 下拉菜单中选择它需要监听的通道。
+  
+  ![检视面板中的 Cinemachine 冲击监听器组件，重点显示“通道遮罩”属性](images/InspectorImpulseListenerChannelsMenu.png)
 
-    ![The Cinemachine Impulse Listener component in the Inspector, with an emphasis on the Channel Mask property.](images/InspectorImpulseListenerChannelsMenu.png)
+- 检查每个冲击源或碰撞冲击源，从 **冲击通道（Impulse Channel）** 下拉菜单中选择它需要广播信号的通道。
+  
+  ![检视面板中的 Cinemachine 碰撞冲击源组件，重点显示“冲击通道”属性](images/InspectorImpulseSourceChannelsMenu.png)
 
-- Inspect each Impulse Source or Collision Impulse Source, and choose the channels you want it to broadcast on from the **Impulse Channel** drop-down.
+  你可以从下拉菜单中选择多个通道，也可以选择 **全部（Everything）** 以使用所有通道，或选择 **无（Nothing）** 以不使用任何通道。
 
-    ![The Cinemachine Collision Impulse Source component in the Inspector, with an emphasis on the Impulse Channel property.](images/InspectorImpulseSourceChannelsMenu.png)
-
-    You can select multiple filters from the drop down. You can also choose **Everything** to use all filters, or **Nothing** to use none of them.
 
 <a name="TriggerObjectFiltering"></a>
-## Filtering with layers and tags
+## 通过图层和标签过滤（Filtering with layers and tags）
 
-You can use Unity’s [Layers](https://docs.unity3d.com/Manual/Layers.html) and [Tags](<https://docs.unity3d.com/Manual/Tags.html>) to specify which GameObjects trigger an impulse when they collide with a Collision Impulse Source, or enter a trigger zone. This is called **Trigger Object Filtering**.
+你可以使用 Unity 的[图层（Layers）](https://docs.unity3d.com/Manual/Layers.html)和[标签（Tags）](<https://docs.unity3d.com/Manual/Tags.html>)，指定哪些游戏对象在与碰撞冲击源发生碰撞或进入其触发区域时会触发冲击信号。这称为**触发对象过滤（Trigger Object Filtering）**。
 
-The Cinemachine Collision Impulse Source component has two **Trigger Object Filter** properties:
+Cinemachine 碰撞冲击源组件有两个**触发对象过滤（Trigger Object Filter）** 属性：
 
-- The **Layer Mask** drop-down lists all of the Scene’s layers. When you select one or more layers, GameObjects in those layers trigger impulses when they collide with the Impulse Source. The Impulse Source ignores collisions with GameObjects on other layers.
+- **图层遮罩（Layer Mask）** 下拉菜单列出场景中的所有图层。选择一个或多个图层后，这些图层中的游戏对象与冲击源碰撞时会触发冲击信号。冲击源会忽略与其他图层中游戏对象的碰撞。
 
-- The **Ignore Tag** drop-down lists all of the Scene’s tags. When you select a tag, GameObjects with that tag do not trigger impulses when they collide with the Impulse Source, even if they are in a layer specified in Layer Mask.
+- **忽略标签（Ignore Tag）** 下拉菜单列出场景中的所有标签。选择某个标签后，带有该标签的游戏对象即使处于“图层遮罩”中指定的图层，与冲击源碰撞时也不会触发冲击信号。
 
-For example, in a Scene where a large animal is lumbering through a forest, you might want the camera to shake when it collides with large trees, but not small saplings.
 
-One way to set that up would be to make the animal a Collision Impulse Source, put all of the large trees on their own layer, and select that as the Layer Mask.
+例如，在一个场景中，有一只大型动物正在森林中行走，你可能希望当它撞到大树时相机产生抖动，而撞到小树苗时不抖动。
 
-If all of the trees, large ones and saplings alike, are already on the same layer, you could assign a special tag to the saplings, and use the **Ignore Tag** property to filter them out.
+一种设置方式是：将这只动物设为碰撞冲击源，将所有大树放在单独的图层中，并在“图层遮罩”中选择该图层。
+
+如果所有树木（无论大小）已处于同一图层，你可以为小树苗分配一个特殊标签，然后通过**忽略标签**属性将它们过滤掉。

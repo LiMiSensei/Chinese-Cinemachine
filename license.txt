@@ -1,30 +1,30 @@
-Unity Companion Cinemachine Code License 1.0 ("License")
-Copyright (c) 2025 Unity Technologies ApS ("Unity")
+Unity 附属 Cinemachine 代码许可证 1.0（“许可证”）
+版权所有 (c) 2025 Unity Technologies ApS（“Unity”）
 
-Unity hereby grants to you a worldwide, non-exclusive, no-charge, and royalty-free copyright license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute the software that is made available with this License ("Software"), subject to the following terms and conditions:
+Unity 特此授予您全球范围内、非独占、免费且免版税的版权许可，允许您复制、准备衍生作品、公开展示、公开表演、再许可和分发本许可证附带的软件（“软件”），但须遵守以下条款和条件：
 
-1. Unity Companion Use Only. Exercise of the license granted herein is limited to exercise for the creation, use, and/or distribution of applications, software, or other content pursuant to a valid Unity development engine software license ("Engine License"). That means while use of the Software is not limited to use in the software licensed under the Engine License, the Software may not be used for any purpose other than the creation, use, and/or distribution of Engine License-dependent applications, software, or other content. No other exercise of the license granted herein is permitted.
+1. 仅限 Unity 附属用途。本许可证授予的许可权限仅限于：依据有效的 Unity 开发引擎软件许可证（“引擎许可证”），用于创建、使用和/或分发应用程序、软件或其他内容。这意味着，虽然本软件的使用不限于在引擎许可证授权的软件中使用，但该软件不得用于除创建、使用和/或分发依赖引擎许可证的应用程序、软件或其他内容之外的任何目的。不允许以其他方式行使本许可证授予的权限。
 
-2. No Modification of Engine License. Neither this License nor any exercise of the license granted herein modifies the Engine License in any way.
+2. 不得修改引擎许可证。本许可证及对本许可证所授予权限的任何行使，均不得以任何方式修改引擎许可证。
 
-3. Ownership & Grant Back to You.
+3. 所有权及向您的授权回溯
 
-3.1 You own your content. In this License, "derivative works" means derivatives of the Software itself -- works derived only from the Software by you under this License (for example, modifying the code of the Software itself to improve its efficacy); "derivative works" of the Software do not include, for example, games, apps, or content that you create using the Software. You keep all right, title, and interest to your own content.
+3.1 您拥有您的内容。在本许可证中，“衍生作品”指软件本身的衍生作品——即您根据本许可证仅从该软件衍生的作品（例如，修改软件的代码以提高其效能）；软件的“衍生作品”不包括例如您使用该软件创建的游戏、应用程序或内容。您保留对自己内容的所有权利、所有权和利益。
 
-3.2 Unity owns its content. While you keep all right, title, and interest to your own content per the above, as between Unity and you, Unity will own all right, title, and interest to all intellectual property rights (including patent, trademark, and copyright) in the Software and derivative works of the Software, and you hereby assign and agree to assign all such rights in those derivative works to Unity.
+3.2 Unity 拥有其内容。尽管如上所述您保留对自己内容的所有权利、所有权和利益，但在 Unity 与您之间，Unity 拥有该软件及软件衍生作品中所有知识产权（包括专利、商标和版权）的全部权利、所有权和利益，您在此将这些衍生作品中的所有此类权利转让并同意转让给 Unity。
 
-3.3 You have a license to those derivative works. Subject to this License, Unity grants to you the same worldwide, non-exclusive, no-charge, and royalty-free copyright license to derivative works of the Software you create as is granted to you for the Software under this License.
+3.3 您获得对这些衍生作品的许可。在遵守本许可证的前提下，Unity 授予您与本许可证下授予您的软件许可相同的、全球范围内、非独占、免费且免版税的版权许可，用于您创建的软件衍生作品。
 
-4. Trademarks. You are not granted any right or license under this License to use any trademarks, service marks, trade names, products names, or branding of Unity or its affiliates ("Trademarks"). Descriptive uses of Trademarks are permitted; see, for example, Unity's Branding Usage Guidelines at https://unity3d.com/public-relations/brand.
+4. 商标。本许可证未授予您使用 Unity 或其关联公司的任何商标、服务标记、商号、产品名称或品牌（“商标”）的任何权利或许可。允许对商标进行描述性使用；例如，详见 Unity 的品牌使用指南：https://unity3d.com/public-relations/brand。
 
-5. Notices & Third-Party Rights. This License, including the copyright notice above, must be provided in all substantial portions of the Software and derivative works thereof (or, if that is impracticable, in any other location where such notices are customarily placed). Further, if the Software is accompanied by a Unity "third-party notices" or similar file, you acknowledge and agree that software identified in that file is governed by those separate license terms.
+5. 声明及第三方权利。本许可证（包括上述版权声明）必须在软件及其衍生作品的所有实质性部分中提供（如果不可行，则在通常放置此类声明的任何其他位置提供）。此外，如果软件附带 Unity 的“第三方声明”或类似文件，您确认并同意该文件中标识的软件受那些单独的许可条款约束。
 
-6. DISCLAIMER, LIMITATION OF LIABILITY. THE SOFTWARE AND ANY DERIVATIVE WORKS THEREOF IS PROVIDED ON AN "AS IS" BASIS, AND IS PROVIDED WITHOUT WARRANTY OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND/OR NONINFRINGEMENT. IN NO EVENT SHALL ANY COPYRIGHT HOLDER OR AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES (WHETHER DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL, INCLUDING PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, LOSS OF USE, DATA, OR PROFITS, AND BUSINESS INTERRUPTION), OR OTHER LIABILITY WHATSOEVER, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM OR OUT OF, OR IN CONNECTION WITH, THE SOFTWARE OR ANY DERIVATIVE WORKS THEREOF OR THE USE OF OR OTHER DEALINGS IN SAME, EVEN WHERE ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+6. 免责声明、责任限制。本软件及其任何衍生作品按“现状”提供，不提供任何形式的担保，无论是明示的还是暗示的，包括但不限于对适销性、特定用途适用性和/或不侵权的任何担保。在任何情况下，任何版权持有人或作者均不对任何索赔、损害赔偿（包括直接、间接、偶然、特殊、惩罚性或后果性损害赔偿，包括替代商品或服务的采购、使用损失、数据或利润损失以及业务中断）或任何其他责任承担责任，无论该责任是因合同、侵权或其他行为引起，源于或与本软件或其任何衍生作品有关，或源于对本软件或其任何衍生作品的使用或其他交易，即使已被告知可能发生此类损害。
 
-7. USE IS ACCEPTANCE and License Versions. Your receipt and use of the Software constitutes your acceptance of this License and its terms and conditions. Software released by Unity under this License may be modified or updated and the License with it; upon any such modification or update, you will comply with the terms of the updated License for any use of any of the Software under the updated License.
+7. 使用即表示接受及许可证版本。您接收和使用本软件即表示您接受本许可证及其条款和条件。Unity 根据本许可证发布的软件可能会被修改或更新，许可证也可能随之修改或更新；一旦发生此类修改或更新，您在使用根据更新后的许可证授权的任何软件时，应遵守更新后的许可证条款。
 
-8. Use in Compliance with Law and Termination. Your exercise of the license granted herein will at all times be in compliance with applicable law and will not infringe any proprietary rights (including intellectual property rights); this License will terminate immediately on any breach by you of this License.
+8. 遵守法律及终止。您对本许可证所授予权限的行使应始终遵守适用法律，且不得侵犯任何专有权利（包括知识产权）；如果您违反本许可证的任何规定，本许可证将立即终止。
 
-9. Severability. If any provision of this License is held to be unenforceable or invalid, that provision will be enforced to the maximum extent possible and the other provisions will remain in full force and effect.
+9. 可分割性。如果本许可证的任何条款被认定为不可执行或无效，该条款应在最大可行范围内予以执行，其他条款仍保持完全效力。
 
-10. Governing Law and Venue. This License is governed by and construed in accordance with the laws of Denmark, except for its conflict of laws rules; the United Nations Convention on Contracts for the International Sale of Goods will not apply. If you reside (or your principal place of business is) within the United States, you and Unity agree to submit to the personal and exclusive jurisdiction of and venue in the state and federal courts located in San Francisco County, California concerning any dispute arising out of this License ("Dispute"). If you reside (or your principal place of business is) outside the United States, you and Unity agree to submit to the personal and exclusive jurisdiction of and venue in the courts located in Copenhagen, Denmark concerning any Dispute.
+10. 适用法律及管辖地。本许可证受丹麦法律管辖并据其解释，但不适用其冲突法规则；《联合国国际货物销售合同公约》不适用。如果您居住在美国（或您的主要营业地在美国），您与 Unity 同意，就因本许可证引起的任何争议（“争议”），服从位于加利福尼亚州旧金山市的州法院和联邦法院的专属管辖权和管辖地。如果您居住在美国以外（或您的主要营业地在美国以外），您与 Unity 同意，就任何争议，服从位于丹麦哥本哈根的法院的专属管辖权和管辖地。

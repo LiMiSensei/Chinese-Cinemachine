@@ -3,12 +3,12 @@
     "ErrorExceptions": [
         {
             "ValidationTest": "API Validation",
-            "ExceptionMessage": "Breaking changes require a new major version.",
+            "ExceptionMessage": "破坏性变更需对应一个新的主版本号。",
             "PackageVersion": "3.1.5"
         },
         {
             "ValidationTest": "API Validation",
-            "ExceptionMessage": "Additions require a new minor or major version.",
+            "ExceptionMessage": "新增功能需要一个新的次要版本号或主版本号。",
             "PackageVersion": "3.1.5"
         }
     ],

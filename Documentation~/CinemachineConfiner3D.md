@@ -1,12 +1,10 @@
-# Cinemachine Confiner 3D
+# Cinemachine 3D 限制器（Cinemachine Confiner 3D）
 
-Use the __Cinemachine Confiner 3D__ [extension](concept-procedural-motion.md#extensions) to limit the camera’s position to a volume.
+使用 **Cinemachine 3D 限制器**这一[扩展组件](concept-procedural-motion.md#extensions)，可将相机位置限制在指定的体积范围内。
 
-The camera’s position in 3D is confined to a volume.
+在 3D 场景中，相机会被限制在设定的体积区域内移动。
 
-| **Property:** || **Function:** |
+| **属性** || **功能** |
 |:---|:---|:---|
-| __Bounding Volume__ || The 3D volume to contain the camera in. |
-| __Slowing Distance__ || Size of the slow-down zone at the edge of the bounding volume.  When the camera is moving towards an edge and is within this distance of it, it will slow down gradually until the edge is reached. |
-
-
+| **边界体积（Bounding Volume）** || 用于限制相机的 3D 体积区域。 |
+| **减速距离（Slowing Distance）** || 边界体积边缘处减速区域的大小。当相机向边缘移动且与边缘的距离处于此范围内时，相机会逐渐减速，直至抵达边缘后停止。 |

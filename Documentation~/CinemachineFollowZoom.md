@@ -1,13 +1,19 @@
-# Cinemachine Follow Zoom
+# Cinemachine 跟随缩放（Cinemachine Follow Zoom）
 
-This [extension](concept-procedural-motion.md#extensions) adjusts the FOV of the lens to keep the target object at a constant size on the screen, regardless of camera and target position.
+这款[扩展组件](concept-procedural-motion.md#extensions)可调整镜头的视野（FOV），使目标对象在屏幕上始终保持固定大小，不受相机与目标位置变化的影响。
 
-## Properties:
 
-| **Property:** | **Function:** |
+## 属性（Properties）：
+
+| **属性** | **功能** |
 |:---|:---|
-| __Width__ | The shot width to maintain, in world units, at target distance. The FOV will be adjusted so that an object of this size, at target distance, will fill the screen. |
-| __Damping__ | Increase this value to soften the responsiveness of the follow-zoom. Small numbers make the camera more responsive. Larger numbers make the camera respond more slowly.  |
-| __Min FOV__ | Lower limit for the FOV that this behavior generates. |
-| __Max FOV__ | Upper limit for the FOV that this behavior generates. |
+| **宽度（Width）** | 需在目标距离处保持的镜头宽度（单位：世界单位）。系统会自动调整视野（FOV），使该宽度尺寸的物体在目标距离处恰好填满屏幕。 |
+| **阻尼（Damping）** | 增大此值可降低跟随缩放的响应灵敏度。数值越小，相机响应越灵敏；数值越大，相机响应越缓慢。 |
+| **最小视野（Min FOV）** | 此组件生成的视野（FOV）下限值。 |
+| **最大视野（Max FOV）** | 此组件生成的视野（FOV）上限值。 |
 
+
+### 术语说明（游戏开发场景适配）
+- **FOV（Field of View）**：视野，指相机能够观察到的空间范围，通常以垂直方向的角度（度）衡量，FOV 数值越大，相机视野越宽广；
+- **world units**：世界单位，Unity 等游戏引擎中用于衡量空间尺寸的标准单位（1 世界单位通常对应现实中的 1 米）；
+- **follow-zoom**：跟随缩放，指相机根据与目标的距离动态调整视野或缩放比例，以保持目标在屏幕上的显示大小恒定的功能。

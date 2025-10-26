@@ -1,23 +1,23 @@
-# Cinemachine Camera Manager Events
+# Cinemachine 相机管理器事件（Cinemachine Camera Manager Events）
 
-When Cinemachine Cameras are activated, global events are sent via CinemachineCore.  Scripts can add listeners to those events and take action based on them.  Listeners will receive events for all cameras and all brains.
+当 Cinemachine 相机被激活时，会通过 CinemachineCore 发送全局事件。脚本可为此类事件添加监听器，并根据事件执行相应操作。监听器会接收所有相机和所有控制器（Brain）触发的事件。
 
-Sometimes it's desirable to have events sent only for a specific Cinemachine Camera Manager, so that scripts can be notified based on this specific objects's activity without having to provide code to filter the events.  The Cinemachine Brain Events component fills this need.
+有时，用户可能希望事件仅针对特定的 Cinemachine 相机管理器（Cinemachine Camera Manager）发送，以便脚本仅根据该特定对象的活动接收通知，无需额外编写事件筛选代码。Cinemachine 控制器事件（Cinemachine Brain Events）组件正是为满足这一需求而设计的。
 
-It will expose events that will be fired based on the target objects's activity.  Any listeners you add will be called when the events happen for that object.  The target object can be specified explicitly in the **Camera Manager** field, or you can leave that null and add this script directly to the object with the CinemachineBrain component
+该组件会暴露基于目标对象活动触发的事件。当目标对象触发这些事件时，你添加的所有监听器都会被调用。可在“相机管理器（Camera Manager）”字段中明确指定目标对象；若将该字段设为 null，并将此脚本直接添加到带有 Cinemachine 控制器（Cinemachine Brain）组件的对象上，也可实现同样效果。
 
-If you are looking for events that fire for a specific CinemachineCamera, see [Cinemachine Camera Events](CinemachineCameraEvents.md).
+若你需要针对特定 Cinemachine 相机触发的事件，请参阅[Cinemachine 相机事件（Cinemachine Camera Events）](CinemachineCameraEvents.md)。
 
-If you are looking for events that fire for a specific CinemachineBrain, see [Cinemachine Brain Events](CinemachineBrainEvents.md).
+若你需要针对特定 Cinemachine 控制器触发的事件，请参阅[Cinemachine 控制器事件（Cinemachine Brain Events）](CinemachineBrainEvents.md)。
 
-## Properties:
 
-| **Property:** | **Function:** |
+## 属性（Properties）：
+
+| **属性** | **功能** |
 |:---|:---|
-| __Camera Manager__ | This is the CinemachineCameraManager emitting the events.  If null and the current GameObject has a CinemachineCameraManager component, that component will be used. |
-| __Camera Activated Event__ | This is called at the beginning of a blend, when a camera becomes live.  Parameters are: brain, incoming camera. A cut is considered to be a blend of length zero. |
-| __Camera Deactivated Event__ | This event will fire whenever a Cinemachine Camera stops being live.  If a blend is involved, then the event will fire after the last frame of the blend. |
-| __Blend Created Event__ | This event will fire whenever a new Cinemachine blend is created. Handlers can modify the settings of the blend (but not the cameras).  Note: BlendCreatedEvents are NOT sent for timeline blends, as those are expected to be controlled 100% by timeline. To modify the blend algorithm for timeline blends, you can install a handler for CinemachineCore.GetCustomBlender. |
-| __Blend Finished Event__ | This event will fire whenever a Cinemachine Camera finishes blending in.  It will not fire if the blend length is zero. |
-| __Camera Cut Event__ | This is called when a zero-length blend happens. |
-
+| **相机管理器（Camera Manager）** | 发送事件的 Cinemachine 相机管理器（CinemachineCameraManager）。若该字段为 null，且当前游戏对象（GameObject）带有 Cinemachine 相机管理器组件，则会使用该组件。 |
+| **相机激活事件（Camera Activated Event）** | 当相机开始生效（变为活跃状态）时，在混合过渡（blend）开始时调用。参数包括：控制器（brain）、新激活的相机（incoming camera）。“切换（cut）”操作被视为时长为 0 的混合过渡。 |
+| **相机停用事件（Camera Deactivated Event）** | 每当某个 Cinemachine 相机停止生效（不再活跃）时触发。若涉及混合过渡，则在混合过渡的最后一帧之后触发。 |
+| **混合过渡创建事件（Blend Created Event）** | 每当创建新的 Cinemachine 混合过渡时触发。事件处理器可修改混合过渡的设置（但无法修改相机本身）。注意：时间线（timeline）混合过渡不会发送此事件，因为时间线混合过渡应 100% 由时间线控制。若需修改时间线混合过渡的算法，可为 CinemachineCore.GetCustomBlender 添加事件处理器。 |
+| **混合过渡完成事件（Blend Finished Event）** | 每当某个 Cinemachine 相机完成混合过渡并完全生效时触发。若混合过渡时长为 0（即切换操作），则不会触发此事件。 |
+| **相机切换事件（Camera Cut Event）** | 当发生时长为 0 的混合过渡（即切换操作）时调用。 |

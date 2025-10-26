@@ -1,7 +1,7 @@
-# 2D and top-down games
+# 2D 游戏和俯视角游戏
 
-Use and configure Cinemachine to meet your expectations according to specific requirements of 2D graphics and top-down games.
+根据 2D 图形和俯视角游戏的特定需求，使用并配置 Cinemachine 以满足您的期望。
 
-* [Cinemachine and 2D graphics](Cinemachine2D.md)
+* [Cinemachine 与 2D 图形](Cinemachine2D.md)
 
-* [Cinemachine and top-down games](CinemachineTopDown.md)
+* [Cinemachine 与俯视角游戏](CinemachineTopDown.md)
