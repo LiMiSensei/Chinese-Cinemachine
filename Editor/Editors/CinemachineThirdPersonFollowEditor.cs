@@ -50,7 +50,7 @@ namespace Unity.Cinemachine.Editor
                 m_IconContent = new GUIContent
                 {
                     image = AssetDatabase.LoadAssetAtPath<Texture2D>($"{CinemachineSceneToolHelpers.IconPath}/FollowOffset.png"),
-                    tooltip = "Adjust the Third Person Follow Offset",
+                    tooltip = "调整第三人称跟随偏移量",
                 };
             }
 

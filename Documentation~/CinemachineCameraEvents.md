@@ -1,22 +1,21 @@
-# Cinemachine Camera Events
+# Cinemachine 相机事件
 
-When Cinemachine Cameras are activated, global events are sent via CinemachineCore.  Scripts can add listeners to those events and take action based on them.  Listeners will receive events for all cameras.
+当 Cinemachine 相机被激活时，全局事件会通过 CinemachineCore 发送。脚本可以为这些事件添加监听器，并根据事件执行操作。监听器会接收所有相机的事件。
 
-Sometimes it's desirable to have events sent only for a specific camera, so that scripts can be notified based on this specific camera's activity without having to provide code to filter the events.  The Cinemachine Camera Events component fills this need.
+有时，我们希望仅针对特定相机发送事件，这样脚本就可以根据该特定相机的活动收到通知，而无需编写用于过滤事件的代码。Cinemachine 相机事件组件正好满足了这一需求。
 
-If you add it to a CinemachineCamera, it will expose events that will be fired based on that camera's activity.  Any listeners you add will be called when the events happen for that camera.
+如果将其添加到 CinemachineCamera 上，它会公开基于该相机活动触发的事件。当该相机发生相关事件时，你添加的任何监听器都会被调用。
 
-If you are looking for events that fire for a specific CinemachineBrain, please see [Cinemachine Brain Events](CinemachineBrainEvents.md).
+如果需要针对特定 CinemachineBrain 的事件，请参阅 [Cinemachine 大脑事件](CinemachineBrainEvents.md)。
 
-If you are looking for events that fire for a specific CinemachineCameraManager, see [Cinemachine Camera Manager Events](CinemachineCameraManagerEvents.md).
+如果需要针对特定 CinemachineCameraManager 的事件，请参阅 [Cinemachine 相机管理器事件](CinemachineCameraManagerEvents.md)。
 
-## Properties:
+## 属性：
 
-| **Property:** | **Function:** |
+| **属性：** | **功能：** |
 |:---|:---|
-| __Event Target__ | This is the object whose events are being monitored.  If null and the current GameObject has a CinemachineVirtualCameraBase component, that component will be used. |
-| __Camera Activated Event__ | This is called at the beginning of a blend, when a camera becomes live.  Parameters are: brain, incoming camera. A cut is considered to be a blend of length zero. |
-| __Camera Deactivated Event__ | This event will fire whenever a Cinemachine Camera stops being live.  If a blend is involved, then the event will fire after the last frame of the blend. |
-| __Blend Created Event__ | This event will fire whenever a new Cinemachine blend is created. Handlers can modify the settings of the blend (but not the cameras).  Note: BlendCreatedEvents are NOT sent for timeline blends, as those are expected to be controlled 100% by timeline. To modify the blend algorithm for timeline blends, you can install a handler for CinemachineCore.GetCustomBlender. |
-| __Blend Finished Event__ | This event will fire whenever a Cinemachine Camera finishes blending in.  It will not fire if the blend length is zero. |
-
+| __事件目标__ | 这是正在监视其事件的对象。如果为空，且当前游戏对象具有 CinemachineVirtualCameraBase 组件，则会使用该组件。 |
+| __相机激活事件__ | 在混合开始时调用，当相机变为激活状态时触发。参数为：brain（大脑）、incoming camera（切入相机）。硬切（cut）被视为长度为零的混合。 |
+| __相机停用事件__ | 当 Cinemachine 相机停止激活时触发此事件。如果涉及混合，则该事件会在混合的最后一帧之后触发。 |
+| __混合创建事件__ | 每当创建新的 Cinemachine 混合时，会触发此事件。处理程序可以修改混合的设置（但不能修改相机）。注意：时间线混合不会发送 BlendCreatedEvents，因为它们应完全由时间线控制。要修改时间线混合的混合算法，可以为 CinemachineCore.GetCustomBlender 安装处理程序。 |
+| __混合完成事件__ | 每当 Cinemachine 相机完成混合切入时，会触发此事件。如果混合长度为零，则不会触发。 |

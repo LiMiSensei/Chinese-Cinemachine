@@ -297,7 +297,7 @@ namespace Unity.Cinemachine.Editor
             m_IconContent = new GUIContent
             {
                 image = AssetDatabase.LoadAssetAtPath<Texture2D>(IconPath),
-                tooltip = "Adjust the roll data points along the spline"
+                tooltip = "沿样条线调整侧倾数据点"
             };
         }
 

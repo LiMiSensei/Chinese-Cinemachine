@@ -115,11 +115,10 @@ namespace Unity.Cinemachine.Editor
         {
             if (Target.GetComponentOwner() == null)
             {
-                EditorGUILayout.HelpBox(
-                    "It's not possible to add this component to a prefab instance.  "
-                    + "Instead, you can open the Prefab in Prefab Mode or unpack "
-                    + "the Prefab instance to remove the Prefab connection.",
-                    MessageType.Error);
+               EditorGUILayout.HelpBox(
+                "无法将此组件添加到预制体实例中。"
+                + "您可以在预制体模式下打开该预制体，或者解包预制体实例以移除预制体关联。",
+                MessageType.Error);
                 return;
             }
             BeginInspector();

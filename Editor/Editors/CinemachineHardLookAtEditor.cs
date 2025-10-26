@@ -56,7 +56,7 @@ namespace Unity.Cinemachine.Editor
                 m_IconContent = new GUIContent
                 {
                     image = AssetDatabase.LoadAssetAtPath<Texture2D>($"{CinemachineSceneToolHelpers.IconPath}/TrackedObjectOffset.png"),
-                    tooltip = "Adjust the LookAt Offset",
+                    tooltip = "调整看向偏移量",
                 };
             }
 

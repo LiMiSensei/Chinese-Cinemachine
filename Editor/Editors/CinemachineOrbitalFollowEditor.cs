@@ -141,7 +141,7 @@ namespace Unity.Cinemachine.Editor
                 m_IconContent = new GUIContent
                 {
                     image = AssetDatabase.LoadAssetAtPath<Texture2D>($"{CinemachineSceneToolHelpers.IconPath}/FollowOffset.png"),
-                    tooltip = "Adjust the Follow Offset",
+                    tooltip = "调整跟随偏移量",
                 };
             }
 
@@ -218,7 +218,7 @@ namespace Unity.Cinemachine.Editor
                     }
                     default:
                     {
-                        Debug.LogError("OrbitStyle has no associated handle");
+                        Debug.LogError("轨道样式（OrbitStyle）没有关联的控制柄");
                         throw new System.ArgumentOutOfRangeException();
                     }
                 }

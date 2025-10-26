@@ -9,7 +9,7 @@ namespace Unity.Cinemachine
     /// <summary>
     /// This is a deprecated component.  Use CinemachineCamera instead.
     /// </summary>
-    [Obsolete("CinemachineVirtualCamera is deprecated. Use CinemachineCamera instead.")]
+    [Obsolete("CinemachineVirtualCamera 已弃用（deprecated），请改用 CinemachineCamera。")]
     [DisallowMultipleComponent]
     [ExecuteAlways]
     [ExcludeFromPreset]

@@ -125,7 +125,7 @@ namespace Unity.Cinemachine.Editor
 
             mWaypointList.drawHeaderCallback = (Rect rect) =>
                 {
-                    EditorGUI.LabelField(rect, "Waypoints");
+                    EditorGUI.LabelField(rect, "航点");
                 };
 
             mWaypointList.drawElementCallback
@@ -171,7 +171,7 @@ namespace Unity.Cinemachine.Editor
 
             r = new Rect(rect.position, labelDimension);
             r.x += hSpace + numberDimension.x;
-            EditorGUI.LabelField(r, "Position");
+            EditorGUI.LabelField(r, "位置");
             r.x += hSpace + r.width;
             r.width = rect.width - (numberDimension.x + hSpace + r.width + hSpace + addButtonDimension.x + hSpace);
             EditorGUI.PropertyField(r, element.FindPropertyRelative(() => def.position), GUIContent.none);
@@ -193,7 +193,7 @@ namespace Unity.Cinemachine.Editor
             r = new Rect(rect.position, labelDimension);
             r.y += numberDimension.y + vSpace;
             r.x += hSpace + numberDimension.x; r.width = labelDimension.x;
-            EditorGUI.LabelField(r, "Tangent");
+            EditorGUI.LabelField(r, "切线");
             r.x += hSpace + r.width;
             r.width = rect.width - (numberDimension.x + hSpace + r.width + hSpace + addButtonDimension.x + hSpace);
             EditorGUI.PropertyField(r, element.FindPropertyRelative(() => def.tangent), GUIContent.none);
@@ -214,7 +214,7 @@ namespace Unity.Cinemachine.Editor
             r = new Rect(rect.position, labelDimension);
             r.y += 2 * (numberDimension.y + vSpace);
             r.x += hSpace + numberDimension.x; r.width = labelDimension.x;
-            EditorGUI.LabelField(r, "Roll");
+            EditorGUI.LabelField(r, "滚动");
             r.x += hSpace + labelDimension.x;
             r.width = rect.width
                 - (numberDimension.x + hSpace)

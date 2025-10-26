@@ -62,7 +62,7 @@ namespace Unity.Cinemachine.Editor
         {
             if (MyTarget.IsValid && (MyTarget.LookAtTargetAsGroup == null || !MyTarget.LookAtTargetAsGroup.IsValid))
                 EditorGUILayout.HelpBox(
-                    "The Framing settings will be ignored because the LookAt target is not a kind of ICinemachineTargetGroup",
+                    "由于“看向（LookAt）”目标并非ICinemachineTargetGroup类型，构图（Framing）设置将被忽略。",
                     MessageType.Info);
 
             base.OnInspectorGUI();

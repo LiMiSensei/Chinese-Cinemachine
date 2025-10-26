@@ -256,7 +256,7 @@ namespace Unity.Cinemachine.Editor
     internal class VcamStageEditorPipeline
     {
         static GUIContent ProceduralMotionLabel = new GUIContent(
-            "Procedural Motion",
+            "程序性运动",
             "Use the procedural motion algorithms to automatically drive the transform in "
                 + "relation to the LookAt and Tracking targets.  \n\n"
                 + "Position Control controls the position, and Rotation Control controls the rotation.\n\n"
