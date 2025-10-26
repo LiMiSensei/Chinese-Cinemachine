@@ -113,6 +113,7 @@ namespace Unity.Cinemachine.Editor
 
         public override void OnInspectorGUI()
         {
+            
             if (Target.GetComponentOwner() == null)
             {
                EditorGUILayout.HelpBox(

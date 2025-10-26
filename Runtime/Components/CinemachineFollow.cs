@@ -20,11 +20,13 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineFollow.html")]
     public class CinemachineFollow : CinemachineComponentBase
     {
+        [Header("Help：程序化组件-Position Control-1 基础跟随逻辑\n相机自身将重新分配旋转，位置")]
+        [Space(30)]
         /// <summary>Settings to control damping for target tracking.</summary>
         public TrackerSettings TrackerSettings = TrackerSettings.Default;
 
         /// <summary>The distance which the camera will attempt to maintain from the tracking target</summary>
-        [Tooltip("The distance vector that the camera will attempt to maintain from the tracking target")]
+        [Tooltip("相机将尝试与跟踪目标保持的距离向量。")]
         public Vector3 FollowOffset = Vector3.back * 10f;
 
         Tracker m_TargetTracker;

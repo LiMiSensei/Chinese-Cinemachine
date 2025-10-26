@@ -156,7 +156,7 @@ namespace Unity.Cinemachine.Editor
             }
 
             var help = ux.AddChild(new HelpBox(text, HelpBoxMessageType.Info));
-            help.AddButton("Add Input Controller", () =>
+            help.AddButton("添加输入控制器", () =>
             {
                 if (s_AllAxisControllerTypes.Count == 1)
                     AddController(s_AllAxisControllerTypes[0]);
@@ -176,7 +176,7 @@ namespace Unity.Cinemachine.Editor
             // Local fucntion
             void AddController(Type controllerType)
             {
-                Undo.SetCurrentGroupName("Add Input Controller");
+                Undo.SetCurrentGroupName("添加输入控制器");
                 for (int i = 0; i < editor.targets.Length; ++i)
                 {
                     if (editor.targets[i] is IInputAxisResetSource src && !src.HasResetHandler)

@@ -19,17 +19,17 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct Item
         {
+            
             /// <summary>The target object to look at.  It may be None, in which case the Offset will specify a point in world spac</summary>
-            [Tooltip("The target object to look at.  It may be None, in which case the Offset will specify a point in world space.")]
+            [Tooltip("要注视的目标对象。它可以为“无”（None），这种情况下，偏移量（Offset）将指定世界空间中的一个点。")]
             public Transform LookAt;
 
             /// <summary>The offset (in local coords) from the LookAt target's origin.  If LookAt target is None, this will specify a world-space point</summary>
-            [Tooltip("The offset (in local coords) from the LookAt target's origin.  If LookAt target is None, this will specify a world-space point.")]
+            [Tooltip("相对于注视目标原点的偏移量（位于局部坐标系中）。如果注视目标为“无”（None），则此偏移量将指定世界空间中的一个点。")]
             public Vector3 Offset;
 
             /// <summary>Easing value for the Bezier curve. 0 is linear, 1 is smooth.</summary>
-            [Tooltip("Controls how to ease in and out of this data point.  A value of 0 will linearly interpolate between "
-                + "LookAt points, while a value of 1 will slow down and briefly pause the rotation to look at the target.")]
+            [Tooltip("控制对此数据点的缓入和缓出方式。值为0时，将在注视点（LookAt points）之间进行线性插值；值为1时，会减缓旋转速度并短暂停顿以注视目标。")]
             [Range(0, 1)]
             public float Easing;
 
@@ -58,7 +58,7 @@ namespace Unity.Cinemachine
         /// expects the array to be in strictly increasing order of distance along the spline.  If you do change
         /// the array at runtime, you must take care to keep it in this order, or the results will be unpredictable.
         /// </remarks>
-        [Tooltip("LookAt targets for the camera at specific positions on the Spline")]
+        [Tooltip("相机在样条线（Spline）特定位置上的注视目标（LookAt targets）。")]
         public SplineData<Item> Targets = new () { DefaultValue = new Item { Easing = 1 } };
 
         void Reset() => Targets = new SplineData<Item> { DefaultValue = new Item { Easing = 1 } };

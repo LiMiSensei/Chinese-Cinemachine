@@ -22,23 +22,23 @@ namespace Unity.Cinemachine
     public class CinemachineRotationComposer : CinemachineComponentBase,
         CinemachineFreeLookModifier.IModifiableComposition
     {
+        [Header("Help：这是Cinemachine Camera-程序化组件-Rotation Composer-4 旋转逻辑\n用于屏幕空间内的旋转跟踪，响应灵敏度调节，旋转范围限制,死区,缓入缓出与过渡效果")]
+        [Space(30)]
         /// <summary>Settings for screen-space composition</summary>
-        [Header("Composition")]
+        [Header("构图")]
         [HideFoldout]
         public ScreenComposerSettings Composition = ScreenComposerSettings.Default;
 
         /// <summary>Force target to center of screen when this camera activates.
         /// If false, will clamp target to the edges of the dead zone</summary>
-        [Tooltip("Force target to center of screen when this camera activates.  If false, will "
-            + "clamp target to the edges of the dead zone")]
+        [Tooltip("当此相机激活时，强制目标位于屏幕中心。如果为 false（关闭），则会将目标限制在死区的边缘。")]
         public bool CenterOnActivate = true;
 
         /// <summary>Target offset from the object's origin in target-local space which
         /// the Composer tracks. Use this to fine-tune the tracking target position
         /// when the desired area is not in the tracked object's origin</summary>
-        [Header("Target Tracking")]
-        [Tooltip("Target offset from the target object's origin in target-local space. Use this to "
-            + "fine-tune the tracking target position when the desired area is not the tracked object's origin.")]
+        [Header("目标跟踪")]
+        [Tooltip("相对于目标对象原点的偏移量（位于目标局部空间中）。当所需区域并非被跟踪对象的原点时，可使用此参数微调跟踪目标的位置。")]
         [FormerlySerializedAs("TrackedObjectOffset")]
         public Vector3 TargetOffset;
 
@@ -46,10 +46,8 @@ namespace Unity.Cinemachine
         /// Small numbers are more responsive, rapidly orienting the camera to keep the target in
         /// the dead zone. Larger numbers give a more heavy slowly responding camera.
         /// Using different vertical and horizontal settings can yield a wide range of camera behaviors.</summary>
-        [Tooltip("How aggressively the camera tries to follow the target in the screen space. "
-            + "Small numbers are more responsive, rapidly orienting the camera to keep the target in "
-            + "the dead zone. Larger numbers give a more heavy slowly responding camera. Using different "
-            + "vertical and horizontal settings can yield a wide range of camera behaviors.")]
+        [Tooltip("相机在屏幕空间中跟随目标的积极程度。数值越小，响应越灵敏，相机会快速调整朝向，以将目标保持在死区内；"
+        +"数值越大，相机响应越迟缓、显得更 “沉重”。通过设置不同的垂直和水平参数，可实现多种不同的相机行为效果。")]
         public Vector2 Damping;
 
         /// <summary>This setting will instruct the composer to adjust its target offset based

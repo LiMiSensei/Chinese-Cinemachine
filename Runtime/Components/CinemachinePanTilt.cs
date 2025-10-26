@@ -19,6 +19,7 @@ namespace Unity.Cinemachine
         : CinemachineComponentBase, IInputAxisOwner, IInputAxisResetSource
         , CinemachineFreeLookModifier.IModifierValueSource
     {
+        
         /// <summary>Defines the reference frame against which pan and tilt rotations are made.</summary>
         public enum ReferenceFrames
         {
@@ -59,16 +60,16 @@ namespace Unity.Cinemachine
         /// </summary>
         public RecenterTargetModes RecenterTarget = RecenterTargetModes.AxisCenter;
 
+        [Header("Help：这是Cinemachine Camera-程序化组件-Rotation Composer-6 手动操控镜头\n用于分离控制水平与垂直旋转，输入驱动与脚本控制，旋转范围限制,平滑与阻尼效果,与目标跟踪的配合")]
+        [Space(30)]
         /// <summary>Axis representing the current horizontal rotation.  Value is in degrees
         /// and represents a rotation about the up vector</summary>
-        [Tooltip("Axis representing the current horizontal rotation.  Value is in degrees "
-            + "and represents a rotation about the Y axis.")]
+        [Tooltip("代表当前代表当前水平旋转的轴。其值以度为单位，表示绕 Y 轴的旋转角度。")]
         public InputAxis PanAxis = DefaultPan;
 
         /// <summary>Axis representing the current vertical rotation.  Value is in degrees
         /// and represents a rotation about the right vector</summary>
-        [Tooltip("Axis representing the current vertical rotation.  Value is in degrees "
-            + "and represents a rotation about the X axis.")]
+        [Tooltip("代表当前垂直旋转的轴。其值以度为单位，表示绕 X 轴的旋转角度。")]
         public InputAxis TiltAxis = DefaultTilt;
 
         Quaternion m_PreviousCameraRotation;

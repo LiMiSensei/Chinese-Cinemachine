@@ -15,6 +15,7 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineHardLookAt.html")]
     public class CinemachineHardLookAt : CinemachineComponentBase
     {
+        
         /// <summary>True if component is enabled and has a LookAt defined</summary>
         public override bool IsValid { get => enabled && LookAtTarget != null; }
 
@@ -31,7 +32,9 @@ namespace Unity.Cinemachine
         /// <summary>
         /// Offset from the LookAt target's origin, in target's local space.  The camera will look at this point.
         /// </summary>
-        [Tooltip("Offset from the LookAt target's origin, in target's local space.  The camera will look at this point.")]
+        [Header("Help：这是Cinemachine Camera-程序化组件-Rotation Composer-5 紧盯目标\n用于强制对准目标，支持偏移设置，无平滑过渡")]
+        [Space(30)]
+        [Tooltip("相对于注视目标（LookAt target）原点的偏移量，位于目标的局部空间中。相机会注视这个点。")]
         public Vector3 LookAtOffset = Vector3.zero;
 
         void Reset()

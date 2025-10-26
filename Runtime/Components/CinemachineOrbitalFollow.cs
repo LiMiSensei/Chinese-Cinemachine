@@ -23,11 +23,12 @@ namespace Unity.Cinemachine
         , CinemachineFreeLookModifier.IModifiablePositionDamping
         , CinemachineFreeLookModifier.IModifiableDistance
     {
+        [Header("Help：这是Cinemachine Camera-程序化组件-Position Control-6 OrbitalFollow\n")]
+        [Space(30)]
         /// <summary>Offset from the object's origin in target-local space.
         /// Use this to fine-tune the orbit when the desired focus of the orbit is not
         /// the tracked object's origin</summary>
-        [Tooltip("Offset from the target object's origin in target-local space. Use this to fine-tune the "
-            + "orbit when the desired focus of the orbit is not the tracked object's origin.")]
+        [Tooltip("在目标对象自身坐标系（目标局部空间）中，相对于目标对象原点的偏移量。当所需的环绕焦点并非被跟踪对象的原点时，可使用此参数微调环绕效果。")]
         public Vector3 TargetOffset;
 
         /// <summary>Settings to control damping for target tracking.</summary>
@@ -45,15 +46,15 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>How to construct the surface on which the camera will travel</summary>
-        [Tooltip("Defines the manner in which the orbit surface is constructed." )]
+        [Tooltip("定义环绕面（orbit surface）的构建方式。" )]
         public OrbitStyles OrbitStyle = OrbitStyles.Sphere;
 
         /// <summary>The camera will be placed at this distance from the Follow target</summary>
-        [Tooltip("The camera will be placed at this distance from the Follow target.")]
+        [Tooltip("相机会放置在距离 “跟随目标”（Follow target）此距离的位置。")]
         public float Radius = 10;
 
         /// <summary>Defines a complex surface rig from 3 horizontal rings.</summary>
-        [Tooltip("Defines a complex surface rig from 3 horizontal rings.")]
+        [Tooltip("由 3 个水平环定义一个复杂的曲面装置。")]
         [HideFoldout]
         public Cinemachine3OrbitRig.Settings Orbits = Cinemachine3OrbitRig.Settings.Default;
 
@@ -78,26 +79,22 @@ namespace Unity.Cinemachine
 
         /// <summary>Defines the reference frame for horizontal recentering.  The axis center
         /// will be dynamically updated to be behind the selected object.</summary>
-        [Tooltip("Defines the reference frame for horizontal recentering.  The axis center "
-            + "will be dynamically updated to be behind the selected object.")]
+        [Tooltip("定义水平重新定位的参考坐标系。轴中心会动态更新，以位于所选对象的后方。")]
         public ReferenceFrames RecenteringTarget = ReferenceFrames.TrackingTarget;
 
         /// <summary>Axis representing the current horizontal rotation.  Value is in degrees
         /// and represents a rotation about the up vector</summary>
-        [Tooltip("Axis representing the current horizontal rotation.  Value is in degrees "
-            + "and represents a rotation about the up vector.")]
+        [Tooltip("代表当前水平旋转的轴。数值单位为度（°），表示围绕上方向向量（up vector）的旋转角度。")]
         public InputAxis HorizontalAxis = DefaultHorizontal;
 
         /// <summary>Axis representing the current vertical rotation.  Value is in degrees
         /// and represents a rotation about the right vector</summary>
-        [Tooltip("Axis representing the current vertical rotation.  Value is in degrees "
-            + "and represents a rotation about the right vector.")]
+        [Tooltip("代表当前垂直旋转的轴。数值单位为度（°），表示围绕右方向向量（right vector）的旋转角度。")]
         public InputAxis VerticalAxis = DefaultVertical;
 
         /// <summary>Axis controlling the scale of the current distance.  Value is a scalar
         /// multiplier and is applied to the specified camera distance</summary>
-        [Tooltip("Axis controlling the scale of the current distance.  Value is a scalar "
-            + "multiplier and is applied to the specified camera distance.")]
+        [Tooltip("控制当前距离缩放比例的轴。数值为标量乘数，会应用于指定的相机距离。")]
         public InputAxis RadialAxis = DefaultRadial;
 
         // State information

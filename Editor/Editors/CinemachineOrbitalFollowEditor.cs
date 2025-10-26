@@ -15,6 +15,9 @@ namespace Unity.Cinemachine.Editor
         public override VisualElement CreateInspectorGUI()
         {
             var ux = new VisualElement();
+            ux.AddChild(new HelpBox("Help：程序化组件-Position Control-6 围绕角色旋转观察\n这是一种更高级的旋转方式",
+                HelpBoxMessageType.Warning));
+
             this.AddMissingCmCameraHelpBox(ux);
             ux.Add(new PropertyField(serializedObject.FindProperty(() => Target.TrackerSettings)));
             ux.Add(new PropertyField(serializedObject.FindProperty(() => Target.TargetOffset)));
@@ -28,7 +31,7 @@ namespace Unity.Cinemachine.Editor
             var row = ux.AddChild(InspectorUtility.PropertyRow(
                 serializedObject.FindProperty(() => Target.RecenteringTarget), out _));
 
-            var recenteringInactive = row.Contents.AddChild(new Label(" (inactive)")
+            var recenteringInactive = row.Contents.AddChild(new Label(" （未激活）")
             {
                 tooltip = "重新居中当前已禁用，因此重新居中目标将被忽略。",
                 style = { alignSelf = Align.Center }

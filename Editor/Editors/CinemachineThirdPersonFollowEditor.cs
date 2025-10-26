@@ -56,6 +56,7 @@ namespace Unity.Cinemachine.Editor
 
             public override void OnToolGUI(EditorWindow window)
             {
+                
                 var thirdPerson = target as CinemachineThirdPersonFollow;
                 if (thirdPerson == null || !thirdPerson.IsValid)
                     return;

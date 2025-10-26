@@ -23,11 +23,12 @@ namespace Unity.Cinemachine
     public class CinemachineBasicMultiChannelPerlin
         : CinemachineComponentBase, CinemachineFreeLookModifier.IModifiableNoise
     {
+        [Header("Help：程序化组件-Noise-2 自然抖动效果\n可以设置相机震动，颠簸，呼吸感")]
+        [Space(30)]
         /// <summary>
         /// Serialized property for referencing a NoiseSettings asset
         /// </summary>
-        [Tooltip("The asset containing the Noise Profile.  Define the frequencies and amplitudes "
-            + "there to make a characteristic noise profile.  Make your own or just use one of the many presets.")]
+        [Tooltip("包含噪声配置文件的资源。在此处定义频率和振幅，以创建独特的噪声特征。你可以自定义配置文件，也可以直接使用众多预设中的一个。")]
         [FormerlySerializedAs("m_Definition")]
         [FormerlySerializedAs("m_NoiseProfile")]
         public NoiseSettings NoiseProfile;
@@ -35,23 +36,21 @@ namespace Unity.Cinemachine
         /// <summary>
         /// When rotating the camera, offset the camera's pivot position by this much (camera space)
         /// </summary>
-        [Tooltip("When rotating the camera, offset the camera's pivot position by this much (camera space)")]
+        [Tooltip("旋转相机时，以此数值偏移相机的旋转轴心位置（基于相机自身坐标系）。")]
         [FormerlySerializedAs("m_PivotOffset")]
         public Vector3 PivotOffset = Vector3.zero;
 
         /// <summary>
         /// Gain to apply to the amplitudes defined in the settings asset.
         /// </summary>
-        [Tooltip("Gain to apply to the amplitudes defined in the NoiseSettings asset.  1 is normal.  "
-            + "Setting this to 0 completely mutes the noise.")]
+        [Tooltip("应用于 NoiseSettings 资源中定义的振幅的增益值。1 为正常状态。将此值设为 0 可完全消除噪声。")]
         [FormerlySerializedAs("m_AmplitudeGain")]
         public float AmplitudeGain = 1f;
 
         /// <summary>
         /// Scale factor to apply to the frequencies defined in the settings asset.
         /// </summary>
-        [Tooltip("Scale factor to apply to the frequencies defined in the NoiseSettings asset.  1 is normal.  "
-            + "Larger magnitudes will make the noise shake more rapidly.")]
+        [Tooltip("应用于 NoiseSettings 资源中定义的频率的缩放系数。1 为正常状态。数值越大，噪声抖动越剧烈。")]
         [FormerlySerializedAs("m_FrequencyGain")]
         public float FrequencyGain = 1f;
 

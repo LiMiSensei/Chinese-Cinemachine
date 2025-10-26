@@ -21,6 +21,8 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineSplineDolly.html")]
     public class CinemachineSplineDolly : CinemachineComponentBase, ISplineReferencer
     {
+        [Header("Help：程序化组件-Position Control-2 轨迹运动\n基于样条曲线的路径控制，移动参数调节，与目标跟踪结合，平滑过渡与事件触发")]
+        [Space(30)]
         /// <summary>
         /// Holds the Spline container, the spline position, and the position unit type
         /// </summary>
@@ -29,13 +31,11 @@ namespace Unity.Cinemachine
 
         /// <summary>Where to put the camera relative to the spline position.  X is perpendicular
         /// to the spline, Y is up, and Z is parallel to the spline.</summary>
-        [Tooltip("Where to put the camera relative to the spline position.  X is perpendicular "
-            + "to the spline, Y is up, and Z is parallel to the spline.")]
+        [Tooltip("相机相对于样条线位置的放置位置。X 轴垂直于样条线，Y 轴为向上方向，Z 轴平行于样条线。")]
         public Vector3 SplineOffset = Vector3.zero;
 
         /// <summary>How to set the camera's rotation and Up.  This will affect the screen composition.</summary>
-        [Tooltip("How to set the camera's rotation and Up.  This will affect the screen composition, because "
-            + "the camera Aim behaviours will always try to respect the Up direction.")]
+        [Tooltip("相机相对于样条线位置的放置位置。X 轴垂直于样条线，Y 轴为向上方向，Z 轴平行于样条线。")]
         [FormerlySerializedAs("CameraUp")]
         public RotationMode CameraRotation = RotationMode.Default;
 
@@ -60,7 +60,7 @@ namespace Unity.Cinemachine
         {
             /// <summary>Enables damping, which causes the camera to move gradually towards
             /// the desired spline position.</summary>
-            [Tooltip("Enables damping, which causes the camera to move gradually towards the desired spline position")]
+            [Tooltip("启用阻尼功能，该功能会使相机平缓地向目标样条线位置移动。")]
             public bool Enabled;
 
             /// <summary>How aggressively the camera tries to maintain the offset along
@@ -73,36 +73,31 @@ namespace Unity.Cinemachine
             /// - z represents the axis that is parallel to the spline. This won't move the camera off the spline.
             /// Smaller numbers are more responsive. Larger numbers give a heavier more slowly responding camera.
             /// Using different settings per axis can yield a wide range of camera behaviors.</summary>
-            [Tooltip("How aggressively the camera tries to maintain the offset along the "
-                + "x, y, or z directions in spline local space. \n"
-                + "- x represents the axis that is perpendicular to the spline. Use this to smooth out "
-                + "imperfections in the path. This may move the camera off the spline.\n"
-                + "- y represents the axis that is defined by the spline-local up direction. Use this to smooth out "
-                + "imperfections in the path. This may move the camera off the spline.\n"
-                + "- z represents the axis that is parallel to the spline. This won't move the camera off the spline.\n\n"
-                + "Smaller numbers are more responsive, larger numbers give a heavier more slowly responding camera. "
-                + "Using different settings per axis can yield a wide range of camera behaviors.")]
+            [Tooltip("相机在样条线局部空间中，沿 x、y 或 z 轴方向维持偏移量的 “主动程度”。\n"
+            + "x 轴代表垂直于样条线的轴。可用于平滑路径中的不完美之处，此设置可能导致相机偏离样条线。\n"
+            + "y 轴代表由样条线局部上方向定义的轴。可用于平滑路径中的不完美之处，此设置可能导致相机偏离样条线。\n"
+            + "z 轴代表平行于样条线的轴。此设置不会导致相机偏离样条线。"
+            + "数值越小，相机响应越灵敏；数值越大，相机响应越迟缓、“沉重感” 越强。为不同轴设置不同参数，可实现多种多样的相机行为。")]
             public Vector3 Position;
 
             /// <summary>How aggressively the camera tries to maintain the desired rotation.
             /// This is only used if Camera Rotation is not Default.</summary>
             [Range(0f, 20f)]
-            [Tooltip("How aggressively the camera tries to maintain the desired rotation.  "
-                + "This is only used if Camera Rotation is not Default.")]
+            [Tooltip("相机尝试维持目标旋转角度的 “主动程度”。"
+            +"仅当 “相机旋转模式”（Camera Rotation）设为非 “默认（Default）” 时，此参数才会生效。")]
             public float Angular;
         }
 
         /// <summary>Settings for controlling damping, which causes the camera to
         /// move gradually towards the desired spline position</summary>
         [FoldoutWithEnabledButton]
-        [Tooltip("Settings for controlling damping, which causes the camera to "
-            + "move gradually towards the desired spline position")]
+        [Tooltip("用于控制阻尼的设置，该设置会使相机平缓地向目标样条线位置移动。")]
         public DampingSettings Damping;
 
         /// <summary>Controls how automatic dolly occurs</summary>
         [NoSaveDuringPlay]
         [FoldoutWithEnabledButton]
-        [Tooltip("Controls how automatic dolly occurs.  A tracking target may be necessary to use this feature.")]
+        [Tooltip("控制自动推拉（镜头）的方式。使用此功能可能需要一个跟踪目标。")]
         public SplineAutoDolly AutomaticDolly;
 
         // State info for damping

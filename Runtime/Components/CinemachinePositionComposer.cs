@@ -30,26 +30,26 @@ namespace Unity.Cinemachine
         , CinemachineFreeLookModifier.IModifiableDistance
         , CinemachineFreeLookModifier.IModifiableComposition
     {
+        [Header("Help：程序化组件-Position Control-7 控制相机位置\n用于第三人称角色跟随，动态镜头构图，稳定跟踪")]
+        [Space(30)]
         /// <summary>The distance along the camera axis that will be maintained from the target</summary>
-        [Header("Camera Position")]
-        [Tooltip("The distance along the camera axis that will be maintained from the target")]
+        [Header("相机位置")]
+        [Tooltip("沿相机轴方向与目标保持的距离")]
         public float CameraDistance = 10f;
 
         /// <summary>The camera will not move along its z-axis if the target is within
         /// this distance of the specified camera distance</summary>
-        [Tooltip("The camera will not move along its z-axis if the target is within "
-            + "this distance of the specified camera distance")]
+        [Tooltip("如果目标在指定相机距离的此范围内，相机将不会沿其z轴移动。")]
         public float DeadZoneDepth = 0;
 
         /// <summary>Settings for screen-space composition</summary>
-        [Header("Composition")]
+        [Header("构图")]
         [HideFoldout]
         public ScreenComposerSettings Composition = ScreenComposerSettings.Default;
 
         /// <summary>Force target to center of screen when this camera activates.
         /// If false, will clamp target to the edges of the dead zone</summary>
-        [Tooltip("Force target to center of screen when this camera activates.  If false, will "
-            + "clamp target to the edges of the dead zone")]
+        [Tooltip("当此相机激活时，强制目标处于屏幕中心。若为 “false”（关闭），则会将目标限制在死区边缘。")]
         public bool CenterOnActivate = true;
 
         /// <summary>
@@ -57,11 +57,9 @@ namespace Unity.Cinemachine
         /// frame the point which is the target's position plus this offset.  Use it to correct for
         /// cases when the target's origin is not the point of interest for the camera.
         /// </summary>
-        [Header("Target Tracking")]
-        [Tooltip("Offset from the target object's origin (in target-local co-ordinates).  "
-            + "The camera will attempt to frame the point which is the target's position plus "
-            + "this offset.  Use it to correct for cases when the target's origin is not the "
-            + "point of interest for the camera.")]
+        [Header("目标跟踪")]
+        [Tooltip("相对于目标对象原点的偏移量（位于目标局部坐标系中）"
+        +"。相机将尝试对“目标位置加上此偏移量”所得到的点进行取景。当目标的原点并非相机的关注点时，可使用此参数进行修正。")]
         [FormerlySerializedAs("TrackedObjectOffset")]
         public Vector3 TargetOffset;
 
@@ -69,10 +67,8 @@ namespace Unity.Cinemachine
         /// Small numbers are more responsive, rapidly orienting the camera to keep the target in
         /// the dead zone. Larger numbers give a more heavy slowly responding camera.
         /// Using different vertical and horizontal settings can yield a wide range of camera behaviors.</summary>
-        [Tooltip("How aggressively the camera tries to follow the target in the screen space. "
-            + "Small numbers are more responsive, rapidly orienting the camera to keep the target in "
-            + "the dead zone. Larger numbers give a more heavy slowly responding camera. Using different "
-            + "vertical and horizontal settings can yield a wide range of camera behaviors.")]
+        [Tooltip("相机在屏幕空间中尝试跟随目标的积极程度。数值越小，响应越灵敏，相机会快速调整朝向以将目标保持在死区内；"
+        +"数值越大，相机响应越迟缓、显得更 “沉重”。对垂直和水平方向使用不同的设置，可实现多种不同的相机行为效果。")]
         public Vector3 Damping;
 
         /// <summary>This setting will instruct the composer to adjust its target offset based

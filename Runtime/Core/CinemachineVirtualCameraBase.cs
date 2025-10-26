@@ -37,13 +37,11 @@ namespace Unity.Cinemachine
         /// In special cases where you want a CinemachineCamera to have a higher or lower priority value than 0, you can set it here.
         /// </summary>
         [NoSaveDuringPlay]
-        [Tooltip("Priority can be used to control which Cm Camera is live when multiple CM Cameras are "
-            + "active simultaneously.  The most-recently-activated CinemachineCamera will take control, unless there "
-            + "is another Cm Camera active with a higher priority.  In general, the most-recently-activated "
-            + "highest-priority CinemachineCamera will control the main camera. \n\n"
-            + "The default priority is value 0.  Often it is sufficient to leave the default setting.  "
-            + "In special cases where you want a CinemachineCamera to have a higher or lower priority value than 0, you can set it here.")]
-        [EnabledProperty(toggleText: "(using default)")]
+        [Tooltip("优先级可用于在多个Cinemachine相机（Cm Camera）同时激活时，控制哪个个相机处于为激活状态。"
+        + "最近激活的Cinemachine相机会获得控制权，除非存在另一个优先级更高的激活状态的Cinemachine相机。"
+        +"通常情况下，最近激活且优先级最高的Cinemachine相机会控制主相机。"
+        +"默认优先级值为0。多数情况下，保持默认设置即可。如果在特殊场景中，你希望某个Cinemachine相机的优先级高于或低于0，可在此处进行设置。")]
+        [EnabledProperty(toggleText: "（使用默认值）")]
         public PrioritySettings Priority = new ();
 
         /// <summary>
@@ -51,8 +49,7 @@ namespace Unity.Cinemachine
         /// to different CinemachineBrains, for instance in a multi-screen environemnt.
         /// </summary>
         [NoSaveDuringPlay]
-        [Tooltip("The output channel functions like Unity layers.  Use it to filter the output of CinemachineCameras "
-            + "to different CinemachineBrains, for instance in a multi-screen environemnt.")]
+        [Tooltip("输出通道的功能类似于 Unity 的图层。可使用它将 Cinemachine 相机的输出过滤到不同的 CinemachineBrain，例如在多屏幕环境中。")]
         public OutputChannels OutputChannel = OutputChannels.Default;
 
         /// <summary>Helper for upgrading from CM2</summary>
@@ -102,9 +99,8 @@ namespace Unity.Cinemachine
         /// be updated.  Set this to tune for performance. Most of the time Never is fine, unless
         /// the virtual camera is doing shot evaluation.
         /// </summary>
-        [Tooltip("When the virtual camera is not live, this is how often the virtual camera will be updated.  "
-            + "Set this to tune for performance. Most of the time Never is fine, "
-            + "unless the virtual camera is doing shot evaluation.")]
+        [Tooltip("当虚拟相机未处于激活状态时，此参数用于设置虚拟相机的更新频率。"
+        +"可通过设置此参数来优化性能。大多数情况下，设为“从不（Never）”即可，除非该虚拟相机需要进行镜头评估。")]
         [FormerlySerializedAs("m_StandbyUpdate")]
         public StandbyUpdateMode StandbyUpdate = StandbyUpdateMode.RoundRobin;
 

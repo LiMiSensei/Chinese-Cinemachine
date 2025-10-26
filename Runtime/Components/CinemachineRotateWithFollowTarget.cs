@@ -14,10 +14,12 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineRotateWithFollowTarget.html")]
     public class CinemachineRotateWithFollowTarget : CinemachineComponentBase
     {
+        [Header("Help：程序化组件-Rotation Control-2 跟随目标旋转\n可以设置相机旋转归位阻尼")]
+        [Space(30)]
         /// <summary>
         /// How much time it takes for the aim to catch up to the target's rotation
         /// </summary>
-        [Tooltip("How much time it takes for the aim to catch up to the target's rotation")]
+        [Tooltip("瞄准（镜头）追上目标旋转所需的时间。")]
         public float Damping = 0;
 
         Quaternion m_PreviousReferenceOrientation = Quaternion.identity;

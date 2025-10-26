@@ -37,10 +37,8 @@ namespace Unity.Cinemachine.Editor
                 return;
 
             var cameraParentingMessage = ux.AddChild(new HelpBox(
-                $"设置错误：{editor.target.GetType().Name} should not be a child "
-                + "of CinemachineCamera or CinemachineBrain.\n\n"
-                + "<b>Best practice is to have CinemachineCamera, CinemachineBrain, and camera targets as "
-                + "separate objects, not parented to each other.</b>",
+                $"设置错误：{editor.target.GetType().Name} 不应作为CinemachineCamera或CinemachineBrain的子对象。"
+                +"<b>最佳实践是将CinemachineCamera、CinemachineBrain和相机目标设为独立对象，彼此之间不要设置父子关系。</b>",
                 HelpBoxMessageType.Error));
 
             var noBrainMessage = ux.AddChild(new HelpBox("场景中需要一个 CinemachineBrain。", HelpBoxMessageType.Warning));
@@ -276,7 +274,7 @@ namespace Unity.Cinemachine.Editor
             });
             var button = row.Contents.AddChild(new Button
             {
-                text = "(select)",
+                text = "（请选择）",
                 style =
                 {
                     flexGrow = 1, marginRight = -2, marginLeft = 3,
@@ -396,7 +394,7 @@ namespace Unity.Cinemachine.Editor
                 s_ExtensionTypes = new List<Type>();
                 s_ExtensionNames = new List<string>();
                 s_ExtensionTypes.Add(null);
-                s_ExtensionNames.Add("(select)");
+                s_ExtensionNames.Add("（请选择）");
                 var allExtensions = ReflectionHelpers.GetTypesDerivedFrom(typeof(CinemachineExtension),
                     (t) => !t.IsAbstract && t.GetCustomAttribute<ObsoleteAttribute>() == null);
                 allExtensions.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));

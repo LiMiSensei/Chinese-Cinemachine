@@ -19,10 +19,7 @@ namespace Unity.Cinemachine
         /// frame the point which is the target's position plus this offset.  Use it to correct for
         /// cases when the target's origin is not the point of interest for the camera.
         /// </summary>
-        [Tooltip("Offset from the Follow Target object (in target-local co-ordinates).  "
-            + "The camera will attempt to frame the point which is the target's position plus "
-            + "this offset.  Use it to correct for cases when the target's origin is not the "
-            + "point of interest for the camera.")]
+        [Tooltip("相对于跟随目标对象的偏移量（位于目标局部坐标系中）。相机会尝试对“目标位置加上此偏移量”所得到的点进行取景。当目标的原点并非相机的关注点时，可使用此参数进行修正。")]
         public Vector3 m_TrackedObjectOffset;
 
         /// <summary>This setting will instruct the composer to adjust its target offset based
@@ -31,25 +28,21 @@ namespace Unity.Cinemachine
         /// to noisy animation, and can amplify the noise, resulting in undesirable camera jitter.
         /// If the camera jitters unacceptably when the target is in motion, turn down this setting,
         /// or animate the target more smoothly.</summary>
-        [Tooltip("This setting will instruct the composer to adjust its target offset based on the "
-            + "motion of the target.  The composer will look at a point where it estimates the target "
-            + "will be this many seconds into the future.  Note that this setting is sensitive to noisy "
-            + "animation, and can amplify the noise, resulting in undesirable camera jitter.  "
-            + "If the camera jitters unacceptably when the target is in motion, turn down this "
-            + "setting, or animate the target more smoothly.")]
+        [Tooltip("此设置将指示构图器根据目标的运动调整其目标偏移量。构图器会看向一个它预估目标在未来若干秒后将到达的点。"
+            + "请注意，此设置对嘈杂的动画较为敏感，可能会放大噪声，导致不必要的相机抖动。"
+            + "如果目标运动时相机抖动得令人无法接受，请调低此设置，或让目标的动画更平滑一些。")]
         [Range(0f, 1f)]
         [Space]
         public float m_LookaheadTime = 0;
 
         /// <summary>Controls the smoothness of the lookahead algorithm.  Larger values smooth out
         /// jittery predictions and also increase prediction lag</summary>
-        [Tooltip("Controls the smoothness of the lookahead algorithm.  Larger values smooth out "
-            + "jittery predictions and also increase prediction lag")]
+        [Tooltip("控制前瞻算法的平滑度。数值越大，越能消除抖动性预测，但同时也会增加预测延迟。")]
         [Range(0, 30)]
         public float m_LookaheadSmoothing = 0;
 
         /// <summary>If checked, movement along the Y axis will be ignored for lookahead calculations</summary>
-        [Tooltip("If checked, movement along the Y axis will be ignored for lookahead calculations")]
+        [Tooltip("如果勾选，前瞻计算将忽略沿Y轴的移动。")]
         public bool m_LookaheadIgnoreY;
 
         /// <summary>How aggressively the camera tries to maintain the offset in the X-axis.
@@ -58,10 +51,9 @@ namespace Unity.Cinemachine
         /// Using different settings per axis can yield a wide range of camera behaviors</summary>
         [Space]
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain the offset in the X-axis.  "
-            + "Small numbers are more responsive, rapidly translating the camera to keep the target's "
-            + "x-axis offset.  Larger numbers give a more heavy slowly responding camera.  "
-            + "Using different settings per axis can yield a wide range of camera behaviors.")]
+        [Tooltip("相机在X轴方向上维持偏移量的积极程度。"
+        +"数值越小，响应越灵敏，相机会快速平移以保持目标的X轴偏移；数值越大，相机响应越迟缓、显得更“沉重”。"
+        +"针对不同轴使用不同的设置，可实现多种不同的相机行为效果。")]
         public float m_XDamping = 1f;
 
         /// <summary>How aggressively the camera tries to maintain the offset in the Y-axis.
@@ -69,10 +61,9 @@ namespace Unity.Cinemachine
         /// y-axis offset.  Larger numbers give a more heavy slowly responding camera.
         /// Using different settings per axis can yield a wide range of camera behaviors</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain the offset in the Y-axis.  "
-            + "Small numbers are more responsive, rapidly translating the camera to keep the target's "
-            + "y-axis offset.  Larger numbers give a more heavy slowly responding camera.  "
-            + "Using different settings per axis can yield a wide range of camera behaviors.")]
+        [Tooltip("相机在 Y 轴方向上维持偏移量的积极程度。"
+        + "数值越小，响应越灵敏，相机会快速平移以保持目标的 Y 轴偏移；数值越大，相机响应越迟缓、显得更 “沉重”。"
+        +"针对不同轴使用不同的设置，可实现多种不同的相机行为效果。")]
         public float m_YDamping = 1f;
 
         /// <summary>How aggressively the camera tries to maintain the offset in the Z-axis.
@@ -80,28 +71,26 @@ namespace Unity.Cinemachine
         /// target's z-axis offset.  Larger numbers give a more heavy slowly responding camera.
         /// Using different settings per axis can yield a wide range of camera behaviors</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to maintain the offset in the Z-axis.  "
-            + "Small numbers are more responsive, rapidly translating the camera to keep the target's "
-            + "z-axis offset.  Larger numbers give a more heavy slowly responding camera.  "
-            + "Using different settings per axis can yield a wide range of camera behaviors.")]
+        [Tooltip("相机在 Z 轴方向上维持偏移量的积极程度。"
+        + "数值越小，响应越灵敏，相机会快速平移以保持目标的 Z 轴偏移；数值越大，相机响应越迟缓、显得更 “沉重”。"
+        + "针对不同轴使用不同的设置，可实现多种不同的相机行为效果。")]
         public float m_ZDamping = 1f;
 
         /// <summary>If set, damping will apply only to target motion, and not when
         /// the camera rotation changes.  Turn this on to get an instant response when
         /// the rotation changes</summary>
-        [Tooltip("If set, damping will apply  only to target motion, but not to camera "
-            + "rotation changes.  Turn this on to get an instant response when the rotation changes.  ")]
+        [Tooltip("如果启用，阻尼效果将仅适用于目标运动，而不适用于相机旋转变化。开启此选项可在旋转发生变化时获得即时响应。")]
         public bool m_TargetMovementOnly = true;
 
         /// <summary>Horizontal screen position for target. The camera will move to position the tracked object here</summary>
         [Space]
         [Range(-0.5f, 1.5f)]
-        [Tooltip("Horizontal screen position for target. The camera will move to position the tracked object here.")]
+        [Tooltip("目标的水平屏幕位置。相机会移动以将被跟踪对象定位到此位置。")]
         public float m_ScreenX = 0.5f;
 
         /// <summary>Vertical screen position for target, The camera will move to to position the tracked object here</summary>
         [Range(-0.5f, 1.5f)]
-        [Tooltip("Vertical screen position for target, The camera will move to position the tracked object here.")]
+        [Tooltip("目标的垂直屏幕位置。相机会移动，将被跟踪对象定位到此位置。")]
         public float m_ScreenY = 0.5f;
 
         /// <summary>The distance along the camera axis that will be maintained from the Follow target</summary>

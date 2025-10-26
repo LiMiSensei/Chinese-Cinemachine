@@ -16,10 +16,12 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineHardLockToTarget.html")]
     public class CinemachineHardLockToTarget : CinemachineComponentBase
     {
+        [Header("Help：程序化组件-Position Control-4 严格锁定目标位置\n用于绝对位置锁定，跟随目标旋转，无额外平滑或约束")]
+        [Space(30)]
         /// <summary>
         /// How much time it takes for the position to catch up to the target's position
         /// </summary>
-        [Tooltip("How much time it takes for the position to catch up to the target's position")]
+        [Tooltip("位置追上目标位置所需的时间。")]
         [FormerlySerializedAs("m_Damping")]
         public float Damping = 0;
         Vector3 m_PreviousTargetPosition;
