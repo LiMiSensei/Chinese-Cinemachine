@@ -52,37 +52,36 @@ namespace Unity.Cinemachine.TargetTracking
     [Serializable]
     public struct TrackerSettings
     {
-        /// <summary>The coordinate space to use when interpreting the offset from the target</summary>
-        [Tooltip("The coordinate space to use when interpreting the offset from the target.  This is also "
-            + "used to set the camera's Up vector, which will be maintained when aiming the camera.")]
+        /// <summary>解释目标偏移时使用的坐标系</summary>
+        [Tooltip("解释目标偏移时使用的坐标系。这也用于设置相机的向上向量，在瞄准相机时将保持该方向。")]
         public BindingMode BindingMode;
 
-        /// <summary>How aggressively the camera tries to maintain the offset, per axis.
-        /// Small numbers are more responsive, rapidly translating the camera to keep the target's
-        /// offset.  Larger numbers give a more heavy slowly responding camera.
-        /// Using different settings per axis can yield a wide range of camera behaviors</summary>
-        [Tooltip("How aggressively the camera tries to maintain the offset, per axis.  Small numbers "
-            + "are more responsive, rapidly translating the camera to keep the target's offset.  "
-            + "Larger numbers give a more heavy slowly responding camera. Using different settings per "
-            + "axis can yield a wide range of camera behaviors.")]
+        /// <summary>相机尝试维持偏移的积极程度，按各轴分别设置。
+        /// 较小的数值响应更灵敏，能快速移动相机以保持目标的偏移。
+        /// 较大的数值会产生更沉重、响应更慢的相机。
+        /// 各轴使用不同的设置可以产生多种相机行为</summary>
+        [Tooltip("相机尝试维持偏移的积极程度，按各轴分别设置。较小的数值"
+            + "响应更灵敏，能快速移动相机以保持目标的偏移。"
+            + "较大的数值会产生更沉重、响应更慢的相机。各轴使用不同的设置"
+            + "可以产生多种相机行为。")]
         public Vector3 PositionDamping;
 
-        /// <summary>How to calculate the angular damping for the target orientation.
-        /// Use Quaternion if you expect the target to take on very steep pitches, which would
-        /// be subject to gimbal lock if Eulers are used.</summary>
+        /// <summary>如何计算目标朝向的角度阻尼。
+        /// 如果您预期目标会有非常陡峭的俯仰角度，请使用四元数模式，
+        /// 因为如果使用欧拉角可能会遇到万向节锁问题。</summary>
         public AngularDampingMode AngularDampingMode;
 
-        /// <summary>How aggressively the camera tries to track the target's rotation, per axis.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
-        [Tooltip("How aggressively the camera tries to track the target's rotation, per axis.  "
-            + "Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        /// <summary>相机尝试跟踪目标旋转的积极程度，按各轴分别设置。
+        /// 较小的数值响应更灵敏。较大的数值会产生更沉重、响应更慢的相机。</summary>
+        [Tooltip("相机尝试跟踪目标旋转的积极程度，按各轴分别设置。"
+            + "较小的数值响应更灵敏。较大的数值会产生更沉重、响应更慢的相机。")]
         public Vector3 RotationDamping;
 
-        /// <summary>How aggressively the camera tries to track the target's rotation.
-        /// Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.</summary>
+        /// <summary>相机尝试跟踪目标旋转的积极程度。
+        /// 较小的数值响应更灵敏。较大的数值会产生更沉重、响应更慢的相机。</summary>
         [Range(0f, 20f)]
-        [Tooltip("How aggressively the camera tries to track the target's rotation.  "
-            + "Small numbers are more responsive.  Larger numbers give a more heavy slowly responding camera.")]
+        [Tooltip("相机尝试跟踪目标旋转的积极程度。"
+            + "较小的数值响应更灵敏。较大的数值会产生更沉重、响应更慢的相机。")]
         public float QuaternionDamping;
 
         /// <summary>

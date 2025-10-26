@@ -17,113 +17,115 @@ namespace Unity.Cinemachine
     public class CinemachineStoryboard : CinemachineExtension
     {
         /// <summary>
-        /// If checked, all storyboards are globally muted
+        /// 如果勾选，所有故事板将被全局静音
         /// </summary>
-        [Tooltip("If checked, all storyboards are globally muted")]
+        [Tooltip("如果勾选，所有故事板将被全局静音")]
         public static bool s_StoryboardGlobalMute;
 
         /// <summary>
-        /// If checked, the specified image will be displayed as an overlay over the virtual camera's output
+        /// 如果勾选，指定图像将作为覆盖层显示在虚拟相机输出之上
         /// </summary>
-        [Tooltip("If checked, the specified image will be displayed as an overlay over the virtual camera's output")]
+        [Tooltip("如果勾选，指定图像将作为覆盖层显示在虚拟相机输出之上")]
         [FormerlySerializedAs("m_ShowImage")]
         public bool ShowImage = true;
 
         /// <summary>
-        /// The image to display
+        /// 要显示的图像
         /// </summary>
-        [Tooltip("The image to display")]
+        [Tooltip("要显示的图像")]
         [FormerlySerializedAs("m_Image")]
         public Texture Image;
 
-        /// <summary>How to fit the image in the frame, in the event that the aspect ratios don't match</summary>
+        /// <summary>当图像宽高比与屏幕不匹配时，如何适配图像</summary>
         public enum FillStrategy
         {
-            /// <summary>Image will be as large as possible on the screen, without being cropped</summary>
+            /// <summary>图像将尽可能大但不被裁剪</summary>
             BestFit,
-            /// <summary>Image will be cropped if necessary so that the screen is entirely filled</summary>
+            /// <summary>如有必要将裁剪图像以完全填充屏幕</summary>
             CropImageToFit,
-            /// <summary>Image will be stretched to cover any aspect mismatch with the screen</summary>
+            /// <summary>图像将被拉伸以覆盖屏幕的任何宽高比不匹配</summary>
             StretchToFit
         };
+
         /// <summary>
-        /// How to handle differences between image aspect and screen aspect
+        /// 如何处理图像宽高比与屏幕宽高比的差异
         /// </summary>
-        [Tooltip("How to handle differences between image aspect and screen aspect")]
+        [Tooltip("如何处理图像宽高比与屏幕宽高比的差异")]
         [FormerlySerializedAs("m_Aspect")]
         public FillStrategy Aspect = FillStrategy.BestFit;
 
         /// <summary>
-        /// The opacity of the image.  0 is transparent, 1 is opaque
+        /// 图像的不透明度。0为完全透明，1为完全不透明
         /// </summary>
-        [Tooltip("The opacity of the image.  0 is transparent, 1 is opaque")]
+        [Tooltip("图像的不透明度。0为完全透明，1为完全不透明")]
         [FormerlySerializedAs("m_Alpha")]
         [Range(0, 1)]
         public float Alpha = 1;
 
         /// <summary>
-        /// The screen-space position at which to display the image.  Zero is center
+        /// 显示图像的屏幕空间位置。零点为中心
         /// </summary>
-        [Tooltip("The screen-space position at which to display the image.  Zero is center")]
+        [Tooltip("显示图像的屏幕空间位置。零点为中心")]
         [FormerlySerializedAs("m_Center")]
         public Vector2 Center = Vector2.zero;
 
         /// <summary>
-        /// The screen-space rotation to apply to the image
+        /// 应用于图像的屏幕空间旋转
         /// </summary>
-        [Tooltip("The screen-space rotation to apply to the image")]
+        [Tooltip("应用于图像的屏幕空间旋转")]
         [FormerlySerializedAs("m_Rotation")]
         public Vector3 Rotation = Vector3.zero;
 
         /// <summary>
-        /// The screen-space scaling to apply to the image
+        /// 应用于图像的屏幕空间缩放
         /// </summary>
-        [Tooltip("The screen-space scaling to apply to the image")]
+        [Tooltip("应用于图像的屏幕空间缩放")]
         [FormerlySerializedAs("m_Scale")]
         public Vector2 Scale = Vector3.one;
 
         /// <summary>
-        /// If checked, X and Y scale are synchronized
+        /// 如果勾选，X和Y轴缩放将同步
         /// </summary>
-        [Tooltip("If checked, X and Y scale are synchronized")]
+        [Tooltip("如果勾选，X和Y轴缩放将同步")]
         [FormerlySerializedAs("m_SyncScale")]
         public bool SyncScale = true;
 
         /// <summary>
-        /// If checked, Camera transform will not be controlled by this virtual camera
+        /// 如果勾选，相机变换将不受此虚拟相机控制
         /// </summary>
-        [Tooltip("If checked, Camera transform will not be controlled by this virtual camera")]
+        [Tooltip("如果勾选，相机变换将不受此虚拟相机控制")]
         [FormerlySerializedAs("m_MuteCamera")]
         public bool MuteCamera;
 
         /// <summary>
-        /// Wipe the image on and off horizontally
+        /// 水平方向擦除图像的显示和隐藏
         /// </summary>
         [Range(-1, 1)]
-        [Tooltip("Wipe the image on and off horizontally")]
+        [Tooltip("水平方向擦除图像的显示和隐藏")]
         [FormerlySerializedAs("m_SplitView")]
         public float SplitView = 0f;
 
         /// <summary>
-        /// The render mode of the canvas on which the storyboard is drawn.
+        /// 绘制故事板的画布渲染模式
         /// </summary>
-        [Tooltip("The render mode of the canvas on which the storyboard is drawn.")]
+        [Tooltip("绘制故事板的画布渲染模式")]
         [FormerlySerializedAs("m_RenderMode")]
         public StoryboardRenderMode RenderMode = StoryboardRenderMode.ScreenSpaceOverlay;
 
         /// <summary>
-        /// Allows ordering canvases to render on top or below other canvases.
+        /// 允许对画布进行排序，以在其他画布之上或之下渲染
         /// </summary>
-        [Tooltip("Allows ordering canvases to render on top or below other canvases.")]
+        [Tooltip("允许对画布进行排序，以在其他画布之上或之下渲染")]
         [FormerlySerializedAs("m_SortingOrder")]
         public int SortingOrder;
 
         /// <summary>
-        /// How far away from the camera is the storyboard's canvas generated.
+        /// 故事板画布距离相机多远生成
         /// </summary>
-        [Tooltip("How far away from the camera is the Canvas generated.")]
+        [Tooltip("故事板画布距离相机多远生成")]
         [FormerlySerializedAs("m_PlaneDistance")]
         public float PlaneDistance = 100;
+
 
         class CanvasInfo
         {

@@ -23,24 +23,25 @@ namespace Unity.Cinemachine
         public struct RollData
         {
             /// <summary>
-            /// Roll (in degrees) around the forward direction for specific location on the track.
-            /// When placed on a SplineContainer, this is going to be a global override that affects all vcams using the Spline.
-            /// When placed on a CinemachineCamera, this is going to be a local override that only affects that CinemachineCamera.
+            /// 在轨道特定位置围绕前向方向的滚动角度（以度为单位）。
+            /// 当放置在 SplineContainer 上时，这将是一个全局覆盖，会影响所有使用该样条的虚拟相机。
+            /// 当放置在 CinemachineCamera 上时，这将是一个局部覆盖，仅影响该 CinemachineCamera。
             /// </summary>
-            [Tooltip("Roll (in degrees) around the forward direction for specific location on the track.\n" +
-                "- When placed on a SplineContainer, this is going to be a global override that affects all vcams using the Spline.\n" +
-                "- When placed on a CinemachineCamera, this is going to be a local override that only affects that CinemachineCamera.")]
+            [Tooltip("在轨道特定位置围绕前向方向的滚动角度（以度为单位）。\n" +
+                "- 当放置在 SplineContainer 上时，这将是一个全局覆盖，会影响所有使用该样条的虚拟相机。\n" +
+                "- 当放置在 CinemachineCamera 上时，这将是一个局部覆盖，仅影响该 CinemachineCamera。")]
             public float Value;
 
-            /// <summary> Implicit conversion to float </summary>
-            /// <param name="roll"> The RollData setting to convert. </param>
-            /// <returns> The value of the RollData setting. </returns>
+            /// <summary> 隐式转换为 float </summary>
+            /// <param name="roll"> 要转换的 RollData 设置。 </param>
+            /// <returns> RollData 设置的值。 </returns>
             public static implicit operator float(RollData roll) => roll.Value;
 
-            /// <summary> Implicit conversion from float </summary>
-            /// <param name="roll"> The value with which to initialize the RollData setting. </param>
-            /// <returns>A new RollData setting with the given value. </returns>
+            /// <summary> 从 float 隐式转换 </summary>
+            /// <param name="roll"> 用于初始化 RollData 设置的值。 </param>
+            /// <returns> 具有给定值的新 RollData 设置。 </returns>
             public static implicit operator RollData(float roll) => new () { Value = roll };
+
         }
 
         /// <summary>

@@ -26,37 +26,45 @@ namespace Unity.Cinemachine
         /// The inspector will figure itself out based on this value.</summary>
         public const int MaxCameras = 8;
 
-        /// <summary>Weight of the first tracked camera</summary>
-        [Tooltip("The weight of the first tracked camera")]
+        /// <summary>第一个被跟踪相机的权重</summary>
+        [Tooltip("第一个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight0")]
         public float Weight0 = 0.5f;
-        /// <summary>Weight of the second tracked camera</summary>
-        [Tooltip("The weight of the second tracked camera")]
+
+        /// <summary>第二个被跟踪相机的权重</summary>
+        [Tooltip("第二个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight1")]
         public float Weight1 = 0.5f;
-        /// <summary>Weight of the third tracked camera</summary>
-        [Tooltip("The weight of the third tracked camera")]
+
+        /// <summary>第三个被跟踪相机的权重</summary>
+        [Tooltip("第三个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight2")]
         public float Weight2 = 0.5f;
-        /// <summary>Weight of the fourth tracked camera</summary>
-        [Tooltip("The weight of the fourth tracked camera")]
+
+        /// <summary>第四个被跟踪相机的权重</summary>
+        [Tooltip("第四个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight3")]
         public float Weight3 = 0.5f;
-        /// <summary>Weight of the fifth tracked camera</summary>
-        [Tooltip("The weight of the fifth tracked camera")]
+
+        /// <summary>第五个被跟踪相机的权重</summary>
+        [Tooltip("第五个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight4")]
         public float Weight4 = 0.5f;
-        /// <summary>Weight of the sixth tracked camera</summary>
-        [Tooltip("The weight of the sixth tracked camera")]
+
+        /// <summary>第六个被跟踪相机的权重</summary>
+        [Tooltip("第六个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight5")]
         public float Weight5 = 0.5f;
-        /// <summary>Weight of the seventh tracked camera</summary>
-        [Tooltip("The weight of the seventh tracked camera")]
+
+        /// <summary>第七个被跟踪相机的权重</summary>
+        [Tooltip("第七个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight6")]
         public float Weight6 = 0.5f;
-        /// <summary>Weight of the eighth tracked camera</summary>
-        [Tooltip("The weight of the eighth tracked camera")]
+
+        /// <summary>第八个被跟踪相机的权重</summary>
+        [Tooltip("第八个被跟踪相机的权重")]
         [FormerlySerializedAs("m_Weight7")]
+
         public float Weight7 = 0.5f;
 
 

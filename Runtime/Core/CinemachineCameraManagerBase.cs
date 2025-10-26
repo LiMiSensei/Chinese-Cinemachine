@@ -16,17 +16,13 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct DefaultTargetSettings
         {
-            /// <summary>If enabled, a default target will be available.  It will be used
-            /// if a child rig needs a target and doesn't specify one itself.</summary>
-            [Tooltip("If enabled, a default target will be available.  It will be used "
-                + "if a child rig needs a target and doesn't specify one itself.")]
+            /// <summary>如果启用，将提供一个默认目标。当子装配需要目标但未自行指定时，将使用此目标。</summary>
+            [Tooltip("如果启用，将提供一个默认目标。当子装配需要目标但未自行指定时，将使用此目标。")]
             public bool Enabled;
 
-            /// <summary>Default target for the camera children, which may be used if the child rig
-            /// does not specify a target of its own.</summary>
+            /// <summary>相机子对象的默认目标，当子装配未指定自身目标时可能会使用此目标。</summary>
             [NoSaveDuringPlay]
-            [Tooltip("Default target for the camera children, which may be used if the child rig "
-                + "does not specify a target of its own.")]
+            [Tooltip("相机子对象的默认目标，当子装配未指定自身目标时可能会使用此目标。")]
             public CameraTarget Target;
         }
 
@@ -36,16 +32,16 @@ namespace Unity.Cinemachine
         public DefaultTargetSettings DefaultTarget;
 
         /// <summary>
-        /// The blend which is used if you don't explicitly define a blend between two Virtual Camera children.
+        /// 当未在两个虚拟相机子对象之间明确定义混合时使用的默认混合设置。
         /// </summary>
-        [Tooltip("The blend which is used if you don't explicitly define a blend between two Virtual Camera children")]
+        [Tooltip("当未在两个虚拟相机子对象之间明确定义混合时使用的默认混合设置")]
         [FormerlySerializedAs("m_DefaultBlend")]
         public CinemachineBlendDefinition DefaultBlend = new (CinemachineBlendDefinition.Styles.EaseInOut, 0.5f);
 
         /// <summary>
-        /// This is the asset which contains custom settings for specific child blends.
+        /// 包含特定子混合自定义设置的资源文件。
         /// </summary>
-        [Tooltip("This is the asset which contains custom settings for specific child blends")]
+        [Tooltip("包含特定子混合自定义设置的资源文件")]
         [FormerlySerializedAs("m_CustomBlends")]
         [EmbeddedBlenderSettingsProperty]
         public CinemachineBlenderSettings CustomBlends = null;

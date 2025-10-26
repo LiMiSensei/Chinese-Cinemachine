@@ -72,18 +72,18 @@ namespace Unity.Cinemachine
         /// <summary>Holds the information that represents a member of the group</summary>
         [Serializable] public class Target
         {
-            /// <summary>The target object.  This object's position and rotation will contribute to the
-            /// group's average position and rotation, in accordance with its weight</summary>
-            [Tooltip("The target object.  This object's position and rotation will contribute to the "
-                + "group's average position and rotation, in accordance with its weight")]
+            /// <summary>目标对象。该对象的位置和旋转将根据其权重贡献给组的位置和旋转平均值</summary>
+            [Tooltip("目标对象。该对象的位置和旋转将根据其权重贡献给组的位置和旋转平均值")]
             [FormerlySerializedAs("target")]
             public Transform Object;
-            /// <summary>How much weight to give the target when averaging.  Cannot be negative</summary>
-            [Tooltip("How much weight to give the target when averaging.  Cannot be negative")]
+
+            /// <summary>计算平均值时目标的权重。不能为负数</summary>
+            [Tooltip("计算平均值时目标的权重。不能为负数")]
             [FormerlySerializedAs("weight")]
             public float Weight = 1;
-            /// <summary>The radius of the target, used for calculating the bounding box.  Cannot be negative</summary>
-            [Tooltip("The radius of the target, used for calculating the bounding box.  Cannot be negative")]
+
+            /// <summary>目标的半径，用于计算边界框。不能为负数</summary>
+            [Tooltip("目标的半径，用于计算边界框。不能为负数")]
             [FormerlySerializedAs("radius")]
             public float Radius = 0.5f;
         }
@@ -97,49 +97,48 @@ namespace Unity.Cinemachine
             GroupAverage
         }
 
-        /// <summary>How the group's position is calculated</summary>
-        [Tooltip("How the group's position is calculated.  Select GroupCenter for the center of the bounding box, "
-            + "and GroupAverage for a weighted average of the positions of the members.")]
+       /// <summary>组的位置计算方式</summary>
+        [Tooltip("组的位置计算方式。选择GroupCenter表示使用边界框的中心，"
+            + "选择GroupAverage表示使用成员位置的加权平均值。")]
         [FormerlySerializedAs("m_PositionMode")]
         public PositionModes PositionMode = PositionModes.GroupCenter;
 
-        /// <summary>How the group's orientation is calculated</summary>
+        /// <summary>组的旋转计算方式</summary>
         public enum RotationModes
         {
-            /// <summary>Manually set in the group's transform</summary>
+            /// <summary>在组的变换中手动设置</summary>
             Manual,
-            /// <summary>Weighted average of the orientation of its members.</summary>
+            /// <summary>成员旋转的加权平均值</summary>
             GroupAverage
         }
 
-        /// <summary>How the group's orientation is calculated</summary>
-        [Tooltip("How the group's rotation is calculated.  Select Manual to use the value in the group's transform, "
-            + "and GroupAverage for a weighted average of the orientations of the members.")]
+        /// <summary>组的旋转计算方式</summary>
+        [Tooltip("组的旋转计算方式。选择Manual表示使用组变换中的值，"
+            + "选择GroupAverage表示使用成员旋转的加权平均值。")]
         [FormerlySerializedAs("m_RotationMode")]
         public RotationModes RotationMode = RotationModes.Manual;
 
-        /// <summary>This enum defines the options available for the update method.</summary>
+        /// <summary>此枚举定义了可用的更新方法选项</summary>
         public enum UpdateMethods
         {
-            /// <summary>Updated in normal MonoBehaviour Update.</summary>
+            /// <summary>在正常的MonoBehaviour Update中更新</summary>
             Update,
-            /// <summary>Updated in sync with the Physics module, in FixedUpdate</summary>
+            /// <summary>与物理模块同步，在FixedUpdate中更新</summary>
             FixedUpdate,
-            /// <summary>Updated in MonoBehaviour LateUpdate.</summary>
+            /// <summary>在MonoBehaviour LateUpdate中更新</summary>
             LateUpdate
         };
 
-        /// <summary>When to update the group's transform based on the position of the group members</summary>
-        [Tooltip("When to update the group's transform based on the position of the group members")]
+        /// <summary>何时根据组成员的位置更新组的变换</summary>
+        [Tooltip("何时根据组成员的位置更新组的变换")]
         [FormerlySerializedAs("m_UpdateMethod")]
         public UpdateMethods UpdateMethod = UpdateMethods.LateUpdate;
 
-        /// <summary>The target objects, together with their weights and radii, that will
-        /// contribute to the group's average position, orientation, and size</summary>
+        /// <summary>目标对象及其权重和半径，这些将贡献给组的位置、旋转和尺寸的平均值</summary>
         [NoSaveDuringPlay]
-        [Tooltip("The target objects, together with their weights and radii, that will contribute to the "
-            + "group's average position, orientation, and size.")]
+        [Tooltip("目标对象及其权重和半径，这些将贡献给组的位置、旋转和尺寸的平均值")]
         public List<Target> Targets = new ();
+
 
 
         float m_MaxWeight;

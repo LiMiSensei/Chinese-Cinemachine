@@ -10,14 +10,14 @@ namespace Unity.Cinemachine
     public struct PrioritySettings
     {
         /// <summary>
-        /// If false, default priority of 0 will be used.
-        /// If true, the the Priority field is valid.
+        /// 如果为false，将使用默认优先级0。
+        /// 如果为true，则Priority字段有效。
         /// </summary>
-        [Tooltip("Enable this to expose the Priority field")]
+        [Tooltip("启用此选项以暴露Priority字段")]
         public bool Enabled;
 
-        /// <summary>The priorty value if enabled</summary>
-        [Tooltip("Priority to use.  0 is default.  Camera with highest priority is prioritized.")]
+        /// <summary>启用时的优先级值</summary>
+        [Tooltip("要使用的优先级值。0为默认值。优先级最高的摄像机会被优先使用。")]
         [SerializeField] int m_Value;
 
         /// <summary>Priority to use, if Enabled is true</summary>

@@ -12,90 +12,79 @@ namespace Unity.Cinemachine
     [Obsolete("AxisState is deprecated.  Use InputAxis instead")]
     public struct AxisState
     {
-        /// <summary>The current value of the axis</summary>
+        /// <summary>轴的当前值</summary>
         [NoSaveDuringPlay]
-        [Tooltip("The current value of the axis.")]
+        [Tooltip("轴的当前值。")]
         public float Value;
 
-        /// <summary>How to interpret the Max Speed setting.</summary>
+        /// <summary>如何解释最大速度设置。</summary>
         public enum SpeedMode
         {
             /// <summary>
-            /// The Max Speed setting will be interpreted as a maximum axis speed, in units/second
+            /// 最大速度设置将被解释为最大轴速度，单位：单位/秒
             /// </summary>
             MaxSpeed,
 
             /// <summary>
-            /// The Max Speed setting will be interpreted as a direct multiplier on the input value
+            /// 最大速度设置将被解释为输入值的直接乘数
             /// </summary>
             InputValueGain
         };
 
-        /// <summary>How to interpret the Max Speed setting.</summary>
-        [Tooltip("How to interpret the Max Speed setting: in units/second, or as a "
-            + "direct input value multiplier")]
+        /// <summary>如何解释最大速度设置。</summary>
+        [Tooltip("如何解释最大速度设置：以单位/秒为单位，或作为输入值的直接乘数")]
         public SpeedMode m_SpeedMode;
 
-        /// <summary>How fast the axis value can travel.  Increasing this number
-        /// makes the behaviour more responsive to joystick input</summary>
-        [Tooltip("The maximum speed of this axis in units/second, or the input value "
-            + "multiplier, depending on the Speed Mode")]
+        /// <summary>轴值能够移动的最大速度。增加此数值会使行为对摇杆输入更加敏感</summary>
+        [Tooltip("此轴的最大速度，单位：单位/秒，或输入值乘数，具体取决于速度模式")]
         public float m_MaxSpeed;
 
-        /// <summary>The amount of time in seconds it takes to accelerate to
-        /// MaxSpeed with the supplied Axis at its maximum value</summary>
-        [Tooltip("The amount of time in seconds it takes to accelerate to MaxSpeed "
-            + "with the supplied Axis at its maximum value")]
+        /// <summary>在提供的轴处于最大值时加速到最大速度所需的时间（秒）</summary>
+        [Tooltip("在提供的轴处于最大值时加速到最大速度所需的时间（秒）")]
         public float m_AccelTime;
 
-        /// <summary>The amount of time in seconds it takes to decelerate
-        /// the axis to zero if the supplied axis is in a neutral position</summary>
-        [Tooltip("The amount of time in seconds it takes to decelerate the axis to "
-            + "zero if the supplied axis is in a neutral position")]
+        /// <summary>如果提供的轴处于中性位置时，将轴减速到零所需的时间（秒）</summary>
+        [Tooltip("如果提供的轴处于中性位置时，将轴减速到零所需的时间（秒）")]
         public float m_DecelTime;
 
-        /// <summary>The name of this axis as specified in Unity Input manager.
-        /// Setting to an empty string will disable the automatic updating of this axis</summary>
+        /// <summary>在Unity输入管理器中指定的此轴名称。
+        /// 设置为空字符串将禁用此轴的自动更新</summary>
         [InputAxisNameProperty]
         [FormerlySerializedAs("m_AxisName")]
-        [Tooltip("The name of this axis as specified in Unity Input manager. "
-            + "Setting to an empty string will disable the automatic updating of this axis")]
+        [Tooltip("在Unity输入管理器中指定的此轴名称。"
+            + "设置为空字符串将禁用此轴的自动更新")]
         public string m_InputAxisName;
 
-        /// <summary>The value of the input axis.  A value of 0 means no input
-        /// You can drive this directly from a
-        /// custom input system, or you can set the Axis Name and have the value
-        /// driven by the internal Input Manager</summary>
+        /// <summary>输入轴的值。值为0表示无输入。
+        /// 您可以从自定义输入系统直接驱动此值，或者设置轴名称
+        /// 并通过内部输入管理器驱动该值</summary>
         [NoSaveDuringPlay]
-        [Tooltip("The value of the input axis.  A value of 0 means no input.  "
-            + "You can drive this directly from a custom input system, or you can set "
-            + "the Axis Name and have the value driven by the internal Input Manager")]
+        [Tooltip("输入轴的值。值为0表示无输入。"
+            + "您可以从自定义输入系统直接驱动此值，或者设置轴名称"
+            + "并通过内部输入管理器驱动该值")]
         public float m_InputAxisValue;
 
-        /// <summary>If checked, then the raw value of the input axis will be inverted
-        /// before it is used.</summary>
+        /// <summary>如果勾选，则输入轴的原始值将在使用前被反转。</summary>
         [FormerlySerializedAs("m_InvertAxis")]
-        [Tooltip("If checked, then the raw value of the input axis will be inverted "
-            + "before it is used")]
+        [Tooltip("如果勾选，则输入轴的原始值将在使用前被反转")]
         public bool m_InvertInput;
 
-        /// <summary>The minimum value for the axis</summary>
-        [Tooltip("The minimum value for the axis")]
+        /// <summary>轴的最小值</summary>
+        [Tooltip("轴的最小值")]
         public float m_MinValue;
 
-        /// <summary>The maximum value for the axis</summary>
-        [Tooltip("The maximum value for the axis")]
+        /// <summary>轴的最大值</summary>
+        [Tooltip("轴的最大值")]
         public float m_MaxValue;
 
-        /// <summary>If checked, then the axis will wrap around at the
-        /// min/max values, forming a loop</summary>
-        [Tooltip("If checked, then the axis will wrap around at the min/max values, "
-            + "forming a loop")]
+        /// <summary>如果勾选，则轴将在最小值/最大值处循环环绕，形成一个回路</summary>
+        [Tooltip("如果勾选，则轴将在最小值/最大值处循环环绕，形成一个回路")]
         public bool m_Wrap;
 
-        /// <summary>Automatic recentering.  Valid only if HasRecentering is true</summary>
-        [Tooltip("Automatic recentering to at-rest position")]
+        /// <summary>自动归中。仅在HasRecentering为true时有效</summary>
+        [Tooltip("自动归中到静止位置")]
         public Recentering m_Recentering;
+
 
         float m_CurrentSpeed;
         float m_LastUpdateTime;

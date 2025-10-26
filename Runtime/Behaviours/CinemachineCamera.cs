@@ -55,21 +55,21 @@ namespace Unity.Cinemachine
     {
         /// <summary>The Tracking and LookAt targets for this camera.</summary>
         [NoSaveDuringPlay]
-        [Tooltip("Specifies the Tracking and LookAt targets for this camera.")]
+        [Tooltip("指定此相机的跟踪目标和注视目标。")]
         public CameraTarget Target;
 
-        /// <summary>Specifies the LensSettings of this camera.
-        /// These settings will be transferred to the Unity camera when the CM Camera is live.</summary>
-        [Tooltip("Specifies the lens properties of this Virtual Camera.  This generally mirrors the "
-            + "Unity Camera's lens settings, and will be used to drive the Unity camera when the vcam is active.")]
+        /// <summary>指定此相机的镜头设置。
+        /// 当Cinemachine相机激活时，这些设置将传递给Unity相机。</summary>
+        [Tooltip("指定此虚拟相机的镜头属性。这些属性通常与"
+            + "Unity相机的镜头设置相对应，并在虚拟相机激活时用于驱动Unity相机。")]
         public LensSettings Lens = LensSettings.Default;
 
-        /// <summary>Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although
-        /// not all combinations make sense.  In the case of conflicting hints, Cinemachine will
-        /// make an arbitrary choice.</summary>
-        [Tooltip("Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although "
-            + "not all combinations make sense.  In the case of conflicting hints, Cinemachine will "
-            + "make an arbitrary choice.")]
+        /// <summary>从此Cinemachine相机过渡和过渡到此相机的提示。提示可以组合使用，尽管
+        /// 并非所有组合都有意义。在提示冲突的情况下，Cinemachine将
+        /// 做出任意选择。</summary>
+        [Tooltip("从此Cinemachine相机过渡和过渡到此相机的提示。提示可以组合使用，尽管"
+            + "并非所有组合都有意义。在提示冲突的情况下，Cinemachine将"
+            + "做出任意选择。")]
         public CinemachineCore.BlendHints BlendHint;
 
         CameraState m_State = CameraState.Default;

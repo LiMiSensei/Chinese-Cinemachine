@@ -32,17 +32,17 @@ namespace Unity.Cinemachine
             LateUpdate
         };
 
-        /// <summary>When to move the cart, if Speed is non-zero</summary>
-        [Tooltip("When to move the cart, if Speed is non-zero")]
+        /// <summary>当速度非零时，何时移动轨道车</summary>
+        [Tooltip("当速度非零时，何时移动轨道车")]
         public UpdateMethods UpdateMethod = UpdateMethods.Update;
 
-        /// <summary>Controls how automatic dollying occurs</summary>
+        /// <summary>控制自动轨道移动的发生方式</summary>
         [FoldoutWithEnabledButton]
-        [Tooltip("Controls how automatic dollying occurs.  A tracking target may be necessary to use this feature.")]
+        [Tooltip("控制自动轨道移动的发生方式。使用此功能可能需要一个跟踪目标。")]
         public SplineAutoDolly AutomaticDolly;
 
-        /// <summary>Used only by Automatic Dolly settings that require it</summary>
-        [Tooltip("Used only by Automatic Dolly settings that require it")]
+        /// <summary>仅用于需要它的自动轨道设置</summary>
+        [Tooltip("仅用于需要它的自动轨道设置")]
         public Transform TrackingTarget;
 
         CinemachineSplineRoll.RollCache m_RollCache;

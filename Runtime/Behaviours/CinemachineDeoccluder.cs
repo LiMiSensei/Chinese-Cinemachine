@@ -24,21 +24,21 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineDeoccluder.html")]
     public class CinemachineDeoccluder : CinemachineExtension, IShotQualityEvaluator
     {
-        /// <summary>Objects on these layers will be detected.</summary>
-        [Tooltip("Objects on these layers will be detected")]
+        /// <summary>将检测这些图层上的物体。</summary>
+        [Tooltip("将检测这些图层上的物体")]
         public LayerMask CollideAgainst = 1;
 
-        /// <summary>Obstacles with this tag will be ignored.  It is a good idea to set this field to the target's tag</summary>
+        /// <summary>具有此标签的障碍物将被忽略。建议将此字段设置为目标的标签</summary>
         [TagField]
-        [Tooltip("Obstacles with this tag will be ignored.  It is a good idea to set this field to the target's tag")]
+        [Tooltip("具有此标签的障碍物将被忽略。建议将此字段设置为目标的标签")]
         public string IgnoreTag = string.Empty;
 
-        /// <summary>Objects on these layers will never obstruct view of the target.</summary>
-        [Tooltip("Objects on these layers will never obstruct view of the target")]
+        /// <summary>这些图层上的物体永远不会遮挡目标的视线。</summary>
+        [Tooltip("这些图层上的物体永远不会遮挡目标的视线")]
         public LayerMask TransparentLayers = 0;
 
-        /// <summary>Obstacles closer to the target than this will be ignored</summary>
-        [Tooltip("Obstacles closer to the target than this will be ignored")]
+        /// <summary>比此值更靠近目标的障碍物将被忽略</summary>
+        [Tooltip("比此值更靠近目标的障碍物将被忽略")]
         [Delayed]
         public float MinimumDistanceFromTarget = 0.3f;
 
@@ -46,45 +46,33 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct ObstacleAvoidance
         {
-            /// <summary>
-            /// When enabled, will attempt to resolve situations where the line of sight to the
-            /// target is blocked by an obstacle
-            /// </summary>
-            [Tooltip("When enabled, will attempt to resolve situations where the line of sight "
-                + "to the target is blocked by an obstacle")]
+            /// <summary>启用时，将尝试解决目标视线被障碍物阻挡的情况</summary>
+            [Tooltip("启用时，将尝试解决目标视线被障碍物阻挡的情况")]
             public bool Enabled;
 
-            /// <summary>
-            /// The raycast distance to test for when checking if the line of sight to this camera's target is clear.
-            /// </summary>
-            [Tooltip("The maximum raycast distance when checking if the line of sight to this camera's target is clear.  "
-                + "If the setting is 0 or less, the current actual distance to target will be used.")]
+            /// <summary>检查相机目标视线是否清晰时使用的射线投射距离。</summary>
+            [Tooltip("检查相机目标视线是否清晰时的最大射线投射距离。"
+                + "如果设置为0或更小，将使用当前到目标的实际距离。")]
             public float DistanceLimit;
 
-            /// <summary>
-            /// Don't take action unless occlusion has lasted at least this long.
-            /// </summary>
-            [Tooltip("Don't take action unless occlusion has lasted at least this long.")]
+            /// <summary>除非遮挡持续时间至少达到此值，否则不采取行动。</summary>
+            [Tooltip("除非遮挡持续时间至少达到此值，否则不采取行动。")]
             public float MinimumOcclusionTime;
 
-            /// <summary>
-            /// Camera will try to maintain this distance from any obstacle.
-            /// Increase this value if you are seeing inside obstacles due to a large
-            /// FOV on the camera.
-            /// </summary>
-            [Tooltip("Camera will try to maintain this distance from any obstacle.  Try to keep this value small.  "
-                + "Increase it if you are seeing inside obstacles due to a large FOV on the camera.")]
+            /// <summary>相机会尝试保持与任何障碍物的此距离。如果因相机FOV较大而看到障碍物内部，请增加此值。</summary>
+            [Tooltip("相机会尝试保持与任何障碍物的此距离。尽量保持此值较小。"
+                + "如果因相机FOV较大而看到障碍物内部，请增加此值。")]
             public float CameraRadius;
 
             /// <summary>Settings for resolving towards Follow target instead of LookAt.</summary>
             [Serializable]
             public struct FollowTargetSettings
             {
-                /// <summary>Use the Follow target when resolving occlusions, instead of the LookAt target.</summary>
-                [Tooltip("Use the Follow target when resolving occlusions, instead of the LookAt target.")]
+                /// <summary>解决遮挡时使用Follow目标而不是LookAt目标。</summary>
+                [Tooltip("解决遮挡时使用Follow目标而不是LookAt目标。")]
                 public bool Enabled;
 
-                [Tooltip("Vertical offset from the Follow target's root, in target local space")]
+                [Tooltip("相对于Follow目标根节点的垂直偏移量（使用目标局部空间坐标系）")]
                 public float YOffset;
             }
 
@@ -105,43 +93,33 @@ namespace Unity.Cinemachine
                 /// return the camera to its original distance from the target</summary>
                 PreserveCameraDistance
             };
-            /// <summary>The way in which the Deoccluder will attempt to preserve sight of the target.</summary>
-            [Tooltip("The way in which the Deoccluder will attempt to preserve sight of the target.")]
+            /// <summary>Deoccluder尝试保持目标视线的方式。</summary>
+            [Tooltip("Deoccluder尝试保持目标视线的方式。")]
             public ResolutionStrategy Strategy;
 
-            /// <summary>
-            /// Upper limit on how many obstacle hits to process.  Higher numbers may impact performance.
-            /// In most environments, 4 is enough.
-            /// </summary>
+            /// <summary>处理的障碍物命中数量上限。数值越高可能影响性能。在大多数环境中，4就足够了。</summary>
             [Range(1, 10)]
-            [Tooltip("Upper limit on how many obstacle hits to process.  Higher numbers may impact performance.  "
-                + "In most environments, 4 is enough.")]
+            [Tooltip("处理的障碍物命中数量上限。数值越高可能影响性能。"
+                + "在大多数环境中，4就足够了。")]
             public int MaximumEffort;
 
-            /// <summary>
-            /// Smoothing to apply to obstruction resolution.  Nearest camera point is held for at least this long.
-            /// </summary>
+            /// <summary>应用于遮挡解决的平滑度。最近相机点至少保持此时长。</summary>
             [Range(0, 2)]
-            [Tooltip("Smoothing to apply to obstruction resolution.  Nearest camera point is held for at least this long")]
+            [Tooltip("应用于遮挡解决的平滑度。最近相机点至少保持此时长")]
             public float SmoothingTime;
 
-            /// <summary>
-            /// How gradually the camera returns to its normal position after having been corrected.
-            /// Higher numbers will move the camera more gradually back to normal.
-            /// </summary>
+            /// <summary>相机在修正后返回正常位置的渐变程度。数值越高，相机返回正常位置越缓慢。</summary>
             [Range(0, 10)]
-            [Tooltip("How gradually the camera returns to its normal position after having been corrected.  "
-                + "Higher numbers will move the camera more gradually back to normal.")]
+            [Tooltip("相机在修正后返回正常位置的渐变程度。"
+                + "数值越高，相机返回正常位置越缓慢。")]
             public float Damping;
 
-            /// <summary>
-            /// How gradually the camera moves to resolve an occlusion.
-            /// Higher numbers will move the camera more gradually.
-            /// </summary>
+            /// <summary>相机解决遮挡时的移动渐变程度。数值越高，相机移动越缓慢。</summary>
             [Range(0, 10)]
-            [Tooltip("How gradually the camera moves to resolve an occlusion.  "
-                + "Higher numbers will move the camera more gradually.")]
+            [Tooltip("相机解决遮挡时的移动渐变程度。"
+                + "数值越高，相机移动越缓慢。")]
             public float DampingWhenOccluded;
+
 
             internal static ObstacleAvoidance Default => new ()
             {
@@ -165,25 +143,25 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct QualityEvaluation
         {
-            /// <summary>If enabled, will evaluate shot quality based on target distance and occlusion</summary>
-            [Tooltip("If enabled, will evaluate shot quality based on target distance and occlusion")]
+            /// <summary>如果启用，将根据目标距离和遮挡情况评估镜头质量</summary>
+            [Tooltip("如果启用，将根据目标距离和遮挡情况评估镜头质量")]
             public bool Enabled;
 
-            /// <summary>If greater than zero, maximum quality boost will occur when target is this far from the camera</summary>
-            [Tooltip("If greater than zero, maximum quality boost will occur when target is this far from the camera")]
+            /// <summary>如果大于零，当目标距离相机此距离时，将获得最大质量提升</summary>
+            [Tooltip("如果大于零，当目标距离相机此距离时，将获得最大质量提升")]
             public float OptimalDistance;
 
-            /// <summary>Shots with targets closer to the camera than this will not get a quality boost</summary>
-            [Tooltip("Shots with targets closer to the camera than this will not get a quality boost")]
+            /// <summary>目标距离相机比此值更近的镜头不会获得质量提升</summary>
+            [Tooltip("目标距离相机比此值更近的镜头不会获得质量提升")]
             [Delayed]
             public float NearLimit;
 
-            /// <summary>Shots with targets farther from the camera than this will not get a quality boost</summary>
-            [Tooltip("Shots with targets farther from the camera than this will not get a quality boost")]
+            /// <summary>目标距离相机比此值更远的镜头不会获得质量提升</summary>
+            [Tooltip("目标距离相机比此值更远的镜头不会获得质量提升")]
             public float FarLimit;
 
-            /// <summary>High quality shots will be boosted by this fraction of their normal quality</summary>
-            [Tooltip("High quality shots will be boosted by this fraction of their normal quality")]
+            /// <summary>高质量镜头将在其正常质量基础上提升此比例</summary>
+            [Tooltip("高质量镜头将在其正常质量基础上提升此比例")]
             public float MaxQualityBoost;
 
             internal static QualityEvaluation Default => new () { NearLimit = 5, FarLimit = 30, OptimalDistance = 10, MaxQualityBoost = 0.2f };

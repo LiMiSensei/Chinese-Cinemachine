@@ -12,82 +12,83 @@ namespace Unity.Cinemachine
     [CameraPipeline(CinemachineCore.Stage.Aim)]
     public class CinemachineGroupComposer : CinemachineComposer
     {
-        /// <summary>How much of the screen to fill with the bounding box of the targets.</summary>
-        [Tooltip("The bounding box of the targets should occupy this amount of the screen space.  "
-            + "1 means fill the whole screen.  0.5 means fill half the screen, etc.")]
+        /// <summary>目标的边界框应填充多少屏幕空间。</summary>
+        [Tooltip("目标的边界框应占据此比例的屏幕空间。"
+            + "1表示填充整个屏幕。0.5表示填充一半屏幕，以此类推。")]
         public float m_GroupFramingSize = 0.8f;
 
-        /// <summary>What screen dimensions to consider when framing</summary>
+        /// <summary>构图时要考虑哪些屏幕维度</summary>
         public enum FramingMode
         {
-            /// <summary>Consider only the horizontal dimension.  Vertical framing is ignored.</summary>
+            /// <summary>仅考虑水平维度。垂直构图将被忽略。</summary>
             Horizontal,
-            /// <summary>Consider only the vertical dimension.  Horizontal framing is ignored.</summary>
+            /// <summary>仅考虑垂直维度。水平构图将被忽略。</summary>
             Vertical,
-            /// <summary>The larger of the horizontal and vertical dimensions will dominate, to get the best fit.</summary>
+            /// <summary>水平和垂直维度中较大的将主导，以获得最佳适配。</summary>
             HorizontalAndVertical
         };
 
-        /// <summary>What screen dimensions to consider when framing</summary>
-        [Tooltip("What screen dimensions to consider when framing.  Can be Horizontal, Vertical, or both")]
+        /// <summary>构图时要考虑哪些屏幕维度</summary>
+        [Tooltip("构图时要考虑哪些屏幕维度。可以是水平、垂直或两者兼有")]
         public FramingMode m_FramingMode = FramingMode.HorizontalAndVertical;
 
-        /// <summary>How aggressively the camera tries to frame the group.
-        /// Small numbers are more responsive</summary>
+        /// <summary>相机尝试构图的积极程度。
+        /// 较小的数值响应更灵敏</summary>
         [Range(0, 20)]
-        [Tooltip("How aggressively the camera tries to frame the group. Small numbers are more responsive, "
-            + "rapidly adjusting the camera to keep the group in the frame.  Larger numbers give a heavier "
-            + "more slowly responding camera.")]
+        [Tooltip("相机尝试构图的积极程度。较小的数值响应更灵敏，"
+            + "能快速调整相机以保持目标在画面中。较大的数值会使相机响应更缓慢、更沉重。")]
         public float m_FrameDamping = 2f;
 
-        /// <summary>How to adjust the camera to get the desired framing</summary>
+        /// <summary>如何调整相机以获得期望的构图</summary>
         public enum AdjustmentMode
         {
-            /// <summary>Do not move the camera, only adjust the FOV.</summary>
+            /// <summary>不移动相机，仅调整FOV。</summary>
             ZoomOnly,
-            /// <summary>Just move the camera, don't change the FOV.</summary>
+            /// <summary>仅移动相机，不改变FOV。</summary>
             DollyOnly,
-            /// <summary>Move the camera as much as permitted by the ranges, then
-            /// adjust the FOV if necessary to make the shot.</summary>
+            /// <summary>在允许的范围内尽可能移动相机，然后
+            /// 如有必要调整FOV以完成拍摄。</summary>
             DollyThenZoom
         };
 
-        /// <summary>How to adjust the camera to get the desired framing</summary>
-        [Tooltip("How to adjust the camera to get the desired framing.  You can zoom, dolly in/out, or do both.")]
+        /// <summary>如何调整相机以获得期望的构图</summary>
+        [Tooltip("如何调整相机以获得期望的构图。您可以缩放、推拉或两者同时进行。")]
         public AdjustmentMode m_AdjustmentMode = AdjustmentMode.ZoomOnly;
 
-        /// <summary>How much closer to the target can the camera go?</summary>
-        [Tooltip("The maximum distance toward the target that this behaviour is allowed to move the camera.")]
+        /// <summary>相机可以离目标多近？</summary>
+        [Tooltip("此行为允许相机向目标移动的最大距离。")]
         public float m_MaxDollyIn = 5000f;
 
-        /// <summary>How much farther from the target can the camera go?</summary>
-        [Tooltip("The maximum distance away the target that this behaviour is allowed to move the camera.")]
+        /// <summary>相机可以离目标多远？</summary>
+        [Tooltip("此行为允许相机远离目标的最大距离。")]
         public float m_MaxDollyOut = 5000f;
 
-        /// <summary>Set this to limit how close to the target the camera can get</summary>
-        [Tooltip("Set this to limit how close to the target the camera can get.")]
+        /// <summary>设置此项以限制相机可以离目标多近</summary>
+        [Tooltip("设置此项以限制相机可以离目标多近。")]
         public float m_MinimumDistance = 1;
 
-        /// <summary>Set this to limit how far from the taregt the camera can get</summary>
-        [Tooltip("Set this to limit how far from the target the camera can get.")]
+        /// <summary>设置此项以限制相机可以离目标多远</summary>
+        [Tooltip("设置此项以限制相机可以离目标多远。")]
         public float m_MaximumDistance = 5000f;
 
-        /// <summary>If adjusting FOV, will not set the FOV lower than this</summary>
+        /// <summary>如果调整FOV，将不会将FOV设置低于此值</summary>
         [Range(1, 179)]
-        [Tooltip("If adjusting FOV, will not set the FOV lower than this.")]
+        [Tooltip("如果调整FOV，将不会将FOV设置低于此值。")]
         public float m_MinimumFOV = 3;
 
-        /// <summary>If adjusting FOV, will not set the FOV higher than this</summary>
+        /// <summary>如果调整FOV，将不会将FOV设置高于此值</summary>
         [Range(1, 179)]
-        [Tooltip("If adjusting FOV, will not set the FOV higher than this.")]
+        [Tooltip("如果调整FOV，将不会将FOV设置高于此值。")]
         public float m_MaximumFOV = 60;
 
-        /// <summary>If adjusting Orthographic Size, will not set it lower than this</summary>
-        [Tooltip("If adjusting Orthographic Size, will not set it lower than this.")]
+        /// <summary>如果调整正交尺寸，将不会将其设置低于此值</summary>
+        [Tooltip("如果调整正交尺寸，将不会将其设置低于此值。")]
         public float m_MinimumOrthoSize = 1;
 
-        /// <summary>If adjusting Orthographic Size, will not set it higher than this</summary>
-        [Tooltip("If adjusting Orthographic Size, will not set it higher than this.")]
+        /// <summary>如果调整正交尺寸，将不会将其设置高于此值</summary>
+        [Tooltip("如果调整正交尺寸，将不会将其设置高于此值。")]
+        public float m_MaximumOrthoSize = 5000;
+
         public float m_MaximumOrthoSize = 5000;
 
         private void OnValidate()

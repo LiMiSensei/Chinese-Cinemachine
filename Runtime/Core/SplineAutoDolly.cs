@@ -10,78 +10,78 @@ namespace Unity.Cinemachine
     [Serializable]
     public struct SplineAutoDolly
     {
-        /// <summary>If set, will enable AutoDolly on a spline</summary>
-        [Tooltip("If set, will enable the selected automatic dolly along the spline")]
+        /// <summary>如果设置，将在样条上启用自动轨道移动</summary>
+        [Tooltip("如果设置，将启用沿样条的选定自动轨道移动")]
         public bool Enabled;
 
-        /// <summary>This is the object that actually implements the AutoDolly</summary>
+        /// <summary>这是实际实现自动轨道移动的对象</summary>
         [SerializeReference]
         public ISplineAutoDolly Method;
 
         /// <summary>
-        /// Interface for procedural spline dolly.
-        /// Implement this to provide a custom algorithm for choosing a point on the path.
+        /// 程序化样条轨道移动的接口。
+        /// 实现此接口以提供选择路径上点的自定义算法。
         /// </summary>
         public interface ISplineAutoDolly
         {
-            /// <summary>Called from OnValidate() to validate the settings.</summary>
+            /// <summary>从OnValidate()调用以验证设置。</summary>
             void Validate();
 
-            /// <summary>Call this to reset any state information contained in the implementation.</summary>
+            /// <summary>调用此方法以重置实现中包含的任何状态信息。</summary>
             void Reset();
 
-            /// <summary>Returns true if this implementation requires a tracking target.</summary>
+            /// <summary>如果此实现需要跟踪目标，则返回true。</summary>
             bool RequiresTrackingTarget { get; }
 
             /// <summary>
-            /// Compute the desired position on the spline.
+            /// 计算样条上的期望位置。
             /// </summary>
-            /// <param name="sender">The MonoBehaviour that is asking.</param>
-            /// <param name="target">The target object (may be null for algorithms that don't require it).</param>
-            /// <param name="spline">The spline on which the location must be found.</param>
-            /// <param name="currentPosition">The current position on the spline.</param>
-            /// <param name="positionUnits">The units in which spline positions are expressed.</param>
-            /// <param name="deltaTime">Current deltaTime.  If smaller than 0, then previous frame data should be ignored.</param>
-            /// <returns>The desired position on the spline, expressed in positionUnits.</returns>
+            /// <param name="sender">发起请求的MonoBehaviour。</param>
+            /// <param name="target">目标对象（对于不需要目标的算法可能为null）。</param>
+            /// <param name="spline">必须在其上找到位置的样条。</param>
+            /// <param name="currentPosition">样条上的当前位置。</param>
+            /// <param name="positionUnits">样条位置表达的单位。</param>
+            /// <param name="deltaTime">当前deltaTime。如果小于0，则应忽略前一帧的数据。</param>
+            /// <returns>样条上的期望位置，以positionUnits表示。</returns>
             float GetSplinePosition(
                 MonoBehaviour sender, Transform target, SplineContainer spline,
                 float currentPosition, PathIndexUnit positionUnits, float deltaTime);
         }
 
         /// <summary>
-        /// ISplineAutoDolly implementation that moves the object at a constant speed align the spline.
+        /// 以恒定速度沿样条移动对象的ISplineAutoDolly实现。
         /// </summary>
         [Serializable]
         public class FixedSpeed : ISplineAutoDolly
         {
-            /// <summary>Speed of travel, in current position units per second.</summary>
-            [Tooltip("Speed of travel, in current position units per second.")]
+            /// <summary>移动速度，以当前位置单位每秒表示。</summary>
+            [Tooltip("移动速度，以当前位置单位每秒表示。")]
             public float Speed;
 
-            /// <summary>Called from OnValidate() to validate the settings.</summary>
+            /// <summary>从OnValidate()调用以验证设置。</summary>
             void ISplineAutoDolly.Validate() {}
 
-            /// <summary>This implementation does nothing.</summary>
+            /// <summary>此实现不执行任何操作。</summary>
             void ISplineAutoDolly.Reset() {}
 
-            /// <summary>Returns true if this implementation requires a tracking target.</summary>
+            /// <summary>如果此实现需要跟踪目标，则返回true。</summary>
             bool ISplineAutoDolly.RequiresTrackingTarget => false;
 
             /// <summary>
-            /// Compute the desired position on the spline.
+            /// 计算样条上的期望位置。
             /// </summary>
-            /// <param name="sender">The MonoBehaviour that is asking.</param>
-            /// <param name="target">The target object (may be null for algorithms that don't require it).</param>
-            /// <param name="spline">The spline on which the location must be found.</param>
-            /// <param name="currentPosition">The current position on the spline.</param>
-            /// <param name="positionUnits">The units in which spline positions are expressed.</param>
-            /// <param name="deltaTime">Current deltaTime.  If smaller than 0, then previous frame data should be ignored.</param>
-            /// <returns>The desired position on the spline, expressed in positionUnits.</returns>
+            /// <param name="sender">发起请求的MonoBehaviour。</param>
+            /// <param name="target">目标对象（对于不需要目标的算法可能为null）。</param>
+            /// <param name="spline">必须在其上找到位置的样条。</param>
+            /// <param name="currentPosition">样条上的当前位置。</param>
+            /// <param name="positionUnits">样条位置表达的单位。</param>
+            /// <param name="deltaTime">当前deltaTime。如果小于0，则应忽略前一帧的数据。</param>
+            /// <returns>样条上的期望位置，以positionUnits表示。</returns>
             float ISplineAutoDolly.GetSplinePosition(
                 MonoBehaviour sender, Transform target, SplineContainer spline,
                 float currentPosition, PathIndexUnit positionUnits, float deltaTime)
             {
-                // Only works if playing
+                // 仅在播放时工作
                 if (Application.isPlaying && spline.IsValid() && deltaTime > 0)
                     return currentPosition + Speed * deltaTime;
                 return currentPosition;
@@ -89,46 +89,45 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>
-        /// ISplineAutoDolly implementation that finds the point on th spline closest to the target.
-        /// Note that this is a simple stateless algorithm, and is not appropriate for all spline shapes.
-        /// For example, if the spline is forming an arc and the target is inside the arc, then the closest
-        /// point can be noisy or undefined.  Consider for example a spline that is perfectly circular
-        /// with the target at the center.  Where is the closest point?
+        /// 查找样条上离目标最近点的ISplineAutoDolly实现。
+        /// 注意这是一个简单的无状态算法，并不适用于所有样条形状。
+        /// 例如，如果样条形成弧线且目标位于弧线内部，则最近点
+        /// 可能不稳定或未定义。考虑一个完美圆形的样条，
+        /// 目标位于圆心的情况。最近点在哪里？
         /// </summary>
         [Serializable]
         public class NearestPointToTarget : ISplineAutoDolly
         {
             /// <summary>
-            /// Offset, in current position units, from the closest point on the spline to the follow target.
+            /// 从样条上最近点到跟随目标的偏移量，以当前位置单位表示。
             /// </summary>
-            [Tooltip("Offset, in current position units, from the closest point on the spline to the follow target")]
+            [Tooltip("从样条上最近点到跟随目标的偏移量，以当前位置单位表示")]
             public float PositionOffset = 0;
 
             /// <summary>
-            /// Affects how many segments to split a spline into when calculating the nearest point.
-            /// Higher values mean smaller and more segments, which increases accuracy at the cost of
-            /// processing time.  In most cases, the default resolution is appropriate. Use
-            /// with <see cref="SearchIteration"/> to fine-tune point accuracy.
-            /// For more information, see SplineUtility.GetNearestPoint.
+            /// 影响计算最近点时将样条分割成的段数。
+            /// 值越大意味着段更小且更多，这会在增加处理时间的代价下提高准确性。
+            /// 在大多数情况下，默认分辨率是合适的。与<see cref="SearchIteration"/>一起使用
+            /// 以微调点精度。
+            /// 更多信息请参见SplineUtility.GetNearestPoint。
             /// </summary>
-            [Tooltip("Affects how many segments to split a spline into when calculating the nearest point.  "
-                + "Higher values mean smaller and more segments, which increases accuracy at the cost of "
-                + "processing time.  In most cases, the default value (4) is appropriate. Use with SearchIteration "
-                + "to fine-tune point accuracy.")]
+            [Tooltip("影响计算最近点时将样条分割成的段数。"
+                + "值越大意味着段更小且更多，这会在增加处理时间的代价下提高准确性。"
+                + "在大多数情况下，默认值(4)是合适的。与SearchIteration一起使用"
+                + "以微调点精度。")]
             public int SearchResolution = 4;
 
             /// <summary>
-            /// The nearest point is calculated by finding the nearest point on the entire length
-            /// of the spline using <see cref="SearchResolution"/> to divide into equally spaced line segments.
-            /// Successive iterations will then subdivide further the nearest segment, producing more
-            /// accurate results. In most cases, the default value is sufficient.
-            /// For more information, see SplineUtility.GetNearestPoint.
+            /// 通过使用<see cref="SearchResolution"/>将样条整个长度分割成等距线段来
+            /// 计算最近点。连续的迭代将进一步细分最近段，产生更
+            /// 准确的结果。在大多数情况下，默认值已足够。
+            /// 更多信息请参见SplineUtility.GetNearestPoint。
             /// </summary>
-            [Tooltip("The nearest point is calculated by finding the nearest point on the entire "
-                + "length of the spline using SearchResolution to divide into equally spaced line segments. "
-                + "Successive iterations will then subdivide further the nearest segment, producing more "
-                + "accurate results. In most cases, the default value (2) is sufficient.")]
+            [Tooltip("通过使用SearchResolution将样条整个长度分割成等距线段来"
+                + "计算最近点。连续的迭代将进一步细分最近段，产生更"
+                + "准确的结果。在大多数情况下，默认值(2)已足够。")]
             public int SearchIteration = 2;
+
 
             /// <summary>Called from OnValidate() to validate the settings.</summary>
             void ISplineAutoDolly.Validate()

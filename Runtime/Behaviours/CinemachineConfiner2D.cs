@@ -54,66 +54,67 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineConfiner2D.html")]
     public class CinemachineConfiner2D : CinemachineExtension
     {
-        /// <summary>The 2D shape within which the camera is to be contained.</summary>
-        [Tooltip("The 2D shape within which the camera is to be contained.  " +
-                 "Can be polygon-, box-, or composite collider 2D.\n\n" +
-                 "Remark: When assigning a GameObject here in the editor, " +
-                 "this will be set to the first Collider2D found on the assigned GameObject!")]
+        /// <summary>限制相机移动范围的2D形状。</summary>
+        [Tooltip("限制相机移动范围的2D形状。" +
+                "可以是多边形、盒子或复合2D碰撞器。\n\n" +
+                "备注：在编辑器中分配GameObject时，" +
+                "将自动设置为该GameObject上的第一个Collider2D组件！")]
         [FormerlySerializedAs("m_BoundingShape2D")]
         public Collider2D BoundingShape2D;
 
-        /// <summary>Damping applied automatically around corners to avoid jumps.</summary>
-        [Tooltip("Damping applied around corners to avoid jumps.  Higher numbers are more gradual.")]
+        /// <summary>自动应用在拐角处的阻尼，以避免跳跃。</summary>
+        [Tooltip("应用在拐角处的阻尼以避免跳跃。数值越高过渡越平缓。")]
         [Range(0, 5)]
         [FormerlySerializedAs("m_Damping")]
         public float Damping;
 
-        /// <summary>Size of the slow-down zone at the edge of the bounding shape.</summary>
-        [Tooltip("Size of the slow-down zone at the edge of the bounding shape.")]
+        /// <summary>边界形状边缘的减速区域大小。</summary>
+        [Tooltip("边界形状边缘的减速区域大小。")]
         public float SlowingDistance = 0;
 
         /// <summary>
-        /// Settings to optimize computation and memory costs in the event that the
-        /// window size is expected to be larger than will fit inside the confining shape.
+        /// 当窗口尺寸预计会超出限制形状范围时，
+        /// 用于优化计算和内存成本的设置。
         /// </summary>
+
         [Serializable]
         public struct OversizeWindowSettings
         {
             /// <summary>
-            /// Enable optimizing of computation and memory costs in the event that the
-            /// window size is expected to be larger than will fit inside the confining shape.
-            /// Enable only if needed, because it's costly.
+            /// 当窗口尺寸预计会超出限制形状范围时，
+            /// 启用计算和内存成本的优化。
+            /// 仅在需要时启用，因为此优化代价较高。
             /// </summary>
-            [Tooltip("Enable optimizing of computation and memory costs in the event that the "
-                + "window size is expected to be larger than will fit inside the confining shape.\n"
-                + "Enable only if needed, because it's costly")]
+            [Tooltip("当窗口尺寸预计会超出限制形状范围时，"
+                + "启用计算和内存成本的优化。\n"
+                + "仅在需要时启用，因为此优化代价较高")]
             public bool Enabled;
 
             /// <summary>
-            /// To optimize computation and memory costs, set this to the largest view size that the camera
-            /// is expected to have.  The confiner will not compute a polygon cache for frustum sizes larger
-            /// than this.  This refers to the size in world units of the frustum at the confiner plane
-            /// (for orthographic cameras, this is just the orthographic size).  If set to 0, then this
-            /// parameter is ignored and a polygon cache will be calculated for all potential window sizes.
+            /// 为优化计算和内存成本，将此设置为相机预期的最大视图尺寸。
+            /// 限制器不会为大于此尺寸的视锥体计算多边形缓存。
+            /// 此尺寸指在限制器平面处视锥体的世界单位尺寸
+            /// （对于正交相机，即为正交尺寸）。
+            /// 如果设置为0，则忽略此参数，将为所有可能的窗口尺寸计算多边形缓存。
             /// </summary>
-            [Tooltip("To optimize computation and memory costs, set this to the largest view size that the "
-                + "camera is expected to have.  The confiner will not compute a polygon cache for frustum "
-                + "sizes larger than this.  This refers to the size in world units of the frustum at the "
-                + "confiner plane (for orthographic cameras, this is just the orthographic size).  If set "
-                + "to 0, then this parameter is ignored and a polygon cache will be calculated for all "
-                + "potential window sizes.")]
+            [Tooltip("为优化计算和内存成本，将此设置为相机预期的最大视图尺寸。"
+                + "限制器不会为大于此尺寸的视锥体计算多边形缓存。"
+                + "此尺寸指在限制器平面处视锥体的世界单位尺寸"
+                + "（对于正交相机，即为正交尺寸）。如果设置为"
+                + "0，则忽略此参数，将为所有可能的窗口尺寸计算多边形缓存。")]
             public float MaxWindowSize;
 
             /// <summary>
-            /// For large window sizes, the confiner will potentially generate polygons with zero area.
-            /// The padding may be used to add a small amount of area to these polygons, to prevent them from being
-            /// a series of disconnected dots.
+            /// 对于大窗口尺寸，限制器可能会生成面积为零的多边形。
+            /// 填充可用于为这些多边形添加少量面积，防止它们变成
+            /// 一系列不连续的点。
             /// </summary>
-            [Tooltip("For large window sizes, the confiner will potentially generate polygons with zero area.  "
-                + "The padding may be used to add a small amount of area to these polygons, to prevent them from "
-                + "being a series of disconnected dots.")]
+            [Tooltip("对于大窗口尺寸，限制器可能会生成面积为零的多边形。"
+                + "填充可用于为这些多边形添加少量面积，防止它们"
+                + "变成一系列不连续的点。")]
             [Range(0, 100)]
             public float Padding;
+
         }
 
         /// <summary>

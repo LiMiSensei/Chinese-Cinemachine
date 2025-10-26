@@ -1,19 +1,19 @@
-## Import samples to your project
+# 向项目中导入示例
 
-To import a **Cinemachine** sample to your project:
+若要向项目中导入 **Cinemachine** 示例，请按以下步骤操作：
 
-1. Open the [Package manager window](https://docs.unity3d.com/Manual/upm-ui-access.html).
+1. 打开 [包管理器窗口（Package Manager window）](https://docs.unity3d.com/Manual/upm-ui-access.html)。
 
-2. Find **Cinemachine** in the list of available packages, and select it.
+2. 在可用包列表中找到 **Cinemachine**，并选中它。
 
-3. In Package Manager's right pane, select the **Samples** tab.
+3. 在包管理器的右侧面板中，选择 **示例（Samples）** 选项卡。
 
-   ![The Cinemachine package in the Package Manager window, with the Samples tab open.](images/samples.png)
+   ![包管理器窗口中的 Cinemachine 包，已打开“示例”选项卡](images/samples.png)
 
-4. Choose a sample set in the [list](samples-tutorials.md#samples) and select **Import** to download and install the corresponding example Scenes and Assets.
+4. 在 [列表](samples-tutorials.md#samples) 中选择一个示例集，然后点击 **导入（Import）**，即可下载并安装对应的示例场景（Scenes）和资源（Assets）。
    
-   * For more details about the sample scenes included in each sample set, refer to the [sample scene descriptions](samples-tutorials.md#sample-scenes).
+   * 如需了解每个示例集中包含的示例场景的详细信息，请参阅 [示例场景说明（sample scene descriptions）](samples-tutorials.md#sample-scenes)。
    
-   * Unity places imported samples in your Project's Asset folder under `Assets/Samples/Cinemachine/<version number>`.
+   * Unity 会将导入的示例放置在项目的资源文件夹（Asset folder）中，路径为 `Assets/Samples/Cinemachine/<版本号>`。
 
-5. To explore a specific Cinemachine use case or configuration, open the targeted Scene in the corresponding subfolder and enter Play mode to test the sample.
+5. 若要探索特定的 Cinemachine 使用场景或配置，可在对应的子文件夹中打开目标场景（Scene），并进入播放模式（Play mode）测试该示例。

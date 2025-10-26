@@ -1,13 +1,12 @@
-# Saving in Play Mode
+# 运行模式下保存（Saving in Play Mode）
 
-It’s often most convenient to adjust camera settings while the game is playing. But normally, Unity does not save your changes to the Scene when you exit Play Mode. Cinemachine has a special feature to preserve the tweaks you make during Play Mode.  It doesn’t save structural changes, like adding or removing a behavior. With the exception of certain properties, Cinemachine can preserve most of the settings in your CinemachineCameras when you exit Play Mode.
+在游戏运行时调整相机设置通常是最便捷的方式，但默认情况下，退出运行模式（Play Mode）时，Unity 不会将你所做的修改保存到场景中。Cinemachine 提供了一项特殊功能，可保留你在运行模式下进行的微调。需要注意的是，该功能不保存结构性修改（如添加或移除行为）；除部分特定属性外，退出运行模式时，Cinemachine 可保留 Cinemachine 相机（CinemachineCamera）中的大部分设置。
 
-When you exit Play Mode, Cinemachine scans the Scene to collect any changed properties in the CinemachineCameras.  Cinemachine saves these changes a second or so after exiting. Use the __Edit > Undo__ command to revert these changes.
+退出运行模式后，Cinemachine 会扫描场景，收集 Cinemachine 相机中所有被修改过的属性，并在退出约一秒后保存这些修改。若需撤销这些修改，可使用 **编辑（Edit）> 撤销（Undo）** 命令。
 
-Check __Save During Play__ on any CinemachineCamera in the [Inspector](https://docs.unity3d.com/Manual/UsingTheInspector.html) to enable this feature.  This is a global property, not per-camera, so you only need to check or uncheck it once.
+在任意 Cinemachine 相机的[检视面板（Inspector）](https://docs.unity3d.com/Manual/UsingTheInspector.html)中，勾选 **运行时保存（Save During Play）** 即可启用该功能。这是一项全局属性，而非按相机单独设置的属性，因此只需勾选或取消勾选一次即可作用于所有相机。
 
-Cinemachine components have the special attribute `[SaveDuringPlay]` to enable this functionality. Specific fields are excluded from being saved by having the `[NoSaveDuringPlay]` attribute added to the field.
+Cinemachine 组件通过特殊属性 `[SaveDuringPlay]` 实现此功能。若某个字段需排除在保存范围外，只需为该字段添加 `[NoSaveDuringPlay]` 属性即可。
 
-> [!TIP]
-> You can use the `[SaveDuringPlay]` and `[NoSaveDuringPlay]` attributes in your own custom scripts, to acquire the same functionality for them as well.
-
+> [!提示]
+> 你可以在自定义脚本中使用 `[SaveDuringPlay]` 和 `[NoSaveDuringPlay]` 属性，为脚本赋予相同的保存控制功能。

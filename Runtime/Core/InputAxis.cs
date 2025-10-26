@@ -89,41 +89,40 @@ namespace Unity.Cinemachine
     [Serializable]
     public struct InputAxis
     {
-        /// <summary>The current value of the axis.  You can drive this directly from a script</summary>
-        [Tooltip("The current value of the axis.  You can drive this directly from a script.")]
+        /// <summary>轴的当前值。您可以直接通过脚本驱动此值</summary>
+        [Tooltip("轴的当前值。您可以直接通过脚本驱动此值。")]
         [NoSaveDuringPlay]
         public float Value;
 
-        /// <summary>The centered, or at-rest value of this axis.</summary>
-        [Delayed, Tooltip("The centered, or at-rest value of this axis.")]
+        /// <summary>此轴的中心值或静止值。</summary>
+        [Delayed, Tooltip("此轴的中心值或静止值。")]
         public float Center;
 
-        /// <summary>The valid range for the axis value.  Value will be clamped to this range.</summary>
-        [Tooltip("The valid range for the axis value.  Value will be clamped to this range.")]
+        /// <summary>轴值的有效范围。值将被限制在此范围内。</summary>
+        [Tooltip("轴值的有效范围。值将被限制在此范围内。")]
         [Vector2AsRange]
         public Vector2 Range;
 
-        /// <summary>If set, then the axis will wrap around at the min/max values, forming a loop</summary>
-        [Tooltip("If set, then the axis will wrap around at the min/max values, forming a loop")]
+        /// <summary>如果启用，轴将在最小值/最大值处循环环绕</summary>
+        [Tooltip("如果启用，轴将在最小值/最大值处循环环绕")]
         public bool Wrap;
 
-        /// <summary>Defines the settings for automatic re-centering</summary>
+        /// <summary>定义自动重新居中的设置</summary>
         [Serializable]
         public struct RecenteringSettings
         {
-            /// <summary>If set, will enable automatic re-centering of the axis</summary>
-            [Tooltip("If set, will enable automatic re-centering of the axis when the game is playing.")]
+            /// <summary>如果启用，将在游戏运行时启用轴的自动重新居中功能</summary>
+            [Tooltip("如果启用，将在游戏运行时启用轴的自动重新居中功能。")]
             public bool Enabled;
 
-            /// <summary>If no user input has been detected on the axis for this man
-            /// seconds, re-centering will begin.</summary>
-            [Tooltip("If no user input has been detected on the axis for this many "
-                + "seconds, re-centering will begin.")]
+            /// <summary>如果在指定的秒数内未检测到用户输入，重新居中将开始。</summary>
+            [Tooltip("如果在指定的秒数内未检测到用户输入，重新居中将开始。")]
             public float Wait;
 
-            /// <summary>How long it takes to reach center once re-centering has started</summary>
-            [Tooltip("How long it takes to reach center once re-centering has started.")]
+            /// <summary>重新居中开始后，到达中心位置所需的时间</summary>
+            [Tooltip("重新居中开始后，到达中心位置所需的时间。")]
             public float Time;
+
 
             /// <summary>Default value</summary>
             public static RecenteringSettings Default => new() { Wait = 1, Time = 2 };
@@ -328,16 +327,12 @@ namespace Unity.Cinemachine
         /// Internal state
         float m_CurrentSpeed;
 
-        /// <summary>The amount of time in seconds it takes to accelerate to
-        /// MaxSpeed with the supplied Axis at its maximum value</summary>
-        [Tooltip("The amount of time in seconds it takes to accelerate to MaxSpeed with the "
-            + "supplied Axis at its maximum value")]
+        /// <summary>在提供的轴处于最大值时，加速到最大速度所需的秒数</summary>
+        [Tooltip("在提供的轴处于最大值时，加速到最大速度所需的秒数")]
         public float AccelTime;
 
-        /// <summary>The amount of time in seconds it takes to decelerate
-        /// the axis to zero if the supplied axis is in a neutral position</summary>
-        [Tooltip("The amount of time in seconds it takes to decelerate the axis to zero if "
-            + "the supplied axis is in a neutral position")]
+        /// <summary>当提供的轴处于中立位置时，将轴减速到零所需的秒数</summary>
+        [Tooltip("当提供的轴处于中立位置时，将轴减速到零所需的秒数")]
         public float DecelTime;
 
         /// <summary>Call from OnValidate: Make sure the fields are sensible</summary>

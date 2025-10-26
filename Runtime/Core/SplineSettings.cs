@@ -22,27 +22,23 @@ namespace Unity.Cinemachine
     [Serializable]
     public struct SplineSettings
     {
-        /// <summary>The Spline container to which the the position will apply.</summary>
-        [Tooltip("The Spline container to which the position will apply.")]
+        /// <summary>位置将应用到的样条容器。</summary>
+        [Tooltip("位置将应用到的样条容器。")]
         public SplineContainer Spline;
 
-        /// <summary>The position along the spline.  The actual value corresponding to a given point
-        /// on the spline will depend on the unity type.</summary>
+        /// <summary>沿样条的位置。对应样条上给定点的实际值将取决于单位类型。</summary>
         [NoSaveDuringPlay]
-        [Tooltip("The position along the spline.  The actual value corresponding to a given point "
-            + "on the spline will depend on the unity type.")]
+        [Tooltip("沿样条的位置。对应样条上给定点的实际值将取决于单位类型。")]
         public float Position;
 
-        /// <summary>How to interpret the Spline Position:
-        /// - Distance: Values range from 0 (start of Spline) to Length of the Spline (end of Spline).
-        /// - Normalized: Values range from 0 (start of Spline) to 1 (end of Spline).
-        /// - Knot: Values are defined by knot indices and a fractional value representing the normalized
-        /// interpolation between the specific knot index and the next knot."</summary>
-        [Tooltip("How to interpret the Spline Position:\n"
-            + "- <b>Distance</b>: Values range from 0 (start of Spline) to Length of the Spline (end of Spline).\n"
-            + "- <b>Normalized</b>: Values range from 0 (start of Spline) to 1 (end of Spline).\n"
-            + "- <b>Knot</b>: Values are defined by knot indices and a fractional value representing the normalized "
-            + "interpolation between the specific knot index and the next knot.\n")]
+        /// <summary>如何解释样条位置：
+        /// - 距离：值范围从0（样条起点）到样条长度（样条终点）。
+        /// - 归一化：值范围从0（样条起点）到1（样条终点）。
+        /// - 节点：值由节点索引和一个表示在特定节点索引与下一个节点之间归一化插值的分数值定义。</summary>
+        [Tooltip("如何解释样条位置：\n"
+            + "- <b>距离</b>：值范围从0（样条起点）到样条长度（样条终点）。\n"
+            + "- <b>归一化</b>：值范围从0（样条起点）到1（样条终点）。\n"
+            + "- <b>节点</b>：值由节点索引和一个表示在特定节点索引与下一个节点之间归一化插值的分数值定义。\n")]
         public PathIndexUnit Units;
 
         /// <summary>

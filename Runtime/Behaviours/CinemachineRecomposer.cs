@@ -15,54 +15,54 @@ namespace Unity.Cinemachine
     public class CinemachineRecomposer : CinemachineExtension
     {
         /// <summary>
-        /// When to apply the adjustment
+        /// 何时应用调整
         /// </summary>
-        [Tooltip("When to apply the adjustment")]
+        [Tooltip("何时应用调整")]
         [FormerlySerializedAs("m_ApplyAfter")]
         public CinemachineCore.Stage ApplyAfter;
 
         /// <summary>
-        /// Tilt the camera by this much
+        /// 相机倾斜角度
         /// </summary>
-        [Tooltip("Tilt the camera by this much")]
+        [Tooltip("相机倾斜角度")]
         [FormerlySerializedAs("m_Tilt")]
         public float Tilt;
 
         /// <summary>
-        /// Pan the camera by this much
+        /// 相机水平旋转角度
         /// </summary>
-        [Tooltip("Pan the camera by this much")]
+        [Tooltip("相机水平旋转角度")]
         [FormerlySerializedAs("m_Pan")]
         public float Pan;
 
         /// <summary>
-        /// Roll the camera by this much
+        /// 相机滚转角度
         /// </summary>
-        [Tooltip("Roll the camera by this much")]
+        [Tooltip("相机滚转角度")]
         [FormerlySerializedAs("m_Dutch")]
         public float Dutch;
 
         /// <summary>
-        /// Scale the zoom by this amount (normal = 1)
+        /// 缩放比例（正常值 = 1）
         /// </summary>
-        [Tooltip("Scale the zoom by this amount (normal = 1)")]
+        [Tooltip("缩放比例（正常值 = 1）")]
         [FormerlySerializedAs("m_ZoomScale")]
         [Delayed]
         public float ZoomScale;
 
         /// <summary>
-        /// Lowering this value relaxes the camera's attention to the Follow target (normal = 1)
+        /// 降低此值会减弱相机对跟随目标的关注度（正常值 = 1）
         /// </summary>
         [Range(0, 1)]
-        [Tooltip("Lowering this value relaxes the camera's attention to the Follow target (normal = 1)")]
+        [Tooltip("降低此值会减弱相机对跟随目标的关注度（正常值 = 1）")]
         [FormerlySerializedAs("m_FollowAttachment")]
         public float FollowAttachment;
 
         /// <summary>
-        /// Lowering this value relaxes the camera's attention to the LookAt target (normal = 1)
+        /// 降低此值会减弱相机对注视目标的关注度（正常值 = 1）
         /// </summary>
         [Range(0, 1)]
-        [Tooltip("Lowering this value relaxes the camera's attention to the LookAt target (normal = 1)")]
+        [Tooltip("降低此值会减弱相机对注视目标的关注度（正常值 = 1）")]
         [FormerlySerializedAs("m_LookAtAttachment")]
         public float LookAtAttachment;
 

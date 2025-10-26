@@ -198,14 +198,14 @@ namespace Unity.Cinemachine
             Custom
         };
 
-        /// <summary>The shape of the blend curve.</summary>
-        [Tooltip("Shape of the blend curve")]
+        /// <summary>混合曲线的形状</summary>
+        [Tooltip("混合曲线的形状")]
         [FormerlySerializedAs("m_Style")]
         public Styles Style;
 
-        /// <summary>The duration (in seconds) of the blend, if not a cut.
-        /// If style is a cut, then this value is ignored.</summary>
-        [Tooltip("Duration of the blend, in seconds")]
+        /// <summary>如果不是直接切换，混合的持续时间（以秒为单位）。
+        /// 如果混合类型是直接切换，则忽略此值。</summary>
+        [Tooltip("混合持续时间，以秒为单位")]
         [FormerlySerializedAs("m_Time")]
         public float Time;
 

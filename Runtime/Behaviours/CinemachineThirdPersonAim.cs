@@ -17,26 +17,27 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineThirdPersonAim.html")]
     public class CinemachineThirdPersonAim : CinemachineExtension
     {
-        /// <summary>Objects on these layers will be detected.</summary>
-        [Header("Aim Target Detection")]
-        [Tooltip("Objects on these layers will be detected")]
+        /// <summary>将检测这些层上的对象。</summary>
+        [Header("瞄准目标检测")]
+        [Tooltip("将检测这些层上的对象")]
         public LayerMask AimCollisionFilter;
 
-        /// <summary>Objects with this tag will be ignored.
-        /// It is a good idea to set this field to the target's tag.</summary>
+        /// <summary>将忽略具有此标签的对象。
+        /// 建议将此字段设置为目标的标签。</summary>
         [TagField]
-        [Tooltip("Objects with this tag will be ignored.  "
-            + "It is a good idea to set this field to the target's tag")]
+        [Tooltip("将忽略具有此标签的对象。"
+            + "建议将此字段设置为目标的标签")]
         public string IgnoreTag = string.Empty;
 
-        /// <summary>How far to project the object detection ray.</summary>
-        [Tooltip("How far to project the object detection ray")]
+        /// <summary>物体检测射线的投射距离。</summary>
+        [Tooltip("物体检测射线的投射距离")]
         [Delayed]
         public float AimDistance;
 
-        /// <summary>If set, camera noise will be adjusted to stabilize target on screen.</summary>
-        [Tooltip("If set, camera noise will be adjusted to stabilize target on screen")]
+        /// <summary>如果启用，将调整相机噪声以稳定屏幕上的目标。</summary>
+        [Tooltip("如果启用，将调整相机噪声以稳定屏幕上的目标")]
         public bool NoiseCancellation = true;
+
 
         /// <summary>World space position of where the player would hit if a projectile were to
         /// be fired from the player origin.  This may be different

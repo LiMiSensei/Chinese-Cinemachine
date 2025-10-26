@@ -24,51 +24,51 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct NoiseParams
         {
-            /// <summary>The frequency of noise for this channel.  Higher magnitudes vibrate faster</summary>
-            [Tooltip("The frequency of noise for this channel.  Higher magnitudes vibrate faster.")]
+            /// <summary>此通道的噪声频率。幅度越大振动越快</summary>
+            [Tooltip("此通道的噪声频率。幅度越大振动越快。")]
             public float Frequency;
 
-            /// <summary>The amplitude of the noise for this channel.  Larger numbers vibrate higher</summary>
-            [Tooltip("The amplitude of the noise for this channel.  Larger numbers vibrate higher.")]
+            /// <summary>此通道的噪声振幅。数值越大振动幅度越高</summary>
+            [Tooltip("此通道的噪声振幅。数值越大振动幅度越高。")]
             public float Amplitude;
 
-            /// <summary>If checked, then the amplitude and frequency will not be randomized</summary>
-            [Tooltip("If checked, then the amplitude and frequency will not be randomized.")]
+            /// <summary>如果勾选，则振幅和频率将不会随机化</summary>
+            [Tooltip("如果勾选，则振幅和频率将不会随机化。")]
             public bool Constant;
 
-            /// <summary>Get the signal value at a given time, offset by a given amount</summary>
-            /// <param name="time">The current time</param>
-            /// <param name="timeOffset">The (unscaled) offset to add to the current time</param>
-            /// <returns>Value of the signal at desired time</returns>
+            /// <summary>在给定时间获取信号值，可添加时间偏移</summary>
+            /// <param name="time">当前时间</param>
+            /// <param name="timeOffset">要添加到当前时间的（未缩放）偏移量</param>
+            /// <returns>指定时间的信号值</returns>
             public float GetValueAt(float time, float timeOffset)
             {
                 float t = (Frequency * time) + timeOffset;
                 if (Constant)
-                    return  Mathf.Cos(t * 2 * Mathf.PI) * Amplitude * 0.5f;
+                    return Mathf.Cos(t * 2 * Mathf.PI) * Amplitude * 0.5f;
                 return (Mathf.PerlinNoise(t, 0f) - 0.5f) * Amplitude;
             }
-        }
+            }
 
-        /// <summary>
-        /// Contains the behaviour of noise for the noise module for all 3 cardinal axes of the camera
-        /// </summary>
-        [Serializable]
-        public struct TransformNoiseParams
-        {
-            /// <summary>Noise definition for X-axis</summary>
-            [Tooltip("Noise definition for X-axis")]
+            /// <summary>
+            /// 包含摄像机所有3个基本轴向的噪声模块行为
+            /// </summary>
+            [Serializable]
+            public struct TransformNoiseParams
+            {
+            /// <summary>X轴的噪声定义</summary>
+            [Tooltip("X轴的噪声定义")]
             public NoiseParams X;
-            /// <summary>Noise definition for Y-axis</summary>
-            [Tooltip("Noise definition for Y-axis")]
+            /// <summary>Y轴的噪声定义</summary>
+            [Tooltip("Y轴的噪声定义")]
             public NoiseParams Y;
-            /// <summary>Noise definition for Z-axis</summary>
-            [Tooltip("Noise definition for Z-axis")]
+            /// <summary>Z轴的噪声定义</summary>
+            [Tooltip("Z轴的噪声定义")]
             public NoiseParams Z;
 
-            /// <summary>Get the signal value at a given time, offset by a given amount</summary>
-            /// <param name="time">The current time</param>
-            /// <param name="timeOffsets">The (unscaled) offsets (per-channel) to add to the current time</param>
-            /// <returns>Value of the signal at desired time</returns>
+            /// <summary>在给定时间获取信号值，可添加时间偏移</summary>
+            /// <param name="time">当前时间</param>
+            /// <param name="timeOffsets">要添加到当前时间的（每通道）偏移量</param>
+            /// <returns>指定时间的信号值</returns>
             public Vector3 GetValueAt(float time, Vector3 timeOffsets)
             {
                 return new Vector3(
@@ -76,19 +76,20 @@ namespace Unity.Cinemachine
                     Y.GetValueAt(time, timeOffsets.y),
                     Z.GetValueAt(time, timeOffsets.z));
             }
-        }
+            }
 
-        /// <summary>The array of positional noise channels for this <c>NoiseSettings</c></summary>
-        [Tooltip("These are the noise channels for the virtual camera's position. Convincing noise setups "
-            + "typically mix low, medium and high frequencies together, so start with a size of 3")]
-        [FormerlySerializedAs("m_Position")]
-        public TransformNoiseParams[] PositionNoise = new TransformNoiseParams[0];
+            /// <summary>此<c>NoiseSettings</c>的位置噪声通道数组</summary>
+            [Tooltip("这些是虚拟摄像机位置噪声通道。令人信服的噪声设置"
+                + "通常混合低频、中频和高频，因此建议从大小为3开始")]
+            [FormerlySerializedAs("m_Position")]
+            public TransformNoiseParams[] PositionNoise = new TransformNoiseParams[0];
 
-        /// <summary>The array of orientation noise channels for this <c>NoiseSettings</c></summary>
-        [Tooltip("These are the noise channels for the virtual camera's orientation. Convincing noise "
-            + "setups typically mix low, medium and high frequencies together, so start with a size of 3")]
-        [FormerlySerializedAs("m_Orientation")]
-        public TransformNoiseParams[] OrientationNoise = new TransformNoiseParams[0];
+            /// <summary>此<c>NoiseSettings</c>的旋转噪声通道数组</summary>
+            [Tooltip("这些是虚拟摄像机旋转噪声通道。令人信服的噪声"
+                + "设置通常混合低频、中频和高频，因此建议从大小为3开始")]
+            [FormerlySerializedAs("m_Orientation")]
+            public TransformNoiseParams[] OrientationNoise = new TransformNoiseParams[0];
+
 
         /// <summary>Get the noise signal value at a specific time</summary>
         /// <param name="noiseParams">The parameters that define the noise function</param>

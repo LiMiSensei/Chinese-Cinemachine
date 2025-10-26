@@ -11,129 +11,127 @@ namespace Unity.Cinemachine
     public struct LensSettings
     {
         /// <summary>
-        /// This is the camera vertical field of view in degrees. Display will be in vertical degress, unless the
-        /// associated camera has its FOV axis setting set to Horizontal, in which case display will
-        /// be in horizontal degress.  Internally, it is always vertical degrees.
-        /// For cinematic people, a 50mm lens on a super-35mm sensor would equal a 19.6 degree FOV.
+        /// 这是摄像机的垂直视野角度（单位：度）。显示通常为垂直角度，除非关联的摄像机
+        /// 将其视野轴向设置为水平，此时将显示水平角度。内部处理时始终使用垂直角度。
+        /// 对于电影制作人员，在超35mm传感器上使用50mm镜头相当于19.6度的视野。
         /// </summary>
-        [Tooltip("This setting controls the Field of View or Local Length of the lens, depending "
-            + "on whether the camera mode is physical or nonphysical.  Field of View can be either horizontal "
-            + "or vertical, depending on the setting in the Camera component.")]
+        [Tooltip("此设置控制镜头的视野或焦距，具体取决于"
+            + "摄像机模式是物理模式还是非物理模式。视野可以是水平或垂直，"
+            + "具体取决于摄像机组件中的设置。")]
         public float FieldOfView;
 
         /// <summary>
-        /// When using an orthographic camera, this defines the half-height, in world
-        /// co-ordinates, of the camera view.
+        /// 使用正交摄像机时，此值定义摄像机视图的半高度（世界坐标单位）。
         /// </summary>
-        [Tooltip("When using an orthographic camera, this defines the half-height, in world "
-            + "coordinates, of the camera view.")]
+        [Tooltip("使用正交摄像机时，此值定义摄像机视图的半高度（世界坐标单位）。")]
         public float OrthographicSize;
 
         /// <summary>
-        /// The near clip plane for this LensSettings
+        /// 此镜头设置的近裁剪平面
         /// </summary>
-        [Tooltip("This defines the near region in the renderable range of the camera frustum. "
-            + "Raising this value will stop the game from drawing things near the camera, which "
-            + "can sometimes come in handy.  Larger values will also increase your shadow resolution.")]
+        [Tooltip("此值定义摄像机视锥体可渲染范围的近端区域。"
+            + "提高此值将阻止游戏绘制靠近摄像机的物体，这在某些情况下很有用。"
+            + "较大的值也会提高阴影分辨率。")]
         public float NearClipPlane;
 
         /// <summary>
-        /// The far clip plane for this LensSettings
+        /// 此镜头设置的远裁剪平面
         /// </summary>
-        [Tooltip("This defines the far region of the renderable range of the camera frustum. Typically "
-            + "you want to set this value as low as possible without cutting off desired distant objects")]
+        [Tooltip("此值定义摄像机视锥体可渲染范围的远端区域。通常"
+            + "您希望将此值设置为尽可能低，同时不切断所需的远处物体")]
         public float FarClipPlane;
 
         /// <summary>
-        /// The dutch (tilt) to be applied to the camera. In degrees
+        /// 应用于摄像机的倾斜角度（荷兰角）。单位：度
         /// </summary>
-        [Tooltip("Camera Z roll, or tilt, in degrees.")]
+        [Tooltip("摄像机的Z轴旋转或倾斜角度，单位：度。")]
         public float Dutch;
 
         /// <summary>
-        /// This enum controls how the Camera settings are driven.  Some settings
-        /// can be pulled from the main camera, or pushed to it, depending on these values.
+        /// 此枚举控制摄像机设置的驱动方式。某些设置
+        /// 可以根据这些值从主摄像机拉取或推送到主摄像机。
         /// </summary>
         public enum OverrideModes
         {
-            /// <summary> Perspective/Ortho, IsPhysical
-            /// will not be changed in Unity Camera.  This is the default setting.</summary>
+            /// <summary> 透视/正交、是否为物理摄像机
+            /// 不会在Unity摄像机中更改。这是默认设置。</summary>
             None = 0,
-            /// <summary>Orthographic projection mode will be pushed to the Unity Camera</summary>
+            /// <summary>正交投影模式将被推送到Unity摄像机</summary>
             Orthographic,
-            /// <summary>Perspective projection mode will be pushed to the Unity Camera</summary>
+            /// <summary>透视投影模式将被推送到Unity摄像机</summary>
             Perspective,
-            /// <summary>A physically-modeled Perspective projection type will be pushed
-            /// to the Unity Camera</summary>
+            /// <summary>物理建模的透视投影类型将被推送
+            /// 到Unity摄像机</summary>
             Physical
         }
 
         /// <summary>
-        /// Allows you to select a different camera mode to apply to the Camera component
-        /// when Cinemachine activates this Virtual Camera.
+        /// 允许您选择不同的摄像机模式，当Cinemachine激活此虚拟摄像机时
+        /// 将应用到摄像机组件。
         /// </summary>
-        [Tooltip("Allows you to select a different camera mode to apply to the Camera component "
-            + "when Cinemachine activates this Virtual Camera.")]
+        [Tooltip("允许您选择不同的摄像机模式，当Cinemachine激活此虚拟摄像机时"
+            + "将应用到摄像机组件。")]
         public OverrideModes ModeOverride;
 
-        /// <summary>These are settings that are used only if IsPhysicalCamera is true.</summary>
+        /// <summary>这些设置仅在启用物理摄像机时使用。</summary>
         [Serializable]
-        [Tooltip("These are settings that are used only if IsPhysicalCamera is true")]
+        [Tooltip("这些设置仅在启用物理摄像机时使用")]
         public struct PhysicalSettings
         {
-            /// <summary>How the image is fitted to the sensor if the aspect ratios differ</summary>
-            [Tooltip("How the image is fitted to the sensor if the aspect ratios differ")]
+            /// <summary>当宽高比不同时，图像如何适配传感器</summary>
+            [Tooltip("当宽高比不同时，图像如何适配传感器")]
             public Camera.GateFitMode GateFit;
 
-            /// <summary>This is the actual size of the image sensor (in mm).</summary>
+            /// <summary>这是图像传感器的实际尺寸（单位：毫米）。</summary>
             [SensorSizeProperty]
-            [Tooltip("This is the actual size of the image sensor (in mm)")]
+            [Tooltip("这是图像传感器的实际尺寸（单位：毫米）")]
             public Vector2 SensorSize;
 
-            /// <summary>Position of the gate relative to the film back</summary>
-            [Tooltip("Position of the gate relative to the film back")]
+            /// <summary>相对于胶片背板的门位置</summary>
+            [Tooltip("相对于胶片背板的门位置")]
             public Vector2 LensShift;
 
-            /// <summary>Distance from the camera lens at which focus is sharpest.
-            /// The Depth of Field Volume override uses this value if you set FocusDistanceMode to Camera</summary>
-            [Tooltip("Distance from the camera lens at which focus is sharpest.  The Depth of Field Volume "
-                + "override uses this value if you set FocusDistanceMode to Camera")]
+            /// <summary>距离摄像机镜头焦距最清晰的距离。
+            /// 如果将FocusDistanceMode设置为Camera，景深体积覆盖将使用此值</summary>
+            [Tooltip("距离摄像机镜头焦距最清晰的距离。景深体积"
+                + "覆盖将使用此值，如果将FocusDistanceMode设置为Camera")]
             public float FocusDistance;
 
-            /// <summary>The sensor sensitivity (ISO)</summary>
-            [Tooltip("The sensor sensitivity (ISO)")]
+            /// <summary>传感器灵敏度（ISO）</summary>
+            [Tooltip("传感器灵敏度（ISO）")]
             public int Iso;
 
-            /// <summary>The exposure time, in seconds</summary>
-            [Tooltip("The exposure time, in seconds")]
+            /// <summary>曝光时间，单位：秒</summary>
+            [Tooltip("曝光时间，单位：秒")]
             public float ShutterSpeed;
 
-            /// <summary>The aperture number, in f-stop</summary>
-            [Tooltip("The aperture number, in f-stop")]
+            /// <summary>光圈数值，单位：f-stop</summary>
+            [Tooltip("光圈数值，单位：f-stop")]
             [Range(Camera.kMinAperture, Camera.kMaxAperture)]
             public float Aperture;
 
-            /// <summary>The number of diaphragm blades</summary>
-            [Tooltip("The number of diaphragm blades")]
+            /// <summary>光圈叶片数量</summary>
+            [Tooltip("光圈叶片数量")]
             [Range(Camera.kMinBladeCount, Camera.kMaxBladeCount)]
             public int BladeCount;
 
-            /// <summary>Maps an aperture range to blade curvature</summary>
-            [Tooltip("Maps an aperture range to blade curvature")]
+            /// <summary>将光圈范围映射到叶片曲率</summary>
+            [Tooltip("将光圈范围映射到叶片曲率")]
             [MinMaxRangeSlider(Camera.kMinAperture, Camera.kMaxAperture)]
             public Vector2 Curvature;
 
-            /// <summary>The strength of the "cat-eye" effect on bokeh (optical vignetting)</summary>
-            [Tooltip("The strength of the \"cat-eye\" effect on bokeh (optical vignetting)")]
+            /// <summary>散景中"猫眼"效果的强度（光学暗角）</summary>
+            [Tooltip("散景中\"猫眼\"效果的强度（光学暗角）")]
             [Range(0, 1)]
             public float BarrelClipping;
 
-            /// <summary>Stretches the sensor to simulate an anamorphic look.  Positive values distort
-            /// the camera vertically, negative values distore the camera horizontally</summary>
-            [Tooltip("Stretches the sensor to simulate an anamorphic look.  Positive values distort the "
-                + "camera vertically, negative values distort the camera horizontally")]
+            /// <summary>拉伸传感器以模拟变形宽银幕效果。正值使
+            /// 摄像机垂直扭曲，负值使摄像机水平扭曲</summary>
+            [Tooltip("拉伸传感器以模拟变形宽银幕效果。正值使"
+                + "摄像机垂直扭曲，负值使摄像机水平扭曲")]
             [Range(-1, 1)]
             public float Anamorphism;
+
         }
 
         /// <summary>

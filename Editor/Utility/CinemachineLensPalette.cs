@@ -68,7 +68,7 @@ namespace Unity.Cinemachine.Editor
         public struct Preset
         {
             /// <summary>The name of the preset</summary>
-            [Tooltip("Lens Name")]
+            [Tooltip("镜头")]
             [FormerlySerializedAs("m_Name")]
             public string Name;
 
@@ -77,8 +77,8 @@ namespace Unity.Cinemachine.Editor
             /// on a super-35mm sensor would equal a 19.6 degree FOV
             /// </summary>
             [Range(1f, 179f)]
-            [Tooltip("This is the camera view in vertical degrees. For cinematic people, "
-                + " a 50mm lens on a super-35mm sensor would equal a 19.6 degree FOV")]
+            [Tooltip("这是相机在垂直方向上的视场角度（单位：度）。"
+            +"对于影视行业从业者而言，“超 35 毫米传感器搭配 50 毫米镜头时，对应的视场角度为 19.6 度”。")]
             [FormerlySerializedAs("m_FieldOfView")]
             public float VerticalFOV;
         }

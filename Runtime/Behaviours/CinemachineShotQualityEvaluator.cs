@@ -14,49 +14,50 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineShotQualityEvaluator.html")]
     public class CinemachineShotQualityEvaluator : CinemachineExtension, IShotQualityEvaluator
     {
-        /// <summary>Objects on these layers will be detected.</summary>
-        [Tooltip("Objects on these layers will be detected")]
+        /// <summary>这些图层上的物体将被检测</summary>
+        [Tooltip("这些图层上的物体将被检测")]
         public LayerMask OcclusionLayers = 1;
 
-        /// <summary>Obstacles with this tag will be ignored.  It is a good idea to set this field to the target's tag</summary>
+        /// <summary>带有此标签的障碍物将被忽略。建议将此字段设置为目标的标签</summary>
         [TagField]
-        [Tooltip("Obstacles with this tag will be ignored.  It is a good idea to set this field to the target's tag")]
+        [Tooltip("带有此标签的障碍物将被忽略。建议将此字段设置为目标的标签")]
         public string IgnoreTag = string.Empty;
 
-        /// <summary>Obstacles closer to the target than this will be ignored</summary>
-        [Tooltip("Obstacles closer to the target than this will be ignored")]
+        /// <summary>比这个距离更接近目标的障碍物将被忽略</summary>
+        [Tooltip("比这个距离更接近目标的障碍物将被忽略")]
         public float MinimumDistanceFromTarget = 0.2f;
 
         /// <summary>
-        /// Radius of the spherecast that will be done to check for occlusions.
+        /// 用于检查遮挡的球体投射半径
         /// </summary>
-        [Tooltip("Radius of the spherecast that will be done to check for occlusions.")]
+        [Tooltip("用于检查遮挡的球体投射半径")]
         public float CameraRadius;
 
-        /// <summary>Settings for shot quality evaluation</summary>
+        /// <summary>镜头质量评估设置</summary>
         [Serializable]
         public struct DistanceEvaluationSettings
         {
-            /// <summary>If enabled, will evaluate shot quality based on target distance</summary>
-            [Tooltip("If enabled, will evaluate shot quality based on target distance")]
+            /// <summary>如果启用，将根据目标距离评估镜头质量</summary>
+            [Tooltip("如果启用，将根据目标距离评估镜头质量")]
             public bool Enabled;
 
-            /// <summary>If greater than zero, maximum quality boost will occur when target is this far from the camera</summary>
-            [Tooltip("If greater than zero, maximum quality boost will occur when target is this far from the camera")]
+            /// <summary>如果大于零，当目标距离相机此距离时，将获得最大质量提升</summary>
+            [Tooltip("如果大于零，当目标距离相机此距离时，将获得最大质量提升")]
             public float OptimalDistance;
 
-            /// <summary>Shots with targets closer to the camera than this will not get a quality boost</summary>
-            [Tooltip("Shots with targets closer to the camera than this will not get a quality boost")]
+            /// <summary>目标比此距离更接近相机的镜头不会获得质量提升</summary>
+            [Tooltip("目标比此距离更接近相机的镜头不会获得质量提升")]
             [Delayed]
             public float NearLimit;
 
-            /// <summary>Shots with targets farther from the camera than this will not get a quality boost</summary>
-            [Tooltip("Shots with targets farther from the camera than this will not get a quality boost")]
+            /// <summary>目标比此距离更远离相机的镜头不会获得质量提升</summary>
+            [Tooltip("目标比此距离更远离相机的镜头不会获得质量提升")]
             public float FarLimit;
 
-            /// <summary>High quality shots will be boosted by this fraction of their normal quality</summary>
-            [Tooltip("High quality shots will be boosted by this fraction of their normal quality")]
+            /// <summary>高质量镜头将按其正常质量的此比例获得提升</summary>
+            [Tooltip("高质量镜头将按其正常质量的此比例获得提升")]
             public float MaxQualityBoost;
+
 
             internal static DistanceEvaluationSettings Default => new () { NearLimit = 5, FarLimit = 30, OptimalDistance = 10, MaxQualityBoost = 0.2f };
         }

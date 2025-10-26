@@ -16,12 +16,12 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineConfiner3D.html")]
     public class CinemachineConfiner3D : CinemachineExtension
     {
-        /// <summary>The volume within which the camera is to be contained.</summary>
-        [Tooltip("The volume within which the camera is to be contained")]
+        /// <summary>限制相机移动范围的体积。</summary>
+        [Tooltip("限制相机移动范围的体积")]
         public Collider BoundingVolume;
 
-        /// <summary>Size of the slow-down zone at the edge of the bounding volume.</summary>
-        [Tooltip("Size of the slow-down zone at the edge of the bounding volume.")]
+        /// <summary>边界体积边缘的减速区域大小。</summary>
+        [Tooltip("边界体积边缘的减速区域大小。")]
         public float SlowingDistance = 0;
 
         /// <summary>See whether the virtual camera has been moved by the confiner</summary>

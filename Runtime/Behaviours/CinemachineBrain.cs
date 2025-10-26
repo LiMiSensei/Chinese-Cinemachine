@@ -32,16 +32,14 @@ namespace Unity.Cinemachine
         /// When enabled, the current camera and blend are indicated in the game window,
         /// for debugging.
         /// </summary>
-        [Tooltip("When enabled, the current camera and blend are indicated in "
-            + "the game window, for debugging")]
+        [Tooltip("启用后，游戏窗口中会显示当前相机和混合过渡效果，用于调试。")]
         [FormerlySerializedAs("m_ShowDebugText")]
         public bool ShowDebugText = false;
 
         /// <summary>
         /// When enabled, shows the camera's frustum in the Scene view.
         /// </summary>
-        [Tooltip("When enabled, shows the camera's frustum at all times "
-            + "in the Scene view")]
+        [Tooltip("启用后，场景视图中会始终显示相机的视锥体。")]
         [FormerlySerializedAs("m_ShowCameraFrustum")]
         public bool ShowCameraFrustum = true;
 
@@ -49,8 +47,7 @@ namespace Unity.Cinemachine
         /// When enabled, the cameras always respond in real-time to user input and damping,
         /// even if the game is running in slow motion.
         /// </summary>
-        [Tooltip("When enabled, the cameras always respond in real-time to user input "
-            + "and damping, even if the game is running in slow motion")]
+        [Tooltip("启用后，即使游戏以慢动作运行，相机也会始终实时时间响应用户输入和阻尼做出实时响应。")]
         [FormerlySerializedAs("m_IgnoreTimeScale")]
         public bool IgnoreTimeScale = false;
 
@@ -59,10 +56,7 @@ namespace Unity.Cinemachine
         /// CinemachineCameras.  This is useful in top-down game environments.  If not set,
         /// Up is world-space Y.
         /// </summary>
-        [Tooltip("If set, this GameObject's Y axis defines the world-space Up vector for all the "
-            + "CinemachineCameras.  This is useful for instance in top-down game environments.  "
-            + "If not set, Up is world-space Y.  Setting this appropriately is important, "
-            + "because CinemachineCameras don't like looking straight up or straight down.")]
+        [Tooltip("若设置此选项，该游戏对象（GameObject）的 Y 轴将为所有 Cinemachine 相机（CinemachineCameras）定义世界空间（world-space）中的上方向向量（Up vector）。例如，在俯视角（top-down）游戏场景中，此设置十分实用。若未设置，上方向（Up）将默认采用世界空间的 Y 轴。恰当设置此选项至关重要，因为 Cinemachine 相机不适合直接朝上或朝下拍摄。")]
         [FormerlySerializedAs("m_WorldUpOverride")]
         public Transform WorldUpOverride;
 
@@ -72,10 +66,7 @@ namespace Unity.Cinemachine
         /// of these channels are ignored.  Use this in situations where multiple
         /// CinemachineBrains are needed (for example, Split-screen).
         /// </summary>
-        [Tooltip("The CinemachineBrain finds the highest-priority CinemachineCamera that outputs to "
-            + "any of the channels selected.  CinemachineCameras that do not output to one of these "
-            + "channels are ignored.  Use this in situations where multiple CinemachineBrains are "
-            + "needed (for example, Split-screen).")]
+        [Tooltip("Cinemachine 控制器（CinemachineBrain）会查找优先级最高且输出到所选任一通道的 Cinemachine 相机（CinemachineCamera）。未输出到这些通道之一的 Cinemachine 相机会被忽略。此功能适用于需要多个 Cinemachine 控制器的场景（例如分屏（Split-screen）场景）。")]
         public OutputChannels ChannelMask = (OutputChannels)(-1);  // default is Everything
 
         /// <summary>The options available for the update method.</summary>
@@ -98,10 +89,11 @@ namespace Unity.Cinemachine
         /// with for RigidBody animation.  SmartUpdate chooses the best method for each
         /// CinemachineCamera, depending on how the target is animated.
         /// </summary>
-        [Tooltip("The update time for the CinemachineCameras.  Use FixedUpdate if all your targets are animated "
-            + "during FixedUpdate (e.g. RigidBodies), LateUpdate if all your targets are animated "
-            + "during the normal Update loop, and SmartUpdate if you want Cinemachine to do the "
-            + "appropriate thing on a per-target basis.  SmartUpdate is the recommended setting")]
+        [Tooltip("Cinemachine 相机（CinemachineCameras）的更新时间设置。"
++ "若所有目标在 FixedUpdate 期间进行动画（例如刚体（RigidBodies）），请使用 FixedUpdate；"
++ "若所有目标在常规 Update 循环期间进行动画，请使用 LateUpdate；"
++ "若希望 Cinemachine 根据每个目标的情况自动采取适当的更新方式，请使用 SmartUpdate。"
++ "推荐设置为 SmartUpdate。")]
         [FormerlySerializedAs("m_UpdateMethod")]
         public UpdateMethods UpdateMethod = UpdateMethods.SmartUpdate;
 
@@ -118,8 +110,7 @@ namespace Unity.Cinemachine
         /// The update time for the Brain, i.e. when the blends are evaluated and the
         /// brain's transform is updated.
         /// </summary>
-        [Tooltip("The update time for the Brain, i.e. when the blends are evaluated and "
-            + "the brain's transform is updated")]
+        [Tooltip("“大脑” 的更新时间，即对混合内容（或 “融合物”，具体含义需结合上下文）进行评估并更新 “大脑” 转换功能的时间。")]
         [FormerlySerializedAs("m_BlendUpdateMethod")]
         public BrainUpdateMethods BlendUpdateMethod = BrainUpdateMethods.LateUpdate;
 
@@ -127,12 +118,12 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct LensModeOverrideSettings
         {
-            /// <summary>If set, enables CinemachineCameras to override the lens mode of the camera.</summary>
-            [Tooltip("If set, enables CinemachineCameras to override the lens mode of the camera")]
-            public bool Enabled;
+            /// <summary>如果启用，允许Cinemachine相机覆盖相机的镜头模式。</summary>
+        [Tooltip("如果启用，允许Cinemachine相机覆盖相机的镜头模式")]
+        public bool Enabled;
 
-            /// <summary>Lens mode to use when no mode override is active.</summary>
-            [Tooltip("Lens mode to use when no mode override is active")]
+        /// <summary>当没有激活模式覆盖时使用的镜头模式。</summary>
+        [Tooltip("当没有激活模式覆盖时使用的镜头模式")]
             public LensSettings.OverrideModes DefaultMode;
         }
 
@@ -144,17 +135,15 @@ namespace Unity.Cinemachine
         /// <summary>
         /// The blend that is used if you don't explicitly define a blend between two CinemachineCameras.
         /// </summary>
-        [Tooltip("The blend that is used in cases where you haven't explicitly defined a "
-            + "blend between two CinemachineCameras")]
+        [Tooltip("当未明确定义两个Cinemachine相机之间的混合时使用的默认混合设置")]
         [FormerlySerializedAs("m_DefaultBlend")]
         public CinemachineBlendDefinition DefaultBlend = new (CinemachineBlendDefinition.Styles.EaseInOut, 2f);
 
         /// <summary>
-        /// This is the asset that contains custom settings for blends between
-        /// specific CinemachineCameras in your Scene.
+        /// 该资源包含场景中特定Cinemachine相机之间
+        /// 混合的自定义设置。
         /// </summary>
-        [Tooltip("This is the asset that contains custom settings for blends between "
-            + "specific CinemachineCameras in your Scene")]
+        [Tooltip("该资源包含场景中特定Cinemachine相机之间混合的自定义设置")]
         [FormerlySerializedAs("m_CustomBlends")]
         [EmbeddedBlenderSettingsProperty]
         public CinemachineBlenderSettings CustomBlends = null;

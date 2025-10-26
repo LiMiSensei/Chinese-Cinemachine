@@ -29,20 +29,20 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineClearShot.html")]
     public class CinemachineClearShot : CinemachineCameraManagerBase
     {
-        /// <summary>Wait this many seconds before activating a new child camera</summary>
-        [Tooltip("Wait this many seconds before activating a new child camera")]
+        /// <summary>激活新的子相机前等待的秒数</summary>
+        [Tooltip("激活新的子相机前等待的秒数")]
         [FormerlySerializedAs("m_ActivateAfter")]
         public float ActivateAfter;
 
-        /// <summary>An active camera must be active for at least this many seconds</summary>
-        [Tooltip("An active camera must be active for at least this many seconds")]
+        /// <summary>激活的相机必须保持激活状态至少这么多秒</summary>
+        [Tooltip("激活的相机必须保持激活状态至少这么多秒")]
         [FormerlySerializedAs("m_MinDuration")]
         public float MinDuration;
 
-        /// <summary>If checked, camera choice will be randomized if multiple cameras are equally desirable.
-        /// Otherwise, child list order will be used</summary>
-        [Tooltip("If checked, camera choice will be randomized if multiple cameras are equally desirable.  "
-           + "Otherwise, child list order and child camera priority will be used.")]
+        /// <summary>如果勾选，当多个相机同等理想时，相机选择将被随机化。
+        /// 否则，将使用子相机列表顺序和优先级</summary>
+        [Tooltip("如果勾选，当多个相机同等理想时，相机选择将被随机化。"
+        + "否则，将使用子相机列表顺序和优先级。")]
         [FormerlySerializedAs("m_RandomizeChoice")]
         public bool RandomizeChoice = false;
 

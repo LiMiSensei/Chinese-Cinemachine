@@ -12,12 +12,12 @@ namespace Unity.Cinemachine
     [Serializable]
     public struct CameraTarget
     {
-        /// <summary>Object for the camera to follow</summary>
-        [Tooltip("Object for the camera to follow")]
+        /// <summary>相机要跟随的对象</summary>
+        [Tooltip("相机要跟随的对象")]
         public Transform TrackingTarget;
 
-        /// <summary>Optional secondary object for the camera to look at</summary>
-        [Tooltip("Object for the camera to look at")]
+        /// <summary>相机要注视的可选次要对象</summary>
+        [Tooltip("相机要注视的对象")]
         public Transform LookAtTarget;
 
         /// <summary>

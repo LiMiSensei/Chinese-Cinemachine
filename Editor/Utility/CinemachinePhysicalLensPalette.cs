@@ -70,22 +70,22 @@ namespace Unity.Cinemachine.Editor
         public struct Preset
         {
             /// <summary>The name of the preset</summary>
-            [Tooltip("Lens Name")]
+            [Tooltip("镜头名称")]
             [FormerlySerializedAs("m_Name")]
             public string Name;
 
             /// <summary>This is the camera focal length in mm</summary>
-            [Tooltip("This is the camera focal length in mm")]
+            [Tooltip("此为相机焦距，单位为毫米（mm）")]
             [FormerlySerializedAs("m_FocalLength")]
             public float FocalLength;
 
             /// <summary>Physical lens settings</summary>
-            [Tooltip("Physical lens settings")]
+            [Tooltip("物理镜头设置")]
             public LensSettings.PhysicalSettings PhysicalProperties;
         }
 
         /// <summary>The array containing Preset definitions, for physical cameras</summary>
-        [Tooltip("The array containing Preset definitions, for physical cameras")]
+        [Tooltip("用于物理相机的、包含预设定义的数组")]
         public List<Preset> Presets = new();
 
         /// <summary>Get the index of the first physical preset that matches the preset name</summary>

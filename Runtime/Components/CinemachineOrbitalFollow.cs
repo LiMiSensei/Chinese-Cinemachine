@@ -23,8 +23,6 @@ namespace Unity.Cinemachine
         , CinemachineFreeLookModifier.IModifiablePositionDamping
         , CinemachineFreeLookModifier.IModifiableDistance
     {
-        [Header("Help：这是Cinemachine Camera-程序化组件-Position Control-6 OrbitalFollow\n")]
-        [Space(30)]
         /// <summary>Offset from the object's origin in target-local space.
         /// Use this to fine-tune the orbit when the desired focus of the orbit is not
         /// the tracked object's origin</summary>
@@ -531,12 +529,12 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct Orbit
         {
-            /// <summary>Radius of orbit</summary>
-            [Tooltip("Horizontal radius of the orbit")]
+            /// <summary>轨道半径</summary>
+            [Tooltip("轨道的水平半径")]
             public float Radius;
 
-            /// <summary>Height relative to target</summary>
-            [Tooltip("Height of the horizontal orbit circle, relative to the target position")]
+            /// <summary>相对于目标的高度</summary>
+            [Tooltip("水平轨道圆相对于目标位置的高度")]
             public float Height;
         }
 
@@ -546,22 +544,22 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct Settings
         {
-            /// <summary>Value to take at the top of the axis range</summary>
-            [Tooltip("Value to take at the top of the axis range")]
+            /// <summary>在轴范围顶部采用的值</summary>
+            [Tooltip("在轴范围顶部采用的值")]
             public Orbit Top;
 
-            /// <summary>Value to take at the center of the axis range</summary>
-            [Tooltip("Value to take at the center of the axis range")]
+            /// <summary>在轴范围中心采用的值</summary>
+            [Tooltip("在轴范围中心采用的值")]
             public Orbit Center;
 
-            /// <summary>Value to take at the bottom of the axis range</summary>
-            [Tooltip("Value to take at the bottom of the axis range")]
+            /// <summary>在轴范围底部采用的值</summary>
+            [Tooltip("在轴范围底部采用的值")]
             public Orbit Bottom;
 
-            /// <summary>Controls how taut is the line that connects the rigs' orbits, which
-            /// determines final placement on the Y axis</summary>
-            [Tooltip("Controls how taut is the line that connects the rigs' orbits, "
-                + "which determines final placement on the Y axis")]
+            /// <summary>控制连接各rig轨道的线条的紧绷程度，
+            /// 这将决定在Y轴上的最终位置</summary>
+            [Tooltip("控制连接各rig轨道的线条的紧绷程度，"
+                + "这将决定在Y轴上的最终位置")]
             [Range(0f, 1f)]
             public float SplineCurvature;
 

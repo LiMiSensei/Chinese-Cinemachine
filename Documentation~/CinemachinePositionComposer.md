@@ -1,30 +1,32 @@
-# Position Composer
+# 位置构图器（Position Composer）
 
-This CinemachineCamera __Position Control__ behavior moves the camera to maintain a desired screen-space position for the __Tracking Target__. You can also specify offsets, damping, and composition rules. __Position Composer__ only changes the camera’s position in space; it does not rotate the camera. To control the view angle of the camera, set the CinemachineCamera's rotation in its transform, or add a procedural [Rotation Control](CinemachineCamera.md#set-procedural-components-and-add-extension) component to the CinemachineCamera.
+此 Cinemachine 相机的**位置控制（Position Control）** 行为会移动相机，使**跟踪目标（Tracking Target）** 在屏幕空间中保持期望的位置。你还可以指定偏移量、阻尼和构图规则。**位置构图器**仅改变相机在空间中的位置，不会旋转相机。若要控制相机的视角角度，可在相机的变换（Transform）组件中设置 Cinemachine 相机的旋转参数，或为其添加程序化的[旋转控制（Rotation Control）](CinemachineCamera.md#set-procedural-components-and-add-extension)组件。
 
-__Position Composer__ is good for 2D and orthographic cameras, and it also works with perspective cameras and 3D environments.
+**位置构图器**适用于 2D 相机和正交相机，同时也可用于透视相机和 3D 环境。
 
-This algorithm first moves the camera along the camera Z axis until the __Tracking Target__ is at the desired distance from the camera’s X-Y plane. It then moves the camera in its X-Y plane until the __Tracking Target__ is at the desired point on the camera’s screen.
+该算法的工作逻辑如下：首先沿相机 Z 轴移动相机，直到**跟踪目标**与相机 X-Y 平面达到期望距离；随后在相机 X-Y 平面内移动相机，直到**跟踪目标**位于相机屏幕上的期望位置。
 
-## Properties
 
-| **Property** || **Function** |
+## 属性（Properties）
+
+| **属性** || **功能** |
 |:---|:---|:---|
-| __Target Offset__ || Position in target-local coordinates of the point of interest on the target to be tracked.  0, 0, 0 would be the target's origin. |
-| __Lookahead Time__ || Adjusts the offset of the Cinemachine Camera from the Tracking target based on the motion of the target. Cinemachine estimates the point where the target will be this many seconds into the future. This feature is sensitive to noisy animation and can amplify the noise, resulting in undesirable camera jitter. If the camera jitters unacceptably when the target is in motion, turn down this property, or animate the target more smoothly. |
-| __Lookahead Smoothing__ || The smoothness of the lookahead algorithm. Larger values smooth out jittery predictions and increase prediction lag. |
-| __Lookahead Ignore Y__ || If enabled, ignore movement along the Y axis for lookahead calculations. |
-| __Camera Distance__ || The distance to maintain along the camera axis from the Tracking target. |
-| __Dead Zone Depth__ || Do not move the camera along its z-axis if the Tracking target is within this distance of the specified camera distance. |
-| __Damping__ || How responsively the camera tries to maintain the desired position, in each of the three camera-space axes.  Small numbers make the camera more responsive. Larger numbers make the camera respond more slowly.  Using different settings per axis can yield a wide range of camera behaviors. |
-| __Screen Position__ || Horizontal and vertical screen position for the target. The camera adjusts to position the tracked object here. 0 is the screen center, -0.5 and 0.5 are the screen edges. |
-| __Dead Zone__ || The camera will not adjust when the target is within this range of the Screen Position. |
-|| _Size_| The width and height of the region where the camera will not respond to target movement, expressed as a fraction of screen size.  This region is centered around the Screen Position.  A value of 1 means full screen width or height. |
-| __Hard Limits__ || The camera will not allow the target to be outside of the hard limits. |
-|| _Size_ | The size of the region in which the camera can place the target, expressed as a fraction of screen size.  This region is by default centered around the Screen Position, but can be shifted using the Offset setting.  A value of 1 means full screen width or height. |
-|| _Offset_ | Shifts the hard limits horizontally or vertically relative to the Target Position. |
-| __Center On Activate__ || Moves the camera to put the target at the center of the dead zone when the camera becomes live. |
+| **目标偏移（Target Offset）** || 在目标局部坐标系中，待跟踪的目标兴趣点位置。若设为 (0, 0, 0)，则表示以目标的原点为兴趣点。 |
+| **前瞻时间（Lookahead Time）** || 根据目标的运动状态，调整 Cinemachine 相机与跟踪目标的偏移量。Cinemachine 会预测目标在未来该时长（以秒为单位）内将到达的位置。此功能对抖动的动画较为敏感，可能会放大抖动效果，导致相机出现不期望的晃动。若目标运动时相机晃动过于明显，可减小此属性值，或让目标的动画更平滑。 |
+| **前瞻平滑度（Lookahead Smoothing）** || 前瞻算法的平滑程度。数值越大，越能平滑抖动的预测结果，但会增加预测延迟。 |
+| **前瞻忽略 Y 轴（Lookahead Ignore Y）** || 若启用，在进行前瞻计算时，会忽略目标沿 Y 轴的运动。 |
+| **相机距离（Camera Distance）** || 沿相机轴向，与跟踪目标保持的距离。 |
+| **死区深度（Dead Zone Depth）** || 若跟踪目标与指定的相机距离之间的差值在此范围内，相机不会沿自身 Z 轴移动。 |
+| **阻尼（Damping）** || 相机在自身三个轴向（相机空间）上维持期望位置的响应速度。数值越小，相机响应越灵敏；数值越大，相机响应越缓慢。为不同轴向设置不同参数，可实现多种相机运动效果。 |
+| **屏幕位置（Screen Position）** || 目标在屏幕上的水平和垂直位置。相机会自动调整，使被跟踪对象处于该位置。数值为 0 表示屏幕中心，-0.5 和 0.5 分别表示屏幕左右/上下边缘。 |
+| **死区（Dead Zone）** || 若目标处于“屏幕位置（Screen Position）”的此范围内，相机不会进行调整。 |
+|| **大小（Size）** | 相机不对目标运动做出响应的区域宽度和高度，以屏幕尺寸的比例表示。该区域以“屏幕位置”为中心。数值为 1 表示区域宽度或高度等于整个屏幕。 |
+| **硬限制（Hard Limits）** || 相机不允许目标超出此限制范围。 |
+|| **大小（Size）** | 相机可放置目标的区域大小，以屏幕尺寸的比例表示。该区域默认以“屏幕位置”为中心，可通过“偏移（Offset）”设置调整位置。数值为 1 表示区域宽度或高度等于整个屏幕。 |
+|| **偏移（Offset）** | 相对于“目标位置（Target Position）”，在水平或垂直方向上调整硬限制区域的位置。 |
+| **激活时居中（Center On Activate）** || 当相机进入激活状态时，自动移动相机，使目标位于死区的中心位置。 |
 
-## Shot composition
+
+## 镜头构图（Shot composition）
 
 [!include[](includes/shot-composition.md)]

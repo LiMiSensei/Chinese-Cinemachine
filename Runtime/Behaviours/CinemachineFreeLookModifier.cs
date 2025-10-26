@@ -198,13 +198,13 @@ namespace Unity.Cinemachine
         /// </summary>
         public class LensModifier : Modifier
         {
-            /// <summary>Settings for top orbit</summary>
-            [Tooltip("Value to take at the top of the axis range")]
+            /// <summary>顶部轨道的设置</summary>
+            [Tooltip("在轴范围顶部时采用的值")]
             [LensSettingsHideModeOverrideProperty]
             public LensSettings Top;
 
-            /// <summary>Settings for bottom orbit</summary>
-            [Tooltip("Value to take at the bottom of the axis range")]
+            /// <summary>底部轨道的设置</summary>
+            [Tooltip("在轴范围底部时采用的值")]
             [LensSettingsHideModeOverrideProperty]
             public LensSettings Bottom;
 
@@ -481,12 +481,12 @@ namespace Unity.Cinemachine
             [Serializable]
             public struct NoiseSettings
             {
-                /// <summary>Multiplier for the noise amplitude</summary>
-                [Tooltip("Multiplier for the noise amplitude")]
+                /// <summary>噪声振幅的乘数</summary>
+                [Tooltip("噪声振幅的乘数")]
                 public float Amplitude;
 
-                /// <summary>Multiplier for the noise frequency</summary>
-                [Tooltip("Multiplier for the noise frequency")]
+                /// <summary>噪声频率的乘数</summary>
+                [Tooltip("噪声频率的乘数")]
                 public float Frequency;
             }
 
@@ -563,12 +563,12 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct TopBottomRigs<T>
         {
-            /// <summary>Settings for top orbit</summary>
-            [Tooltip("Value to take at the top of the axis range")]
+            /// <summary>顶部轨道的设置</summary>
+            [Tooltip("在轴范围顶部时采用的值")]
             public T Top;
 
-            /// <summary>Settings for bottom orbit</summary>
-            [Tooltip("Value to take at the bottom of the axis range")]
+            /// <summary>底部轨道的设置</summary>
+            [Tooltip("在轴范围底部时采用的值")]
             public T Bottom;
         }
 
@@ -577,17 +577,15 @@ namespace Unity.Cinemachine
         /// blends linearly through the center value, while an easing of 1 smooths 
         /// the result as it passes over the center value.
         /// </summary>
-        [Tooltip("The amount of easing to apply towards the center value. Zero easing "
-            + "blends linearly through the center value, while an easing of 1 smooths "
-            + "the result as it passes over the center value.")]
+        [Tooltip("向中心值应用的缓动量。零缓动会线性混合通过中心值，而缓动值为1时会在经过中心值时平滑结果。")]
         [Range(0, 1)]
         public float Easing;
 
         /// <summary>
-        /// Collection of modifiers that will be applied to the camera every frame.
-        /// These will modify settings as a function of the FreeLook's Vertical axis value.
+        /// 每帧将应用于相机的修饰符集合。
+        /// 这些修饰符将根据自由视角的垂直轴值来修改设置。
         /// </summary>
-        [Tooltip("These will modify settings as a function of the FreeLook's Vertical axis value")]
+        [Tooltip("这些修饰符将根据自由视角的垂直轴值来修改设置")]
         [SerializeReference] public List<Modifier> Modifiers = new ();
 
         IModifierValueSource m_ValueSource;

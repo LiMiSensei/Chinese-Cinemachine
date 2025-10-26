@@ -18,11 +18,9 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineDecollider.html")]
     public class CinemachineDecollider : CinemachineExtension
     {
-        /// <summary>
-        /// Camera will try to maintain this distance from any obstacle or terrain.
-        /// </summary>
-        [Tooltip("Camera will try to maintain this distance from any obstacle or terrain.  Increase it "
-            + "if necessary to keep the camera from clipping the near edge of obsacles.")]
+        /// <summary>相机将尝试与任何障碍物或地形保持此距离。</summary>
+        [Tooltip("相机将尝试与任何障碍物或地形保持此距离。"
+            + "如有必要可增加此值，以防止相机与障碍物近边缘发生裁剪。")]
         [Delayed]
         public float CameraRadius = 0.4f;
 
@@ -30,23 +28,24 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct DecollisionSettings
         {
-            /// <summary>When enabled, will attempt to push the camera out of intersecting objects</summary>
-            [Tooltip("When enabled, will attempt to push the camera out of intersecting objects")]
+            /// <summary>启用时，将尝试将相机从相交的物体中推出</summary>
+            [Tooltip("启用时，将尝试将相机从相交的物体中推出")]
             public bool Enabled;
 
-            /// <summary>Objects on these layers will be detected.</summary>
-            [Tooltip("Objects on these layers will be detected")]
+            /// <summary>将检测这些图层上的物体。</summary>
+            [Tooltip("将检测这些图层上的物体")]
             public LayerMask ObstacleLayers;
 
-            /// <summary>Settings for resolving towards Follow target instead of LookAt.</summary>
+            /// <summary>朝向跟随目标而非注视目标进行解决的设置。</summary>
             [Serializable]
             public struct FollowTargetSettings
             {
-                /// <summary>Use the Follow target when resolving occlusions, instead of the LookAt target.</summary>
-                [Tooltip("Use the Follow target when resolving occlusions, instead of the LookAt target.")]
+                /// <summary>解决遮挡时使用跟随目标，而非注视目标。</summary>
+                [Tooltip("解决遮挡时使用跟随目标，而非注视目标。")]
                 public bool Enabled;
 
-                [Tooltip("Vertical offset from the Follow target's root, in target local space")]
+                /// <summary>相对于跟随目标根部的垂直偏移量（在目标局部空间中）</summary>
+                [Tooltip("相对于跟随目标根部的垂直偏移量（在目标局部空间中）")]
                 public float YOffset;
             }
 
@@ -54,22 +53,17 @@ namespace Unity.Cinemachine
             [EnabledProperty]
             public FollowTargetSettings UseFollowTarget;
 
-            /// <summary>
-            /// How gradually the camera returns to its normal position after having been corrected.
-            /// Higher numbers will move the camera more gradually back to normal.
-            /// </summary>
+            /// <summary>相机在被校正后逐渐返回正常位置的平滑程度。数值越高，相机返回正常位置的过程越平缓。</summary>
             [Range(0, 10)]
-            [Tooltip("How gradually the camera returns to its normal position after having been corrected.  "
-                + "Higher numbers will move the camera more gradually back to normal.")]
+            [Tooltip("相机在被校正后逐渐返回正常位置的平滑程度。"
+                + "数值越高，相机返回正常位置的过程越平缓。")]
             public float Damping;
 
-            /// <summary>
-            /// Smoothing to apply to obstruction resolution.  Nearest camera point is held for at least this long.
-            /// </summary>
+            /// <summary>应用于遮挡解决的平滑度。最近的相机点至少保持此时长。</summary>
             [Range(0, 2)]
-            [Tooltip("Smoothing to apply to obstruction resolution.  Nearest camera point is held for at least this long")]
+            [Tooltip("应用于遮挡解决的平滑度。最近的相机点至少保持此时长")]
             public float SmoothingTime;
-        }
+                    }
 
         /// <summary>When enabled, will attempt to push the camera out of intersecting objects</summary>
         [FoldoutWithEnabledButton]
@@ -79,25 +73,22 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct TerrainSettings
         {
-            /// <summary>When enabled, will attempt to place the camera on top of terrain layers</summary>
-            [Tooltip("When enabled, will attempt to place the camera on top of terrain layers")]
+            /// <summary>启用时，将尝试将相机放置在地形图层上方</summary>
+            [Tooltip("启用时，将尝试将相机放置在地形图层上方")]
             public bool Enabled;
 
-            /// <summary>Colliders on these layers will be detected.</summary>
-            [Tooltip("Colliders on these layers will be detected")]
+            /// <summary>将检测这些图层上的碰撞体。</summary>
+            [Tooltip("将检测这些图层上的碰撞体")]
             public LayerMask TerrainLayers;
 
-            /// <summary>Specifies the maximum length of a raycast used to find terrain colliders.</summary>
-            [Tooltip("Specifies the maximum length of a raycast used to find terrain colliders")]
+            /// <summary>指定用于查找地形碰撞体的射线投射的最大长度。</summary>
+            [Tooltip("指定用于查找地形碰撞体的射线投射的最大长度")]
             public float MaximumRaycast;
 
-            /// <summary>
-            /// How gradually the camera returns to its normal position after having been corrected.
-            /// Higher numbers will move the camera more gradually back to normal.
-            /// </summary>
+            /// <summary>相机在被校正后逐渐返回正常位置的平滑程度。数值越高，相机返回正常位置的过程越平缓。</summary>
             [Range(0, 10)]
-            [Tooltip("How gradually the camera returns to its normal position after having been corrected.  "
-                + "Higher numbers will move the camera more gradually back to normal.")]
+            [Tooltip("相机在被校正后逐渐返回正常位置的平滑程度。"
+                + "数值越高，相机返回正常位置的过程越平缓。")]
             public float Damping;
         }
 

@@ -11,65 +11,64 @@ namespace Unity.Cinemachine
     [Serializable]
     public struct AxisBase
     {
-        /// <summary>The current value of the axis</summary>
+        /// <summary>轴的当前值</summary>
         [NoSaveDuringPlay]
-        [Tooltip("The current value of the axis.")]
+        [Tooltip("轴的当前值。")]
         public float m_Value;
 
-        /// <summary>The minimum value for the axis</summary>
-        [Tooltip("The minimum value for the axis")]
+        /// <summary>轴的最小值</summary>
+        [Tooltip("轴的最小值")]
         public float m_MinValue;
 
-        /// <summary>The maximum value for the axis</summary>
-        [Tooltip("The maximum value for the axis")]
+        /// <summary>轴的最大值</summary>
+        [Tooltip("轴的最大值")]
         public float m_MaxValue;
 
-        /// <summary>If checked, then the axis will wrap around at the min/max values, forming a loop</summary>
-        [Tooltip("If checked, then the axis will wrap around at the min/max values, forming a loop")]
+        /// <summary>如果勾选，轴将在最小值/最大值处循环环绕</summary>
+        [Tooltip("如果勾选，轴将在最小值/最大值处循环环绕")]
         public bool m_Wrap;
 
         /// <summary>
-        /// Call this from OnValidate() to validate the fields of this structure (applies clamps, etc).
+        /// 从OnValidate()调用此方法以验证此结构的字段（应用钳制等）。
         /// </summary>
         public void Validate()
         {
             m_MaxValue = Mathf.Clamp(m_MaxValue, m_MinValue, m_MaxValue);
         }
-    }
+        }
 
-    /// <summary>
-    /// This is a deprecated component.  Use DefaultInputAxisDriver instead.
-    /// </summary>
-    [Obsolete("CinemachineInputAxisDriver has been deprecated. Use DefaultInputAxisDriver instead.")]
-    [Serializable]
-    public struct CinemachineInputAxisDriver
-    {
-        /// <summary>Multiply the input by this amount prior to processing.  Controls the input power</summary>
-        [Tooltip("Multiply the input by this amount prior to processing.  Controls the input power.")]
-        public float multiplier;
+        /// <summary>
+        /// 这是一个已弃用的组件。请改用DefaultInputAxisDriver。
+        /// </summary>
+        [Obsolete("CinemachineInputAxisDriver已被弃用。请改用DefaultInputAxisDriver。")]
+        [Serializable]
+        public struct CinemachineInputAxisDriver
+        {
+            /// <summary>在处理前将输入值乘以该系数。控制输入强度</summary>
+            [Tooltip("在处理前将输入值乘以该系数。控制输入强度。")]
+            public float multiplier;
 
-        /// <summary>The amount of time in seconds it takes to accelerate to a higher speed</summary>
-        [Tooltip("The amount of time in seconds it takes to accelerate to a higher speed")]
-        public float accelTime;
+            /// <summary>加速到更高速度所需的时间（秒）</summary>
+            [Tooltip("加速到更高速度所需的时间（秒）")]
+            public float accelTime;
 
-        /// <summary>The amount of time in seconds it takes to decelerate to a lower speed</summary>
-        [Tooltip("The amount of time in seconds it takes to decelerate to a lower speed")]
-        public float decelTime;
+            /// <summary>减速到较低速度所需的时间（秒）</summary>
+            [Tooltip("减速到较低速度所需的时间（秒）")]
+            public float decelTime;
 
-        /// <summary>The name of this axis as specified in Unity Input manager.
-        /// Setting to an empty string will disable the automatic updating of this axis</summary>
-        [Tooltip("The name of this axis as specified in Unity Input manager. "
-            + "Setting to an empty string will disable the automatic updating of this axis")]
-        public string name;
+            /// <summary>在Unity输入管理器中指定的此轴的名称。
+            /// 设置为空字符串将禁用此轴的自动更新</summary>
+            [Tooltip("在Unity输入管理器中指定的此轴的名称。"
+                + "设置为空字符串将禁用此轴的自动更新")]
+            public string name;
 
-        /// <summary>The value of the input axis.  A value of 0 means no input.  You can drive
-        /// "this directly from a custom input system, or you can set the Axis Name and
-        /// have the value driven by the internal Input Manager</summary>
-        [NoSaveDuringPlay]
-        [Tooltip("The value of the input axis.  A value of 0 means no input.  You can drive "
-            + "this directly from a custom input system, or you can set the Axis Name and "
-            + "have the value driven by the internal Input Manager")]
-        public float inputValue;
+            /// <summary>输入轴的值。值为0表示无输入。您可以从自定义输入系统
+            /// 直接驱动此值，或者设置Axis Name并让内部输入管理器驱动该值</summary>
+            [NoSaveDuringPlay]
+            [Tooltip("输入轴的值。值为0表示无输入。您可以从自定义输入系统"
+                + "直接驱动此值，或者设置Axis Name并让内部输入管理器驱动该值")]
+            public float inputValue;
+
 
         /// Internal state
         private float mCurrentSpeed;

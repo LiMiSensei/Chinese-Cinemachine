@@ -1,39 +1,45 @@
-# Noise Settings Asset
+# 噪声设置资源（Noise Settings Asset）
 
-A __noise profile__ is an asset that defines a procedural curve for camera noise. The __Basic Multi Channel Perlin__ component applies a noise profile to the movement of the camera. Cinemachine applies noise movement after computing the position of the camera. This way, camera noise does not affect the computation of camera movement in future updates.
+**噪声配置文件（noise profile）** 是一种资源，用于定义相机噪声的程序化曲线。**基础多通道柏林噪声（Basic Multi Channel Perlin）** 组件会将噪声配置文件应用于相机的运动。Cinemachine 会在计算出相机位置后，再应用噪声运动效果。这样一来，相机噪声就不会影响后续更新中相机运动的计算过程。
 
-Cinemachine includes some predefined profile assets. Choose a predefined noise profile in the Noise component. Create your own noise profile asset by choosing __Create > Cinemachine > NoiseSettings__ in the [Project window](https://docs.unity3d.com/Manual/ProjectView.html).
+Cinemachine 包含一些预设的配置文件资源。你可以在“噪声（Noise）”组件中选择预设的噪声配置文件；若要创建自定义噪声配置文件资源，可在[项目窗口（Project window）](https://docs.unity3d.com/Manual/ProjectView.html)中选择 **创建（Create）> Cinemachine > NoiseSettings**。
 
-The properties in the Inspector show graphs that give a visual representation of the noise profile. There are properties for the x, y, and z axes for position and rotation. Each axis may have more than one layer.
+检视面板（Inspector）中的属性会以图表形式直观展示噪声配置文件。其中包含针对位置（position）和旋转（rotation）的 X、Y、Z 三轴属性，每个轴可包含多个层级（layer）。
 
-![Editing the first noise layer for Position X](images/CinemachineNoiseProfileb.png)
+![编辑位置 X 轴的第一个噪声层级](images/CinemachineNoiseProfileb.png)
 
-For realistic procedural noise, choose frequencies and amplitudes with care to ensure an interesting noise quality that is not obviously repetitive. The most convincing camera shakes use __Rotation__ noise because that’s where the camera is aiming. Handheld camera operators tend to shake more rotationally than they do positionally. After specifying __Rotation__ noise, add __Position__ noise.
+若要生成真实的程序化噪声，需谨慎选择频率（frequency）和振幅（amplitude），确保噪声效果丰富且不会明显重复。最具真实感的相机抖动通常使用**旋转（Rotation）** 噪声——因为旋转直接影响相机的瞄准方向。手持相机拍摄时，旋转方向的抖动往往比位置方向更明显。设置好**旋转**噪声后，再添加**位置（Position）** 噪声即可。
 
-Convincing noise profiles typically mix low, medium, and high frequencies together. When creating a new noise profile, start with these three layers of noise for each axis.
+真实的噪声配置文件通常会混合低、中、高三种频率。创建新噪声配置文件时，建议为每个轴先设置这三个噪声层级。
 
-For amplitude, use larger values for wider lenses to shake the camera noticeably. For telephoto lenses, use smaller amplitude values because the narrower FOV amplifies the effect.
+关于振幅：对于广角镜头，需使用较大的振幅值才能让相机抖动效果明显；对于长焦镜头，则需使用较小的振幅值——因为长焦镜头的窄视野（FOV）会放大抖动效果。
 
-For frequency, a typical low range is 0.1-0.5 Hz, the mid range 0.8-1.5, and the high 3-4. The highest useful frequency depends on the frame rate of your game. A game typically runs at 30 or 60Hz. Noise frequencies higher than the frame rate of your game fall between the cracks of the Nyquist rate. In other words, they will not be directly tracked.
+关于频率：典型的低频范围为 0.1-0.5 赫兹（Hz），中频范围为 0.8-1.5 赫兹，高频范围为 3-4 赫兹。有效的最高频率取决于游戏的帧率，游戏帧率通常为 30 或 60 赫兹。若噪声频率高于游戏帧率，会超出奈奎斯特频率（Nyquist rate）的范围，导致无法被直接捕捉（即抖动效果会出现断层）。
 
-For example, if your game runs at 60 frames/second and you set a frequency to 100, you will get choppy camera noise. This is because your game can’t render something that moves faster than the frame rate.
+例如，若游戏帧率为 60 帧/秒，而你将噪声频率设为 100 赫兹，相机抖动会出现卡顿——因为游戏无法渲染运动速度超过帧率的画面。
 
-## Properties:
 
-| **Property:** || **Function:** |
+## 属性（Properties）：
+
+| **属性** || **功能** |
 |:---|:---|:---|
-| __Preview Time__ || The number of seconds to display in the graphs in the Inspector. This property is for editing in the Inspector; it does not affect the content of the noise profile asset that you are editing. |
-| __Preview Height__ || The vertical height of the graphs of the noise profile in the Inspector. This property is for editing noise profiles; it does not affect the noise profile asset. |
-| __Animated__ || Check to show a moving representation of an example of the noise profile in the graph. This property is for editing noise profiles; it does not affect the noise profile asset. |
-| __Position Noise__ || A graphical representation of all noise layers for all axes for camera movement.  |
-| __Position X__, __Position Y__, __Position Z__ || The layers of noise for each axis to apply to camera movement. Each axis has a graphical representation of its layers. Each layer has properties for Frequency, Amplitude, and optional Perlin noise. Click + or - to add and remove layers, respectively.  |
-| | _Frequency_ | The frequency of the wave in the noise layer, in Hz. |
-| | _Amplitude_ | The amplitude (height) of the wave in the noise layer, in distance units. |
-| | _Non-random wave if checked_ | Check to remove the Perlin noise from the noise layer. Without Perlin noise, Cinemachine uses a regular sine wave. Uncheck to apply Perlin noise to the layer, randomizing both the frequency and the amplitude while remaining in the neighborhood of the selected values. |
-| __Rotation Noise__ || A graphical representation of all noise layers for all axes for camera rotation. |
-| __Rotation X__, __Rotation Y__, __Rotation Z__ || The layers of noise for each axis to apply to camera rotation. Each layer has properties for Frequency, Amplitude, and optional Perlin Noise. Click + or - to add and remove layers, respectively.  |
-| | _Frequency_ | The frequency of the wave in the noise layer, in Hz. |
-| | _Amplitude_ | The amplitude (height) of the wave in the noise layer, in degrees. |
-| | _Non-random wave if checked_ | Check to remove the Perlin noise from the noise layer. Without Perlin noise, Cinemachine uses a regular sine wave. Uncheck to include random Perlin noise variation, randomizing both the frequency and the amplitude while remaining in the neighborhood of the selected values. |
+| **预览时间（Preview Time）** || 在检视面板的图表中显示的时长（单位：秒）。此属性仅用于在检视面板中编辑，不影响正在编辑的噪声配置文件资源内容。 |
+| **预览高度（Preview Height）** || 检视面板中噪声配置文件图表的垂直高度。此属性仅用于编辑噪声配置文件，不影响噪声配置文件资源本身。 |
+| **动画化（Animated）** || 勾选后，图表中会以动态形式展示噪声配置文件的示例效果。此属性仅用于编辑噪声配置文件，不影响噪声配置文件资源本身。 |
+| **位置噪声（Position Noise）** || 相机运动时，所有轴的所有噪声层级的图形化展示。 |
+| **位置 X（Position X）**、**位置 Y（Position Y）**、**位置 Z（Position Z）** || 应用于相机运动的各轴噪声层级。每个轴的层级都会以图表形式展示，每个层级包含“频率（Frequency）”“振幅（Amplitude）”和可选的“柏林噪声（Perlin noise）”属性。点击“+”或“-”可分别添加或删除层级。 |
+| | **频率（Frequency）** | 该噪声层级中波形的频率（单位：赫兹/Hz）。 |
+| | **振幅（Amplitude）** | 该噪声层级中波形的振幅（高度），单位为距离单位。 |
+| | **勾选时为非随机波形（Non-random wave if checked）** | 勾选后，该噪声层级将移除柏林噪声，Cinemachine 会使用规则的正弦波；取消勾选则会为该层级应用柏林噪声，在所选数值范围内随机调整频率和振幅。 |
+| **旋转噪声（Rotation Noise）** || 相机旋转时，所有轴的所有噪声层级的图形化展示。 |
+| **旋转 X（Rotation X）**、**旋转 Y（Rotation Y）**、**旋转 Z（Rotation Z）** || 应用于相机旋转的各轴噪声层级。每个层级包含“频率（Frequency）”“振幅（Amplitude）”和可选的“柏林噪声（Perlin Noise）”属性。点击“+”或“-”可分别添加或删除层级。 |
+| | **频率（Frequency）** | 该噪声层级中波形的频率（单位：赫兹/Hz）。 |
+| | **振幅（Amplitude）** | 该噪声层级中波形的振幅（高度），单位为角度（度）。 |
+| | **勾选时为非随机波形（Non-random wave if checked）** | 勾选后，该噪声层级将移除柏林噪声，Cinemachine 会使用规则的正弦波；取消勾选则会为该层级应用柏林噪声，在所选数值范围内随机调整频率和振幅。 |
 
 
+### 术语补充说明
+- **procedural curve**：程序化曲线，指通过算法动态生成的曲线，无需手动绘制，可用于模拟自然、随机的运动效果（如相机噪声）；
+- **Perlin noise**：柏林噪声，一种用于生成自然随机效果的算法，常用来模拟地形、云、相机抖动等接近现实的无序效果；
+- **Nyquist rate**：奈奎斯特频率，指采样频率的一半，若信号频率超过此值，会导致采样失真（此处表现为相机抖动卡顿）；
+- **telephoto lenses**：长焦镜头，视野窄、放大倍数高的镜头，在游戏中常用于远距离聚焦目标，其窄视野会放大相机抖动效果。

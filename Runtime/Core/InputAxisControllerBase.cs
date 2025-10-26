@@ -249,19 +249,15 @@ namespace Unity.Cinemachine
     [SaveDuringPlay]
     public abstract class InputAxisControllerBase<T> : MonoBehaviour, IInputAxisController where T : IInputAxisReader, new ()
     {
-        /// <summary>If set, a recursive search for IInputAxisOwners behaviours will be performed.
-        /// Otherwise, only behaviours attached directly to this GameObject will be considered,
-        /// and child objects will be ignored.</summary>
-        [Tooltip("If set, a recursive search for IInputAxisOwners behaviours will be performed.  "
-            + "Otherwise, only behaviours attached directly to this GameObject will be considered, "
-            + "and child objects will be ignored")]
+        /// <summary>如果启用，将递归搜索实现了 IInputAxisOwners 接口的行为。
+        /// 否则，仅考虑直接附加到此游戏对象的行为，子对象将被忽略。</summary>
+        [Tooltip("如果启用，将递归搜索实现了 IInputAxisOwners 接口的行为。"
+            + "否则，仅考虑直接附加到此游戏对象的行为，子对象将被忽略")]
         public bool ScanRecursively = true;
 
-        /// <summary>If set, input will not be processed while the Cinemachine Camera is
-        /// participating in a blend.</summary>
+        /// <summary>如果启用，当 Cinemachine 摄像机参与混合时，输入将不会被处理。</summary>
         [HideIfNoComponent(typeof(CinemachineVirtualCameraBase))]
-        [Tooltip("If set, input will not be processed while the Cinemachine Camera is "
-            + "participating in a blend.")]
+        [Tooltip("如果启用，当 Cinemachine 摄像机参与混合时，输入将不会被处理。")]
         public bool SuppressInputWhileBlending = true;
 
         /// <summary>
@@ -285,7 +281,7 @@ namespace Unity.Cinemachine
             /// <summary>
             /// When enabled, this controller will drive the input axis.
             /// </summary>
-            [Tooltip("When enabled, this controller will drive the input axis")]
+           [Tooltip("启用时，此控制器将驱动输入轴")]
             public bool Enabled = true;
 
             /// <summary>The input axis reader to read the value from the user</summary>

@@ -20,38 +20,39 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineSequencerCamera.html")]
     public class CinemachineSequencerCamera : CinemachineCameraManagerBase
     {
-        /// <summary>When enabled, the child vcams will cycle indefinitely instead of just stopping at the last one</summary>
-        [Tooltip("When enabled, the child vcams will cycle indefinitely instead of just stopping at the last one")]
+        /// <summary>启用后，子虚拟相机会无限循环，而不会在最后一个停止</summary>
+        [Tooltip("启用后，子虚拟相机会无限循环，而不会在最后一个停止")]
         [FormerlySerializedAs("m_Loop")]
         public bool Loop;
 
-        /// <summary>This represents a single entry in the instruction list of the BlendListCamera.</summary>
+        /// <summary>表示 BlendListCamera 指令列表中的单个条目</summary>
         [Serializable]
         public struct Instruction
         {
-            /// <summary>The camera to activate when this instruction becomes active</summary>
-            [Tooltip("The camera to activate when this instruction becomes active")]
+            /// <summary>当此指令激活时要启用的相机</summary>
+            [Tooltip("当此指令激活时要启用的相机")]
             [FormerlySerializedAs("m_VirtualCamera")]
             [ChildCameraProperty]
             public CinemachineVirtualCameraBase Camera;
 
-            /// <summary>How to blend to the next camera in the list (if any)</summary>
-            [Tooltip("How to blend to the next camera in the list (if any)")]
+            /// <summary>如何混合到列表中的下一个相机（如果有）</summary>
+            [Tooltip("如何混合到列表中的下一个相机（如果有）")]
             [FormerlySerializedAs("m_Blend")]
             public CinemachineBlendDefinition Blend;
 
-            /// <summary>How long to wait (in seconds) before activating the next camera in the list (if any)</summary>
-            [Tooltip("How long to wait (in seconds) before activating the next camera in the list (if any)")]
+            /// <summary>激活列表中的下一个相机之前要等待的时间（秒）</summary>
+            [Tooltip("激活列表中的下一个相机之前要等待的时间（秒）")]
             [FormerlySerializedAs("m_Hold")]
             public float Hold;
 
-            /// <summary>Clamp the the settings to sensible valuse.</summary>
+            /// <summary>将设置限制在合理范围内</summary>
             public void Validate() => Hold = Mathf.Max(Hold, 0);
         };
 
-        /// <summary>The set of instructions for enabling child cameras</summary>
-        [Tooltip("The set of instructions for enabling child cameras.")]
+        /// <summary>用于启用子相机的指令集</summary>
+        [Tooltip("用于启用子相机的指令集")]
         [FormerlySerializedAs("m_Instructions")]
+
         public List<Instruction> Instructions = new ();
 
         [SerializeField, HideInInspector, NoSaveDuringPlay, FormerlySerializedAs("m_LookAt")] Transform m_LegacyLookAt;

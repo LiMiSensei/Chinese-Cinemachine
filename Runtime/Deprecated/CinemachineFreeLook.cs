@@ -17,103 +17,101 @@ namespace Unity.Cinemachine
     [AddComponentMenu("")] // Don't display in add component menu
     public class CinemachineFreeLook : CinemachineVirtualCameraBase, AxisState.IRequiresInput, ICinemachineMixer
     {
-        /// <summary>Object for the camera children to look at (the aim target)</summary>
-        [Tooltip("Object for the camera children to look at (the aim target).")]
+        /// <summary>相机子物体要看向的对象（瞄准目标）</summary>
+        [Tooltip("相机子物体要看向的对象（瞄准目标）。")]
         [NoSaveDuringPlay]
         [VcamTargetProperty]
         public Transform m_LookAt = null;
 
-        /// <summary>Object for the camera children wants to move with (the body target)</summary>
-        [Tooltip("Object for the camera children wants to move with (the body target).")]
+        /// <summary>相机子物体要跟随移动的对象（身体目标）</summary>
+        [Tooltip("相机子物体要跟随移动的对象（身体目标）。")]
         [NoSaveDuringPlay]
         [VcamTargetProperty]
         public Transform m_Follow = null;
 
-        /// <summary>If enabled, this lens setting will apply to all three child rigs,
-        /// otherwise the child rig lens settings will be used</summary>
-        [Tooltip("If enabled, this lens setting will apply to all three child rigs, "
-            + "otherwise the child rig lens settings will be used")]
+        /// <summary>如果启用，此镜头设置将应用于所有三个子装配体，
+        /// 否则将使用子装配体的镜头设置</summary>
+        [Tooltip("如果启用，此镜头设置将应用于所有三个子装配体，"
+            + "否则将使用子装配体的镜头设置")]
         [FormerlySerializedAs("m_UseCommonLensSetting")]
         public bool m_CommonLens = true;
 
-        /// <summary>Specifies the lens properties of this Virtual Camera.
-        /// This generally mirrors the Unity Camera's lens settings, and will be used to drive
-        /// the Unity camera when the vcam is active</summary>
-        [Tooltip("Specifies the lens properties of this Virtual Camera.  This generally "
-            + "mirrors the Unity Camera's lens settings, and will be used to drive the "
-            + "Unity camera when the vcam is active")]
+        /// <summary>指定此虚拟相机的镜头属性。
+        /// 这通常镜像Unity相机的镜头设置，并将在vcam激活时
+        /// 用于驱动Unity相机</summary>
+        [Tooltip("指定此虚拟相机的镜头属性。这通常"
+            + "镜像Unity相机的镜头设置，并将在"
+            + "vcam激活时用于驱动Unity相机")]
         [FormerlySerializedAs("m_LensAttributes")]
         public LegacyLensSettings m_Lens = LegacyLensSettings.Default;
 
-        /// <summary>Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although
-        /// not all combinations make sense.  In the case of conflicting hints, Cinemachine will
-        /// make an arbitrary choice.</summary>
-        [Tooltip("Hint for transitioning to and from this CinemachineCamera.  Hints can be combined, although "
-            + "not all combinations make sense.  In the case of conflicting hints, Cinemachine will "
-            + "make an arbitrary choice.")]
+        /// <summary>过渡到此CinemachineCamera和从此相机过渡的提示。提示可以组合，
+        /// 尽管并非所有组合都有意义。在提示冲突的情况下，Cinemachine将做出任意选择。</summary>
+        [Tooltip("过渡到此CinemachineCamera和从此相机过渡的提示。提示可以组合，"
+            + "尽管并非所有组合都有意义。在提示冲突的情况下，Cinemachine将做出任意选择。")]
         public CinemachineCore.BlendHints BlendHint;
 
-        /// <summary>This event fires when a transition occurs.</summary>
-        [Tooltip("This event fires when a transition occurs")]
+        /// <summary>当过渡发生时触发此事件。</summary>
+        [Tooltip("当过渡发生时触发此事件")]
         public CinemachineLegacyCameraEvents.OnCameraLiveEvent m_OnCameraLiveEvent = new();
 
-        /// <summary>The Vertical axis.  Value is 0..1.  Chooses how to blend the child rigs</summary>
-        [Header("Axis Control")]
-        [Tooltip("The Vertical axis.  Value is 0..1.  Chooses how to blend the child rigs")]
+        /// <summary>垂直轴。值为0..1。选择如何混合子装配体</summary>
+        [Header("轴控制")]
+        [Tooltip("垂直轴。值为0..1。选择如何混合子装配体")]
         public AxisState m_YAxis = new AxisState(0, 1, false, true, 2f, 0.2f, 0.1f, "Mouse Y", false);
 
-        /// <summary>Controls how automatic recentering of the Y axis is accomplished</summary>
-        [Tooltip("Controls how automatic recentering of the Y axis is accomplished")]
+        /// <summary>控制Y轴自动归中的实现方式</summary>
+        [Tooltip("控制Y轴自动归中的实现方式")]
         public AxisState.Recentering m_YAxisRecentering = new AxisState.Recentering(false, 1, 2);
 
-        /// <summary>The Horizontal axis.  Value is -180...180.  This is passed on to
-        /// the rigs' OrbitalTransposer component</summary>
-        [Tooltip("The Horizontal axis.  Value is -180...180.  "
-            + "This is passed on to the rigs' OrbitalTransposer component")]
+        /// <summary>水平轴。值为-180...180。这将传递给
+        /// 装配体的OrbitalTransposer组件</summary>
+        [Tooltip("水平轴。值为-180...180。"
+            + "这将传递给装配体的OrbitalTransposer组件")]
         public AxisState m_XAxis = new AxisState(-180, 180, true, false, 300f, 0.1f, 0.1f, "Mouse X", true);
 
-        /// <summary>The definition of Forward.  Camera will follow behind</summary>
-        [Tooltip("The definition of Forward.  Camera will follow behind.")]
+        /// <summary>前进方向的定义。相机将跟随在后面</summary>
+        [Tooltip("前进方向的定义。相机将跟随在后面。")]
         public CinemachineOrbitalTransposer.Heading m_Heading
             = new CinemachineOrbitalTransposer.Heading(
                 CinemachineOrbitalTransposer.Heading.HeadingDefinition.TargetForward, 4, 0);
 
-        /// <summary>Controls how automatic recentering of the X axis is accomplished</summary>
-        [Tooltip("Controls how automatic recentering of the X axis is accomplished")]
+        /// <summary>控制X轴自动归中的实现方式</summary>
+        [Tooltip("控制X轴自动归中的实现方式")]
         public AxisState.Recentering m_RecenterToTargetHeading = new AxisState.Recentering(false, 1, 2);
 
-        /// <summary>The coordinate space to use when interpreting the offset from the target</summary>
-        [Header("Orbits")]
-        [Tooltip("The coordinate space to use when interpreting the offset from the target.  "
-            + "This is also used to set the camera's Up vector, which will be maintained "
-            + "when aiming the camera.")]
+        /// <summary>解释目标偏移时使用的坐标系</summary>
+        [Header("轨道设置")]
+        [Tooltip("解释目标偏移时使用的坐标系。"
+            + "这也用于设置相机的向上向量，在瞄准相机时将保持该方向。")]
         public TargetTracking.BindingMode m_BindingMode
             = TargetTracking.BindingMode.LazyFollow;
 
-        /// <summary>Controls how taut is the line that connects the rigs' orbits, which
-        /// determines final placement on the Y axis</summary>
-        [Tooltip("Controls how taut is the line that connects the rigs' orbits, which "
-            + "determines final placement on the Y axis")]
+        /// <summary>控制连接装配体轨道的线条的紧绷程度，
+        /// 这决定了Y轴上的最终位置</summary>
+        [Tooltip("控制连接装配体轨道的线条的紧绷程度，"
+            + "这决定了Y轴上的最终位置")]
         [Range(0f, 1f)]
         [FormerlySerializedAs("m_SplineTension")]
         public float m_SplineCurvature = 0.2f;
 
-        /// <summary>Defines the height and radius of the Rig orbit</summary>
+        /// <summary>定义装配体轨道的高度和半径</summary>
         [Serializable]
         public struct Orbit
         {
-            /// <summary>Height relative to target</summary>
+            /// <summary>相对于目标的高度</summary>
             public float m_Height;
-            /// <summary>Radius of orbit</summary>
+            /// <summary>轨道半径</summary>
             public float m_Radius;
-            /// <summary>Constructor with specific values</summary>
-            /// <param name="h">Orbit height</param>
-            /// <param name="r">Orbit radius</param>
+            /// <summary>带特定值的构造函数</summary>
+            /// <param name="h">轨道高度</param>
+            /// <param name="r">轨道半径</param>
             public Orbit(float h, float r) { m_Height = h; m_Radius = r; }
         }
 
-        /// <summary>The radius and height of the three orbiting rigs</summary>
-        [Tooltip("The radius and height of the three orbiting rigs.")]
+        /// <summary>三个轨道装配体的半径和高度</summary>
+        [Tooltip("三个轨道装配体的半径和高度。")]
+
         public Orbit[] m_Orbits = new Orbit[3]
         {
             // These are the default orbits

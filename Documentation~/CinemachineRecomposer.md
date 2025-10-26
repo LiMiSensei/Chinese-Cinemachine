@@ -1,23 +1,22 @@
-# Cinemachine Recomposer Extension
+# Cinemachine 重新构图器扩展（Cinemachine Recomposer Extension）
 
-Use the Cinemachine Recomposer [extension](concept-procedural-motion.md#extensions) in addition to the CinemachineCamera component to add a final tweak to the camera composition. This extension is intended for use in a Timeline context, where you want to hand-adjust the output of procedural or recorded camera aiming.
+除了 Cinemachine 相机（CinemachineCamera）组件外，还可使用 Cinemachine 重新构图器[扩展](concept-procedural-motion.md#extensions)，对相机构图进行最终微调。此扩展适用于时间线（Timeline）场景，当你需要手动调整程序化相机或已录制相机瞄准的输出效果时，可使用该扩展。
 
-All of these properties can be animated within the Timeline.
+以下所有属性均可在时间线内制作动画。
 
-## Properties:
 
-| **Property:** | **Function:** |
+## 属性（Properties）：
+
+| **属性** | **功能** |
 |:---|:---|
-| __Apply After__ | The Volume Settings profile to activate when this CinemachineCamera is live. |
-| _Body_ | Camera has been positioned but not yet rotated |
-|  _Aim_ | Camera has been rotated and positioned, but no noise or collision resolution applied |
-|  _Noise_ | Camera has been positioned, rotated, and noise and other corrections applied |
-|  _Finalize_ | Default setting.  Applied after all standard CinemachineCamera processing has occurred |
-| __Tilt__ | Add a vertical rotation to the camera's current rotation |
-| __Pan__ | Add a horizontal rotation to the camera's current rotation |
-| __Dutch__ | Add a tilt (local Z rotation) to the current camera's rotation |
-| __Zoom Scale__ | Scale the current zoom |
-| __Follow Attachment__ | When this is less than 1, damping on the Follow target is increased.  When the value is zero, damping is infinite - effectively "letting go" of the target |
-| __Look At Attachment__ | When this is less than 1, damping on the Look At target is increased.  When the value is zero, damping is infinite - effectively "letting go" of the target |
-
-
+| **应用时机（Apply After）** | 选择该扩展在 Cinemachine 相机处理流程中的应用节点，不同节点对应相机处理的不同阶段。 |
+| _机身处理后（Body）_ | 相机已完成位置调整，但尚未进行旋转处理 |
+|  _瞄准处理后（Aim）_ | 相机已完成旋转和位置调整，但尚未应用噪声或碰撞分辨率（碰撞处理） |
+|  _噪声处理后（Noise）_ | 相机已完成位置调整、旋转处理，并已应用噪声及其他校正效果 |
+|  _最终处理后（Finalize）_ | 默认设置。在 Cinemachine 相机所有标准处理流程完成后应用 |
+| **倾斜（Tilt）** | 在相机当前旋转角度的基础上，添加垂直方向的旋转（绕水平轴旋转） |
+| **平移（Pan）** | 在相机当前旋转角度的基础上，添加水平方向的旋转（绕垂直轴旋转） |
+| **倾斜偏移（Dutch）** | 在相机当前旋转角度的基础上，添加局部 Z 轴方向的旋转（画面左右倾斜，如倾斜镜头营造动态感） |
+| **缩放比例（Zoom Scale）** | 对相机当前的缩放效果（如视野 FOV 或正交尺寸）进行比例调整 |
+| **跟随附着度（Follow Attachment）** | 数值小于 1 时，会增加对“跟随目标（Follow Target）”的阻尼效果；数值为 0 时，阻尼效果无穷大，相当于“松开”目标（相机不再跟随目标移动） |
+| **看向附着度（Look At Attachment）** | 数值小于 1 时，会增加对“看向目标（Look At Target）”的阻尼效果；数值为 0 时，阻尼效果无穷大，相当于“松开”目标（相机不再朝向目标） |

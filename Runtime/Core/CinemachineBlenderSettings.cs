@@ -17,18 +17,18 @@ namespace Unity.Cinemachine
         [Serializable]
         public struct CustomBlend
         {
-            /// <summary>When blending from a camera with this name</summary>
-            [Tooltip("When blending from a camera with this name")]
+            /// <summary>当从具有此名称的相机进行混合时</summary>
+            [Tooltip("当从具有此名称的相机进行混合时")]
             [FormerlySerializedAs("m_From")]
             public string From;
 
-            /// <summary>When blending to a camera with this name</summary>
-            [Tooltip("When blending to a camera with this name")]
+            /// <summary>当混合到具有此名称的相机时</summary>
+            [Tooltip("当混合到具有此名称的相机时")]
             [FormerlySerializedAs("m_To")]
             public string To;
 
-            /// <summary>Blend curve definition</summary>
-            [Tooltip("Blend curve definition")]
+            /// <summary>混合曲线定义</summary>
+            [Tooltip("混合曲线定义")]
             [FormerlySerializedAs("m_Blend")]
             public CinemachineBlendDefinition Blend;
         }

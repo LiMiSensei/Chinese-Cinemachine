@@ -1,24 +1,26 @@
-# Cinemachine Rotation Composer component
+# Cinemachine 旋转构图器组件（Cinemachine Rotation Composer component）
 
-This CinemachineCamera __Rotation Control__ behaviour rotates the camera to face the __Look At__ target. It also applies offsets, damping, and composition rules. It only rotates the camera, it never changes the camera's position.  Examples of targets for aiming: the upper spine or head bone of a character, vehicles, or dummy objects which are controlled or animated programmatically.
+此 Cinemachine 相机的**旋转控制（Rotation Control）** 行为会旋转相机，使其朝向**看向目标（Look At target）**。它还可应用偏移量、阻尼和构图规则。该组件仅旋转相机，不会改变相机的位置。常见的瞄准目标示例包括：角色的上脊柱或头部骨骼、车辆，或通过程序控制/动画驱动的虚拟对象（dummy objects）。
 
-## Properties
 
-| **Property** || **Function** |
+## 属性（Properties）
+
+| **属性** || **功能** |
 |:---|:---|:---|
-| __Target Offset__ || Offset from the center of the Look At target, in target-local space. Use this to fine-tune the target's position when the point of interest is not the tracked object’s center. You can also use [Scene Handles](handles.md) to modify this property. |
-| __Lookahead Time__ || Adjust the rotation based on the motion of the Look At target. The algorithm estimates the point that the target will be this many seconds into the future. This feature is sensitive to noisy animation. It can amplify the noise, resulting in undesirable camera jitter. If the camera jitters unacceptably when the target is in motion, turn down this property or animate the target more smoothly. |
-| __Lookahead Smoothing__ || Controls the smoothness of the lookahead algorithm. Larger values smooth out jittery predictions and increase prediction lag. |
-| __Lookahead Ignore Y__ || Enable ths to ignore movement along the Y axis for lookahead calculations. |
-| __Damping__ || How responsively the camera frames the target in horizontal and vertical directions. Use small numbers for more responsive, rapid rotation of the camera to keep the target in the dead zone. Use larger numbers for a heavier, more slowly-responding camera.  |
-| __Screen Position__ || Horizontal and vertical screen position for the target. The camera adjusts to position the tracked object here. 0 is the screen center, -0.5 and 0.5 are the screen edges. |
-| __Dead Zone__ || The camera will not adjust when the target is within this range of the Screen Position. |
-|| _Size_| The width and height of the region where the camera will not respond to target movement, expressed as a fraction of screen size.  This region is centered around the Screen Position.  A value of 1 means full screen width or height. |
-| __Hard Limits__ || The camera will not allow the target to be outside of the hard limits. |
-|| _Size_ | The size of the region in which the camera can place the target, expressed as a fraction of screen size.  This region is by default centered around the Screen Position, but can be shifted using the Offset setting.  A value of 1 means full screen width or height. |
-|| _Offset_ | Shifts the hard limits horizontally or vertically relative to the Target Position. |
-| __Center On Activate__ || Rotates the camera to put the target at the center of the dead zone when the camera becomes live. |
+| **目标偏移（Target Offset）** || 在目标局部空间中，相对于“看向目标”中心的偏移量。当兴趣点并非被跟踪对象的中心时，可使用此属性微调目标位置。也可通过 [场景手柄（Scene Handles）](handles.md) 修改此属性。 |
+| **前瞻时间（Lookahead Time）** || 根据“看向目标”的运动状态调整相机旋转角度。该算法会预测目标在未来该时长（以秒为单位）内将到达的位置。此功能对抖动的动画较为敏感，可能会放大抖动效果，导致相机出现不期望的晃动。若目标运动时相机晃动过于明显，可减小此属性值，或让目标的动画更平滑。 |
+| **前瞻平滑度（Lookahead Smoothing）** || 控制前瞻算法的平滑程度。数值越大，越能平滑抖动的预测结果，但会增加预测延迟。 |
+| **前瞻忽略 Y 轴（Lookahead Ignore Y）** || 启用后，在进行前瞻计算时，会忽略目标沿 Y 轴的运动。 |
+| **阻尼（Damping）** || 相机在水平和垂直方向上对目标进行构图的响应速度。数值越小，相机响应越灵敏，能快速旋转以将目标保持在死区内；数值越大，相机响应越缓慢，运动感更“沉重”。 |
+| **屏幕位置（Screen Position）** || 目标在屏幕上的水平和垂直位置。相机会自动调整，使被跟踪对象处于该位置。数值为 0 表示屏幕中心，-0.5 和 0.5 分别表示屏幕左右/上下边缘。 |
+| **死区（Dead Zone）** || 若目标处于“屏幕位置（Screen Position）”的此范围内，相机不会进行调整。 |
+|| **大小（Size）** | 相机不对目标运动做出响应的区域宽度和高度，以屏幕尺寸的比例表示。该区域以“屏幕位置”为中心。数值为 1 表示区域宽度或高度等于整个屏幕。 |
+| **硬限制（Hard Limits）** || 相机不允许目标超出此限制范围。 |
+|| **大小（Size）** | 相机可放置目标的区域大小，以屏幕尺寸的比例表示。该区域默认以“屏幕位置”为中心，可通过“偏移（Offset）”设置调整位置。数值为 1 表示区域宽度或高度等于整个屏幕。 |
+|| **偏移（Offset）** | 相对于“目标位置（Target Position）”，在水平或垂直方向上调整硬限制区域的位置。 |
+| **激活时居中（Center On Activate）** || 当相机进入激活状态时，自动旋转相机，使目标位于死区的中心位置。 |
 
-## Shot composition
+
+## 镜头构图（Shot composition）
 
 [!include[](includes/shot-composition.md)]

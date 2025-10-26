@@ -1,31 +1,37 @@
-# Pan Tilt
+# 平移倾斜控制（Pan Tilt）
 
-This CinemachineCamera __Rotation Control__ behavior pans and tilts the camera in response stimulus, for instance the user’s input. This component does not read user input itself; it can be be driven by an [Cinemachine Input Axis Controller](CinemachineInputAxisController.md) component or by some other means that you devise.
+此 Cinemachine 相机的**旋转控制（Rotation Control）** 行为可根据触发信号（例如用户输入）对相机进行平移（Pan）和倾斜（Tilt）操作。该组件本身不读取用户输入，需通过 [Cinemachine 输入轴控制器（Cinemachine Input Axis Controller）](CinemachineInputAxisController.md) 组件或其他自定义方式驱动。
 
-## Properties:
 
-| **Property:** || **Function:** |
+## 属性（Properties）：
+
+| **属性** || **功能** |
 |:---|:---|:---|
-| __Reference Frame__ || Defines the reference frame against which pan and tilt rotations are made.  |
-| | _Parent Object_ | If the CinemachineCamera has a parent object, then that parent's local axes will be used as the reference frame. If there is no parent object, world axes will be used. |
-| | _World_ | World axes will be used as the reference frame. |
-| | _Tracking Target_ | If the CinemachineCamera has a Tracking target, then that object's local axes will be used as the reference frame. If there is no parent object, world axes will be used. |
-| | _LookAt Target_ | If the CinemachineCamera has a LookAt target, then that object's local axes will be used as the reference frame. If there is no parent object, world axes will be used. |
-| __Pan Axis__ || Controls the horizontal rotation of the Camera.  |
-| | _Value_ | The current value of the axis, in degrees. |
-| | _Center_ | The value that Recentering will recenter to, if Recentering is enabled. |
-| | _Range_ | The minimum and maximum for the Value. |
-| | _Wrap_ | If enabled, the axis wraps around when it reaches the end of its range, forming a loop. |
-| __Tilt Axis__ || Controls the vertical rotation of the Camera.  |
-| | _Value_ | The current value of the axis, in degrees. |
-| | _Center_ | The value that Recentering will recenter to, if Recentering is enabled. |
-| | _Range_ | The minimum and maximum for the Value. Must fall inside of [-90, 90]. |
-| | _Wrap_ | If enabled, the axis wraps around when it reaches the end of its range, forming a loop. |
-| __Recentering__ | | If enabled for an axis, Recentering will gradually return the axis value to the recentering target. |
-|  | _Wait_ | If recentering is enabled for an axis, it will wait this many seconds after the last user input before beginning the recentering process. |
-|  | _Time_ | The time it takes for the recentering to complete, once it has started. |
-| __Recenter Target__ || When Axis Recentering happens, it will recenter towards this target.  |
-| | _Axis Center_ | Recenter to the Center value defined within the axis. |
-| | _Tracking Target Forward_ | Recenter to the value that aligns with the Tracking Target's forward axis. |
-| | _LookAt Target Forward_ | Recenter to the value that aligns with the LookAt Target's forward axis. |
+| **参考坐标系（Reference Frame）** || 定义相机平移和倾斜旋转所基于的参考坐标系。 |
+| | **父对象（Parent Object）** | 若 Cinemachine 相机有父对象，则以父对象的局部轴作为参考坐标系；若没有父对象，则使用世界坐标系。 |
+| | **世界（World）** | 以世界坐标系作为参考坐标系。 |
+| | **跟踪目标（Tracking Target）** | 若 Cinemachine 相机有跟踪目标，则以该目标的局部轴作为参考坐标系；若没有跟踪目标，则使用世界坐标系。 |
+| | **看向目标（LookAt Target）** | 若 Cinemachine 相机有看向目标，则以该目标的局部轴作为参考坐标系；若没有看向目标，则使用世界坐标系。 |
+| **平移轴（Pan Axis）** || 控制相机的水平旋转。 |
+| | **数值（Value）** | 该轴的当前数值，单位为度（°）。 |
+| | **中心（Center）** | 若启用“重新居中（Recentering）”功能，此数值为该轴将恢复到的中心值。 |
+| | **范围（Range）** | 该轴“数值（Value）”的最小值和最大值。 |
+| | **环绕（Wrap）** | 若启用，当轴的数值达到范围边界时，会自动环绕到另一端，形成循环。 |
+| **倾斜轴（Tilt Axis）** || 控制相机的垂直旋转。 |
+| | **数值（Value）** | 该轴的当前数值，单位为度（°）。 |
+| | **中心（Center）** | 若启用“重新居中（Recentering）”功能，此数值为该轴将恢复到的中心值。 |
+| | **范围（Range）** | 该轴“数值（Value）”的最小值和最大值，必须在 [-90, 90]（度）范围内。 |
+| | **环绕（Wrap）** | 若启用，当轴的数值达到范围边界时，会自动环绕到另一端，形成循环。 |
+| **重新居中（Recentering）** | | 若为某个轴启用此功能，该轴的数值会逐渐恢复到“重新居中目标”。 |
+|  | **等待（Wait）** | 若为某个轴启用重新居中，在最后一次用户输入后，需等待该时长（单位：秒）才开始重新居中过程。 |
+|  | **时间（Time）** | 重新居中过程开始后，完成整个过程所需的时间（单位：秒）。 |
+| **重新居中目标（Recenter Target）** || 当轴执行重新居中操作时，将以该目标为基准恢复数值。 |
+| | **轴中心（Axis Center）** | 恢复到该轴自身定义的“中心（Center）”数值。 |
+| | **跟踪目标前方（Tracking Target Forward）** | 恢复到与跟踪目标“前方（Forward）”轴对齐的数值。 |
+| | **看向目标前方（LookAt Target Forward）** | 恢复到与看向目标“前方（Forward）”轴对齐的数值。 |
 
+
+### 术语补充说明（游戏开发场景适配）
+- **Pan（平移）**：此处指相机围绕垂直轴（通常为世界坐标系 Y 轴或目标局部 Y 轴）的水平旋转，可实现“左右转动相机观察”的效果；
+- **Tilt（倾斜）**：此处指相机围绕水平轴（通常为世界坐标系 X 轴或目标局部 X 轴）的垂直旋转，可实现“上下转动相机观察”的效果；
+- **Reference Frame（参考坐标系）**：决定相机旋转时“基准方向”的坐标系，例如基于“跟踪目标局部轴”时，相机旋转会跟随目标朝向变化，基于“世界坐标系”时则固定以世界方向为基准。

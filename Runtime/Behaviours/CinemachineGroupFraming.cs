@@ -27,26 +27,24 @@ namespace Unity.Cinemachine
             HorizontalAndVertical
         };
 
-        /// <summary>What screen dimensions to consider when framing</summary>
-        [Tooltip("What screen dimensions to consider when framing.  Can be Horizontal, Vertical, or both")]
+        /// <summary>构图时考虑的屏幕尺寸</summary>
+        [Tooltip("构图时考虑的屏幕尺寸。可以是水平、垂直或两者兼顾")]
         public FramingModes FramingMode = FramingModes.HorizontalAndVertical;
 
-        /// <summary>How much of the screen to fill with the bounding box of the targets.</summary>
-        [Tooltip("The bounding box of the targets should occupy this amount of the screen space.  "
-            + "1 means fill the whole screen.  0.5 means fill half the screen, etc.")]
+        /// <summary>目标边界框应占据的屏幕比例</summary>
+        [Tooltip("目标边界框应占据的屏幕空间比例。"
+            + "1表示填满整个屏幕，0.5表示填充一半屏幕，依此类推。")]
         [Range(0, 2)]
         public float FramingSize = 0.8f;
 
-        /// <summary>A nonzero value will offset the group in the camera frame.</summary>
-        [Tooltip("A nonzero value will offset the group in the camera frame.")]
+        /// <summary>非零值将在相机画面中偏移目标组</summary>
+        [Tooltip("非零值将在相机画面中偏移目标组")]
         public Vector2 CenterOffset = Vector2.zero;
 
-        /// <summary>How aggressively the camera tries to frame the group.
-        /// Small numbers are more responsive</summary>
+        /// <summary>相机尝试构图的积极程度。数值越小响应越快</summary>
         [Range(0, 20)]
-        [Tooltip("How aggressively the camera tries to frame the group. Small numbers are more responsive, "
-            + "rapidly adjusting the camera to keep the group in the frame.  Larger numbers give a heavier "
-            + "more slowly responding camera.")]
+        [Tooltip("相机尝试构图的积极程度。数值越小响应越快，"
+            + "会迅速调整相机以保持目标组在画面中。数值越大则相机响应越慢越沉重。")]
         public float Damping = 2f;
 
         /// <summary>How to adjust the camera to get the desired framing size</summary>
@@ -61,38 +59,39 @@ namespace Unity.Cinemachine
             DollyThenZoom
         };
 
-        /// <summary>How to adjust the camera to get the desired framing</summary>
-        [Tooltip("How to adjust the camera to get the desired framing size.  You can zoom, dolly in/out, or do both.")]
+        /// <summary>如何调整相机以获得所需的构图</summary>
+        [Tooltip("如何调整相机以获得所需的构图尺寸。可以缩放、推拉或两者同时进行。")]
         public SizeAdjustmentModes SizeAdjustment = SizeAdjustmentModes.DollyThenZoom;
 
-        /// <summary>How to adjust the camera to get the desired horizontal and vertical framing</summary>
+        /// <summary>如何调整相机以获得所需的水平和垂直构图</summary>
         public enum LateralAdjustmentModes
         {
-            /// <summary>Do not rotate the camera to reframe, only change the position.</summary>
+            /// <summary>不旋转相机重新构图，仅改变位置</summary>
             ChangePosition,
-            /// <summary>Rotate the camera to reframe, do not change the position.</summary>
+            /// <summary>旋转相机重新构图，不改变位置</summary>
             ChangeRotation
         };
 
-        /// <summary>How to adjust the camera to get the desired horizontal and vertical framing</summary>
-        [Tooltip("How to adjust the camera to get the desired horizontal and vertical framing.")]
+        /// <summary>如何调整相机以获得所需的水平和垂直构图</summary>
+        [Tooltip("如何调整相机以获得所需的水平和垂直构图。")]
         public LateralAdjustmentModes LateralAdjustment = LateralAdjustmentModes.ChangePosition;
 
-        /// <summary>Allowable FOV range, if adjusting FOV</summary>
-        [Tooltip("Allowable FOV range, if adjusting FOV.")]
+        /// <summary>允许的视野范围（如果调整FOV）</summary>
+        [Tooltip("允许的视野范围（如果调整FOV）。")]
         [MinMaxRangeSlider(1, 179)]
         public Vector2 FovRange = new (1, 100);
 
-        /// <summary>Allowable range for the camera to move. 0 is the undollied position.
-        /// Negative values move the camera closer to the target.</summary>
-        [Tooltip("Allowable range for the camera to move.  0 is the undollied position.  "
-            + "Negative values move the camera closer to the target.")]
+        /// <summary>允许的相机移动范围。0表示未推拉的位置。
+        /// 负值使相机更靠近目标</summary>
+        [Tooltip("允许的相机移动范围。0表示未推拉的位置。"
+            + "负值使相机更靠近目标。")]
         [Vector2AsRange]
         public Vector2 DollyRange = new (-100, 100);
 
-        /// <summary>Allowable orthographic size range, if adjusting orthographic size</summary>
-        [Tooltip("Allowable orthographic size range, if adjusting orthographic size.")]
+        /// <summary>允许的正交尺寸范围（如果调整正交尺寸）</summary>
+        [Tooltip("允许的正交尺寸范围（如果调整正交尺寸）。")]
         [Vector2AsRange]
+
         public Vector2 OrthoSizeRange = new Vector2(1, 1000);
 
         const float k_MinimumGroupSize = 0.01f;
