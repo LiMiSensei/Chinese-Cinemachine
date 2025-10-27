@@ -26,7 +26,7 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineBrain.html")]
     public class CinemachineBrain : MonoBehaviour, ICameraOverrideStack, ICinemachineMixer
     {
-        [Header("Help：CinemachineBrain 也是定义 Cinemachine 摄像机之间混合规则的地方")]
+        [RedHeader("Help：CinemachineBrain 也是定义 Cinemachine 摄像机之间混合规则的地方")]
         [Space(30)]
         /// <summary>
         /// When enabled, the current camera and blend are indicated in the game window,
