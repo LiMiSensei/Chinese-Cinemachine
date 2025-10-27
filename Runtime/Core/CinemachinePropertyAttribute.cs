@@ -4,172 +4,172 @@ using UnityEngine;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// Property applied to legacy input axis name specification.  Used for custom drawing in the inspector.
+    /// 应用于旧版输入轴名称规范的属性。用于检查器中的自定义绘制。
     /// </summary>
     public sealed class InputAxisNamePropertyAttribute : PropertyAttribute {}
 
     /// <summary>
-    /// Suppresses the top-level foldout on a complex property
+    /// 抑制复杂属性上的顶级折叠
     /// </summary>
     public sealed class HideFoldoutAttribute : PropertyAttribute {}
 
-    /// <summary>Hide this property if a component of a given type is not present</summary>
+    /// <summary>如果给定类型的组件不存在，则隐藏此属性</summary>
     public sealed class HideIfNoComponentAttribute : PropertyAttribute
     {
-        /// <summary>The name of the field controlling the enabled state</summary>
+        /// <summary>控制启用状态的字段名称</summary>
         public Type ComponentType;
 
-        /// <summary>Constructor</summary>
-        /// <param name="type">Type of the component to check for</param>
+        /// <summary>构造函数</summary>
+        /// <param name="type">要检查的组件类型</param>
         public HideIfNoComponentAttribute(Type type) => ComponentType = type;
     }
 
     /// <summary>
-    /// Draw a foldout with an Enabled toggle that shadows a field inside the foldout
+    /// 绘制一个带有启用切换按钮的折叠，该按钮会遮蔽折叠内的字段
     /// </summary>
     public class FoldoutWithEnabledButtonAttribute : PropertyAttribute
     {
-        /// <summary>The name of the field controlling the enabled state</summary>
+        /// <summary>控制启用状态的字段名称</summary>
         public string EnabledPropertyName;
 
-        /// <summary>Constructor</summary>
-        /// <param name="enabledProperty">The name of the field controlling the enabled state</param>
+        /// <summary>构造函数</summary>
+        /// <param name="enabledProperty">控制启用状态的字段名称</param>
         public FoldoutWithEnabledButtonAttribute(string enabledProperty = "Enabled")
             => EnabledPropertyName = enabledProperty;
     }
 
     /// <summary>
-    /// Draw a FoldoutWithEnabledButtonAttribute on a single line
+    /// 在单行上绘制 FoldoutWithEnabledButtonAttribute
     /// </summary>
     public sealed class EnabledPropertyAttribute : FoldoutWithEnabledButtonAttribute
     {
-        /// <summary>Text to display to the right of the toggle button when disabled</summary>
+        /// <summary>禁用时显示在切换按钮右侧的文本</summary>
         public string ToggleDisabledText;
 
-        /// <summary>Constructor</summary>
-        /// <param name="enabledProperty">The name of the field controlling the enabled state</param>
-        /// <param name="toggleText">Text to display to the right of the toggle button</param>
+        /// <summary>构造函数</summary>
+        /// <param name="enabledProperty">控制启用状态的字段名称</param>
+        /// <param name="toggleText">显示在切换按钮右侧的文本</param>
         public EnabledPropertyAttribute(string enabledProperty = "Enabled", string toggleText = "")
             : base(enabledProperty) => ToggleDisabledText = toggleText;
     }
 
     /// <summary>
-    /// Property applied to int or float fields to generate a slider in the inspector.
+    /// 应用于整型或浮点型字段以在检查器中生成滑块。
     /// </summary>
-    [Obsolete("Use RangeAttribute instead")]
+    [Obsolete("请使用 RangeAttribute 代替")]
     public sealed class RangeSliderAttribute : PropertyAttribute
     {
-        /// <summary>Minimum value for the range slider</summary>
+        /// <summary>范围滑块的最小值</summary>
         public float Min;
-        /// <summary>Maximum value for the range slider</summary>
+        /// <summary>范围滑块的最大值</summary>
         public float Max;
-        /// <summary>Constructor for the range slider attribute</summary>
-        /// <param name="min">Minimum value for the range slider</param>
-        /// <param name="max">Maximum value for the range slider</param>
+        /// <summary>范围滑块属性的构造函数</summary>
+        /// <param name="min">范围滑块的最小值</param>
+        /// <param name="max">范围滑块的最大值</param>
         public RangeSliderAttribute(float min, float max) { Min = min; Max = max; }
     }
 
     /// <summary>
-    /// Property applied to int or float fields to generate a minmax range slider in the inspector.
+    /// 应用于整型或浮点型字段以在检查器中生成最小-最大范围滑块。
     /// </summary>
     public sealed class MinMaxRangeSliderAttribute : PropertyAttribute
     {
-        /// <summary>Minimum value for the range slider</summary>
+        /// <summary>范围滑块的最小值</summary>
         public float Min;
-        /// <summary>Maximum value for the range slider</summary>
+        /// <summary>范围滑块的最大值</summary>
         public float Max;
-        /// <summary>Constructor for the range slider attribute</summary>
-        /// <param name="min">Minimum value for the range slider</param>
-        /// <param name="max">Maximum value for the range slider</param>
+        /// <summary>范围滑块属性的构造函数</summary>
+        /// <param name="min">范围滑块的最小值</param>
+        /// <param name="max">范围滑块的最大值</param>
         public MinMaxRangeSliderAttribute(float min, float max) { Min = min; Max = max; }
     }
 
     /// <summary>
-    /// Property applied to LensSetting properties.
-    /// Will cause the property drawer to hide the ModeOverride setting.
+    /// 应用于 LensSetting 属性。
+    /// 将导致属性绘制器隐藏 ModeOverride 设置。
     /// </summary>
     public sealed class LensSettingsHideModeOverridePropertyAttribute : PropertyAttribute {}
 
-    /// <summary>Property to display a SensorSize field</summary>
+    /// <summary>用于显示 SensorSize 字段的属性</summary>
     public sealed class SensorSizePropertyAttribute : PropertyAttribute {}
 
-    /// <summary>Property field is a Tag.</summary>
+    /// <summary>属性字段是一个标签。</summary>
     public sealed class TagFieldAttribute : PropertyAttribute {}
 
     /// <summary>
-    /// Used for custom drawing in the inspector.  Inspector will show a foldout with the asset contents
+    /// 用于检查器中的自定义绘制。检查器将显示一个包含资源内容的折叠
     /// </summary>
-    // GML TODO: delete this attribute
+    // GML TODO: 删除此属性
     public sealed class CinemachineEmbeddedAssetPropertyAttribute : PropertyAttribute
     {
-        /// <summary>If true, inspector will display a warning if the embedded asset is null</summary>
+        /// <summary>如果为 true，当嵌入资源为空时检查器将显示警告</summary>
         public bool WarnIfNull;
 
-        /// <summary>Standard constructor</summary>
-        /// <param name="warnIfNull">If true, inspector will display a warning if the embedded asset is null</param>
+        /// <summary>标准构造函数</summary>
+        /// <param name="warnIfNull">如果为 true，当嵌入资源为空时检查器将显示警告</param>
         public CinemachineEmbeddedAssetPropertyAttribute(bool warnIfNull = false) { WarnIfNull = warnIfNull; }
     }
 
     /// <summary>
-    /// Property applied to Vector2 to treat (x, y) as (min, max).
-    /// Used for custom drawing in the inspector.
+    /// 应用于 Vector2 以将 (x, y) 视为 (min, max)。
+    /// 用于检查器中的自定义绘制。
     /// </summary>
     public sealed class Vector2AsRangeAttribute : PropertyAttribute {}
 
     /// <summary>
-    /// Sets isDelayed to true for each float field of the vector.
+    /// 为向量的每个浮点字段设置 isDelayed 为 true。
     /// </summary>
     public sealed class DelayedVectorAttribute : PropertyAttribute {}
 
     /// <summary>
-    /// Attribute used by camera pipeline authoring components to indicate
-    /// which stage of the pipeline they belong in.
+    /// 摄像机管线创作组件使用的属性，用于指示
+    /// 它们属于管线的哪个阶段。
     /// </summary>
     public sealed class CameraPipelineAttribute : System.Attribute
     {
-        /// <summary>Get the stage in the Camera Pipeline in which to position this component</summary>
+        /// <summary>获取此组件在摄像机管线中的定位阶段</summary>
         public CinemachineCore.Stage Stage { get; private set; }
 
-        /// <summary>Constructor: Pipeline Stage is defined here.</summary>
-        /// <param name="stage">The stage in the Camera Pipeline in which to position this component</param>
+        /// <summary>构造函数：在此定义管线阶段。</summary>
+        /// <param name="stage">此组件在摄像机管线中的定位阶段</param>
         public CameraPipelineAttribute(CinemachineCore.Stage stage) { Stage = stage; }
     }
 
     /// <summary>
-    /// Attribute used by inspector to display warnings about missing targets.
-    /// This can be used on CinemachineComponents and CinemachineExtensions.
+    /// 检查器用于显示关于缺失目标的警告的属性。
+    /// 这可以用于 CinemachineComponents 和 CinemachineExtensions。
     /// </summary>
     public sealed class RequiredTargetAttribute : System.Attribute
     {
-        /// <summary>Choices for which targets are required</summary>
+        /// <summary>需要哪些目标的选择</summary>
         public enum RequiredTargets
         {
-            /// <summary>No specific target is required.</summary>
+            /// <summary>不需要特定目标。</summary>
             None,
-            /// <summary>Tracking Target is required for the pipeline element to work</summary>
+            /// <summary>管线元素工作需要跟踪目标</summary>
             Tracking,
-            /// <summary>LookAt Target is required for the pipeline element to work</summary>
+            /// <summary>管线元素工作需要注视目标</summary>
             LookAt,
-            /// <summary>LookAt Target is required and must be a ICinemachineTargetGroup for the pipeline element to work</summary>
+            /// <summary>管线元素工作需要注视目标且必须是 ICinemachineTargetGroup</summary>
             GroupLookAt
         };
 
-        /// <summary>Get the stage in the Camera Pipeline in which to position this component</summary>
+        /// <summary>获取此组件在摄像机管线中的定位阶段</summary>
         public RequiredTargets RequiredTarget { get; private set; }
 
-        /// <summary>Constructor: Pipeline Stage is defined here.</summary>
-        /// <param name="requiredTarget">Which targets are required</param>
+        /// <summary>构造函数：在此定义管线阶段。</summary>
+        /// <param name="requiredTarget">需要哪些目标</param>
         public RequiredTargetAttribute(RequiredTargets requiredTarget) { RequiredTarget = requiredTarget; }
     }
 
     /// <summary>
-    /// Attribute applied to a CinemachineCameraManagerBase property to produce
-    /// a child camera selector in the inspector.
+    /// 应用于 CinemachineCameraManagerBase 属性以在
+    /// 检查器中生成子摄像机选择器。
     /// </summary>
     public sealed class ChildCameraPropertyAttribute : PropertyAttribute {}
 
     /// <summary>
-    /// Draws BlenderSettings asset embedded within the inspector.
+    /// 在检查器中绘制嵌入的 BlenderSettings 资源。
     /// </summary>
     public sealed class EmbeddedBlenderSettingsPropertyAttribute : PropertyAttribute {}
 }

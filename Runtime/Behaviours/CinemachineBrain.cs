@@ -10,17 +10,15 @@ using UnityEngine.Serialization;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// CinemachineBrain is the link between the Unity Camera and the CinemachineCameras
-    /// in the Scene.  It monitors the priority stack to choose the current Cinemachine
-    /// Camera, and blend with another if necessary.  Finally and most importantly,
-    /// it applies the CinemachineCamera state to the attached Unity Camera.
+    /// CinemachineBrain 是 Unity 摄像机与场景中 Cinemachine 摄像机之间的桥梁。
+    /// 它监控优先级堆栈以选择当前的 Cinemachine 摄像机，并在需要时与另一个摄像机进行混合。
+    /// 最后也是最重要的，它将 CinemachineCamera 状态应用到所连接的 Unity 摄像机上。
     ///
-    /// The CinemachineBrain is also the place where rules for blending between Cinemachine
-    /// Cameras are defined.  Camera blending is an interpolation over time of one Cinemachine
-    /// Camera position and state to another. If you think of CinemachineCameras as cameramen,
-    /// then blending is a little like one cameraman smoothly passing the camera to another
-    /// cameraman. You can specify the time over which to blend, as well as the blend curve
-    /// shape. Note that a camera cut is just a zero-time blend.
+    /// CinemachineBrain 也是定义 Cinemachine 摄像机之间混合规则的地方。
+    /// 摄像机混合是指一个 Cinemachine 摄像机的位置和状态随时间插值过渡到另一个摄像机。
+    /// 如果将 CinemachineCamera 视为摄影师，那么混合就像是一个摄影师将摄像机平稳地传递给
+    /// 另一个摄影师。您可以指定混合的时间长度以及混合曲线的形状。
+    /// 请注意，摄像机剪切就是零时间混合。
     /// </summary>
     [DisallowMultipleComponent]
     [ExecuteAlways]
@@ -28,6 +26,8 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineBrain.html")]
     public class CinemachineBrain : MonoBehaviour, ICameraOverrideStack, ICinemachineMixer
     {
+        [Header("Help：CinemachineBrain 也是定义 Cinemachine 摄像机之间混合规则的地方")]
+        [Space(30)]
         /// <summary>
         /// When enabled, the current camera and blend are indicated in the game window,
         /// for debugging.
