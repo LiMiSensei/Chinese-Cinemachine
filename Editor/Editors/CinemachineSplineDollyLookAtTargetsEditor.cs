@@ -150,7 +150,7 @@ namespace Unity.Cinemachine.Editor
                 });
 
                 var foldout = new Foldout() { value = false, text = "Target" }; // do not bind to "m_Value" because it will mess up the binding for index
-                var indexRow = foldout.AddChild(new InspectorUtility.LabeledRow("Index", SplineDataInspectorUtility.ItemIndexTooltip));
+                var indexRow = foldout.AddChild(new InspectorUtility.LabeledRow("索引", SplineDataInspectorUtility.ItemIndexTooltip));
                 var indexField2 = indexRow.Contents.AddChild(InspectorUtility.CreateDraggableField(
                     typeof(float), "m_Index", SplineDataInspectorUtility.ItemIndexTooltip, indexRow.Label, out dragger));
                 indexField2.style.flexGrow = 1;

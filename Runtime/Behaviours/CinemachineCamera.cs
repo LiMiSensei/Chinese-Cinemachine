@@ -4,48 +4,46 @@ using System;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// This behaviour is intended to be attached to an empty GameObject,
-    /// and it represents a Cinemachine Camera within the Unity scene.
+    /// 此行为旨在附加到空的 GameObject 上，
+    /// 它在 Unity 场景中代表一个 Cinemachine 摄像机。
     ///
-    /// The CinemachineCamera will animate its Transform according to the rules contained
-    /// in its CinemachineComponent pipeline (Aim, Body, and Noise).  When the CM
-    /// camera is Live, the Unity camera will assume the position and orientation
-    /// of the CinemachineCamera.
+    /// CinemachineCamera 将根据其 CinemachineComponent 管线（瞄准、身体和噪声）
+    /// 中包含的规则来动画化其 Transform。当 CM 摄像机处于活动状态时，
+    /// Unity 摄像机将采用 CinemachineCamera 的位置和方向。
     ///
-    /// A CinemachineCamera is not a camera. Instead, it can be thought of as a camera controller,
-    /// not unlike a cameraman. It can drive the Unity Camera and control its position,
-    /// rotation, lens settings, and PostProcessing effects. Each CM Camera owns
-    /// its own Cinemachine Component Pipeline, through which you can provide the instructions
-    /// for procedurally tracking specific game objects.  An empty procedural pipeline
-    /// will result in a passive CinemachineCamera, which can be controlled in the same way as
-    /// an ordinary GameObject.
+    /// CinemachineCamera 不是摄像机。相反，它可以被视为摄像机控制器，
+    /// 类似于摄影师。它可以驱动 Unity 摄像机并控制其位置、
+    /// 旋转、镜头设置和后处理效果。每个 CM 摄像机都拥有
+    /// 自己的 Cinemachine 组件管线，通过该管线您可以提供
+    /// 程序化跟踪特定游戏对象的指令。空的程序化管线
+    /// 将导致被动的 CinemachineCamera，可以像普通 GameObject 一样控制。
     ///
-    /// A CinemachineCamera is very lightweight, and does no rendering of its own. It merely
-    /// tracks interesting GameObjects, and positions itself accordingly. A typical game
-    /// can have dozens of CinemachineCameras, each set up to follow a particular character
-    /// or capture a particular event.
+    /// CinemachineCamera 非常轻量，不进行自己的渲染。它只是
+    /// 跟踪有趣的 GameObject，并相应地定位自己。一个典型的游戏
+    /// 可以有几十个 CinemachineCamera，每个都设置为跟随特定角色
+    /// 或捕捉特定事件。
     ///
-    /// A CinemachineCamera can be in any of three states:
+    /// CinemachineCamera 可以处于以下三种状态之一：
     ///
-    /// * **Live**: The CinemachineCamera is actively controlling the Unity Camera. The
-    /// CinemachineCamera is tracking its targets and being updated every frame.
-    /// * **Standby**: The CinemachineCamera is tracking its targets and being updated
-    /// every frame, but no Unity Camera is actively being controlled by it. This is
-    /// the state of a CinemachineCamera that is enabled in the scene but perhaps at a
-    /// lower priority than the Live CinemachineCamera.
-    /// * **Disabled**: The CinemachineCamera is present but disabled in the scene. It is
-    /// not actively tracking its targets and so consumes no processing power. However,
-    /// the CinemachineCamera can be made live from the Timeline.
+    /// * **活动状态**：CinemachineCamera 正在主动控制 Unity 摄像机。
+    /// CinemachineCamera 正在跟踪其目标并每帧更新。
+    /// * **待命状态**：CinemachineCamera 正在跟踪其目标并每帧更新，
+    /// 但没有 Unity 摄像机被它主动控制。这是
+    /// 场景中启用但优先级可能低于活动 CinemachineCamera 的
+    /// CinemachineCamera 的状态。
+    /// * **禁用状态**：CinemachineCamera 存在但在场景中被禁用。它
+    /// 不主动跟踪其目标，因此不消耗处理能力。但是，
+    /// CinemachineCamera 可以从时间轴变为活动状态。
     ///
-    /// The Unity Camera can be driven by any CinemachineCamera in the scene. The game
-    /// logic can choose the CinemachineCamera to make live by manipulating the CM
-    /// camerass enabled flags and/or its priority, based on game logic.
+    /// Unity 摄像机可以由场景中的任何 CinemachineCamera 驱动。游戏
+    /// 逻辑可以通过操纵 CM 摄像机的启用标志和/或其优先级
+    /// 来选择要激活的 CinemachineCamera，基于游戏逻辑。
     ///
-    /// In order to be driven by a CinemachineCamera, the Unity Camera must have a CinemachineBrain
-    /// behaviour, which will select the most eligible CinemachineCamera based on its priority
-    /// or on other criteria, and will manage blending.
+    /// 为了由 CinemachineCamera 驱动，Unity 摄像机必须具有 CinemachineBrain
+    /// 行为，该行为将根据其优先级或其他条件选择最符合条件的
+    /// CinemachineCamera，并管理混合。
     /// </summary>
-    ///
+    /// 
     [DisallowMultipleComponent]
     [ExecuteAlways]
     [SaveDuringPlay]
@@ -53,6 +51,8 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineCamera.html")]
     public sealed class CinemachineCamera : CinemachineVirtualCameraBase
     {
+        [RedHeader("Help：摄像机控制器-主动控制 Unity 摄像机,优先级活动，必须具有 CinemachineBrain")]
+        [Space(30)]
         /// <summary>The Tracking and LookAt targets for this camera.</summary>
         [NoSaveDuringPlay]
         [Tooltip("指定此相机的跟踪目标和注视目标。")]

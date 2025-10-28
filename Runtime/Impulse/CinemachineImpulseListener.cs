@@ -15,6 +15,8 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineImpulseListener.html")]
     public class CinemachineImpulseListener : CinemachineExtension
     {
+        [RedHeader("Help：冲击波接收器，挂载有Cinemachine Camera组件对象上")]
+        [Space(30)]
         /// <summary>
         /// 何时应用脉冲反应。默认为 Noise 阶段。
         /// 必要时修改此设置以影响扩展效果的顺序

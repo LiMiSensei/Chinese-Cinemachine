@@ -172,7 +172,7 @@ namespace Unity.Cinemachine.Editor
                 var row = ux.AddChild(new InspectorUtility.LeftRightRow());
                 row.Left.Add(new Label(PipelineStageMenu.s_StageData[stage].Name)
                 {
-                    tooltip = "Will add a Behaviour to implement this stage in the procedural pipeline",
+                    tooltip = "将添加一个行为组件，以在程序化流程中实现此阶段。",
                     style = { flexGrow = 1, alignSelf = Align.Center }
                 });
                 var warningIcon = row.Left.AddChild(InspectorUtility.MiniHelpIcon("Component is disabled or has a problem"));
@@ -245,9 +245,7 @@ namespace Unity.Cinemachine.Editor
         public static void AddExtensionsDropdown(this UnityEditor.Editor editor, VisualElement ux)
         {
             var row = new InspectorUtility.LabeledRow(
-                "Add Extension", "Extensions are behaviours that inject themselves into "
-                + "the Cinemachine pipeline to alter the camera's behaviour.  "
-                + "This dropdown will add the selected extension behaviour.");
+                "添加扩展", "扩展是一种行为，它们会注入到Cinemachine流程中，以改变摄像机的行为。此下拉菜单将添加所选的扩展行为。");
 
             var menu = new ContextualMenuManipulator((evt) =>
             {

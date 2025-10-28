@@ -95,7 +95,7 @@ namespace Unity.Cinemachine
         /// <summary>
         /// 脉冲如何在空间和时间中传播。
         /// </summary>
-        [Tooltip("脉冲如何在空间和时间中传播。")]
+        [Tooltip("脉冲如何在空间和时间中传播。均匀-半径减弱-声波-向后兼容")]
         [FormerlySerializedAs("m_ImpulseType")]
         public ImpulseTypes ImpulseType = ImpulseTypes.Legacy;    // 默认使用向后兼容模式
 

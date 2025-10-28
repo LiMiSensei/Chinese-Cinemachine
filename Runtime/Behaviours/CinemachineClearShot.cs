@@ -5,21 +5,19 @@ using UnityEngine.Serialization;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// Cinemachine ClearShot is a "manager camera" that owns and manages a set of
-    /// Virtual Camera gameObject children.  When Live, the ClearShot will check the
-    /// children, and choose the one with the best quality shot and make it Live.
+    /// Cinemachine ClearShot 是一个"管理器摄像机"，它拥有并管理一组
+    /// 虚拟摄像机游戏对象子项。当激活时，ClearShot 会检查所有子摄像机，
+    /// 选择具有最佳拍摄质量的摄像机并将其激活。
     ///
-    /// This can be a very powerful tool.  If the child cameras have shot evaluator
-    /// extensions, they will analyze the scene for target obstructions, optimal target
-    /// distance, and other items, and report their assessment of shot quality back to
-    /// the ClearShot parent, who will then choose the best one.  You can use this to set
-    /// up complex multi-camera coverage of a scene, and be assured that a clear shot of
-    /// the target will always be available.
+    /// 这是一个非常强大的工具。如果子摄像机具有拍摄评估器扩展，
+    /// 它们将分析场景中的目标遮挡、最佳目标距离等因素，
+    /// 并将拍摄质量评估报告给 ClearShot 父对象，然后选择最佳摄像机。
+    /// 您可以使用此功能设置场景的复杂多摄像机覆盖，
+    /// 并确保始终可以获得目标的清晰拍摄视角。
     ///
-    /// If multiple child cameras have the same shot quality, the one with the highest
-    /// priority will be chosen.
+    /// 如果多个子摄像机具有相同的拍摄质量，将选择优先级最高的摄像机。
     ///
-    /// You can also define custom blends between the ClearShot children.
+    /// 您还可以在 ClearShot 子摄像机之间定义自定义混合效果。
     /// </summary>
     [DisallowMultipleComponent]
     [ExecuteAlways]
@@ -29,6 +27,8 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineClearShot.html")]
     public class CinemachineClearShot : CinemachineCameraManagerBase
     {
+        [RedHeader("Help：管理器摄像机，评估器目标遮挡、距离等因素，然后选择最佳摄像机。")]
+        [Space(30)]
         /// <summary>激活新的子相机前等待的秒数</summary>
         [Tooltip("激活新的子相机前等待的秒数")]
         [FormerlySerializedAs("m_ActivateAfter")]

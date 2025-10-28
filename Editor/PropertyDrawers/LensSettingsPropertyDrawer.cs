@@ -49,9 +49,9 @@ namespace Unity.Cinemachine.Editor
 
         static List<string> m_PresetOptions;
         static List<string> m_PhysicalPresetOptions;
-        const string k_AddPresetsLabel = "New Palette entry with these Settings...";
-        const string k_EditPresetsLabel = "Edit Palette...";
-        const string k_PaletteLabel = "Palette...";
+        const string k_AddPresetsLabel = "使用这些设置新建面板条目";
+        const string k_EditPresetsLabel = "编辑面板";
+        const string k_PaletteLabel = "面板";
         float m_PreviousAspect;
 
         protected bool HideModeOverride { get; set; }

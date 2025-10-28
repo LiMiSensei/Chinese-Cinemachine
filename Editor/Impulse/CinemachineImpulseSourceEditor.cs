@@ -13,15 +13,22 @@ namespace Unity.Cinemachine.Editor
             "Invoke", "Play-mode only: Generate an impulse with the default velocity scaled by this amount");
         GUIContent m_TestLabel = new (
             "Test with Force", "Generate an impulse with the default velocity scaled by an amount");
-
+        GUIStyle redStyle = new GUIStyle(EditorStyles.label);
+        //private void OnEnable()
+        //{
+        //    //主题
+        //    redStyle.normal.textColor = Color.red;
+        //    redStyle.fontStyle = FontStyle.Bold;
+        //    redStyle.wordWrap = true; // 允许自动换行
+        //}
         public override void OnInspectorGUI()
         {
-            serializedObject.Update();
+            
 
+            serializedObject.Update();
             EditorGUILayout.Separator();
-            EditorGUILayout.HelpBox(
-                "将您的冲力生成事件连接到此脚本中定义的某个 GenerateImpulse API 方法。",
-                MessageType.Info);
+
+            //EditorGUILayout.LabelField("Help：这是冲击波生成器，会按照对象位置生成冲击波", redStyle);
 
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(serializedObject.FindProperty(() => Target.ImpulseDefinition));

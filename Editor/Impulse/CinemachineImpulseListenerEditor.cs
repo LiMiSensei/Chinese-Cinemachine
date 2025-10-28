@@ -22,9 +22,9 @@ namespace Unity.Cinemachine.Editor
             }
             else
             {
-                ux.Add(new HelpBox(
-                    "冲力监听器（Impulse Listener）会响应由任意冲力源（CinemachineImpulseSource）广播的信号。", 
-                    HelpBoxMessageType.Info));
+                //ux.Add(new HelpBox(
+                    //"冲力监听器（Impulse Listener）会响应由任意冲力源（CinemachineImpulseSource）广播的信号。", 
+                    //HelpBoxMessageType.Info));
             }
             var prop = serializedObject.GetIterator();
             if (prop.NextVisible(true))

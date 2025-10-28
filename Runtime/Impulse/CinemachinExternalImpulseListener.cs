@@ -4,30 +4,34 @@ using UnityEngine.Serialization;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// This behaviour can be attached to any object to make it shake in response to Impulses.
+    /// 此行为可以附加到任何对象上，使其响应脉冲而产生震动。
     ///
-    /// This behaviour can be attached to the main Camera with the CinemachineBrain,
-    /// to allow the main camera to shake without putting Listeners on the virtual cameras.
-    /// In this case, camera shake is not dependent on the active virtual camera.
+    /// 此行为可以附加到带有 CinemachineBrain 的主摄像机上，
+    /// 允许主摄像机震动而无需在虚拟摄像机上放置监听器。
+    /// 在这种情况下，摄像机震动不依赖于活动的虚拟摄像机。
     ///
-    /// It is also possible to put this behaviour on other scene objects to shake them
-    /// in response to impulses.
+    /// 也可以将此行为附加到其他场景对象上，使它们
+    /// 响应脉冲而产生震动。
     /// </summary>
     [SaveDuringPlay]
     [AddComponentMenu("Cinemachine/Helpers/Cinemachine External Impulse Listener")]
     [HelpURL(Documentation.BaseURL + "manual/CinemachineExternalImpulseListener.html")]
     public class CinemachineExternalImpulseListener : MonoBehaviour
     {
+        
         Vector3 m_ImpulsePosLastFrame;
         Quaternion m_ImpulseRotLastFrame;
 
-/// <summary>
-/// 掩码中未包含的通道上的脉冲事件将被忽略。
-/// </summary>
-[Tooltip("掩码中未包含的通道上的脉冲事件将被忽略。")]
-[CinemachineImpulseChannelProperty]
-[FormerlySerializedAs("m_ChannelMask")]
-public int ChannelMask;
+
+        [RedHeader("Help：冲击波接收器，使其响应脉冲而产生震动")]
+        [Space(30)]
+        /// <summary>
+        /// 掩码中未包含的通道上的脉冲事件将被忽略。
+        /// </summary>
+        [Tooltip("掩码中未包含的通道上的脉冲事件将被忽略。")]
+        [CinemachineImpulseChannelProperty]
+        [FormerlySerializedAs("m_ChannelMask")]
+        public int ChannelMask;
 
         /// <summary>
         /// 应用于脉冲信号的增益。

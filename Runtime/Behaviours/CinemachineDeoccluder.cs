@@ -7,14 +7,13 @@ using System;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// An add-on module for CinemachineCamera that post-processes
-    /// the final position of the camera. Based on the supplied settings,
-    /// the Deoccluder will attempt to preserve the line of sight
-    /// with the LookAt target of the camera by moving
-    /// away from objects that will obstruct the view.
+    /// CinemachineCamera 的一个附加模块，用于对摄像机的最终位置
+    /// 进行后处理。根据提供的设置，去遮挡器将通过远离
+    /// 会遮挡视线的物体来尝试保持与摄像机 LookAt 目标的
+    /// 视线畅通。
     ///
-    /// Additionally, the Deoccluder can be used to assess the shot quality and
-    /// report this as a field in the camera State.
+    /// 此外，去遮挡器还可用于评估拍摄质量，
+    /// 并将其作为字段报告在摄像机状态中。
     /// </summary>
     [AddComponentMenu("Cinemachine/Procedural/Extensions/Cinemachine Deoccluder")]
     [SaveDuringPlay]
@@ -24,6 +23,8 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineDeoccluder.html")]
     public class CinemachineDeoccluder : CinemachineExtension, IShotQualityEvaluator
     {
+        [RedHeader("Help：去遮挡器还可用于评估拍摄质量")]
+        [Space(30)]
         /// <summary>将检测这些图层上的物体。</summary>
         [Tooltip("将检测这些图层上的物体")]
         public LayerMask CollideAgainst = 1;
