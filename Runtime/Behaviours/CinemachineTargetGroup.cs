@@ -6,61 +6,59 @@ using System.Collections.Generic;
 namespace Unity.Cinemachine
 {
     /// <summary>
-    /// Interface representing something that can be used as a vcam target.
-    /// It has a transform, a bounding box, and a bounding sphere.
+    /// 表示可作为虚拟相机目标的对象的接口。
+    /// 它具有变换、边界框和边界球。
     /// </summary>
     public interface ICinemachineTargetGroup
     {
         /// <summary>
-        /// Returns true if object has not been deleted.
+        /// 如果对象未被删除，则返回 true。
         /// </summary>
         bool IsValid { get; }
 
         /// <summary>
-        /// Get the MonoBehaviour's Transform
+        /// 获取 MonoBehaviour 的变换
         /// </summary>
         Transform Transform { get; }
 
         /// <summary>
-        /// The axis-aligned bounding box of the group, computed using the targets positions and radii
+        /// 组的轴对齐边界框，使用目标位置和半径计算
         /// </summary>
         Bounds BoundingBox { get; }
 
         /// <summary>
-        /// The bounding sphere of the group, computed using the targets positions and radii
+        /// 组的边界球，使用目标位置和半径计算
         /// </summary>
         BoundingSphere Sphere { get; }
 
         /// <summary>
-        /// Returns true if the group has no non-zero-weight members
+        /// 如果组中没有非零权重的成员，则返回 true
         /// </summary>
         bool IsEmpty { get; }
 
-        /// <summary>The axis-aligned bounding box of the group, in a specific reference frame</summary>
-        /// <param name="observer">The frame of reference in which to compute the bounding box</param>
-        /// <param name="includeBehind">If true, members behind the observer (negative z) will be included</param>
-        /// <returns>The axis-aligned bounding box of the group, in the desired frame of reference</returns>
+        /// <summary>组的轴对齐边界框，在特定参考系中</summary>
+        /// <param name="observer">计算边界框所处的参考系</param>
+        /// <param name="includeBehind">如果为 true，将包含观察者后方（z 轴负方向）的成员</param>
+        /// <returns>所需参考系中组的轴对齐边界框</returns>
         Bounds GetViewSpaceBoundingBox(Matrix4x4 observer, bool includeBehind);
 
         /// <summary>
-        /// Get the local-space angular bounds of the group, from a specific point of view.
-        /// Also returns the z depth range of the members.
-        /// Members behind the observer (negative z) will be ignored.
+        /// 从特定视角获取组的局部空间角度边界。
+        /// 同时返回成员的 z 深度范围。
+        /// 观察者后方（z 轴负方向）的成员将被忽略。
         /// </summary>
-        /// <param name="observer">Point of view from which to calculate, and in whose
-        /// space the return values are</param>
-        /// <param name="minAngles">The lower bound of the screen angles of the members (degrees)</param>
-        /// <param name="maxAngles">The upper bound of the screen angles of the members (degrees)</param>
-        /// <param name="zRange">The min and max depth values of the members, relative to the observer</param>
+        /// <param name="observer">计算的视角，返回值将处于该空间中</param>
+        /// <param name="minAngles">成员屏幕角度的下限（度）</param>
+        /// <param name="maxAngles">成员屏幕角度的上限（度）</param>
+        /// <param name="zRange">成员相对于观察者的最小和最大深度值</param>
         void GetViewSpaceAngularBounds(
             Matrix4x4 observer, out Vector2 minAngles, out Vector2 maxAngles, out Vector2 zRange);
     }
 
-    /// <summary>Defines a group of target objects, each with a radius and a weight.
-    /// The weight is used when calculating the average position of the target group.
-    /// Higher-weighted members of the group will count more.
-    /// The bounding box is calculated by taking the member positions, weight,
-    /// and radii into account.
+    /// <summary>定义一组目标对象，每个对象都有半径和权重。
+    /// 权重用于计算目标组的平均位置。
+    /// 组中权重较高的成员将占更大比重。
+    /// 边界框的计算会考虑成员的位置、权重和半径。
     /// </summary>
     [AddComponentMenu("Cinemachine/Helpers/Cinemachine Target Group")]
     [SaveDuringPlay]
@@ -69,7 +67,7 @@ namespace Unity.Cinemachine
     [HelpURL(Documentation.BaseURL + "manual/CinemachineTargetGroup.html")]
     public class CinemachineTargetGroup : MonoBehaviour, ICinemachineTargetGroup
     {
-        /// <summary>Holds the information that represents a member of the group</summary>
+        /// <summary>保存表示组成员的信息</summary>
         [Serializable] public class Target
         {
             /// <summary>目标对象。该对象的位置和旋转将根据其权重贡献给组的位置和旋转平均值</summary>
@@ -88,12 +86,12 @@ namespace Unity.Cinemachine
             public float Radius = 0.5f;
         }
 
-        /// <summary>How the group's position is calculated</summary>
+        /// <summary>组位置的计算方式</summary>
         public enum PositionModes
         {
-            ///<summary>Group position will be the center of the group's axis-aligned bounding box</summary>
+            ///<summary>组位置将是组的轴对齐边界框的中心</summary>
             GroupCenter,
-            /// <summary>Group position will be the weighted average of the positions of the members</summary>
+            /// <summary>组位置将是成员位置的加权平均值</summary>
             GroupAverage
         }
 
@@ -148,7 +146,7 @@ namespace Unity.Cinemachine
         BoundingSphere m_BoundingSphere;
         int m_LastUpdateFrame = -1;
 
-        // Caches of valid members so we don't keep checking activeInHierarchy
+        // 有效成员的缓存，这样我们就不必一直检查 activeInHierarchy
         List<int> m_ValidMembers = new ();
         List<bool> m_MemberValidity = new ();
 
@@ -171,7 +169,7 @@ namespace Unity.Cinemachine
         }
 
         //============================================
-        // Legacy support
+        // 遗留支持
 
         [HideInInspector, SerializeField, NoSaveDuringPlay, FormerlySerializedAs("m_Targets")]
         Target[] m_LegacyTargets;
@@ -183,8 +181,8 @@ namespace Unity.Cinemachine
             m_LegacyTargets = null;
         }
 
-        /// <summary>Obsolete Targets</summary>
-        [Obsolete("m_Targets is obsolete.  Please use Targets instead")]
+        /// <summary>已过时的目标列表</summary>
+        [Obsolete("m_Targets 已过时。请使用 Targets 代替")]
         public Target[] m_Targets
         {
             get => Targets.ToArray();
@@ -194,15 +192,14 @@ namespace Unity.Cinemachine
         //============================================
 
         /// <summary>
-        /// Get the MonoBehaviour's Transform
+        /// 获取 MonoBehaviour 的变换
         /// </summary>
         public Transform Transform => transform;
 
         /// <inheritdoc />
         public bool IsValid => this != null;
 
-        /// <summary>The axis-aligned bounding box of the group, computed using the
-        /// targets positions and radii</summary>
+        /// <summary>组的轴对齐边界框，使用目标位置和半径计算</summary>
         public Bounds BoundingBox
         {
             get
@@ -214,8 +211,7 @@ namespace Unity.Cinemachine
             private set => m_BoundingBox = value;
         }
 
-        /// <summary>The bounding sphere of the group, computed using the
-        /// targets positions and radii</summary>
+        /// <summary>组的边界球，使用目标位置和半径计算</summary>
         public BoundingSphere Sphere
         {
             get
@@ -227,10 +223,8 @@ namespace Unity.Cinemachine
             private set => m_BoundingSphere = value;
         }
 
-        /// <summary>Return true if there are no members with weight > 0.  This returns the
-        /// cached member state and is only valid after a call to DoUpdate().  If members
-        /// are added or removed after that call, this will not necessarily return
-        /// correct information before the next update.</summary>
+        /// <summary>如果没有权重 > 0 的成员，则返回 true。这返回缓存的成员状态，仅在调用 DoUpdate() 后有效。
+        /// 如果在该调用后添加或删除成员，在下次更新前，这不一定返回正确的信息。</summary>
         public bool IsEmpty
         {
             get
@@ -241,17 +235,17 @@ namespace Unity.Cinemachine
             }
         }
 
-        /// <summary>Add a member to the group</summary>
-        /// <param name="t">The member to add</param>
-        /// <param name="weight">The new member's weight</param>
-        /// <param name="radius">The new member's radius</param>
+        /// <summary>向组中添加成员</summary>
+        /// <param name="t">要添加的成员</param>
+        /// <param name="weight">新成员的权重</param>
+        /// <param name="radius">新成员的半径</param>
         public void AddMember(Transform t, float weight, float radius)
         {
             Targets.Add(new Target { Object = t, Weight = weight, Radius = radius });
         }
 
-        /// <summary>Remove a member from the group</summary>
-        /// <param name="t">The member to remove</param>
+        /// <summary>从组中移除成员</summary>
+        /// <param name="t">要移除的成员</param>
         public void RemoveMember(Transform t)
         {
             int index = FindMember(t);
@@ -259,9 +253,9 @@ namespace Unity.Cinemachine
                 Targets.RemoveAt(index);
         }
 
-        /// <summary>Locate a member's index in the group.</summary>
-        /// <param name="t">The member to find</param>
-        /// <returns>Member index, or -1 if not a member</returns>
+        /// <summary>查找成员在组中的索引。</summary>
+        /// <param name="t">要查找的成员</param>
+        /// <returns>成员索引，如果不是成员则返回 -1</returns>
         public int FindMember(Transform t)
         {
             var count = Targets.Count;
@@ -272,14 +266,13 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>
-        /// Get the bounding sphere of a group member, with the weight taken into account.
-        /// As the member's weight goes to 0, the position interpolates to the group average position.
-        /// Note that this result is only valid after DoUpdate has been called. If members
-        /// are added or removed after that call or change their weights or active state,
-        /// this will not necessarily return correct information before the next update.
+        /// 获取组成员的边界球，已考虑权重。
+        /// 当成员的权重趋近于 0 时，位置将插值到组的平均位置。
+        /// 注意，此结果仅在调用 DoUpdate 后有效。如果在该调用后添加或删除成员，
+        /// 或成员更改了权重或激活状态，在下次更新前，这不一定返回正确的信息。
         /// </summary>
-        /// <param name="index">Member index</param>
-        /// <returns>The weighted bounding sphere</returns>
+        /// <param name="index">成员索引</param>
+        /// <returns>加权边界球</returns>
         public BoundingSphere GetWeightedBoundsForMember(int index)
         {
             if (m_LastUpdateFrame != CinemachineCore.CurrentUpdateFrame)
@@ -289,13 +282,12 @@ namespace Unity.Cinemachine
             return WeightedMemberBoundsForValidMember(Targets[index], m_AveragePos, m_MaxWeight);
         }
 
-        /// <summary>The axis-aligned bounding box of the group, in a specific reference frame.
-        /// Note that this result is only valid after DoUpdate has been called. If members
-        /// are added or removed after that call or change their weights or active state,
-        /// this will not necessarily return correct information before the next update.</summary>
-        /// <param name="observer">The frame of reference in which to compute the bounding box</param>
-        /// <param name="includeBehind">If true, members behind the observer (negative z) will be included</param>
-        /// <returns>The axis-aligned bounding box of the group, in the desired frame of reference</returns>
+        /// <summary>组的轴对齐边界框，在特定参考系中。
+        /// 注意，此结果仅在调用 DoUpdate 后有效。如果在该调用后添加或删除成员，
+        /// 或成员更改了权重或激活状态，在下次更新前，这不一定返回正确的信息。</summary>
+        /// <param name="observer">计算边界框所处的参考系</param>
+        /// <param name="includeBehind">如果为 true，将包含观察者后方（z 轴负方向）的成员</param>
+        /// <returns>所需参考系中组的轴对齐边界框</returns>
         public Bounds GetViewSpaceBoundingBox(Matrix4x4 observer, bool includeBehind)
         {
             if (m_LastUpdateFrame != CinemachineCore.CurrentUpdateFrame)
@@ -341,8 +333,8 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>
-        /// Update the group's transform right now, depending on the transforms of the members.
-        /// Normally this is called automatically by Update() or LateUpdate().
+        /// 立即根据成员的变换更新组的变换。
+        /// 通常这会由 Update() 或 LateUpdate() 自动调用。
         /// </summary>
         public void DoUpdate()
         {
@@ -375,7 +367,7 @@ namespace Unity.Cinemachine
 
         void UpdateMemberValidity()
         {
-            Targets ??= new (); // in case user set it to null
+            Targets ??= new (); // 防止用户将其设为 null
             var count = Targets.Count;
             m_ValidMembers.Clear();
             m_ValidMembers.Capacity = Mathf.Max(m_ValidMembers.Capacity, count);
@@ -396,7 +388,7 @@ namespace Unity.Cinemachine
             }
         }
 
-        // Assumes that UpdateMemberValidity() has been called
+        // 假设已调用 UpdateMemberValidity()
         Vector3 CalculateAveragePosition()
         {
             if (m_WeightSum < UnityVectorExtensions.Epsilon)
@@ -413,7 +405,7 @@ namespace Unity.Cinemachine
             return pos / m_WeightSum;
         }
 
-        // Assumes that UpdateMemberValidity() has been called
+        // 假设已调用 UpdateMemberValidity()
         Bounds CalculateBoundingBox()
         {
             if (m_MaxWeight < UnityVectorExtensions.Epsilon)
@@ -429,11 +421,11 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>
-        /// Use Ritter's algorithm for calculating an approximate bounding sphere.
-        /// Assumes that UpdateMemberValidity() has been called.
+        /// 使用 Ritter 算法计算近似边界球。
+        /// 假设已调用 UpdateMemberValidity()。
         /// </summary>
-        /// <param name="maxWeight">The maximum weight of members in the group</param>
-        /// <returns>An approximate bounding sphere.  Will be slightly large.</returns>
+        /// <param name="maxWeight">组中成员的最大权重</param>
+        /// <returns>近似边界球，会稍大一些。</returns>
         BoundingSphere CalculateBoundingSphere()
         {
             var count = m_ValidMembers.Count;
@@ -447,7 +439,7 @@ namespace Unity.Cinemachine
                 var distance = (s.position - sphere.position).magnitude + s.radius;
                 if (distance > sphere.radius)
                 {
-                    // Point is outside current sphere: update
+                    // 点在当前球外：更新
                     sphere.radius = (sphere.radius + distance) * 0.5f;
                     sphere.position = (sphere.radius * sphere.position + (distance - sphere.radius) * s.position) / distance;
                 }
@@ -455,7 +447,7 @@ namespace Unity.Cinemachine
             return sphere;
         }
 
-        // Assumes that UpdateMemberValidity() has been called
+        // 假设已调用 UpdateMemberValidity()
         Quaternion CalculateAverageOrientation()
         {
             if (m_WeightSum > 0.001f)
@@ -496,17 +488,15 @@ namespace Unity.Cinemachine
         }
 
         /// <summary>
-        /// Get the local-space angular bounds of the group, from a specific point of view.
-        /// Also returns the z depth range of the members.
-        /// Note that this result is only valid after DoUpdate has been called. If members
-        /// are added or removed after that call or change their weights or active state,
-        /// this will not necessarily return correct information before the next update.
+        /// 从特定视角获取组的局部空间角度边界。
+        /// 同时返回成员的 z 深度范围。
+        /// 注意，此结果仅在调用 DoUpdate 后有效。如果在该调用后添加或删除成员，
+        /// 或成员更改了权重或激活状态，在下次更新前，这不一定返回正确的信息。
         /// </summary>
-        /// <param name="observer">Point of view from which to calculate, and in whose
-        /// space the return values are</param>
-        /// <param name="minAngles">The lower bound of the screen angles of the members (degrees)</param>
-        /// <param name="maxAngles">The upper bound of the screen angles of the members (degrees)</param>
-        /// <param name="zRange">The min and max depth values of the members, relative to the observer</param>
+        /// <param name="observer">计算的视角，返回值将处于该空间中</param>
+        /// <param name="minAngles">成员屏幕角度的下限（度）</param>
+        /// <param name="maxAngles">成员屏幕角度的上限（度）</param>
+        /// <param name="zRange">成员相对于观察者的最小和最大深度值</param>
         public void GetViewSpaceAngularBounds(
             Matrix4x4 observer, out Vector2 minAngles, out Vector2 maxAngles, out Vector2 zRange)
         {
@@ -528,7 +518,7 @@ namespace Unity.Cinemachine
                     var s = WeightedMemberBoundsForValidMember(Targets[m_ValidMembers[i]], m_AveragePos, m_MaxWeight);
                     var p = world2local.MultiplyPoint3x4(s.position);
                     if (p.z < UnityVectorExtensions.Epsilon)
-                        continue; // behind us
+                        continue; // 在我们后方
 
                     var rN = s.radius / p.z;
                     var rN2 = new Vector3(rN, rN, 0);
@@ -549,7 +539,7 @@ namespace Unity.Cinemachine
                     }
                 }
             }
-            // Don't need the high-precision versions of UnityVectorExtensions.SignedAngle
+            // 不需要 UnityVectorExtensions.SignedAngle 的高精度版本
             var pMin = b.min;
             var pMax = b.max;
             minAngles = new Vector2(

@@ -52,7 +52,7 @@ namespace Unity.Cinemachine.Editor
             var statusText = row.Label;
             var soloButton = row.Contents.AddChild(new Button()
             {
-                text = "Solo",
+                text = "单独启用",
                 style = { flexGrow = 1, paddingLeft = 0, paddingRight = 0,
                     marginLeft = 3, marginRight = 0, borderLeftWidth = 1, borderRightWidth = 1 }
             });

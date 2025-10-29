@@ -82,16 +82,15 @@ namespace Unity.Cinemachine
         public float LookAtTargetAttachment;
 
         /// <summary>
-        /// How often to update a virtual camera when it is in Standby mode
+        /// 当虚拟相机处于待机模式时，多久更新一次
         /// </summary>
         public enum StandbyUpdateMode
         {
-            /// <summary>Only update if the virtual camera is Live</summary>
+            /// <summary>只有当虚拟摄像机是Live时才更新</summary>
             Never,
-            /// <summary>Update the virtual camera every frame, even when it is not Live</summary>
+            /// <summary>每帧更新虚拟摄像机，即使它不是实时的</summary>
             Always,
-            /// <summary>Update the virtual camera occasionally, the exact frequency depends
-            /// on how many other virtual cameras are in Standby</summary>
+            /// <summary>偶尔更新虚拟摄像头，具体频率取决于有多少其他虚拟摄像头处于待机状态</summary>
             RoundRobin
         };
 
@@ -99,8 +98,10 @@ namespace Unity.Cinemachine
         /// be updated.  Set this to tune for performance. Most of the time Never is fine, unless
         /// the virtual camera is doing shot evaluation.
         /// </summary>
-        [Tooltip("当虚拟相机未处于激活状态时，此参数用于设置虚拟相机的更新频率。"
-        +"可通过设置此参数来优化性能。大多数情况下，设为“从不（Never）”即可，除非该虚拟相机需要进行镜头评估。")]
+        [Tooltip("当虚拟相机未处于激活状态时，此参数用于设置虚拟相机的更新频率。\n"
+        + "Never:只有当虚拟摄像机是Live时才更新。\n"
+        + "Always:每帧更新虚拟摄像机，即使它不是实时的\n" 
+        + "RoundRobin:偶尔更新虚拟摄像头，具体频率取决于有多少其他虚拟摄像头处于待机状态")]
         [FormerlySerializedAs("m_StandbyUpdate")]
         public StandbyUpdateMode StandbyUpdate = StandbyUpdateMode.RoundRobin;
 
